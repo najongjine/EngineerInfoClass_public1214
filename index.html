@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="정보처리기사 20일 과정의 이론·코딩·SQL 교재를 한곳에서 찾고 바로 열어보세요.">
+  <meta name="theme-color" content="#183e35">
+  <title>정보처리기사 · 학습 대시보드</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23183e35'/%3E%3Cpath d='M16 18h13l3 4 3-4h13v30H35l-3 3-3-3H16z' fill='none' stroke='%23e4efcc' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="dashboard-data.js" defer></script>
+  <script src="dashboard.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#curriculum">교재 목록으로 건너뛰기</a>
+  <aside class="sidebar">
+    <a class="brand" href="./index.html" aria-label="학습 대시보드 홈"><span class="brand-icon">E<span>↗</span></span><span>ENGINEER<br><small>LEARNING SPACE</small></span></a>
+    <div class="sidebar-label">MY CLASSROOM</div>
+    <nav aria-label="주요 메뉴">
+      <button class="nav-item active" data-view="all"><span aria-hidden="true">▦</span> 전체 커리큘럼 <span class="nav-count" id="nav-total">43</span></button>
+      <button class="nav-item" data-view="theory"><span aria-hidden="true">▤</span> 이론 모의고사</button>
+      <button class="nav-item" data-view="coding"><span class="code-icon" aria-hidden="true">&lt;/&gt;</span> 코딩 실습</button>
+      <button class="nav-item" data-view="sql"><span aria-hidden="true">▱</span> SQL 보충 교재</button>
+      <div class="nav-divider"></div>
+      <button class="nav-item" data-view="saved"><span aria-hidden="true">☆</span> 즐겨찾기 <span class="nav-count" id="saved-count">0</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="mini-note"><span class="tiny-dot"></span> 하루씩, 차근차근.<p>흩어진 교재를 모아<br>학습에만 집중하세요.</p></div>
+      <a class="repo-link" href="https://github.com/najongjine/EngineerInfoClass_public1214" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌘</span> GitHub 저장소 <span aria-hidden="true">↗</span></a>
+      <div class="author">MADE BY NAJONGJINE</div>
+    </div>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar"><div><span class="breadcrumb">내 강의실</span><span class="slash">/</span><span id="breadcrumb-current">전체 커리큘럼</span></div><span class="topbar-badge"><span class="tiny-dot"></span> 정보처리기사</span></header>
+    <main>
+      <div class="page-heading"><div><p class="eyebrow">YOUR LEARNING, ALL IN ONE PLACE</p><h1>학습 대시보드<span>.</span></h1><p class="intro">오늘의 한 걸음이 실력이 되도록. 모든 교재를 한곳에서 만나보세요.</p></div><a class="outline-link" href="#curriculum">교재 둘러보기 <span aria-hidden="true">↓</span></a></div>
+
+      <section class="overview" aria-label="학습 현황">
+        <div class="welcome-panel">
+          <div class="welcome-copy"><span class="course-pill">20일 완성 커리큘럼</span><h2>기초부터 실전까지,<br>하나의 흐름으로.</h2><p>C · Java · Python 코딩과 이론 기출,<br>SQL 실습까지 연결하는 학습 공간.</p><a id="continue-link" class="primary-link" href="#curriculum">첫 교재 시작하기 <span aria-hidden="true">↗</span></a></div>
+          <div class="course-art" aria-hidden="true"><div class="art-grid"></div><div class="code-paper"><div class="paper-dots"><i></i><i></i><i></i></div><div class="paper-lines"><span>01 <b>learn</b>() {</span><span>02 &nbsp; practice();</span><span>03 &nbsp; <b>grow</b>++;</span><span>04 }</span></div></div><span class="art-tag tag-c">C</span><span class="art-tag tag-java">Java</span><span class="art-tag tag-python">Python</span><div class="art-caption">ONE DAY AT A TIME ↗</div></div>
+        </div>
+        <div class="progress-panel"><div class="panel-heading">나의 학습 기록 <span class="small-pill">이 브라우저</span></div><div class="progress-metric"><strong id="completed-total">0</strong><span>/ <span id="resource-total">43</span>개 완료</span><span class="progress-percent" id="progress-percent">0%</span></div><div class="progress-track" role="progressbar" aria-label="전체 교재 학습 완료율" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress-fill"></div></div><div class="stat-grid"><div><strong id="day-total">20</strong><span>학습 일차</span></div><div><strong>4</strong><span>주차 구성</span></div><div><strong id="sql-total">3</strong><span>SQL 교재</span></div></div><p class="storage-note" id="storage-note">완료 체크와 즐겨찾기는 이 브라우저에 저장됩니다.</p></div>
+      </section>
+
+      <section id="curriculum" class="curriculum" aria-labelledby="curriculum-heading">
+        <div class="section-heading"><div><h2 id="curriculum-heading">전체 커리큘럼 <span id="heading-count">43</span></h2><p id="section-description">일차별 이론과 코딩을 함께 확인하고, 원하는 교재를 바로 열어보세요.</p></div><span class="new-tab-note">교재는 새 탭에서 열립니다 <span aria-hidden="true">↗</span></span></div>
+        <div class="toolbar"><div class="week-tabs" role="group" aria-label="주차 선택"><button class="week-tab selected" data-week="all" aria-pressed="true">전체</button><button class="week-tab" data-week="1" aria-pressed="false">1주차 <small>01–05</small></button><button class="week-tab" data-week="2" aria-pressed="false">2주차 <small>06–10</small></button><button class="week-tab" data-week="3" aria-pressed="false">3주차 <small>11–15</small></button><button class="week-tab" data-week="4" aria-pressed="false">4주차 <small>16–20</small></button></div><div class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" aria-label="교재 검색" placeholder="교재명, 주제, 언어 검색…" autocomplete="off"><kbd>/</kbd></div></div>
+        <div class="filter-line"><div class="type-filters" role="group" aria-label="과목 선택"><button data-type="all" class="type-filter selected" aria-pressed="true">전체 교재</button><button data-type="theory" class="type-filter" aria-pressed="false"><i class="dot-theory"></i>이론</button><button data-type="coding" class="type-filter" aria-pressed="false"><i class="dot-coding"></i>코딩</button><button data-type="sql" class="type-filter" aria-pressed="false"><i class="dot-sql"></i>SQL</button></div><div class="result-options"><label class="unfinished"><input id="unfinished" type="checkbox"> 미완료만</label><span id="result-count" role="status" aria-live="polite"></span></div></div>
+        <div id="resource-list"></div>
+        <div id="empty-state" class="empty-state" hidden><span aria-hidden="true">⌕</span><h3>조건에 맞는 교재가 없어요.</h3><p>다른 검색어를 입력하거나 필터를 초기화해 보세요.</p><button id="reset-filters">필터 초기화</button></div>
+        <noscript><p>검색과 목록을 사용하려면 JavaScript를 켜주세요. <a href="https://github.com/najongjine/EngineerInfoClass_public1214/tree/main/%EA%B5%90%EC%9E%AC">GitHub에서 전체 교재 보기 ↗</a></p></noscript>
+      </section>
+      <footer><span>ENGINEER <b>LEARNING SPACE</b><span class="footer-divider">|</span>나종진의 정보처리기사 교재</span><a href="https://github.com/najongjine/EngineerInfoClass_public1214" target="_blank" rel="noopener noreferrer">원본 저장소 보기 ↗</a></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+https://github.com/najongjine/EngineerInfoClass_public1214
+
+이게 내가 만든 교재 git 주소야.
+public 으로 해놨어.
+
+
+그런데 이게 너무 파편화 되있어.
+
+니가 한눈에 볼수있는 대시보드를 작성해줘.
+그걸 클릭하면 그 링크로 바로 갈수있게.
