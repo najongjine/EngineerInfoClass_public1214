@@ -1,0 +1,928 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="비전공자를 위한 정보처리기사 실기 02일차 코딩. 예제·응용·심화와 실습. 단독 HTML."><title>02일차 코딩 | 조건문과 반복문</title><style>
+      :root {
+        --ink: #17243a;
+        --muted: #56647a;
+        --blue: #2056a3;
+        --paper: #fff;
+        --line: #dce3ee;
+        --bg: #eef2f7;
+        --green: #16726b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 72px;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+        line-height: 1.85;
+        font-size: 16px;
+      }
+      a {
+        color: var(--blue);
+      }
+      header {
+        background: #112b4c;
+        color: white;
+        padding: 52px max(24px, calc((100vw - 1040px) / 2));
+        border-bottom: 7px solid #51bfb0;
+      }
+      header .eyebrow {
+        letter-spacing: 0.16em;
+        color: #a7e0d9;
+        font-size: 13px;
+      }
+      h1 {
+        font-size: clamp(28px, 4vw, 44px);
+        line-height: 1.4;
+        margin: 14px 0;
+      }
+      header p {
+        color: #d2e0f3;
+        margin: 12px 0;
+      }
+      .meta {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .meta span {
+        border: 1px solid #53708f;
+        border-radius: 24px;
+        padding: 5px 14px;
+        font-size: 14px;
+      }
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #fffefa;
+        border-bottom: 1px solid var(--line);
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      button {
+        font: inherit;
+        font-size: 13px;
+        background: #f6f8fc;
+        color: var(--ink);
+        border: 1px solid #c8d3e2;
+        border-radius: 7px;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #e6effa;
+      }
+      #progress,
+      #save-status {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      main {
+        max-width: 1040px;
+        margin: 30px auto;
+        padding: 0 24px 50px;
+      }
+      nav,
+      section {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        margin: 24px 0;
+        padding: 30px 36px;
+        box-shadow: 0 4px 15px #1b355006;
+      }
+      nav ol {
+        columns: 2;
+        column-gap: 36px;
+        margin: 10px 0;
+      }
+      nav li {
+        break-inside: avoid;
+        padding: 3px 0;
+      }
+      h2 {
+        font-size: 25px;
+        line-height: 1.5;
+        margin: 0 0 22px;
+        border-bottom: 2px solid #dbe8f6;
+        padding-bottom: 14px;
+        letter-spacing: -0.03em;
+      }
+      h3 {
+        font-size: 19px;
+        line-height: 1.55;
+        margin: 30px 0 10px;
+      }
+      p {
+        margin: 12px 0;
+      }
+      li {
+        padding: 3px 0;
+      }
+      b,
+      strong {
+        font-weight: 700;
+      }
+      pre {
+        background: #13263d;
+        color: #edf6ff;
+        padding: 19px 22px;
+        border-radius: 9px;
+        overflow-x: auto;
+        line-height: 1.75;
+        font-size: 14px;
+        tab-size: 4;
+        white-space: pre;
+      }
+      code {
+        font-family: Consolas, "D2Coding", monospace;
+      }
+      p code,
+      li code,
+      td code,
+      aside code {
+        background: #eaf0f8;
+        color: #174273;
+        padding: 2px 5px;
+        border-radius: 4px;
+        overflow-wrap: anywhere;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin: 18px 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      th {
+        background: #eaf0f8;
+        text-align: left;
+        color: #23446e;
+      }
+      th,
+      td {
+        border: 1px solid #dce3ee;
+        padding: 11px 13px;
+        vertical-align: top;
+      }
+      tbody tr:nth-child(even) {
+        background: #fafbfd;
+      }
+      aside {
+        padding: 18px 22px;
+        border-left: 5px solid #3b8eab;
+        background: #eff8fc;
+        border-radius: 0 7px 7px 0;
+        margin: 22px 0;
+      }
+      aside p {
+        margin: 7px 0 0;
+      }
+      .warn {
+        background: #fff7e9;
+        border-color: #d69430;
+      }
+      .flow {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 12px;
+        padding: 22px;
+        background: #edf5f6;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .flow span {
+        font-size: 15px;
+      }
+      .question {
+        border: 1px solid #d5deea;
+        border-top: 4px solid #5b86ba;
+        border-radius: 9px;
+        padding: 23px;
+        margin: 26px 0;
+        break-inside: avoid;
+      }
+      .qhead {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .qhead h3 {
+        margin: 0;
+      }
+      .badge {
+        font-size: 12px;
+        border-radius: 20px;
+        background: #e7f1fa;
+        color: #23527c;
+        padding: 3px 11px;
+        white-space: nowrap;
+      }
+      .question label {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      textarea {
+        display: block;
+        width: 100%;
+        border: 1px solid #bccbdb;
+        border-radius: 6px;
+        padding: 12px;
+        font: inherit;
+        font-size: 14px;
+        line-height: 1.7;
+        resize: vertical;
+        margin: 8px 0 14px;
+        background: #fffef8;
+        color: var(--ink);
+      }
+      textarea:focus,
+      input:focus,
+      button:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid #7cb6ed;
+        outline-offset: 2px;
+      }
+      details {
+        margin: 12px 0;
+        background: #f0f6f6;
+        border-radius: 7px;
+        border: 1px solid #d5e6e5;
+      }
+      summary {
+        cursor: pointer;
+        padding: 12px 16px;
+        color: #155f5d;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .answer-body {
+        padding: 0 18px 15px;
+      }
+      .result {
+        white-space: pre-wrap;
+        background: #e2eeed;
+        color: #174941;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 12px 16px;
+        overflow-wrap: anywhere;
+      }
+      .check {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 15px;
+      }
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: #207e78;
+      }
+      .small {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score {
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+        padding: 20px;
+        background: #edf3fa;
+        border-radius: 8px;
+      }
+      .score input {
+        width: 75px;
+        padding: 7px;
+        font: inherit;
+        border: 1px solid #bdc9d8;
+        border-radius: 5px;
+      }
+      .finish {
+        list-style: none;
+        padding: 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        margin: 30px;
+      }
+      .print-mode {
+        font-size: 13px;
+      }
+      @media (max-width: 640px) {
+        body {
+          font-size: 15px;
+        }
+        main {
+          padding: 0 12px;
+        }
+        nav,
+        section {
+          padding: 23px 18px;
+          border-radius: 8px;
+        }
+        nav ol {
+          columns: 1;
+        }
+        h2 {
+          font-size: 22px;
+        }
+        h3 {
+          font-size: 18px;
+        }
+        .question {
+          padding: 17px;
+        }
+        .qhead {
+          align-items: flex-start;
+        }
+        pre {
+          padding: 14px;
+          font-size: 13px;
+        }
+        .flow {
+          gap: 6px;
+          padding: 14px 8px;
+        }
+        .flow span {
+          font-size: 12px;
+        }
+        .toolbar {
+          position: static;
+          padding: 10px;
+        }
+        th,
+        td {
+          min-width: 100px;
+          padding: 9px;
+        }
+        header {
+          padding: 34px 24px;
+        }
+      }
+      @page {
+        size: A4;
+        margin: 16mm 14mm;
+      }
+      @media print {
+        body {
+          background: white;
+          font-size: 10.5pt;
+          line-height: 1.65;
+          color: #000;
+        }
+        header {
+          background: white !important;
+          color: #000;
+          padding: 12px 0 20px;
+          border-bottom: 3px solid #333;
+        }
+        header p,
+        header .eyebrow {
+          color: #333;
+        }
+        .meta span {
+          border-color: #777;
+        }
+        .toolbar,
+        nav,
+        .check,
+        footer {
+          display: none !important;
+        }
+        main {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+        }
+        section {
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+          padding: 18px 0;
+          margin: 0;
+          break-before: page;
+        }
+        section:first-of-type {
+          break-before: auto;
+        }
+        h2 {
+          font-size: 17pt;
+        }
+        h3 {
+          font-size: 12pt;
+        }
+        h2,
+        h3,
+        summary {
+          break-after: avoid;
+        }
+        pre {
+          background: #f0f0f0 !important;
+          color: #000 !important;
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
+          font-size: 9pt;
+          border: 1px solid #ccc;
+          padding: 12px;
+        }
+        .question {
+          padding: 12px;
+          margin: 18px 0;
+          break-inside: avoid;
+        }
+        .question h3 {
+          font-size: 11.5pt;
+        }
+        table {
+          font-size: 9pt;
+        }
+        .table-wrap {
+          overflow: visible;
+        }
+        th,
+        td {
+          padding: 7px;
+        }
+        tr,
+        aside {
+          break-inside: avoid;
+        }
+        thead {
+          display: table-header-group;
+        }
+        textarea {
+          min-height: 60px;
+          background: white;
+          border: 1px solid #999;
+          font-size: 9pt;
+        }
+        a {
+          color: #000;
+          text-decoration: none;
+        }
+        .flow {
+          background: #eee;
+        }
+        .result {
+          color: #000;
+          background: #f3f3f3;
+        }
+        body[data-print="student"] details.answer {
+          display: none;
+        }
+        body[data-print="teacher"] details.answer {
+          display: block;
+        }
+        .score input {
+          border: 0;
+        }
+        .badge {
+          border: 1px solid #aaa;
+          background: white;
+          color: #000;
+        }
+      }
+
+      h1,
+      h2,
+      h3 {
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+    
+.worked{padding:18px 22px;border:1px solid #b8d9d4;border-radius:8px;background:#f2faf8;margin:18px 0}.scope{font-size:14px;color:#526779}.qhead{flex-wrap:wrap}.section-nav ol{columns:2}.filters{padding:18px;background:#eef4fa;border-radius:8px;margin:18px 0}select{font:inherit;font-size:14px;max-width:100%;padding:6px;border:1px solid #b9c9d8;border-radius:5px;background:white}.self-score{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-top:12px}.self-score label{display:flex;align-items:center;gap:8px}.question[hidden],section[hidden]{display:none!important}.exam-lock details.answer,.exam-lock details.concept{display:none!important}.exam-lock #print-teacher{display:none}.result{white-space:pre-wrap;overflow-wrap:anywhere}.toolbar{gap:7px}#progress{flex-basis:100%;text-align:center;font-size:12px}.topic-total{display:block;font-size:13px;font-weight:normal;color:#3f6973}.flow{flex-wrap:wrap}.steps{background:#f5f8fc;padding:14px 25px;border-radius:8px}.question p{overflow-wrap:anywhere}.badge{line-height:1.6}.scratch{padding:20px;background:#f2f7fb;border-radius:8px}.answer-body pre{color:#eaf4ff;background:#15283c}.answer-body .result{color:#164d42;background:#e6f3ee}.topic-intro{margin-top:20px}.small{font-size:13px}.schedule td:first-child{white-space:nowrap}
+@media(max-width:640px){.section-nav ol{columns:1}.qhead h3{font-size:16px}.self-score{gap:8px}h1,h2,h3,p,li{word-break:keep-all;overflow-wrap:break-word}.table-wrap th,.table-wrap td{min-width:90px}}
+@media print{.filters,.self-score,.topic-total,.scope,#exam-state{display:none!important}body[data-print="student"] details.answer,body[data-print="student"] details.concept{display:none!important}.question[hidden],section[hidden]{display:none!important}.answer-body pre{color:#000!important;background:#f5f5f5!important}.worked{background:white;border:1px solid #aaa}.table-wrap{overflow:visible}.question{break-inside:avoid}}
+</style></head><body data-book="02일차_코딩"><header><div class="eyebrow">정보처리기사 실기 · 8주 40일</div><h1>02일차 · 코딩<br>조건문과 반복문</h1><p>조건을 고르고, 값의 변화를 반복해서 추적합니다.</p><div class="meta"><span>코딩 120분</span><span>비전공자용</span><span>40문항 + 응용 실습 6개</span></div></header><div class="toolbar"><button id="close-answers">해설 모두 접기</button><button id="exam-lock">시험 모드 · 해설 잠그기</button><button id="print-student">교재·선택 문제 인쇄</button><button id="print-teacher">선택 문제·해설 인쇄</button><button id="export">내 기록 저장</button><button id="import">불러오기</button><button id="reset">초기화</button><input id="import-file" type="file" accept=".json,application/json" hidden><span id="save-status" role="status"></span><span id="progress" role="status"></span></div><main><p class="small">이 HTML 한 개로 학습·기록·인쇄할 수 있습니다. 목차는 현재 파일 안에서 이동하며, 다른 파일·인터넷 연결이 필요하지 않습니다.</p><nav class="section-nav" aria-label="목차"><h2>목차</h2><ol><li><a href="#start">120분 수업 지도</a></li><li><a href="#if">if·else</a></li><li><a href="#chain">조건 순서와 중첩</a></li><li><a href="#switch">switch</a></li><li><a href="#for">for</a></li><li><a href="#while">while·do while</a></li><li><a href="#control">break·continue</a></li><li><a href="#nested">중첩 반복</a></li><li><a href="#debug">오류 찾기</a></li><li><a href="#scope">문제 범위·채점 선택</a></li><li><a href="#questions">연습30문항</a></li><li><a href="#check">점검10문항</a></li><li><a href="#scenarios">응용실습6개</a></li><li><a href="#review">정리·오답</a></li></ol></nav><section id="start" class=""><h2>01 · 120분 수업 지도와 실습 준비</h2><p>오늘은 <b>조건에 따라 선택하고, 같은 일을 반복</b>합니다. 01일차의 변수·대입·비교·논리 연산을 사용합니다. 함수·포인터·배열을 몰라도 풀 수 있도록 모든 입력은 변수의 초기값으로 지정합니다.</p><div class="table-wrap"><table><thead><tr><th>시간</th><th>활동</th><th>필수 사용 범위</th></tr></thead><tbody><tr><td>0~10분</td><td>전날 오답·핵심 확인 10분</td><td>>=·==·정수 나눗셈·값 추적을 말로 확인</td></tr><tr><td>10~25분</td><td>조건문 설명·함께 추적 15분</td><td>02~04절의 기본·응용 예제</td></tr><tr><td>25~60분</td><td>직접 작성·검증 35분</td><td>E01~E08 + S01. 빠르면 E09~E12도 먼저 풀이</td></tr><tr><td>60~80분</td><td>반복 흐름·손 추적 20분</td><td>05~08절의 핵심 예제·추적표</td></tr><tr><td>80~105분</td><td>변형·실행 25분</td><td>E09~E20 + S02. 짧은 출력형부터 풀이</td></tr><tr><td>105~120분</td><td>당일 점검·오답 15분</td><td>M01~M05 8분 + 채점·오답 7분</td></tr></tbody></table></div><aside><strong>분량을 쓰는 방법</strong><p>코딩 60+60분, 별도 이론 60분으로 하루180분입니다. 필수 코딩은 연습20개·점검5개·실습2개입니다. E21~E30·M06~M10·S03~S06은 같은 범위의 보강 문제은행으로 다음 복습·개별 연습에 활용합니다. 한 수업에 모든 문제은행을 끝내야 하는 시간표가 아닙니다.</p></aside><pre><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    /* 아래 짧은 예제·문제의 코드를 여기에 넣습니다. */
+    return 0;
+}</code></pre><p>소스를 <code>day02.c</code>로 저장하고 GCC가 준비된 PowerShell에서 아래처럼 실행합니다. C11·일반적인 32비트 int 환경을 기준으로 값의 범위를 작게 제한했습니다. 파일 변경 뒤에는 다시 컴파일합니다.</p><pre><code>gcc -std=c11 -Wall -Wextra day02.c -o day02.exe
+.\day02.exe</code></pre><aside><strong>짧은 코드의 약속</strong><p>main이 없는 코드는 위 틀 안에 한 문제씩 넣습니다. 화면의 마지막 공백과 줄바꿈도 결과의 일부입니다. scanf는 아직 사용하지 않습니다. 입력을 바꾸는 실습은 초기값만 고칩니다. 정답을 보기 전에 예상→손 추적→실행→오류 원인→한 조건 변경 순서로 진행하세요.</p></aside><label>시작 확인: 17/5, 17%5, 60>=60, 4==5의 값과 근거<textarea rows="3" data-save="warmup"></textarea></label></section><section id="if" class=""><h2>02 · 기초 — if·else는 갈림길</h2><h3>쉬운 설명: 질문에 따라 한쪽 길을 고르기</h3><p>“나이가18 이상인가?”에 참이면 if 안을, 거짓이면 else 안을 실행합니다. 중괄호는 선택된 길의 범위입니다. 선택한 블록이 끝나면 갈림길 밖의 다음 문장으로 모입니다. C의 조건에서0은 거짓,0이 아닌 값은 참입니다.</p><pre><code>int age = 15;
+if (age &gt;= 18) {
+    printf(&quot;ADULT\n&quot;);
+} else {
+    printf(&quot;YOUNG\n&quot;);
+}
+printf(&quot;END\n&quot;);</code></pre><p>15>=18은 거짓입니다. YOUNG를 출력한 뒤 공통 문장 END를 출력합니다. 조건이 거짓이라고 프로그램 전체가 끝나는 것은 아닙니다.</p><h3>응용: 정상 범위와 범위 밖을 나누기</h3><pre><code>int age = 120;
+if (age &lt; 0 || age &gt; 120) { printf(&quot;INVALID\n&quot;); }
+else { printf(&quot;OK\n&quot;); }</code></pre><p>0~120을 정상 범위로 정했다면 잘못된 나이는 “0 미만 또는120 초과”입니다. 두 조건이 동시에 참일 필요가 없어 OR를 씁니다. -1·0·120·121 네 경계로 확인하세요.</p><h3>심화: 대입·비교·세미콜론의 함정</h3><p><code>if (x == 5)</code>는 비교이고 <code>if (x = 5)</code>는 대입 후 저장한 값으로 조건을 판단합니다. 문법이 맞아 컴파일돼도 의도는 틀릴 수 있습니다. 또 <code>if (조건);</code>처럼 바로 세미콜론을 붙이면 빈 문장을 조건부로 실행합니다. 그 다음 블록이 조건과 무관하게 실행되는 버그를 만들 수 있습니다.</p><aside><strong>중괄호 습관</strong><p>중괄호를 생략하면 바로 다음 한 문장만 조건에 속합니다. 중첩된 if의 else는 보통 가장 가까운, 아직 else가 없는 if에 연결됩니다. 처음에는 항상 중괄호를 쓰고 블록 경계를 들여쓰기와 함께 확인하세요.</p></aside></section><section id="chain" class=""><h2>03 · 응용 — 여러 조건의 순서</h2><h3>쉬운 설명: if 여러 개와 else if는 다르다</h3><pre><code>int n = 12;
+if (n &gt;= 10) { printf(&quot;A&quot;); }
+if (n &gt;= 5) { printf(&quot;B&quot;); }
+printf(&quot;\n&quot;);</code></pre><p>독립 if는 각각 검사하므로 A와 B가 모두 출력됩니다. 두 번째가 else if이면 앞 if가 참인 순간 연쇄의 나머지를 건너뛰므로 A만 출력됩니다.</p><h3>응용: 등급은 높은 구간부터</h3><pre><code>int score = 86;
+if (score &gt;= 90) { printf(&quot;A\n&quot;); }
+else if (score &gt;= 80) { printf(&quot;B\n&quot;); }
+else if (score &gt;= 60) { printf(&quot;C\n&quot;); }
+else { printf(&quot;F\n&quot;); }</code></pre><p>86은90 이상이 아니지만80 이상입니다. 앞에서 거짓이었던 조건도 현재 구간의 의미를 만듭니다. B의 실제 구간은80~89입니다. >=60을 맨 앞에 쓰면95도 거기서 잡히는 오류가 생깁니다.</p><h3>심화: 중첩과 논리 결합의 선택</h3><pre><code>int member = 1, points = 35;
+if (member == 1) {
+    if (points &gt;= 30) { printf(&quot;USE\n&quot;); }
+    else { printf(&quot;SAVE\n&quot;); }
+} else { printf(&quot;JOIN\n&quot;); }</code></pre><p>회원 여부를 먼저 검사하고 회원일 때 포인트를 검사합니다. “회원이고 포인트30 이상일 때만 USE”만 필요하면 &&로 합칠 수 있지만, JOIN과 SAVE처럼 실패 이유를 나누려면 중첩 구조가 읽기 쉽습니다.</p><div class="table-wrap"><table><thead><tr><th>score</th><th>>=90</th><th>>=80</th><th>선택</th></tr></thead><tbody><tr><td>79</td><td>거짓</td><td>거짓</td><td>C</td></tr><tr><td>80</td><td>거짓</td><td>참</td><td>B</td></tr><tr><td>89</td><td>거짓</td><td>참</td><td>B</td></tr><tr><td>90</td><td>참</td><td>검사 안 함</td><td>A</td></tr></tbody></table></div></section><section id="switch" class=""><h2>04 · switch — 값으로 메뉴 고르기</h2><h3>쉬운 설명: 하나의 정수 값과 case 비교</h3><pre><code>int menu = 2;
+switch (menu) {
+case 1: printf(&quot;OPEN\n&quot;); break;
+case 2: printf(&quot;CLOSE\n&quot;); break;
+default: printf(&quot;UNKNOWN\n&quot;); break;
+}</code></pre><p>menu의 값을 보고 일치하는 case로 이동합니다. break는 switch 밖으로 나갑니다. 일치하는 case가 없으면 default가 있을 때 그 위치로 갑니다. default도 없으면 switch의 처리를 건너뜁니다. case에는 정수 상수 식을 사용하며 같은 switch 안의 중복 case 값은 허용되지 않습니다. 실수·문자열 비교용 분기가 아닙니다.</p><h3>응용: 여러 case를 하나의 처리로 묶기</h3><pre><code>int code = 2;
+switch (code) {
+case 1:
+case 2: printf(&quot;BASIC\n&quot;); break;
+case 3: printf(&quot;PLUS\n&quot;); break;
+default: printf(&quot;INVALID\n&quot;); break;
+}</code></pre><p>1과2는 같은 BASIC 처리로 이어집니다. case 이름이 매 줄마다 다시 조건 검사되는 것은 아닙니다.</p><h3>심화: break를 만나지 않으면 아래로 이어진다</h3><pre><code>int key = 2, result = 1;
+switch (key) {
+case 1: result += 10;
+case 2: result += 4;
+default: result *= 3;
+}
+printf(&quot;%d\n&quot;, result);</code></pre><p>case2에서 result=5가 되고 break가 없어 default 아래 문장도 실행해15가 됩니다. 이를 fall-through라고 합니다. default도 진입 후에는 일반 문장 흐름의 위치입니다. 반복문 안의 switch에서 break를 만나면 가장 가까운 switch만 종료하고 반복은 계속될 수 있습니다.</p></section><section id="for" class=""><h2>05 · for — 정해진 범위를 반복하기</h2><h3>쉬운 설명: 시작→검사→본문→갱신→재검사</h3><pre><code>int sum = 0;
+for (int i = 1; i &lt;= 4; i++) {
+    sum += i;
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><p>시작 int i=1은 한 번만 수행합니다. i<=4를 검사해 참이면 본문, 그 다음 i++, 다시 조건 검사입니다. i=5에서 거짓이 되어 빠져나옵니다. for 안에서 선언한 i는 그 반복문의 범위 밖에서 사용할 수 없습니다. 종료값을 보려면 i를 반복문 밖에 선언하세요.</p><div class="table-wrap"><table><thead><tr><th>본문의 i</th><th>본문 전 sum</th><th>sum+=i 후</th><th>갱신 후 i</th></tr></thead><tbody><tr><td>1</td><td>0</td><td>1</td><td>2</td></tr><tr><td>2</td><td>1</td><td>3</td><td>3</td></tr><tr><td>3</td><td>3</td><td>6</td><td>4</td></tr><tr><td>4</td><td>6</td><td>10</td><td>5</td></tr></tbody></table></div><h3>응용: 합계와 개수를 따로 누적하기</h3><pre><code>int sum = 0, count = 0;
+for (int i = 1; i &lt;= 9; i++) {
+    if (i % 3 == 0) { sum += i; count++; }
+}
+printf(&quot;%d %d\n&quot;, sum, count);</code></pre><p>더하는 것은3·6·9이므로 sum=18, count=3입니다. sum은 값의 총합, count는 항목의 수입니다. 두 변수를 반복문 안에서 매번0으로 초기화하면 이전 누적값을 잃습니다.</p><h3>심화: 시작값·끝 조건·갱신 폭을 따로 보기</h3><pre><code>int i;
+for (i = 2; i &lt; 9; i += 3) { printf(&quot;%d &quot;, i); }
+printf(&quot;end=%d\n&quot;, i);</code></pre><p>본문은2·5·8에서 세 번입니다. 갱신 후11은 조건이 거짓이라 본문에서 출력하지 않습니다. <와<=, 시작0과1, ++와+=2를 서로 섞어 외우지 말고 실제 방문 값을 적으세요.</p></section><section id="while" class=""><h2>06 · while·do while — 조건이 계속될 동안</h2><h3>쉬운 설명: while은 먼저 질문한다</h3><pre><code>int stock = 7, sold = 0;
+while (stock &gt;= 2) {
+    stock -= 2;
+    sold++;
+}
+printf(&quot;%d %d\n&quot;, stock, sold);</code></pre><p>7→5→3→1로 줄어들어2개씩 세 번 처리합니다. 반복을 끝내려면 언젠가 조건이 거짓이 되도록 상태가 바뀌어야 합니다. stock을 갱신하지 않으면 끝나지 않을 수 있습니다.</p><h3>응용: do while은 일단 한 번 처리한다</h3><pre><code>int n = 0, digits = 0;
+do {
+    digits++;
+    n /= 10;
+} while (n &gt; 0);
+printf(&quot;%d\n&quot;, digits);</code></pre><p>0도 십진수 한 자리로 세고 싶습니다. 본문을 먼저 수행해 digits=1이 되고 그 뒤 조건을 검사합니다. do while의 마지막에는 세미콜론이 필요합니다.</p><h3>심화: 진입 전 값과 종료 후 값을 구분하기</h3><div class="table-wrap"><table><thead><tr><th>구조</th><th>검사 위치</th><th>처음부터 거짓이면</th></tr></thead><tbody><tr><td>while(조건){본문}</td><td>본문 전</td><td>0회</td></tr><tr><td>do{본문}while(조건);</td><td>본문 후</td><td>1회</td></tr><tr><td>for(초기;조건;갱신){본문}</td><td>각 본문 전</td><td>0회</td></tr></tbody></table></div><p>“최소 한 번”이 필요한가를 기준으로 고르세요. 처음 값이 유효하지 않으면 본문을 아예 실행하면 안 되는 상황에서는 무조건 do while을 고르면 위험합니다. 반복의 입력 범위와 종료 조건을 먼저 정합니다.</p></section><section id="control" class=""><h2>07 · break·continue — 끝내기와 건너뛰기</h2><h3>쉬운 설명: break는 반복 탈출</h3><pre><code>int sum = 0;
+for (int i = 1; i &lt;= 8; i++) {
+    if (i == 4) { break; }
+    sum += i;
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><p>i=4에서 나가므로4를 더하지 않습니다. 합은1+2+3=6입니다. break 뒤의 본문과 그 반복의 갱신도 거치지 않습니다.</p><h3>응용: continue는 이번 회차의 나머지 본문 생략</h3><pre><code>int sum = 0;
+for (int i = 1; i &lt;= 6; i++) {
+    if (i % 2 == 0) { continue; }
+    sum += i;
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><p>짝수에서 합산을 생략하고 for의 i++로 이동합니다. 홀수1·3·5의 합9입니다. 반복 전체를 끝내는 break와 다릅니다.</p><h3>심화: while의 continue와 갱신 위치</h3><pre><code>int i = 0, count = 0;
+while (i &lt; 5) {
+    i++;
+    if (i == 3) { continue; }
+    count++;
+}
+printf(&quot;%d %d\n&quot;, count, i);</code></pre><p>while의 continue는 조건 검사로 이동합니다. i++를 continue 뒤쪽에만 두면 i=3에 머무르는 실수를 할 수 있습니다. do while의 continue는 아래쪽 조건 검사로 갑니다. switch 안의 continue도 switch를 다시 고르는 것이 아니라 가장 가까운 반복문의 다음 진행 위치로 갑니다.</p><div class="table-wrap"><table><thead><tr><th>문장</th><th>for에서 다음 위치</th><th>while에서 다음 위치</th></tr></thead><tbody><tr><td>continue</td><td>갱신식 후 조건 검사</td><td>조건 검사</td></tr><tr><td>break</td><td>가장 가까운 반복/switch 밖</td><td>가장 가까운 반복/switch 밖</td></tr></tbody></table></div></section><section id="nested" class=""><h2>08 · 심화 — 중첩 반복과 상태 추적</h2><h3>쉬운 설명: 안쪽 반복을 끝낸 뒤 바깥 갱신</h3><pre><code>int count = 0;
+for (int row = 1; row &lt;= 2; row++) {
+    for (int col = 1; col &lt;= 3; col++) {
+        count++;
+    }
+}
+printf(&quot;%d\n&quot;, count);</code></pre><p>row=1일 때 col=1·2·3을 끝내고 row를 늘립니다. row=2가 되면 col도1부터 다시 시작합니다. 본문을 방문한 (row,col)을 적으면 빠뜨리기 어렵습니다.</p><h3>응용: 안쪽 횟수가 달라지면 더하기</h3><pre><code>int count = 0;
+for (int row = 1; row &lt;= 3; row++) {
+    for (int col = 1; col &lt;= row; col++) { count++; }
+}
+printf(&quot;%d\n&quot;, count);</code></pre><p>각 row의 안쪽 횟수는1·2·3이어서 합6입니다. 바깥3×안쪽3=9라고 고정 곱셈하면 틀립니다.</p><h3>심화: 가장 가까운 반복만 종료한다</h3><pre><code>int count = 0;
+for (int row = 1; row &lt;= 2; row++) {
+    for (int col = 1; col &lt;= 4; col++) {
+        if (col == 3) { break; }
+        count++;
+    }
+}
+printf(&quot;%d\n&quot;, count);</code></pre><p>매 row마다 col=1·2만 count를 늘립니다. 안쪽 break가 바깥 반복까지 자동 종료하지 않습니다. 모든 반복을 끝내야 하는 문제라면 상태 변수 등을 이용해 바깥 조건도 따로 정해야 합니다.</p><label>추적표: 회차 / row / col / 조건 / count / 출력 누적<textarea rows="5" data-save="trace"></textarea></label></section><section id="debug" class=""><h2>09 · 오류를 찾는 순서</h2><div class="table-wrap"><table><thead><tr><th>관찰한 증상</th><th>먼저 확인할 것</th></tr></thead><tbody><tr><td>경계에서만 오답</td><td><와<=, >와>=의 포함 여부</td></tr><tr><td>누적합이 마지막 값만 남음</td><td>반복 안의0 초기화</td></tr><tr><td>반복이 끝나지 않음</td><td>조건이 언젠가 거짓이 되는가·continue가 갱신을 건너뛰는가</td></tr><tr><td>switch에서 여러 결과가 이어짐</td><td>break 누락과 의도적 case 묶음</td></tr><tr><td>출력 횟수가 하나 많거나 적음</td><td>시작값·종료 검사값·본문 실행값 구별</td></tr><tr><td>중첩 반복 횟수가 예상과 다름</td><td>각 바깥 회차에서 안쪽 초기화·범위를 다시 추적</td></tr></tbody></table></div><p>중간값이 필요하면 <code>printf("i=%d sum=%d\n", i, sum);</code>를 적절한 줄에 추가합니다. 최종 답을 쓸 때는 원래 코드에 있던 출력만 답합니다. 정의되지 않은 동작·초기화하지 않은 값 읽기·0 나누기·범위 초과를 고정 출력 문제로 취급하지 않습니다.</p><aside><strong>스스로 확인할 기준</strong><p>조건을 한 개 바꾸어도 이유를 설명할 수 있는가? 반복이 끝나는 이유를 말할 수 있는가? 출력값뿐 아니라 마지막 갱신 줄을 찾을 수 있는가? 이 세 가지를 확인하세요.</p></aside></section><section id="scope" class=""><h2>문제 범위·채점 선택</h2><div class="filters"><label>문제·인쇄 범위 <select id="scope-filter"><option value="all">전체: 연습30 + 점검10 + 실습6</option><option value="core">120분 필수: 연습20 + 점검5 + 실습2</option><option value="practice">연습30문항</option><option value="mock">당일 점검10문항</option><option value="scenario">응용 실습6개</option></select></label><p id="exam-state" class="small">학습 모드 · 직접 채점하고 교정하세요.</p><p class="small">각 문항·실습2점. 점수는 선택 범위만 합산하며, 공식 시험 합격 기준과는 별개입니다. 자동 정답 판정은 하지 않습니다.</p></div></section><section id="questions" class="question-group"><h2>10 · 연습 30문항</h2><p>E01~E20은 수업 필수, E21~E30은 보강입니다. 수정형은 제시된 의도에 맞게 고친 뒤 실행하세요. 출력형은 직접 실행하기 전에 답과 근거를 먼저 적습니다.</p><article class="question" id="q-E01" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E01 · 합격 경계</h3></div><p>출력과 이유를 쓰고 score를 59·60·61로 바꾸어 확인하세요.</p><pre><code>int score = 60;
+if (score &gt;= 60) { printf(&quot;PASS\n&quot;); }
+else { printf(&quot;FAIL\n&quot;); }</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E01"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">PASS
+</pre><p><b>풀이:</b> &gt;=는 기준 60을 포함합니다. 59는 FAIL, 60과 61은 PASS입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E01" aria-label="E01 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E01"> 풀이·교정 완료</label></div></article><article class="question" id="q-E02" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E02 · 홀짝 분기</h3></div><p>출력을 쓰세요. n=0인 경우도 생각해 보세요.</p><pre><code>int n = 17;
+if (n % 2 == 0) { printf(&quot;EVEN\n&quot;); }
+else { printf(&quot;ODD\n&quot;); }</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E02"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">ODD
+</pre><p><b>풀이:</b> 17%2는 1이라 else를 실행합니다. 0%2는 0이라 0은 EVEN입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E02" aria-label="E02 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E02"> 풀이·교정 완료</label></div></article><article class="question" id="q-E03" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E03 · 독립 if와 연쇄</h3></div><p>두 if가 각각 검사된다는 점에 주의하여 출력하세요.</p><pre><code>int n = 12;
+if (n &gt;= 10) { printf(&quot;A&quot;); }
+if (n &gt;= 5) { printf(&quot;B&quot;); }
+printf(&quot;\n&quot;);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E03"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">AB
+</pre><p><b>풀이:</b> 두 조건 모두 참입니다. 두 번째가 else if라면 앞 분기 실행 후 건너뛰어 A만 출력합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E03" aria-label="E03 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E03"> 풀이·교정 완료</label></div></article><article class="question" id="q-E04" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E04 · 높은 기준부터</h3></div><p>출력값과 비교한 조건을 쓰세요.</p><pre><code>int score = 83;
+if (score &gt;= 90) { printf(&quot;A\n&quot;); }
+else if (score &gt;= 80) { printf(&quot;B\n&quot;); }
+else { printf(&quot;C\n&quot;); }</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E04"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">B
+</pre><p><b>풀이:</b> 90 이상은 거짓, 80 이상은 참이므로 B입니다. 뒤 조건을 더 검사하지 않습니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E04" aria-label="E04 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E04"> 풀이·교정 완료</label></div></article><article class="question" id="q-E05" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E05 · 잘못된 구간 순서</h3></div><p>출력은 C입니다. 95점이 A가 되게 조건 검사 순서를 고친 코드를 쓰세요.</p><pre><code>int score = 95;
+if (score &gt;= 60) { printf(&quot;C\n&quot;); }
+else if (score &gt;= 80) { printf(&quot;B\n&quot;); }
+else if (score &gt;= 90) { printf(&quot;A\n&quot;); }</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E05"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">A
+</pre><p><b>풀이:</b> 좁고 높은 구간부터 검사해야 95가 &gt;=60에서 먼저 잡히지 않습니다. 고친 코드의 출력은 A입니다.</p><h3>수정 코드 예시</h3><pre><code>int score = 95;
+if (score &gt;= 90) { printf(&quot;A\n&quot;); }
+else if (score &gt;= 80) { printf(&quot;B\n&quot;); }
+else if (score &gt;= 60) { printf(&quot;C\n&quot;); }
+else { printf(&quot;F\n&quot;); }</code></pre><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E05" aria-label="E05 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E05"> 풀이·교정 완료</label></div></article><article class="question" id="q-E06" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E06 · 범위 밖부터 걸러내기</h3></div><p>age=-1, 0, 120, 121에서 각각 INVALID, OK, OK, INVALID를 출력하도록 빈칸을 완성하세요.</p><pre><code>int age = -1;
+if (/* 빈칸 */) { printf(&quot;INVALID\n&quot;); }
+else { printf(&quot;OK\n&quot;); }</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E06"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">INVALID
+</pre><p><b>풀이:</b> 정상 범위가 0~120이므로 범위 밖은 age&lt;0 또는 age&gt;120입니다.</p><h3>수정 코드 예시</h3><pre><code>int age = -1;
+if (age &lt; 0 || age &gt; 120) { printf(&quot;INVALID\n&quot;); }
+else { printf(&quot;OK\n&quot;); }</code></pre><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E06" aria-label="E06 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E06"> 풀이·교정 완료</label></div></article><article class="question" id="q-E07" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E07 · 중첩 if</h3></div><p>조건을 바깥부터 읽고 출력하세요.</p><pre><code>int member = 1, points = 40;
+if (member) {
+    if (points &gt;= 50) { printf(&quot;GIFT\n&quot;); }
+    else { printf(&quot;WAIT\n&quot;); }
+} else { printf(&quot;JOIN\n&quot;); }</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E07"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">WAIT
+</pre><p><b>풀이:</b> 회원이므로 안쪽으로 들어가지만 포인트 50 이상은 거짓입니다. JOIN은 바깥 else라 실행하지 않습니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E07" aria-label="E07 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E07"> 풀이·교정 완료</label></div></article><article class="question" id="q-E08" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E08 · 한 case 선택</h3></div><p>출력값을 쓰세요. mode=9로 바꾸면 무엇인가요?</p><pre><code>int mode = 2;
+switch (mode) {
+case 1: printf(&quot;ADD\n&quot;); break;
+case 2: printf(&quot;VIEW\n&quot;); break;
+default: printf(&quot;INVALID\n&quot;); break;
+}</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E08"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">VIEW
+</pre><p><b>풀이:</b> 2에 맞는 case로 들어가 break에서 switch를 빠져나옵니다. 9는 일치 case가 없어 INVALID입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E08" aria-label="E08 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E08"> 풀이·교정 완료</label></div></article><article class="question" id="q-E09" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E09 · 의도한 case 묶음</h3></div><p>level=1·2·3·4에서 결과를 예상하세요. 현재 출력을 쓰세요.</p><pre><code>int level = 2;
+switch (level) {
+case 1:
+case 2: printf(&quot;BASIC\n&quot;); break;
+case 3: printf(&quot;PLUS\n&quot;); break;
+default: printf(&quot;UNKNOWN\n&quot;); break;
+}</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E09"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">BASIC
+</pre><p><b>풀이:</b> 1과 2는 같은 처리로 이어집니다. 1·2는 BASIC, 3은 PLUS, 4는 UNKNOWN입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E09" aria-label="E09 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E09"> 풀이·교정 완료</label></div></article><article class="question" id="q-E10" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E10 · break가 없다면</h3></div><p>v의 변화와 최종 출력을 쓰세요.</p><pre><code>int mode = 2, v = 1;
+switch (mode) {
+case 1: v += 10;
+case 2: v += 3;
+default: v *= 2;
+}
+printf(&quot;%d\n&quot;, v);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E10"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">8
+</pre><p><b>풀이:</b> case2로 진입해 v=4, break가 없어 default의 문장까지 이어져 v=8입니다. case1으로 되돌아가지는 않습니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E10" aria-label="E10 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E10"> 풀이·교정 완료</label></div></article><article class="question" id="q-E11" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E11 · 블록 밖의 출력</h3></div><p>출력의 줄 순서까지 쓰세요.</p><pre><code>int n = -3;
+if (n &gt; 0) { printf(&quot;POS\n&quot;); }
+else { printf(&quot;NONPOS\n&quot;); }
+printf(&quot;DONE\n&quot;);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E11"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">NONPOS
+DONE
+</pre><p><b>풀이:</b> else 뒤의 DONE은 조건 블록 밖이라 항상 실행합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E11" aria-label="E11 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E11"> 풀이·교정 완료</label></div></article><article class="question" id="q-E12" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E12 · 비교와 대입 수정</h3></div><p>x가 5일 때만 YES를 출력하려고 합니다. if의 대입을 비교로 고치세요. x=4에서 목표 출력은 NO입니다.</p><pre><code>int x = 4;
+if (x = 5) { printf(&quot;YES\n&quot;); }
+else { printf(&quot;NO\n&quot;); }</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E12"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">NO
+</pre><p><b>풀이:</b> x=5는 5를 저장하고 참으로 판단되는 버그입니다. 같음 비교는 ==입니다.</p><h3>수정 코드 예시</h3><pre><code>int x = 4;
+if (x == 5) { printf(&quot;YES\n&quot;); }
+else { printf(&quot;NO\n&quot;); }</code></pre><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E12" aria-label="E12 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E12"> 풀이·교정 완료</label></div></article><article class="question" id="q-E13" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E13 · for 기본 횟수</h3></div><p>화면에 출력되는 수를 순서대로 쓰세요.</p><pre><code>for (int i = 1; i &lt;= 4; i++) {
+    printf(&quot;%d &quot;, i);
+}
+printf(&quot;\n&quot;);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E13"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">1 2 3 4 
+</pre><p><b>풀이:</b> i=1~4에 본문을 실행하고 i=5에서 조건이 거짓이 됩니다. 마지막 수 뒤에도 공백이 있습니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E13" aria-label="E13 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E13"> 풀이·교정 완료</label></div></article><article class="question" id="q-E14" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E14 · 한 칸의 차이</h3></div><p>출력 횟수와 i의 최종 값을 쓰세요.</p><pre><code>int i;
+for (i = 0; i &lt; 4; i++) { printf(&quot;X&quot;); }
+printf(&quot; %d\n&quot;, i);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E14"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">XXXX 4
+</pre><p><b>풀이:</b> 본문의 i는 0·1·2·3 네 번입니다. 종료 검사에서는 i=4입니다. &lt;=4라면 다섯 번입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E14" aria-label="E14 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E14"> 풀이·교정 완료</label></div></article><article class="question" id="q-E15" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E15 · 합계와 개수</h3></div><p>sum과 count를 추적하세요.</p><pre><code>int sum = 0, count = 0;
+for (int i = 1; i &lt;= 6; i++) {
+    sum += i;
+    count++;
+}
+printf(&quot;%d %d\n&quot;, sum, count);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E15"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">21 6
+</pre><p><b>풀이:</b> 합은 1+2+3+4+5+6=21, 더한 항목 수는 6입니다. 합계와 개수는 별도 상태입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E15" aria-label="E15 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E15"> 풀이·교정 완료</label></div></article><article class="question" id="q-E16" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E16 · 조건에 맞는 수만</h3></div><p>더해진 수의 목록과 출력을 쓰세요.</p><pre><code>int sum = 0;
+for (int i = 1; i &lt;= 8; i++) {
+    if (i % 2 == 0) { sum += i; }
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E16"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">20
+</pre><p><b>풀이:</b> 2·4·6·8만 더해서 20입니다. 조건이 거짓인 반복도 다음 증감·검사를 진행합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E16" aria-label="E16 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E16"> 풀이·교정 완료</label></div></article><article class="question" id="q-E17" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E17 · while의 진입 검사</h3></div><p>i와 sum의 변화를 적고 출력하세요.</p><pre><code>int i = 2, sum = 0;
+while (i &lt;= 8) {
+    sum += i;
+    i += 3;
+}
+printf(&quot;%d %d\n&quot;, sum, i);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E17"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">15 11
+</pre><p><b>풀이:</b> i=2·5·8을 더해 15, 갱신 후 i=11이라 종료합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E17" aria-label="E17 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E17"> 풀이·교정 완료</label></div></article><article class="question" id="q-E18" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E18 · 최소 한 번</h3></div><p>while과 do while의 실행 횟수를 비교하세요.</p><pre><code>int a = 5, b = 5, ca = 0, cb = 0;
+while (a &lt; 3) { ca++; a++; }
+do { cb++; b++; } while (b &lt; 3);
+printf(&quot;%d %d %d\n&quot;, ca, cb, b);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E18"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">0 1 6
+</pre><p><b>풀이:</b> while은 진입 전 거짓이면 0회, do while은 본문을 먼저 수행하므로 1회입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E18" aria-label="E18 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E18"> 풀이·교정 완료</label></div></article><article class="question" id="q-E19" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E19 · break의 순간</h3></div><p>더해진 수와 최종 출력을 쓰세요.</p><pre><code>int sum = 0, i;
+for (i = 1; i &lt;= 9; i++) {
+    if (i == 5) { break; }
+    sum += i;
+}
+printf(&quot;%d %d\n&quot;, sum, i);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E19"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">10 5
+</pre><p><b>풀이:</b> i=5에서 합산 전에 break합니다. 1+2+3+4=10이고, i++도 거치지 않아 i=5입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E19" aria-label="E19 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E19"> 풀이·교정 완료</label></div></article><article class="question" id="q-E20" data-topic="practice" data-core="1"><div class="qhead"><span class="badge">연습</span><h3>E20 · continue의 순간</h3></div><p>합산에서 제외된 수와 출력을 쓰세요.</p><pre><code>int sum = 0;
+for (int i = 1; i &lt;= 7; i++) {
+    if (i % 3 == 0) { continue; }
+    sum += i;
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E20"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">19
+</pre><p><b>풀이:</b> 3과 6은 본문의 나머지를 건너뜁니다. 1+2+4+5+7=19이고 for의 증감은 수행합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E20" aria-label="E20 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E20"> 풀이·교정 완료</label></div></article><article class="question" id="q-E21" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E21 · 중첩 횟수</h3></div><p>본문 실행 횟수를 바깥 회차별로 쓰세요.</p><pre><code>int count = 0;
+for (int i = 1; i &lt;= 3; i++) {
+    for (int j = 1; j &lt;= 2; j++) { count++; }
+}
+printf(&quot;%d\n&quot;, count);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E21"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">6
+</pre><p><b>풀이:</b> 각 i마다 j가 다시1부터 두 번 실행됩니다. 2+2+2=6입니다. 모든 중첩 반복이 고정 곱셈인 것은 아닙니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E21" aria-label="E21 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E21"> 풀이·교정 완료</label></div></article><article class="question" id="q-E22" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E22 · 안쪽 범위가 변한다</h3></div><p>각 i에서 count 증가 횟수와 최종 출력을 쓰세요.</p><pre><code>int count = 0;
+for (int i = 1; i &lt;= 4; i++) {
+    for (int j = 1; j &lt;= i; j++) { count++; }
+}
+printf(&quot;%d\n&quot;, count);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E22"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">10
+</pre><p><b>풀이:</b> 안쪽 횟수는 1·2·3·4이므로 10입니다. 4*4로 계산하면 틀립니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E22" aria-label="E22 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E22"> 풀이·교정 완료</label></div></article><article class="question" id="q-E23" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E23 · 가장 가까운 반복 탈출</h3></div><p>break가 어느 반복을 끝내는지 쓰고 출력을 구하세요.</p><pre><code>int count = 0;
+for (int i = 1; i &lt;= 3; i++) {
+    for (int j = 1; j &lt;= 5; j++) {
+        if (j == 3) { break; }
+        count++;
+    }
+}
+printf(&quot;%d\n&quot;, count);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E23"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">6
+</pre><p><b>풀이:</b> 각 바깥 회차마다 j=1·2에서만 증가합니다. 안쪽 for만 종료하므로 2*3=6입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E23" aria-label="E23 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E23"> 풀이·교정 완료</label></div></article><article class="question" id="q-E24" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E24 · while continue 안전하게</h3></div><p>0은 제외하고 1~4 중 홀수 합을 구합니다. 조건을 바꾸기 전에 i를 늘리는 이유와 출력을 쓰세요.</p><pre><code>int i = 0, sum = 0;
+while (i &lt; 4) {
+    i++;
+    if (i % 2 == 0) { continue; }
+    sum += i;
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E24"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">4
+</pre><p><b>풀이:</b> 1+3=4입니다. while의 continue는 조건 검사로 이동하므로 증가를 뒤에만 두면 특정 값에서 갱신을 건너뛰어 멈추지 않을 수 있습니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E24" aria-label="E24 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E24"> 풀이·교정 완료</label></div></article><article class="question" id="q-E25" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E25 · 누적 변수를 어디에 두나</h3></div><p>sum을 반복 밖에서 한 번만 초기화하여 1~4의 합 10을 출력하게 고치세요.</p><pre><code>int sum = 0;
+for (int i = 1; i &lt;= 4; i++) {
+    sum = 0;
+    sum += i;
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E25"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">10
+</pre><p><b>풀이:</b> 본문에서 sum=0을 반복하면 기존 누적값이 사라집니다. 내부 초기화를 삭제합니다.</p><h3>수정 코드 예시</h3><pre><code>int sum = 0;
+for (int i = 1; i &lt;= 4; i++) {
+    sum += i;
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E25" aria-label="E25 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E25"> 풀이·교정 완료</label></div></article><article class="question" id="q-E26" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E26 · 반복으로 자릿수 세기</h3></div><p>n=0도 한 자리로 세는 이유와 출력을 쓰세요.</p><pre><code>int n = 3070, count = 0;
+do {
+    count++;
+    n /= 10;
+} while (n &gt; 0);
+printf(&quot;%d\n&quot;, count);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E26"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">4
+</pre><p><b>풀이:</b> 3070→307→30→3→0으로 네 번 처리합니다. do while이라 처음 n=0이어도 한 번 실행합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E26" aria-label="E26 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E26"> 풀이·교정 완료</label></div></article><article class="question" id="q-E27" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E27 · 여러 출력의 순서</h3></div><p>줄바꿈을 구분하여 전체 출력을 쓰세요.</p><pre><code>for (int row = 1; row &lt;= 3; row++) {
+    for (int col = 1; col &lt;= row; col++) { printf(&quot;*&quot;); }
+    printf(&quot;\n&quot;);
+}</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E27"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">*
+**
+***
+</pre><p><b>풀이:</b> 각 행마다 안쪽 반복이 끝난 뒤 줄을 바꿉니다. 줄바꿈을 안쪽에 넣으면 다른 모양이 됩니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E27" aria-label="E27 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E27"> 풀이·교정 완료</label></div></article><article class="question" id="q-E28" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E28 · switch 안의 break</h3></div><p>전체 출력을 쓰고 for도 끝나는지 설명하세요.</p><pre><code>for (int i = 1; i &lt;= 3; i++) {
+    switch (i) {
+    case 2: printf(&quot;B&quot;); break;
+    default: printf(&quot;A&quot;); break;
+    }
+    printf(&quot;+&quot;);
+}
+printf(&quot;\n&quot;);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E28"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">A+B+A+
+</pre><p><b>풀이:</b> 각 break는 switch만 종료합니다. 다음 printf와 for 증감은 계속됩니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E28" aria-label="E28 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E28"> 풀이·교정 완료</label></div></article><article class="question" id="q-E29" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E29 · 중첩 continue</h3></div><p>count의 최종 값과 제외된 (i,j)를 쓰세요.</p><pre><code>int count = 0;
+for (int i = 1; i &lt;= 2; i++) {
+    for (int j = 1; j &lt;= 3; j++) {
+        if (i == j) { continue; }
+        count++;
+    }
+}
+printf(&quot;%d\n&quot;, count);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E29"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">4
+</pre><p><b>풀이:</b> 총6쌍에서 (1,1),(2,2) 두 쌍을 제외합니다. continue는 가장 가까운 안쪽 for에 적용됩니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E29" aria-label="E29 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E29"> 풀이·교정 완료</label></div></article><article class="question" id="q-E30" data-topic="practice" data-core="0"><div class="qhead"><span class="badge">연습</span><h3>E30 · 조건과 반복 종합</h3></div><p>n과 steps를 회차별로 기록하세요.</p><pre><code>int n = 19, steps = 0;
+while (n &gt; 3) {
+    if (n % 2 == 0) { n /= 2; }
+    else { n -= 3; }
+    steps++;
+}
+printf(&quot;%d %d\n&quot;, n, steps);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-E30"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">2 4
+</pre><p><b>풀이:</b> 19→16→8→4→2로 4회입니다. n=2에서 조건 n&gt;3이 거짓입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-E30" aria-label="E30 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-E30"> 풀이·교정 완료</label></div></article></section><section id="check" class="question-group"><h2>11 · 당일 점검 10문항</h2><p>M01~M05는8분 동안 실행·검색·해설 없이 풀고7분 동안 채점·교정합니다. M06~M10은 추가5문항 세트입니다. 각 세트10점이며8점 이상을 복습 목표로 삼습니다.</p><article class="question" id="q-M01" data-topic="mock" data-core="1"><div class="qhead"><span class="badge">당일 점검</span><h3>M01 · 등급 경계</h3></div><p>출력과 선택한 분기를 쓰세요.</p><pre><code>int n = 80;
+if (n &gt; 80) { printf(&quot;A\n&quot;); }
+else if (n &gt;= 60) { printf(&quot;B\n&quot;); }
+else { printf(&quot;C\n&quot;); }</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M01"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">B
+</pre><p><b>풀이:</b> 80&gt;80은 거짓, 80&gt;=60은 참입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M01" aria-label="M01 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M01"> 풀이·교정 완료</label></div></article><article class="question" id="q-M02" data-topic="mock" data-core="1"><div class="qhead"><span class="badge">당일 점검</span><h3>M02 · case 연속 실행</h3></div><p>v의 최종 출력을 쓰세요.</p><pre><code>int key = 1, v = 2;
+switch (key) {
+case 1: v += 4;
+case 2: v *= 3; break;
+default: v = 0;
+}
+printf(&quot;%d\n&quot;, v);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M02"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">18
+</pre><p><b>풀이:</b> case1에서6, case2에서18이 되고 break합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M02" aria-label="M02 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M02"> 풀이·교정 완료</label></div></article><article class="question" id="q-M03" data-topic="mock" data-core="1"><div class="qhead"><span class="badge">당일 점검</span><h3>M03 · for와 continue</h3></div><p>sum과 i를 출력 순서대로 쓰세요.</p><pre><code>int sum = 0, i;
+for (i = 1; i &lt;= 5; i++) {
+    if (i == 3) { continue; }
+    sum += i;
+}
+printf(&quot;%d %d\n&quot;, sum, i);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M03"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">12 6
+</pre><p><b>풀이:</b> 1+2+4+5=12, 종료 조건 검사에서 i=6입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M03" aria-label="M03 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M03"> 풀이·교정 완료</label></div></article><article class="question" id="q-M04" data-topic="mock" data-core="1"><div class="qhead"><span class="badge">당일 점검</span><h3>M04 · do while 첫 실행</h3></div><p>출력과 본문 실행 횟수를 쓰세요.</p><pre><code>int n = 2, count = 0;
+do { n += 2; count++; } while (n &lt; 2);
+printf(&quot;%d %d\n&quot;, n, count);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M04"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">4 1
+</pre><p><b>풀이:</b> 본문을 먼저 한 번 수행한 뒤 4&lt;2가 거짓이라 종료합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M04" aria-label="M04 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M04"> 풀이·교정 완료</label></div></article><article class="question" id="q-M05" data-topic="mock" data-core="1"><div class="qhead"><span class="badge">당일 점검</span><h3>M05 · 중첩 break</h3></div><p>출력값을 쓰고 바깥 반복이 계속되는 이유를 설명하세요.</p><pre><code>int total = 0;
+for (int i = 1; i &lt;= 3; i++) {
+    for (int j = 1; j &lt;= 4; j++) {
+        if (j == 2) { break; }
+        total += i;
+    }
+}
+printf(&quot;%d\n&quot;, total);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M05"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">6
+</pre><p><b>풀이:</b> 매 i에서 j=1만 더합니다. 안쪽 반복만 끝나므로 1+2+3=6입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M05" aria-label="M05 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M05"> 풀이·교정 완료</label></div></article><article class="question" id="q-M06" data-topic="mock" data-core="0"><div class="qhead"><span class="badge">당일 점검</span><h3>M06 · 범위 검사</h3></div><p>출력과 논리식의 값을 쓰세요.</p><pre><code>int age = 121;
+if (age &lt; 0 || age &gt; 120) { printf(&quot;X\n&quot;); }
+else { printf(&quot;O\n&quot;); }</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M06"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">X
+</pre><p><b>풀이:</b> 뒤 조건이 참이므로 OR 결과는1입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M06" aria-label="M06 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M06"> 풀이·교정 완료</label></div></article><article class="question" id="q-M07" data-topic="mock" data-core="0"><div class="qhead"><span class="badge">당일 점검</span><h3>M07 · while 횟수</h3></div><p>출력값과 더한 수를 쓰세요.</p><pre><code>int i = 3, sum = 0;
+while (i &lt; 10) { sum += i; i += 3; }
+printf(&quot;%d %d\n&quot;, sum, i);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M07"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">18 12
+</pre><p><b>풀이:</b> 3+6+9=18, 다음 i는12입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M07" aria-label="M07 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M07"> 풀이·교정 완료</label></div></article><article class="question" id="q-M08" data-topic="mock" data-core="0"><div class="qhead"><span class="badge">당일 점검</span><h3>M08 · 증가하는 안쪽 횟수</h3></div><p>반복 횟수를 쓰세요.</p><pre><code>int count = 0;
+for (int i = 2; i &lt;= 4; i++) {
+    for (int j = 0; j &lt; i; j++) { count++; }
+}
+printf(&quot;%d\n&quot;, count);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M08"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">9
+</pre><p><b>풀이:</b> 2+3+4=9입니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M08" aria-label="M08 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M08"> 풀이·교정 완료</label></div></article><article class="question" id="q-M09" data-topic="mock" data-core="0"><div class="qhead"><span class="badge">당일 점검</span><h3>M09 · 누적 조건</h3></div><p>출력을 쓰세요.</p><pre><code>int sum = 0;
+for (int i = 1; i &lt;= 10; i++) {
+    if (i % 4 == 0) { sum += i; }
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M09"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">12
+</pre><p><b>풀이:</b> 4와8을 더합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M09" aria-label="M09 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M09"> 풀이·교정 완료</label></div></article><article class="question" id="q-M10" data-topic="mock" data-core="0"><div class="qhead"><span class="badge">당일 점검</span><h3>M10 · break와 continue 혼합</h3></div><p>합산한 수와 출력을 쓰세요.</p><pre><code>int sum = 0;
+for (int i = 1; i &lt;= 9; i++) {
+    if (i == 7) { break; }
+    if (i % 2 == 0) { continue; }
+    sum += i;
+}
+printf(&quot;%d\n&quot;, sum);</code></pre><label>내 답·추적 근거<textarea rows="3" data-save="answer-M10"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><b>정답 / 출력</b><pre class="result">9
+</pre><p><b>풀이:</b> 7에서 종료하기 전 홀수1·3·5만 합산합니다.</p><p>2점: 출력·수정 코드와 요구한 근거가 모두 맞음. 1점: 핵심 일부만 맞음. 0점: 오답·무응답. 작성형은 같은 의미의 올바른 코드도 인정합니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-M10" aria-label="M10 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-M10"> 풀이·교정 완료</label></div></article></section><section id="scenarios" class="question-group"><h2>12 · 응용 알고리즘·직접 작성 실습 6개</h2><p>S01·S02는 수업 필수입니다. 다른 실습은 같은 범위를 종합하는 보강 자료입니다. 먼저 의사코드나 순서를 쓰고, 모든 표의 초기값으로 검증하세요. 정답의 숫자를 그대로 찍는 방식은 일반적인 해결이 아닙니다.</p><article class="question" id="q-S01" data-topic="scenario" data-core="1"><div class="qhead"><span class="badge">직접 작성</span><h3>S01 · 배송비 판단기</h3></div><p>subtotal은 0~100000의 주문 금액, member는 0 또는1입니다. 30000원 이상이거나 회원이면 배송비0, 나머지는3000입니다. 배송비와 최종 결제 금액을 출력하세요.</p><h3>입력 조건별 기대 결과</h3><div class="table-wrap"><table><thead><tr><th>초기값</th><th>기대 출력</th></tr></thead><tbody><tr><td>subtotal=28000, member=0</td><td><code>3000 31000</code></td></tr><tr><td>subtotal=29999, member=0</td><td><code>3000 32999</code></td></tr><tr><td>subtotal=30000, member=0</td><td><code>0 30000</code></td></tr><tr><td>subtotal=10000, member=1</td><td><code>0 10000</code></td></tr></tbody></table></div><label>내 알고리즘·코드·실행 결과<textarea rows="7" data-save="answer-S01"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><h3>풀이 흐름</h3><p>① 조건을 OR로 묶는다. ② 배송비를0 또는3000으로 정한다. ③ subtotal+fee를 출력한다.</p><pre><code>int subtotal = 28000, member = 0;
+int fee;
+if (subtotal &gt;= 30000 || member == 1) { fee = 0; }
+else { fee = 3000; }
+printf(&quot;%d %d\n&quot;, fee, subtotal + fee);</code></pre><p><b>확장:</b> 회원 무료 조건을 “회원이면서10000원 이상”으로 바꾸세요. 9999·10000원을 비교하세요.</p><p>2점: 일반화한 코드가 표의 모든 조건을 만족하고 이유를 설명함. 1점: 일부 조건만 만족. 0점: 미완성·무응답. 출력 숫자만 고정해 찍는 코드는 일반화한 해결이 아닙니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-S01" aria-label="S01 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-S01"> 풀이·교정 완료</label></div></article><article class="question" id="q-S02" data-topic="scenario" data-core="1"><div class="qhead"><span class="badge">직접 작성</span><h3>S02 · 조건 합계와 개수 보고서</h3></div><p>n은0~100입니다. 1부터 n까지3의 배수의 합계와 개수를 계산하세요. 대상이 없으면 합계0·개수0을 출력합니다. 배열은 쓰지 않습니다.</p><h3>입력 조건별 기대 결과</h3><div class="table-wrap"><table><thead><tr><th>초기값</th><th>기대 출력</th></tr></thead><tbody><tr><td>n=0</td><td><code>0 0</code></td></tr><tr><td>n=2</td><td><code>0 0</code></td></tr><tr><td>n=3</td><td><code>3 1</code></td></tr><tr><td>n=10</td><td><code>18 3</code></td></tr></tbody></table></div><label>내 알고리즘·코드·실행 결과<textarea rows="7" data-save="answer-S02"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><h3>풀이 흐름</h3><p>① sum=count=0. ② 1~n을 순회. ③ i%3==0일 때 sum과 count를 함께 갱신. ④ 두 값을 출력.</p><pre><code>int n = 10;
+int sum = 0, count = 0;
+for (int i = 1; i &lt;= n; i++) {
+    if (i % 3 == 0) { sum += i; count++; }
+}
+printf(&quot;%d %d\n&quot;, sum, count);</code></pre><p><b>확장:</b> 3의 배수이면서 짝수인 수만 집계하세요. n=12에서 합18·개수2인지 확인하세요.</p><p>2점: 일반화한 코드가 표의 모든 조건을 만족하고 이유를 설명함. 1점: 일부 조건만 만족. 0점: 미완성·무응답. 출력 숫자만 고정해 찍는 코드는 일반화한 해결이 아닙니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-S02" aria-label="S02 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-S02"> 풀이·교정 완료</label></div></article><article class="question" id="q-S03" data-topic="scenario" data-core="0"><div class="qhead"><span class="badge">직접 작성</span><h3>S03 · 재고 메뉴 처리</h3></div><p>stock은0~100, qty는1~10입니다. mode=1은 판매,2는 입고입니다. 판매 시 수량이 부족하면 상태0, 성공하면1, 잘못된 메뉴는-1을 출력합니다. 재고도 함께 출력하세요.</p><h3>입력 조건별 기대 결과</h3><div class="table-wrap"><table><thead><tr><th>초기값</th><th>기대 출력</th></tr></thead><tbody><tr><td>stock=5, qty=3, mode=1</td><td><code>1 2</code></td></tr><tr><td>stock=2, qty=3, mode=1</td><td><code>0 2</code></td></tr><tr><td>stock=2, qty=3, mode=2</td><td><code>1 5</code></td></tr><tr><td>stock=2, qty=3, mode=9</td><td><code>-1 2</code></td></tr></tbody></table></div><label>내 알고리즘·코드·실행 결과<textarea rows="7" data-save="answer-S03"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><h3>풀이 흐름</h3><p>① switch로 메뉴 선택. ② 판매만 재고 조건 검사. ③ 성공한 동작만 재고 수정. ④ status와 stock 출력.</p><pre><code>int stock = 5, qty = 3, mode = 1, status = 0;
+switch (mode) {
+case 1:
+    if (stock &gt;= qty) { stock -= qty; status = 1; }
+    break;
+case 2: stock += qty; status = 1; break;
+default: status = -1; break;
+}
+printf(&quot;%d %d\n&quot;, status, stock);</code></pre><p><b>확장:</b> stock==qty 경계를 확인하세요. qty가0 이하면 메뉴보다 먼저 INVALID를 처리하도록 확장하세요.</p><p>2점: 일반화한 코드가 표의 모든 조건을 만족하고 이유를 설명함. 1점: 일부 조건만 만족. 0점: 미완성·무응답. 출력 숫자만 고정해 찍는 코드는 일반화한 해결이 아닙니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-S03" aria-label="S03 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-S03"> 풀이·교정 완료</label></div></article><article class="question" id="q-S04" data-topic="scenario" data-core="0"><div class="qhead"><span class="badge">직접 작성</span><h3>S04 · 소수 판정기</h3></div><p>n은0~200입니다. 소수는1보다 큰 정수 중1과 자기 자신으로만 나누어지는 수입니다. 소수면1, 아니면0을 출력하세요.</p><h3>입력 조건별 기대 결과</h3><div class="table-wrap"><table><thead><tr><th>초기값</th><th>기대 출력</th></tr></thead><tbody><tr><td>n=1</td><td><code>0</code></td></tr><tr><td>n=2</td><td><code>1</code></td></tr><tr><td>n=29</td><td><code>1</code></td></tr><tr><td>n=49</td><td><code>0</code></td></tr></tbody></table></div><label>내 알고리즘·코드·실행 결과<textarea rows="7" data-save="answer-S04"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><h3>풀이 흐름</h3><p>① n&gt;=2인지로 prime 초기값 결정. ② d=2부터 d*d&lt;=n까지 나머지를 검사. ③ 약수를 찾으면 prime=0 후 break. ④ 결과 출력.</p><pre><code>int n = 29;
+int prime = (n &gt;= 2);
+for (int d = 2; prime &amp;&amp; d * d &lt;= n; d++) {
+    if (n % d == 0) { prime = 0; break; }
+}
+printf(&quot;%d\n&quot;, prime);</code></pre><p><b>확장:</b> d*d&lt;n으로 바꾸면49 같은 제곱수에서 어떤 오류가 나는지 설명하세요. n을200 이하로 제한해 곱셈 범위도 안전하게 둡니다.</p><p>2점: 일반화한 코드가 표의 모든 조건을 만족하고 이유를 설명함. 1점: 일부 조건만 만족. 0점: 미완성·무응답. 출력 숫자만 고정해 찍는 코드는 일반화한 해결이 아닙니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-S04" aria-label="S04 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-S04"> 풀이·교정 완료</label></div></article><article class="question" id="q-S05" data-topic="scenario" data-core="0"><div class="qhead"><span class="badge">직접 작성</span><h3>S05 · 숫자의 자릿수 합</h3></div><p>n은0~99999입니다. 각 십진 자릿수의 합을 구하세요. 문자열·배열은 쓰지 않습니다. 원본 n을 유지하고 작업용 변수 work를 사용하세요.</p><h3>입력 조건별 기대 결과</h3><div class="table-wrap"><table><thead><tr><th>초기값</th><th>기대 출력</th></tr></thead><tbody><tr><td>n=0</td><td><code>0 0</code></td></tr><tr><td>n=7</td><td><code>7 7</code></td></tr><tr><td>n=4027</td><td><code>4027 13</code></td></tr><tr><td>n=99999</td><td><code>99999 45</code></td></tr></tbody></table></div><label>내 알고리즘·코드·실행 결과<textarea rows="7" data-save="answer-S05"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><h3>풀이 흐름</h3><p>① work=n, sum=0. ② work%10으로 마지막 자리 합산. ③ work/=10으로 마지막 자리 제거. ④ work&gt;0인 동안 반복.</p><pre><code>int n = 4027;
+int work = n, sum = 0;
+do {
+    sum += work % 10;
+    work /= 10;
+} while (work &gt; 0);
+printf(&quot;%d %d\n&quot;, n, sum);</code></pre><p><b>확장:</b> 자릿수 개수도 함께 출력하세요. n=0의 자릿수를1로 처리해야 합니다.</p><p>2점: 일반화한 코드가 표의 모든 조건을 만족하고 이유를 설명함. 1점: 일부 조건만 만족. 0점: 미완성·무응답. 출력 숫자만 고정해 찍는 코드는 일반화한 해결이 아닙니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-S05" aria-label="S05 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-S05"> 풀이·교정 완료</label></div></article><article class="question" id="q-S06" data-topic="scenario" data-core="0"><div class="qhead"><span class="badge">직접 작성</span><h3>S06 · 저축 목표 달성 날짜</h3></div><p>target은1~1000, daily는1~100입니다. 매일 같은 금액을 저축하여 목표 이상이 되는 최소 일수와 최종 잔액을 구하세요. 목표를 넘는 것도 허용합니다.</p><h3>입력 조건별 기대 결과</h3><div class="table-wrap"><table><thead><tr><th>초기값</th><th>기대 출력</th></tr></thead><tbody><tr><td>target=1, daily=1</td><td><code>1 1</code></td></tr><tr><td>target=240, daily=80</td><td><code>3 240</code></td></tr><tr><td>target=250, daily=80</td><td><code>4 320</code></td></tr><tr><td>target=1000, daily=100</td><td><code>10 1000</code></td></tr></tbody></table></div><label>내 알고리즘·코드·실행 결과<textarea rows="7" data-save="answer-S06"></textarea></label><details class="answer"><summary>정답·해설 보기</summary><div class="answer-body"><h3>풀이 흐름</h3><p>① days=balance=0. ② balance&lt;target일 동안 daily만큼 더하고 days를1 늘린다. ③ 두 값을 출력한다.</p><pre><code>int target = 250, daily = 80;
+int balance = 0, days = 0;
+while (balance &lt; target) {
+    balance += daily;
+    days++;
+}
+printf(&quot;%d %d\n&quot;, days, balance);</code></pre><p><b>확장:</b> daily=0이면 원래 반복이 왜 끝나지 않는지 설명하고, 반복 진입 전에 유효성 검사를 추가하세요.</p><p>2점: 일반화한 코드가 표의 모든 조건을 만족하고 이유를 설명함. 1점: 일부 조건만 만족. 0점: 미완성·무응답. 출력 숫자만 고정해 찍는 코드는 일반화한 해결이 아닙니다.</p></div></details><div class="self-score"><label>자기 채점 <select data-save="score-S06" aria-label="S06 점수"><option value="">미채점</option><option value="0">0점</option><option value="1">1점</option><option value="2">2점</option></select></label><label><input type="checkbox" data-save="done-S06"> 풀이·교정 완료</label></div></article></section><section id="review" class=""><h2>13 · 핵심 정리·오답노트</h2><div class="table-wrap"><table><thead><tr><th>핵심 질문</th><th>내가 말할 수 있어야 할 답</th></tr></thead><tbody><tr><td>if 여러 개와 else if의 차이</td><td>각각 검사 vs 앞에서 선택되면 연쇄 종료</td></tr><tr><td>switch의 break 누락</td><td>진입한 case부터 아래 문장을 계속 실행</td></tr><tr><td>for의 순서</td><td>초기화→조건→본문→갱신→조건</td></tr><tr><td>while과 do while</td><td>선검사0회 가능 vs 후검사최소1회</td></tr><tr><td>break·continue</td><td>탈출 vs 이번 본문 생략</td></tr><tr><td>중첩 반복</td><td>안쪽을 끝낸 뒤 바깥 갱신, 횟수는 회차별 확인</td></tr></tbody></table></div><label>핵심 용어5개를 내 문장으로 정리하기<textarea rows="5" data-save="keywords"></textarea></label><label>문제 ID / 내 답 / 확인한 답 / 최초로 달라진 줄 / 바꾼 조건과 결과 / 다음 수업 재풀이<textarea rows="7" data-save="wrong"></textarea></label><p>03일차에는 배열·문자열을 다룹니다. 오늘의 반복 흐름을 사용해 여러 저장 공간을 순서대로 방문하게 됩니다.</p></section></main><footer>02일차 · 코딩 · 먼저 예상하고 근거를 확인하기</footer><script>
+(()=>{
+const book=document.body.dataset.book;
+const prefix='ipe-day02-v1:'+book+':';
+const fields=[...document.querySelectorAll('[data-save]')];
+const questions=[...document.querySelectorAll('article.question')];
+const groups=[...document.querySelectorAll('.question-group')];
+const progress=document.getElementById('progress');
+const status=document.getElementById('save-status');
+const filter=document.getElementById('scope-filter');
+const details=()=>[...document.querySelectorAll('details.answer,details.concept')];
+let available=true;
+function read(el){return el.type==='checkbox'?el.checked:el.value;}
+function assign(el,val){if(el.type==='checkbox')el.checked=val===true;else el.value=typeof val==='string'?val:String(val??'');}
+function update(){
+ if(!questions.length){progress.textContent='설명 전용 · 12개 항목';return;}
+ const visible=questions.filter(q=>!q.hidden);
+ const marked=visible.filter(q=>q.querySelector('select[data-save]').value!=='');
+ const total=marked.reduce((s,q)=>s+Number(q.querySelector('select[data-save]').value),0);
+ const done=visible.filter(q=>q.querySelector('input[type="checkbox"]').checked).length;
+ progress.textContent=`표시 ${visible.length} / 전체 ${questions.length} · 교정 ${done} · 채점 ${marked.length} · ${total}/${visible.length*2}점`;
+ groups.forEach(g=>{const label=g.querySelector('.topic-total');if(!label)return;const qs=[...g.querySelectorAll('.question')].filter(q=>!q.hidden);label.textContent=`표시 ${qs.length}문항 · ${qs.reduce((s,q)=>s+Number(q.querySelector('select[data-save]').value||0),0)}/${qs.length*2}점`;});
+}
+try{for(const el of fields){const raw=localStorage.getItem(prefix+el.dataset.save);if(raw!==null)assign(el,JSON.parse(raw));}status.textContent='이 교재의 답안·메모를 이 기기에 자동 저장';}catch{available=false;status.textContent='자동 저장 불가 · JSON 파일로 보관하세요';}
+fields.forEach(el=>el.addEventListener('input',()=>{try{if(available)localStorage.setItem(prefix+el.dataset.save,JSON.stringify(read(el)));}catch{available=false;status.textContent='자동 저장 불가 · JSON 파일로 보관하세요';}update();}));
+function applyFilter(){
+ const value=filter?.value||'all';
+ questions.forEach(q=>q.hidden=value==='all'?false:value==='core'?q.dataset.core!=='1':q.dataset.topic!==value);
+ groups.forEach(g=>g.hidden=![...g.querySelectorAll('.question')].some(q=>!q.hidden));
+ update();
+}
+filter?.addEventListener('change',applyFilter);
+function followHash(){
+ if(!filter||!location.hash)return;
+ const target=document.getElementById(location.hash.slice(1));
+ if(!target)return;
+ const group=target.closest('.question-group');
+ if(group){const topic=group.dataset.topic;if([...filter.options].some(o=>o.value===topic)){filter.value=topic;applyFilter();}else if(group.hidden||target.hidden){filter.value='all';applyFilter();}requestAnimationFrame(()=>target.scrollIntoView());}
+}
+document.getElementById('close-answers')?.addEventListener('click',()=>details().forEach(d=>d.open=false));
+document.getElementById('exam-lock')?.addEventListener('click',()=>{
+ const lock=document.body.classList.toggle('exam-lock');details().forEach(d=>d.open=false);
+ document.getElementById('exam-lock').textContent=lock?'시험 종료 · 해설 허용':'시험 모드 · 해설 잠그기';
+ document.getElementById('exam-state').textContent=lock?'시험 중 · 먼저 답과 근거를 작성하세요.':'학습 모드 · 직접 채점하고 교정하세요.';
+});
+document.getElementById('export').onclick=()=>{
+ const data={교재:book,저장시각:new Date().toISOString(),답안:Object.fromEntries(fields.map(el=>[el.dataset.save,read(el)]))};
+ const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=book+'_내기록.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+document.getElementById('import').onclick=()=>document.getElementById('import-file').click();
+document.getElementById('import-file').onchange=async ev=>{
+ const file=ev.target.files[0];if(!file)return;
+ try{const data=JSON.parse(await file.text());if(data.교재!==book||!data.답안||typeof data.답안!=='object')throw Error('wrong book');if(!confirm('이 교재의 현재 답안·메모를 파일의 기록으로 바꿀까요?'))return;
+ for(const el of fields)if(Object.hasOwn(data.답안,el.dataset.save)){assign(el,data.답안[el.dataset.save]);try{localStorage.setItem(prefix+el.dataset.save,JSON.stringify(read(el)));}catch{available=false;}}
+ update();status.textContent=available?'기록 불러옴 · 이 기기에 저장됨':'기록 불러옴 · 자동 저장 불가';
+ }catch{alert('같은 교재에서 저장한 JSON 파일인지 확인하세요.');}finally{ev.target.value='';}
+};
+function printMode(mode){if(mode==='teacher'&&document.body.classList.contains('exam-lock'))return;const ds=details(),before=ds.map(d=>d.open);const restore=()=>{ds.forEach((d,i)=>d.open=before[i]);delete document.body.dataset.print;removeEventListener('afterprint',restore);};document.body.dataset.print=mode;ds.forEach(d=>d.open=mode==='teacher');addEventListener('afterprint',restore);window.print();}
+document.getElementById('print-student').onclick=()=>printMode('student');
+document.getElementById('print-teacher')?.addEventListener('click',()=>printMode('teacher'));
+document.getElementById('reset').onclick=()=>{if(!confirm('이 교재의 모든 답안·점수·메모를 지울까요?'))return;for(const el of fields){assign(el,el.type==='checkbox'?false:'');try{localStorage.removeItem(prefix+el.dataset.save);}catch{}}update();status.textContent='이 교재의 기록 초기화됨';};
+applyFilter();followHash();addEventListener('hashchange',followHash);
+})();
+</script></body></html>

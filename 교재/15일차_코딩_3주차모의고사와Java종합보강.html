@@ -1,0 +1,608 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>15일차 코딩 · 3주차 모의고사와 Java 종합 보강</title><style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#edf2f5;color:#213044;font:17px/1.8 "Malgun Gothic",sans-serif;overflow-wrap:anywhere}main{max-width:1080px;margin:auto;background:white;padding:44px 54px}header{border-top:9px solid #146d73;padding:18px 0 12px}h1{font-size:35px;line-height:1.4;letter-spacing:-1px}h2{font-size:25px;margin:44px 0 18px;border-bottom:2px solid #146d73;padding-bottom:9px}h3{font-size:20px;line-height:1.55}p{margin:12px 0}.lead{font-size:19px}.tag{font-size:14px;color:#125c61;background:#e6f3f2;padding:4px 10px;border-radius:6px;display:inline-block}.small{color:#54677b;font-size:14px}.note{background:#eff8f7;border-left:5px solid #17797b;padding:16px 21px;margin:20px 0}.warn{background:#fff7e8;border-color:#bf7c20}.question{border:1px solid #cbd9e1;border-radius:12px;padding:22px;margin:23px 0}.question h3{margin:10px 0}.toolbar{background:#ffffffed;position:sticky;top:0;border-bottom:1px solid #cbd9e1;padding:9px 0;z-index:5}button{font:inherit;font-size:14px;background:#146d73;color:white;border:0;border-radius:6px;padding:9px 12px;cursor:pointer;margin:3px}button:focus-visible,summary:focus-visible{outline:3px solid #e7aa37;outline-offset:3px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#14283a;color:#eef6fb;font:15px/1.65 Consolas,"Malgun Gothic",monospace;padding:19px;border-radius:8px}pre.output{background:#eaf2f7;color:#20344b}code{font-family:Consolas,"Malgun Gothic",monospace}table{border-collapse:collapse;width:100%;margin:18px 0;font-size:16px}th,td{border:1px solid #cbd9e1;text-align:left;vertical-align:top;padding:10px 12px}th{background:#edf3f6}details{background:#f0f6f5;padding:12px 16px;border-radius:8px;margin:15px 0}summary{font-weight:bold;color:#125e61;cursor:pointer}textarea{display:block;width:100%;min-height:80px;background:#fffdf5;font:inherit;border:1px solid #9badbc;border-radius:6px;padding:10px;resize:vertical}label{font-size:14px;color:#526477}.blank{display:none;height:60px;border-bottom:1px dashed #9badbc}.hidden-solutions details{display:none!important}.pill{font-size:13px;padding:2px 8px;background:#f8edcf;border-radius:5px}.choices{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}.choices li{background:#f4f7f9;padding:8px 12px;border-radius:5px}.trace{font-variant-numeric:tabular-nums}.diagram{font-family:Consolas,"Malgun Gothic",monospace;background:#f6f8fa;padding:16px;border:1px solid #d5e0e7;white-space:pre-wrap}.toc{background:#f1f6f8;padding:18px 24px}.toc p{margin:5px 0}footer{border-top:1px solid #cedae1;color:#5e7081;font-size:14px;margin-top:45px;padding-top:18px}.original{white-space:pre-wrap;background:#f8fafb;padding:14px;font:16px/1.85 "Malgun Gothic",sans-serif;color:#213044}.original-image{max-width:100%;height:auto;display:block}.answer-line{font-weight:bold;color:#135c61}.table-wrap{overflow-x:auto}@media(max-width:720px){main{padding:22px 18px}h1{font-size:28px}h2{font-size:23px}.question{padding:15px}pre{font-size:13px}.toolbar{position:static}.choices{grid-template-columns:1fr}table{font-size:14px}td,th{padding:7px}}@media print{body{font-size:10.5pt;background:white}main{padding:0;max-width:none}h1{font-size:24pt}h2{font-size:17pt;break-after:avoid}h3{break-after:avoid}pre{font-size:9pt;background:#f2f4f5;color:#111}.toolbar,textarea{display:none}.blank{display:block}.question,details,tr{break-inside:avoid}header{border-top-width:5px}.choices{display:block}.choices li{background:white;padding:3px}.note{background:#f5f5f5}details{background:#f5f5f5}.original{font-size:10.5pt;padding:5px}}
+</style></head><body data-book="coding"><main><header><span class="tag">정보처리기사 실기 · 3주차 / 15일차</span><h1>15일차 코딩 · 3주차 모의고사와 Java 종합 보강</h1><p class="lead">모의고사20 + 추가 연습20 · 쉬운·응용·심화 복습 예제 · 제작 시나리오8개</p></header><div class="toolbar"><button type="button" id="show">해설 모두 열기</button><button type="button" id="hide">해설 모두 닫기</button><button type="button" id="exam">시험 모드</button><button type="button" id="print">현재 모드 인쇄</button><span class="small">답안 자동 저장 · 저장 가능 여부는 브라우저 설정에 따라 다릅니다.</span></div><div class="note"><b>3주차 종합평가</b> · 클래스·객체·생성자, 상속·다형성, static·final·인터페이스, 예외 처리까지 함께 추적합니다. 코딩 모의고사20문제 + 오답 보강20문제 + 제작 시나리오8개를 담았습니다.</div><h2>오늘의 120분 · 먼저 풀고, 채점 후 다시 만들기</h2><div class="table-wrap"><table><thead><tr><th>시간</th><th>활동</th></tr></thead><tbody><tr><td>0~60분 · 1교시</td><td>M01~M20 모의고사. 실행·검색·해설 없이 출력과 추적 근거 작성</td></tr><tr><td>60~80분 · 2교시 전반</td><td>정답 확인·채점 → 틀린 원인 찾기 → 아래 복습 설명 읽기</td></tr><tr><td>80~105분</td><td>틀린 M문제 실행 → 조건 한 가지 변경 → 대응하는 R문제4개 재풀이</td></tr><tr><td>105~120분</td><td>제작 P01~P08 중 자신의 약점에 맞는 한 개 구현·검증</td></tr></tbody></table></div><p>이론은 모의고사30분 + 채점·노트 복습30분으로 별도60분입니다. 하루 총180분입니다. R20문제와 P8개는 추가 연습을 포함한 문제은행이며 모두 오늘 안에 풀도록 요구하지 않습니다.</p><div class="note"><b>응시 방법</b> · 시험 모드 버튼을 누르면 모든 해설이 숨겨집니다. M문제는 각5점, 총100점입니다. 출력·줄바꿈·핵심 값이 맞으면3점, 객체·호출·예외 흐름의 근거까지 맞으면2점을 더합니다. 끝의 공백은 무시해도 됩니다.</div><h2>채점 후 읽는 복습 · 쉬운 설명 → 응용 → 심화</h2><details class="review"><summary>복습 설명과 예제 열기 · 모의고사 채점 후</summary><h3>쉬운 설명 · 클래스는 설계도, 객체는 실제 물건</h3><p>new 한 번에 실제 객체 하나가 생깁니다. 변수 이름이 두 개라고 객체도 두 개인 것은 아닙니다. 각 객체의 필드는 따로 있고 static 필드는 클래스의 여러 객체가 공유합니다. 생성자는 new할 때 처음 상태를 정합니다.</p><h3>쉬운 예제 · 같은 객체를 가리키는 두 이름</h3><pre class="java"><code>class Cup { int amount; Cup(int n) { amount = n; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Cup a = new Cup(6);
+        Cup b = a;
+        b.amount += 2;
+        System.out.println(a.amount + &quot; &quot; + b.amount);
+    }
+}</code></pre><pre class="output"><code>8 8</code></pre><p>a와 b에서 같은 객체로 화살표를 그려 보세요. b로 바꾼 값도 a가 읽으면8입니다.</p><h3>응용 설명 · 공통 타입으로 다른 동작 호출</h3><p>상속은 공통 상태·동작을 물려받는 것입니다. 오버라이딩은 자식이 같은 메서드의 동작을 다시 정하는 것입니다. 부모 타입 변수로 불러도 재정의된 인스턴스 메서드는 실제 객체를 기준으로 실행합니다. 반면 필드와 static 메서드를 고를 때는 참조 타입을 봅니다.</p><h3>응용 예제 · 필드와 메서드의 기준</h3><pre class="java"><code>class Tool { int power = 4; int result() { return power; } }
+class FastTool extends Tool { int power = 9; @Override int result() { return power * 2; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Tool t = new FastTool();
+        System.out.println(t.power + &quot; &quot; + t.result());
+    }
+}</code></pre><pre class="output"><code>4 18</code></pre><p>t.power는 Tool의4, result는 실제 FastTool의 동작으로9×2=18입니다.</p><div class="table-wrap"><table><thead><tr><th>문법</th><th>짧게 기억</th></tr></thead><tbody><tr><td>this / super</td><td>현재 객체 / 부모의 생성자·멤버</td></tr><tr><td>오버로딩</td><td>같은 이름, 서로 다른 매개변수 목록. 컴파일 시 선택</td></tr><tr><td>오버라이딩</td><td>상속된 인스턴스 메서드의 동작 재정의. 실제 객체 기준</td></tr><tr><td>abstract</td><td>공통 틀과 미완성 메서드를 두고 자식이 완성</td></tr><tr><td>interface</td><td>공통 호출 방법을 약속. 구현 메서드는 public</td></tr><tr><td>private</td><td>같은 클래스 안에서 직접 접근</td></tr><tr><td>final 변수</td><td>새 값으로 재대입 불가. 객체 필드까지 자동 동결되지는 않음</td></tr></tbody></table></div><h3>심화 설명 · 예외가 난 줄에서 정상 흐름은 꺾인다</h3><p>try에서 예외가 나면 그 뒤의 같은 try는 건너뜁니다. 맞는 catch 한 곳을 실행하고 finally를 거쳐 다음으로 갑니다. 이미 바뀐 필드·static 값은 자동으로 복구되지 않습니다. return의 기본형 값은 finally 전에 준비되고, 객체 참조를 반환하면 같은 객체의 필드 변경은 보입니다.</p><h3>심화 예제 · 실패 전후의 상태를 나눠 적기</h3><pre class="java"><code>class Meter {
+    static int calls;
+    int total;
+    void add(int d) { calls++; total += 24 / d; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Meter m = new Meter();
+        for (int d : new int[]{2, 0, 4}) {
+            try { m.add(d); }
+            catch (ArithmeticException e) { System.out.print(&quot;E &quot;); }
+            finally { System.out.print(m.total + &quot; &quot;); }
+        }
+        System.out.println(&quot;| &quot; + Meter.calls);
+    }
+}</code></pre><pre class="output"><code>12 E 12 18 | 3</code></pre><p>첫 호출에서 total12입니다. 두 번째는 calls만 증가하고 나눗셈이 실패하므로 total은12입니다. 마지막에6을 더해18, 호출수는3입니다.</p><div class="note">try가 반복문 안에 있으면 현재 원소의 실패를 잡고 다음 반복으로 갑니다. try가 반복문 전체를 감싸면 한 번의 예외가 반복문 전체를 벗어나게 합니다. finally는 일반적인 실행에서 return·break·continue 때도 거치지만 JVM 강제 종료 등에서는 보장되지 않습니다.</div></details><h2>1교시 · Java 종합 모의고사20문제 / 60분 / 100점</h2><p>각 문제는 독립된 전체 프로그램입니다. 출력 결과와 추적 근거를 먼저 적으세요. 각5점입니다.</p><article class="question" id="M01"><span class="tag">M01 · 5점</span><h3>객체별 필드와 생성자</h3><pre class="java"><code>class Card {
+    int point;
+    Card(int point) { this.point = point; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Card a = new Card(12);
+        Card b = new Card(7);
+        a.point += 5;
+        System.out.println(a.point + &quot; &quot; + b.point);
+    }
+}</code></pre><label for="aM01">내 답과 풀이 근거</label><textarea id="aM01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>17 7</code></pre><p>a와 b는 서로 다른 객체입니다. a의 point만 12에서 17로 바뀌고 b는 7입니다.</p></details></article><article class="question" id="M02"><span class="tag">M02 · 5점</span><h3>같은 객체를 가리키는 참조</h3><pre class="java"><code>class Box { int value = 2; }
+public class Main {
+
+    public static void main(String[] args) {
+        Box a = new Box();
+        Box b = a;
+        b.value = 14;
+        a.value -= 3;
+        System.out.println(a.value + &quot; &quot; + b.value);
+    }
+}</code></pre><label for="aM02">내 답과 풀이 근거</label><textarea id="aM02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>11 11</code></pre><p>new는 한 번입니다. 두 변수가 같은 객체를 가리켜 같은 value인 11을 봅니다.</p></details></article><article class="question" id="M03"><span class="tag">M03 · 5점</span><h3>this로 생성자를 연결하기</h3><pre class="java"><code>class Item {
+    int value;
+    Item() { this(3); value++; }
+    Item(int n) { value = n * 2; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Item a = new Item();
+        Item b = new Item(8);
+        System.out.println(a.value + &quot; &quot; + b.value);
+    }
+}</code></pre><label for="aM03">내 답과 풀이 근거</label><textarea id="aM03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>7 16</code></pre><p>기본 생성자는 this(3)으로 value=6을 만든 뒤 1을 더합니다. 인수8은 16입니다.</p></details></article><article class="question" id="M04"><span class="tag">M04 · 5점</span><h3>static과 객체 필드를 따로 추적</h3><pre class="java"><code>class Unit {
+    static int total;
+    int value;
+    Unit(int n) { value = n; total += n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Unit a = new Unit(4);
+        Unit b = new Unit(9);
+        a.value++;
+        Unit.total += b.value;
+        System.out.println(a.value + &quot; &quot; + b.value + &quot; &quot; + Unit.total);
+    }
+}</code></pre><label for="aM04">내 답과 풀이 근거</label><textarea id="aM04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>5 9 22</code></pre><p>생성자에서 total은 4+9=13입니다. a.value++는 total을 자동으로 바꾸지 않습니다. 마지막에 9를 더해22입니다.</p></details></article><article class="question" id="M05"><span class="tag">M05 · 5점</span><h3>부모·자식 생성자 순서</h3><pre class="java"><code>class Parent {
+    int value;
+    Parent(int n) { value = n; System.out.print(&quot;P&quot; + n); }
+}
+class Child extends Parent {
+    Child(int n) { super(n + 2); value = n + 1; System.out.print(&quot;C&quot;); }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Child c = new Child(5);
+        System.out.print(c.value);
+    }
+}</code></pre><label for="aM05">내 답과 풀이 근거</label><textarea id="aM05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>P7C6</code></pre><p>자식 생성자는 먼저 super(7)을 실행해 P7을 출력합니다. 이후 자식이 value=6을 대입하고 C, main이6을 출력합니다.</p></details></article><article class="question" id="M06"><span class="tag">M06 · 5점</span><h3>필드 접근과 메서드 호출</h3><pre class="java"><code>class Parent {
+    int x = 6;
+    int get() { return x; }
+}
+class Child extends Parent {
+    int x = 15;
+    @Override int get() { return x; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Parent p = new Child();
+        System.out.println(p.x + &quot; &quot; + p.get());
+    }
+}</code></pre><label for="aM06">내 답과 풀이 근거</label><textarea id="aM06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>6 15</code></pre><p>p.x는 참조 타입 Parent의6입니다. get()은 실제 Child 객체의 메서드라 자식 x인15를 반환합니다.</p></details></article><article class="question" id="M07"><span class="tag">M07 · 5점</span><h3>super와 오버라이딩</h3><pre class="java"><code>class Base { int calc(int n) { return n * 3; } }
+class Added extends Base {
+    @Override int calc(int n) { return super.calc(n) + 5; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Base b = new Added();
+        System.out.println(b.calc(4));
+    }
+}</code></pre><label for="aM07">내 답과 풀이 근거</label><textarea id="aM07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>17</code></pre><p>Added.calc(4) → super.calc(4)=12 → 5를 더해17입니다.</p></details></article><article class="question" id="M08"><span class="tag">M08 · 5점</span><h3>오버로딩 선택은 선언 타입도 본다</h3><pre class="java"><code>class Animal {}
+class Cat extends Animal {}
+public class Main {
+    static String label(Animal a) { return &quot;A&quot;; }
+    static String label(Cat c) { return &quot;C&quot;; }
+    public static void main(String[] args) {
+        Animal a = new Cat();
+        System.out.print(label(a));
+        System.out.print(label(new Cat()));
+    }
+}</code></pre><label for="aM08">내 답과 풀이 근거</label><textarea id="aM08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>AC</code></pre><p>오버로딩은 인수 표현식의 컴파일 시 타입으로 결정합니다. a의 선언 타입은 Animal, new Cat()의 타입은 Cat입니다.</p></details></article><article class="question" id="M09"><span class="tag">M09 · 5점</span><h3>final 참조와 객체의 값</h3><pre class="java"><code>class Holder {
+    int value;
+    Holder(int n) { value = n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        final Holder h = new Holder(10);
+        h.value += 8;
+        System.out.println(h.value);
+    }
+}</code></pre><label for="aM09">내 답과 풀이 근거</label><textarea id="aM09" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>18</code></pre><p>final 참조는 다른 객체로 다시 대입하지 못합니다. 가리키는 객체의 변경 가능한 필드 수정은 가능합니다.</p></details></article><article class="question" id="M10"><span class="tag">M10 · 5점</span><h3>추상 클래스와 객체 배열</h3><pre class="java"><code>abstract class Shape { abstract int area(); }
+class Rect extends Shape {
+    int w, h;
+    Rect(int w, int h) { this.w = w; this.h = h; }
+    @Override int area() { return w * h; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Shape[] list = {new Rect(3, 4), new Rect(2, 7)};
+        int sum = 0;
+        for (Shape s : list) sum += s.area();
+        System.out.println(sum);
+    }
+}</code></pre><label for="aM10">내 답과 풀이 근거</label><textarea id="aM10" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>26</code></pre><p>각 실제 Rect의 area가12와14를 반환합니다. 공통 Shape 참조로 호출하여 합계26입니다.</p></details></article><article class="question" id="M11"><span class="tag">M11 · 5점</span><h3>인터페이스 구현 바꿔 끼우기</h3><pre class="java"><code>interface Rule { int apply(int n); }
+class Plus implements Rule { public int apply(int n) { return n + 2; } }
+class Twice implements Rule { public int apply(int n) { return n * 2; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Rule[] rules = {new Plus(), new Twice(), new Plus()};
+        int x = 3;
+        for (Rule r : rules) x = r.apply(x);
+        System.out.println(x);
+    }
+}</code></pre><label for="aM11">내 답과 풀이 근거</label><textarea id="aM11" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>12</code></pre><p>3 → Plus로5 → Twice로10 → Plus로12입니다. 실제 구현 객체마다 apply 동작이 다릅니다.</p></details></article><article class="question" id="M12"><span class="tag">M12 · 5점</span><h3>객체 전달 후 재대입</h3><pre class="java"><code>class Box {
+    int value;
+    Box(int n) { value = n; }
+}
+public class Main {
+    static void change(Box b) {
+        b.value = 9;
+        b = new Box(40);
+        b.value++;
+    }
+    public static void main(String[] args) {
+        Box a = new Box(5);
+        change(a);
+        System.out.println(a.value);
+    }
+}</code></pre><label for="aM12">내 답과 풀이 근거</label><textarea id="aM12" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>9</code></pre><p>매개변수에는 참조값의 복사본이 전달됩니다. 처음 b.value=9는 원래 객체를 바꿉니다. b에 새 객체를 대입해도 main의 a는 바뀌지 않습니다.</p></details></article><article class="question" id="M13"><span class="tag">M13 · 5점</span><h3>정상·예외·finally 출력 순서</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int d = 0;
+        try {
+            System.out.print(&quot;L&quot;);
+            System.out.print(32 / d);
+            System.out.print(&quot;M&quot;);
+        } catch (ArithmeticException e) {
+            System.out.print(&quot;N&quot;);
+        } finally {
+            System.out.print(&quot;O&quot;);
+        }
+        System.out.print(&quot;P&quot;);
+    }
+}</code></pre><label for="aM13">내 답과 풀이 근거</label><textarea id="aM13" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>LNOP</code></pre><p>나눗셈에서 예외가 나므로 M은 건너뜁니다. L → catch의 N → finally O → 바깥 P입니다.</p></details></article><article class="question" id="M14"><span class="tag">M14 · 5점</span><h3>반복마다 다른 예외 처리</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int sum = 1;
+        for (String s : new String[]{&quot;4&quot;, &quot;?&quot;, &quot;0&quot;, &quot;8&quot;}) {
+            try { sum += 16 / Integer.parseInt(s); }
+            catch (NumberFormatException e) { sum += 3; }
+            catch (ArithmeticException e) { sum += 5; }
+        }
+        System.out.println(sum);
+    }
+}</code></pre><label for="aM14">내 답과 풀이 근거</label><textarea id="aM14" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>15</code></pre><p>초기1 + 정상4 + 변환 실패3 + 나눗셈 실패5 + 정상2 =15입니다.</p></details></article><article class="question" id="M15"><span class="tag">M15 · 5점</span><h3>실패한 줄에서 대입이 완료됐나?</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int sum = 4;
+        try {
+            sum += 3;
+            sum += 12 / 0;
+            sum *= 5;
+        } catch (ArithmeticException e) {
+            sum += 6;
+        } finally {
+            sum *= 2;
+        }
+        System.out.println(sum);
+    }
+}</code></pre><label for="aM15">내 답과 풀이 근거</label><textarea id="aM15" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>26</code></pre><p>4 → 7. 실패한 +=는 완료되지 않습니다. 뒤 *=5도 건너뜁니다. catch에서13, finally에서26입니다.</p></details></article><article class="question" id="M16"><span class="tag">M16 · 5점</span><h3>return과 finally</h3><pre class="java"><code>public class Main {
+    static int value() {
+        int x = 6;
+        try { return x; }
+        finally { x += 4; System.out.print(x + &quot; &quot;); }
+    }
+    public static void main(String[] args) {
+        System.out.println(value());
+    }
+}</code></pre><label for="aM16">내 답과 풀이 근거</label><textarea id="aM16" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>10 6</code></pre><p>x=6일 때 return x가 반환값6을 준비합니다. finally에서 x를10으로 바꾸고 먼저 출력합니다.</p></details></article><article class="question" id="M17"><span class="tag">M17 · 5점</span><h3>static 시도 횟수와 성공 횟수</h3><pre class="java"><code>class Worker {
+    static int tries;
+    int ok;
+    void work(int d) { tries++; int n = 18 / d; ok++; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Worker a = new Worker(), b = new Worker();
+        try { a.work(3); b.work(0); a.work(6); }
+        catch (ArithmeticException e) { System.out.print(&quot;E &quot;); }
+        System.out.println(Worker.tries + &quot; &quot; + a.ok + &quot; &quot; + b.ok);
+    }
+}</code></pre><label for="aM17">내 답과 풀이 근거</label><textarea id="aM17" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>E 2 1 0</code></pre><p>시도는 a와 b 두 번입니다. a는 성공1, b는 실패0입니다. 세 번째 a.work(6)은 같은 try에서 예외 뒤라 실행하지 않습니다.</p></details></article><article class="question" id="M18"><span class="tag">M18 · 5점</span><h3>상속된 동작과 예외</h3><pre class="java"><code>class Calc { int run(int n) { return 10 / n; } }
+class FastCalc extends Calc { @Override int run(int n) { return 30 / n; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Calc c = new FastCalc();
+        int total = 0;
+        for (int n : new int[]{5, 0, 2}) {
+            try { total += c.run(n); }
+            catch (ArithmeticException e) { total--; }
+        }
+        System.out.println(total);
+    }
+}</code></pre><label for="aM18">내 답과 풀이 근거</label><textarea id="aM18" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>20</code></pre><p>실제 FastCalc에서30/5=6, 0 실패로−1, 30/2=15입니다. 합계20입니다.</p></details></article><article class="question" id="M19"><span class="tag">M19 · 5점</span><h3>공유 참조가 담긴 객체 배열</h3><pre class="java"><code>class Cell {
+    int value;
+    Cell(int n) { value = n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Cell shared = new Cell(2);
+        Cell[] cells = {shared, new Cell(5), shared};
+        for (Cell c : cells) c.value += 3;
+        System.out.println(cells[0].value + &quot; &quot; + cells[1].value + &quot; &quot; + cells[2].value);
+    }
+}</code></pre><label for="aM19">내 답과 풀이 근거</label><textarea id="aM19" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>8 8 8</code></pre><p>0번과2번은 같은 객체라 두 번 증가해2+3+3=8입니다. 1번은 별도 객체로5+3=8입니다. 값이 같아도 객체는 둘입니다.</p></details></article><article class="question" id="M20"><span class="tag">M20 · 5점</span><h3>종합 · 생성·오버라이딩·변환·finally</h3><pre class="java"><code>class Service {
+    static int calls;
+    int price(int n) { calls++; if (n &lt; 0) throw new IllegalArgumentException(); return n * 10; }
+}
+class Discount extends Service {
+    @Override int price(int n) { return super.price(n) / 2; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Service s = new Discount();
+        int total = 0;
+        for (String raw : new String[]{&quot;6&quot;, &quot;x&quot;, &quot;-2&quot;, &quot;4&quot;}) {
+            try { total += s.price(Integer.parseInt(raw)); }
+            catch (IllegalArgumentException e) { total += 1; }
+            finally { System.out.print(Service.calls + &quot; &quot;); }
+        }
+        System.out.println(&quot;| &quot; + total);
+    }
+}</code></pre><label for="aM20">내 답과 풀이 근거</label><textarea id="aM20" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>1 1 2 3 | 52</code></pre><p>6은 자식에서30, x는 변환 실패로+1이며 호출 횟수는 그대로입니다. −2는 메서드 호출 후 검사 실패로+1, 4는20입니다. 총52, 호출3회입니다.</p></details></article><h2>2교시 · 채점하고 약한 유형을 다시 풀기</h2><div class="table-wrap"><table><thead><tr><th>틀린 유형</th><th>재풀이</th></tr></thead><tbody><tr><td>객체·참조·생성자 · M01~M05·M12·M19</td><td>R01·R02·R03·R07·R08·R17</td></tr><tr><td>다형성·필드·static·인터페이스 · M06~M11</td><td>R04·R05·R06·R09·R16·R18</td></tr><tr><td>예외·반환·종합 · M13~M18·M20</td><td>R10~R15·R19·R20</td></tr></tbody></table></div><p>오답 코드를 Main.java로 저장해 javac -encoding UTF-8 Main.java, java Main으로 실행합니다. 한 파일에 여러 문제의 Main을 함께 넣지 마세요. 먼저 손으로 추적한 답과 실제 출력을 비교한 뒤 인수·참조 타입·try 위치 중 하나만 바꾸어 다시 예측합니다.</p><h2>추가 연습20문제 · R01~R20</h2><p>R03~R06·R10은 컴파일 오류를 찾아 수정하는 문제입니다. 나머지는 출력 예측 문제입니다.</p><article class="question" id="R01"><span class="tag">R01</span><h3>새 객체와 원래 참조를 구별</h3><pre class="java"><code>class Item { int value; Item(int n) { value = n; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Item a = new Item(4);
+        Item b = a;
+        b = new Item(9);
+        b.value++;
+        System.out.println(a.value + &quot; &quot; + b.value);
+    }
+}</code></pre><label for="aR01">내 답과 풀이 근거</label><textarea id="aR01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>4 10</code></pre><p>b가 새 객체를 가리키게 되면 a와 분리됩니다. a는4, b만10입니다.</p></details></article><article class="question" id="R02"><span class="tag">R02</span><h3>매개변수 이름과 필드 이름이 같다</h3><pre class="java"><code>class Student {
+    int score;
+    Student(int score) { this.score = score; }
+    void add(int score) { this.score += score; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Student s = new Student(11);
+        s.add(4);
+        System.out.println(s.score);
+    }
+}</code></pre><label for="aR02">내 답과 풀이 근거</label><textarea id="aR02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>15</code></pre><p>this.score는 객체 필드, score는 매개변수입니다. 생성자에서11을 저장하고 add에서4를 더합니다.</p></details></article><article class="question" id="R03"><span class="tag">R03</span><h3>부모의 기본 생성자가 없을 때</h3><pre class="java"><code>class Parent { int n; Parent(int n) { this.n = n; } }
+class Child extends Parent { Child(int n) { this.n = n; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Child c = new Child(7);
+        System.out.println(c.n);
+    }
+}</code></pre><label for="aR03">내 답과 풀이 근거</label><textarea id="aR03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>컴파일 오류. Child 생성자 첫 문장에 super(n)을 넣습니다. 수정 후 출력: 7</code></pre><p>부모에 Parent(int)만 있어 자동 super()를 사용할 수 없습니다.</p></details></article><article class="question" id="R04"><span class="tag">R04</span><h3>private 필드를 직접 읽으면</h3><pre class="java"><code>class Safe { private int value = 13; int get() { return value; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Safe s = new Safe();
+        System.out.println(s.value);
+    }
+}</code></pre><label for="aR04">내 답과 풀이 근거</label><textarea id="aR04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>컴파일 오류. s.value를 s.get()으로 고치면 13이 출력됩니다.</code></pre><p>private 필드에는 클래스 바깥에서 직접 접근할 수 없습니다. 공개된 메서드로 읽습니다.</p></details></article><article class="question" id="R05"><span class="tag">R05</span><h3>static 메서드와 인스턴스 필드</h3><pre class="java"><code>public class Main {
+    int value = 8;
+    static int read() { return value; }
+    public static void main(String[] args) {
+        System.out.println(read());
+    }
+}</code></pre><label for="aR05">내 답과 풀이 근거</label><textarea id="aR05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>컴파일 오류. read에서 new Main().value로 객체 필드를 읽으면 8입니다.</code></pre><p>static 문맥에서는 특정 객체의 인스턴스 필드를 이름만으로 읽을 수 없습니다.</p></details></article><article class="question" id="R06"><span class="tag">R06</span><h3>인터페이스 구현 메서드의 접근 범위</h3><pre class="java"><code>interface Op { int apply(int n); }
+class Plus implements Op { int apply(int n) { return n + 4; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Op op = new Plus();
+        System.out.println(op.apply(5));
+    }
+}</code></pre><label for="aR06">내 답과 풀이 근거</label><textarea id="aR06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>컴파일 오류. Plus.apply 앞에 public을 붙이면 9입니다.</code></pre><p>인터페이스의 일반 추상 메서드는 public입니다. 구현에서 접근 범위를 더 좁힐 수 없습니다.</p></details></article><article class="question" id="R07"><span class="tag">R07</span><h3>생성 실패 전 바뀐 값</h3><pre class="java"><code>class Ticket {
+    static int count;
+    Ticket(int n) { count++; if (n &lt; 0) throw new IllegalArgumentException(); }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        try { new Ticket(1); new Ticket(-3); new Ticket(2); }
+        catch (IllegalArgumentException e) { System.out.println(Ticket.count); }
+    }
+}</code></pre><label for="aR07">내 답과 풀이 근거</label><textarea id="aR07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>2</code></pre><p>실패한 두 번째 생성자도 count++를 실행한 뒤 예외를 던졌습니다. 세 번째 생성자는 실행하지 않습니다.</p></details></article><article class="question" id="R08"><span class="tag">R08</span><h3>부모 생성자 안에서 오버라이딩 호출</h3><pre class="java"><code>class Parent { Parent() { show(); } void show() {} }
+class Child extends Parent {
+    int x = 9;
+    Child() { System.out.println(x); }
+    @Override void show() { System.out.print(x + &quot; &quot;); }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        new Child();
+    }
+}</code></pre><label for="aR08">내 답과 풀이 근거</label><textarea id="aR08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>0 9</code></pre><p>부모 생성자에서 show를 호출할 때도 실제 자식 메서드입니다. 그러나 자식 필드 초기화 전이라 x는 기본값0입니다. 부모 생성자 후 x=9가 됩니다.</p></details></article><article class="question" id="R09"><span class="tag">R09</span><h3>정적 메서드와 재정의 메서드</h3><pre class="java"><code>class Parent { static String kind() { return &quot;P&quot;; } String name() { return &quot;P&quot;; } }
+class Child extends Parent { static String kind() { return &quot;C&quot;; } @Override String name() { return &quot;C&quot;; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Parent p = new Child();
+        System.out.print(p.kind());
+        System.out.print(p.name());
+    }
+}</code></pre><label for="aR09">내 답과 풀이 근거</label><textarea id="aR09" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>PC</code></pre><p>static kind()는 참조 타입 Parent의 P를 선택합니다. 인스턴스 name()은 실제 Child의 C를 호출합니다. static은 오버라이딩이 아니라 숨김입니다.</p></details></article><article class="question" id="R10"><span class="tag">R10</span><h3>catch는 구체적인 예외부터</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        try { Integer.parseInt(&quot;bad&quot;); }
+        catch (Exception e) { System.out.print(&quot;E&quot;); }
+        catch (NumberFormatException e) { System.out.print(&quot;N&quot;); }
+    }
+}</code></pre><label for="aR10">내 답과 풀이 근거</label><textarea id="aR10" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>컴파일 오류. 두 catch의 순서를 바꾸면 N입니다.</code></pre><p>앞의 부모 catch가 해당 예외를 모두 잡아 뒤의 자식 catch에 도달할 수 없습니다.</p></details></article><article class="question" id="R11"><span class="tag">R11</span><h3>반복문 전체에서 빠져나가기</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        try {
+            for (int n : new int[]{4, 0, 8}) System.out.print(40 / n + &quot; &quot;);
+        } catch (ArithmeticException e) { System.out.print(&quot;X&quot;); }
+    }
+}</code></pre><label for="aR11">내 답과 풀이 근거</label><textarea id="aR11" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>10 X</code></pre><p>try가 반복 전체를 감싸므로 0에서 반복을 떠납니다. 마지막8을 처리하지 않습니다.</p></details></article><article class="question" id="R12"><span class="tag">R12</span><h3>반복마다 실패를 처리하기</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        for (int n : new int[]{4, 0, 8}) {
+            try { System.out.print(40 / n + &quot; &quot;); }
+            catch (ArithmeticException e) { System.out.print(&quot;X &quot;); }
+        }
+    }
+}</code></pre><label for="aR12">내 답과 풀이 근거</label><textarea id="aR12" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>10 X 5</code></pre><p>현재 원소의 예외를 잡은 뒤 다음 반복으로 갑니다. 마지막8도 처리합니다.</p></details></article><article class="question" id="R13"><span class="tag">R13</span><h3>객체 반환과 finally</h3><pre class="java"><code>class Box { int value = 5; }
+public class Main {
+    static Box make() {
+        Box b = new Box();
+        try { return b; }
+        finally { b.value += 9; }
+    }
+    public static void main(String[] args) {
+        System.out.println(make().value);
+    }
+}</code></pre><label for="aR13">내 답과 풀이 근거</label><textarea id="aR13" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>14</code></pre><p>반환할 객체 참조가 준비된 뒤 finally가 같은 객체의 필드를 바꿉니다. 호출자도14를 봅니다.</p></details></article><article class="question" id="R14"><span class="tag">R14</span><h3>catch에서 다시 던진 예외</h3><pre class="java"><code>public class Main {
+    static void work() {
+        try { Integer.parseInt(&quot;?&quot;); }
+        catch (NumberFormatException e) { System.out.print(&quot;I&quot;); throw new IllegalStateException(); }
+        finally { System.out.print(&quot;F&quot;); }
+    }
+    public static void main(String[] args) {
+        try { work(); }
+        catch (IllegalStateException e) { System.out.print(&quot;O&quot;); }
+    }
+}</code></pre><label for="aR14">내 답과 풀이 근거</label><textarea id="aR14" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>IFO</code></pre><p>안쪽 catch I에서 새 예외를 던집니다. 같은 try의 옆 catch로 가지 않고 finally F를 거쳐 바깥 catch O로 갑니다.</p></details></article><article class="question" id="R15"><span class="tag">R15</span><h3>실패한 메서드 호출과 객체 상태</h3><pre class="java"><code>class Counter {
+    static int calls;
+    int value;
+    void add(int n) { calls++; if (n &lt; 0) throw new IllegalArgumentException(); value += n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Counter c = new Counter();
+        try { c.add(5); c.add(-1); }
+        catch (IllegalArgumentException e) { System.out.print(c.value + &quot; &quot;); }
+        System.out.println(Counter.calls);
+    }
+}</code></pre><label for="aR15">내 답과 풀이 근거</label><textarea id="aR15" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>5 2</code></pre><p>첫 호출은 value=5입니다. 두 번째도 calls는 늘지만 검사 실패 후 value는 변하지 않습니다.</p></details></article><article class="question" id="R16"><span class="tag">R16</span><h3>추상 클래스에 공통 검사를 두기</h3><pre class="java"><code>abstract class Check {
+    int run(int n) { if (n &lt; 0) throw new IllegalArgumentException(); return compute(n); }
+    abstract int compute(int n);
+}
+class PositiveSquare extends Check { @Override int compute(int n) { return n * n; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Check c = new PositiveSquare();
+        for (int n : new int[]{3, -1, 2}) {
+            try { System.out.print(c.run(n) + &quot; &quot;); }
+            catch (IllegalArgumentException e) { System.out.print(&quot;E &quot;); }
+        }
+    }
+}</code></pre><label for="aR16">내 답과 풀이 근거</label><textarea id="aR16" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>9 E 4</code></pre><p>run은 부모가 검사하고 실제 compute는 자식이 합니다. −1은 검사에서 실패하므로 제곱 계산을 하지 않습니다.</p></details></article><article class="question" id="R17"><span class="tag">R17</span><h3>배열 자체와 객체를 따로 복사했나?</h3><pre class="java"><code>class Box { int value; Box(int n) { value = n; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Box[] a = {new Box(3), new Box(6)};
+        Box[] b = a.clone();
+        b[0].value += 4;
+        b[1] = new Box(20);
+        System.out.println(a[0].value + &quot; &quot; + a[1].value + &quot; &quot; + b[1].value);
+    }
+}</code></pre><label for="aR17">내 답과 풀이 근거</label><textarea id="aR17" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>7 6 20</code></pre><p>clone으로 배열은 별개지만 원소의 객체 참조는 복사됩니다. 0번 객체는 공유되고 b[1]에 새 참조를 넣는 것은 a[1]에 영향이 없습니다.</p></details></article><article class="question" id="R18"><span class="tag">R18</span><h3>다운캐스팅 전 실제 종류 확인</h3><pre class="java"><code>class Parent {}
+class Child extends Parent { int bonus() { return 7; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Parent[] list = {new Parent(), new Child(), new Parent()};
+        int count = 0;
+        for (Parent p : list) {
+            if (p instanceof Child) count += ((Child) p).bonus();
+        }
+        System.out.println(count);
+    }
+}</code></pre><label for="aR18">내 답과 풀이 근거</label><textarea id="aR18" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>7</code></pre><p>실제 Child 객체만 instanceof를 통과합니다. 그 한 객체의 bonus7을 더합니다.</p></details></article><article class="question" id="R19"><span class="tag">R19</span><h3>checked 예외를 호출한 곳에서 처리</h3><pre class="java"><code>public class Main {
+    static void check(int n) throws Exception {
+        if (n == 0) throw new Exception(&quot;empty&quot;);
+    }
+    public static void main(String[] args) {
+        try { check(0); }
+        catch (Exception e) { System.out.print(e.getMessage()); }
+        finally { System.out.print(&quot;F&quot;); }
+    }
+}</code></pre><label for="aR19">내 답과 풀이 근거</label><textarea id="aR19" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>emptyF</code></pre><p>메서드가 Exception을 던지고 호출자가 catch합니다. throws는 처리 선언이 아니라 전달 가능성의 선언입니다.</p></details></article><article class="question" id="R20"><span class="tag">R20</span><h3>마지막 종합 재풀이</h3><pre class="java"><code>interface Rule { int apply(int n); }
+abstract class Base implements Rule { static int calls; }
+class DoubleRule extends Base { public int apply(int n) { calls++; return n * 2; } }
+class Reject extends Base { public int apply(int n) { calls++; throw new IllegalArgumentException(); } }
+public class Main {
+
+    public static void main(String[] args) {
+        Rule[] rules = {new DoubleRule(), new Reject(), new DoubleRule()};
+        int x = 2;
+        for (Rule r : rules) {
+            try { x = r.apply(x); }
+            catch (IllegalArgumentException e) { x += 3; }
+            finally { System.out.print(x + &quot; &quot;); }
+        }
+        System.out.println(&quot;| &quot; + Base.calls);
+    }
+}</code></pre><label for="aR20">내 답과 풀이 근거</label><textarea id="aR20" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>4 7 14 | 3</code></pre><p>2 → 정상4 → 실패하여 catch에서7 → 정상14입니다. 세 메서드 모두 calls를 늘렸으므로3입니다.</p></details></article><h2>응용 제작 시나리오8개</h2><p>자신이 틀린 유형에 맞는 과제 한 개를 골라 요구사항부터 구현하세요. 해설의 전체 코드와 기대 출력은 완성 후 비교합니다.</p><article class="question" id="P01"><span class="tag">제작 P01</span><h3>학생 두 명의 독립된 점수 관리</h3><p><b>요구사항</b> · Student는 이름과 점수를 가집니다. 가람70, 나래85 두 객체를 만들고 가람만5점 올리세요. static count로 생성한 학생 수를 출력하세요.</p><p><b>설계 순서</b> · 생성자에서 this로 저장 → count 증가 → 인스턴스 메서드로 개인 점수 변경.</p><label for="aP01">내 답과 풀이 근거</label><textarea id="aP01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>class Student {
+    static int count;
+    String name;
+    int score;
+    Student(String name, int score) { this.name = name; this.score = score; count++; }
+    void add(int n) { score += n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Student a = new Student(&quot;가람&quot;, 70), b = new Student(&quot;나래&quot;, 85);
+        a.add(5);
+        System.out.println(a.name + &quot;:&quot; + a.score);
+        System.out.println(b.name + &quot;:&quot; + b.score);
+        System.out.println(&quot;count=&quot; + Student.count);
+    }
+}</code></pre><pre class="output"><code>가람:75
+나래:85
+count=2</code></pre><p>두 객체를 따로 new해야 점수도 독립적입니다. 추가 검증: b를10점 올리면 a75, b95, count2입니다.</p></details></article><article class="question" id="P02"><span class="tag">제작 P02</span><h3>결제 수단을 바꿔 끼우는 계산기</h3><p><b>요구사항</b> · Pay 인터페이스의 amount(int price)를 구현하세요. Card는 가격에서100을 뺀 값, Point는80%를 반환합니다. 가격1000에 두 수단을 적용하여900과800을 출력하세요. 입력 가격은100이상인 정수라고 가정합니다.</p><p><b>설계 순서</b> · 공통 인터페이스 참조 배열 → 실제 구현별 amount 호출.</p><label for="aP02">내 답과 풀이 근거</label><textarea id="aP02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>interface Pay { int amount(int price); }
+class Card implements Pay { public int amount(int price) { return price - 100; } }
+class Point implements Pay { public int amount(int price) { return price * 80 / 100; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Pay[] methods = {new Card(), new Point()};
+        for (Pay method : methods) System.out.println(method.amount(1000));
+    }
+}</code></pre><pre class="output"><code>900
+800</code></pre><p>공통 호출 코드의 변경 없이 구현을 추가할 수 있습니다. 추가 검증: 가격2000이면1900과1600입니다.</p></details></article><article class="question" id="P03"><span class="tag">제작 P03</span><h3>도서 대출과 반납 상태</h3><p><b>요구사항</b> · Book의 private borrowed는 처음 false입니다. borrow는 이미 대출 중이면 IllegalStateException, 반납은 false로 바꿉니다. 대출·대출·반납·대출을 실행해 두 번째 대출 실패 후 마지막 대출이 가능하게 만드세요.</p><p><b>설계 순서</b> · 상태 검사 → 성공 시 변경. 실패 후에도 반납을 실행할 수 있게 대출 시도별로 try-catch.</p><label for="aP03">내 답과 풀이 근거</label><textarea id="aP03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>class Book {
+    private boolean borrowed;
+    void borrow() { if (borrowed) throw new IllegalStateException(); borrowed = true; }
+    void back() { borrowed = false; }
+    boolean isBorrowed() { return borrowed; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Book b = new Book();
+        for (String cmd : new String[]{&quot;B&quot;, &quot;B&quot;, &quot;R&quot;, &quot;B&quot;}) {
+            try {
+                if (cmd.equals(&quot;B&quot;)) b.borrow(); else b.back();
+                System.out.print(&quot;OK &quot;);
+            } catch (IllegalStateException e) { System.out.print(&quot;FAIL &quot;); }
+        }
+        System.out.println(&quot;| &quot; + b.isBorrowed());
+    }
+}</code></pre><pre class="output"><code>OK FAIL OK OK | true</code></pre><p>실패한 중복 대출은 상태를 바꾸지 않습니다. 추가 검증: B,R이면 최종false입니다.</p></details></article><article class="question" id="P04"><span class="tag">제작 P04</span><h3>정상 입력만 쌓는 거래 장부</h3><p><b>요구사항</b> · Account는 초기잔액100, deposit은 양수만 받습니다. 문자열 {"20","x","-5","30"}을 처리하고 정상 입금 횟수와 최종잔액을 출력하세요. 모든 시도는 finally에서 셉니다.</p><p><b>설계 순서</b> · 문자열 변환 → 메서드 검사 → 성공 횟수 증가 → finally에서 시도 증가.</p><label for="aP04">내 답과 풀이 근거</label><textarea id="aP04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>class Account {
+    private int balance;
+    Account(int n) { balance = n; }
+    void deposit(int n) { if (n &lt;= 0) throw new IllegalArgumentException(); balance += n; }
+    int get() { return balance; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Account a = new Account(100);
+        int ok = 0, tries = 0;
+        for (String raw : new String[]{&quot;20&quot;, &quot;x&quot;, &quot;-5&quot;, &quot;30&quot;}) {
+            try { a.deposit(Integer.parseInt(raw)); ok++; }
+            catch (IllegalArgumentException e) { System.out.print(&quot;X &quot;); }
+            finally { tries++; }
+        }
+        System.out.println(&quot;| &quot; + a.get() + &quot; &quot; + ok + &quot; &quot; + tries);
+    }
+}</code></pre><pre class="output"><code>X X | 150 2 4</code></pre><p>NumberFormatException은 IllegalArgumentException의 자식입니다. 실패 두 건 모두 잔액과 성공 횟수를 바꾸지 않습니다. 추가 검증: {"0","x"}이면100, 성공0, 시도2입니다.</p></details></article><article class="question" id="P05"><span class="tag">제작 P05</span><h3>공통 틀을 둔 작업 파이프라인</h3><p><b>요구사항</b> · 추상 Job의 run은 음수 입력을 거절하고 compute를 호출합니다. AddJob은+3, DoubleJob은×2입니다. 초기4에 AddJob, DoubleJob을 차례로 적용해14를 출력하세요.</p><p><b>설계 순서</b> · 공통 검사는 부모 run, 실제 계산은 자식 compute. 공통 타입 배열로 순차 실행.</p><label for="aP05">내 답과 풀이 근거</label><textarea id="aP05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>abstract class Job {
+    final int run(int n) { if (n &lt; 0) throw new IllegalArgumentException(); return compute(n); }
+    abstract int compute(int n);
+}
+class AddJob extends Job { @Override int compute(int n) { return n + 3; } }
+class DoubleJob extends Job { @Override int compute(int n) { return n * 2; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Job[] pipeline = {new AddJob(), new DoubleJob()};
+        int x = 4;
+        for (Job job : pipeline) x = job.run(x);
+        System.out.println(x);
+    }
+}</code></pre><pre class="output"><code>14</code></pre><p>4→7→14입니다. 추가 검증: 초기−1이면 첫 단계의 공통 검사에서 거절해야 합니다. 호출자에서 잡아 오류 메시지를 출력하도록 확장해 보세요.</p></details></article><article class="question" id="P06"><span class="tag">제작 P06</span><h3>객체 참조를 공유하는 장바구니</h3><p><b>요구사항</b> · Product p의 가격은100입니다. 배열 {p,p,new Product(200)}를 만들고 p.price를150으로 바꾼 다음 배열 원소 가격의 합을 출력하세요. 별도 객체 복사본을 쓰는 경우와도 비교하세요.</p><p><b>설계 순서</b> · new 횟수와 배열 칸의 화살표를 먼저 그리기 → 참조 공유 후 합산.</p><label for="aP06">내 답과 풀이 근거</label><textarea id="aP06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>class Product { int price; Product(int n) { price = n; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Product p = new Product(100);
+        Product[] cart = {p, p, new Product(200)};
+        p.price = 150;
+        int total = 0;
+        for (Product item : cart) total += item.price;
+        System.out.println(total);
+    }
+}</code></pre><pre class="output"><code>500</code></pre><p>공유된150이 두 번, 별도의200이 한 번입니다. 추가 검증: 배열을 {new Product(100),new Product(100),new Product(200)}로 만들면 p의 변경과 무관하게400입니다.</p></details></article><article class="question" id="P07"><span class="tag">제작 P07</span><h3>상속과 static으로 입장 요금 집계</h3><p><b>요구사항</b> · Visitor의 fee는1000, Child의 fee는600입니다. {일반,아동,아동}을 공통 타입 배열로 처리하고 static total에 합산하세요. 출력은2200입니다.</p><p><b>설계 순서</b> · 메서드는 오버라이딩, 합계는 클래스 공유값. 지역변수 합계와 혼동하지 않기.</p><label for="aP07">내 답과 풀이 근거</label><textarea id="aP07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>class Visitor { static int total; int fee() { return 1000; } }
+class Child extends Visitor { @Override int fee() { return 600; } }
+public class Main {
+
+    public static void main(String[] args) {
+        Visitor[] list = {new Visitor(), new Child(), new Child()};
+        for (Visitor v : list) Visitor.total += v.fee();
+        System.out.println(Visitor.total);
+    }
+}</code></pre><pre class="output"><code>2200</code></pre><p>실제 객체에 따라1000+600+600입니다. 추가 검증: 일반 객체 하나를 추가하면3200입니다.</p></details></article><article class="question" id="P08"><span class="tag">제작 P08</span><h3>종합 · 실행 전략과 오류 통계</h3><p><b>요구사항</b> · Operation 인터페이스를 구현한 Divide로24/n을 계산하세요. 입력 {"3","0","bad","6"}에서 정상 결과만 합산합니다. static calls는 메서드 호출수, 로컬 errors는 모든 실패수, finally의 finished는 입력 처리수를 셉니다.</p><p><b>설계 순서</b> · 변환 전에 호출 횟수를 늘리지 않기 → 구현 메서드에서 calls 증가 → 원소별 catch·finally.</p><label for="aP08">내 답과 풀이 근거</label><textarea id="aP08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>interface Operation { int apply(int n); }
+class Divide implements Operation {
+    static int calls;
+    public int apply(int n) { calls++; return 24 / n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Operation op = new Divide();
+        int sum = 0, errors = 0, finished = 0;
+        for (String raw : new String[]{&quot;3&quot;, &quot;0&quot;, &quot;bad&quot;, &quot;6&quot;}) {
+            try { sum += op.apply(Integer.parseInt(raw)); }
+            catch (NumberFormatException | ArithmeticException e) { errors++; }
+            finally { finished++; }
+        }
+        System.out.println(sum + &quot; &quot; + Divide.calls + &quot; &quot; + errors + &quot; &quot; + finished);
+    }
+}</code></pre><pre class="output"><code>12 3 2 4</code></pre><p>정상8+4=12, 메서드 호출은3·0·6의3회입니다. bad는 변환 단계에서 실패합니다. 실패2, 전체처리4입니다. 추가 검증: {"bad"}이면0 0 1 1입니다.</p></details></article><h2>오늘의 오답 기록</h2><p>틀린 번호 → 잘못 생각한 규칙 → 바꾼 조건 → 다시 예측한 답을 적으세요. “메서드는 실제 객체”, “static은 공유”, “예외 뒤 같은 try는 생략” 중 어떤 규칙을 놓쳤는지 구체적으로 씁니다.</p><label for="areview">내 답과 풀이 근거</label><textarea id="areview" spellcheck="false"></textarea><div class="blank"></div><footer>15일차 · 코딩 120분 + 이론 60분 = 총 180분 · 인터넷 연결 없이 사용하는 독립형 HTML</footer></main><script>
+const prefix='course-day15:'+document.body.dataset.book+':';
+document.querySelectorAll('textarea').forEach(el=>{try{el.value=localStorage.getItem(prefix+el.id)||''}catch(e){}el.addEventListener('input',()=>{try{localStorage.setItem(prefix+el.id,el.value)}catch(e){}})});
+document.getElementById('show').onclick=()=>{document.body.classList.remove('hidden-solutions');document.querySelectorAll('details').forEach(x=>x.open=true);document.getElementById('exam').textContent='시험 모드'};
+document.getElementById('hide').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=false);
+document.getElementById('exam').onclick=()=>{const b=document.body.classList.toggle('hidden-solutions');document.querySelectorAll('details').forEach(x=>x.open=false);document.getElementById('exam').textContent=b?'해설 보기 모드':'시험 모드'};
+document.getElementById('print').onclick=()=>window.print();
+</script></body></html>

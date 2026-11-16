@@ -1,0 +1,477 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>09일차 코딩 · Java 메서드와 C·Java 비교</title><style>
+:root{--ink:#202c42;--muted:#526279;--accent:#166774;--paper:#fff;--line:#d9e2ea}
+*{box-sizing:border-box}body{margin:0;background:#edf2f6;color:var(--ink);font:17px/1.85 'Malgun Gothic',sans-serif}main{max-width:1080px;margin:auto;background:white;padding:44px 54px}header{border-top:9px solid var(--accent);padding:26px 0}h1{font-size:34px;line-height:1.4}h2{margin-top:50px;border-bottom:2px solid var(--accent);padding-bottom:10px;font-size:26px}h3{font-size:21px;margin:18px 0 8px}p{margin:12px 0}.lead{font-size:19px}.tag{display:inline-block;background:#e3f2ef;color:#145a54;padding:2px 11px;border-radius:8px;font-size:14px}.note{border-left:5px solid var(--accent);background:#eff7f8;padding:16px 22px;margin:20px 0}.warn{border-color:#b87522;background:#fff7e9}table{border-collapse:collapse;width:100%;margin:18px 0}td,th{border:1px solid var(--line);padding:10px 13px;text-align:left;vertical-align:top}th{background:#eaf1f5}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#142333;color:#e9f3f6;padding:20px;border-radius:9px;font:15px/1.7 Consolas,'Malgun Gothic',monospace}code{font-family:Consolas,monospace}.question{border:1px solid var(--line);border-radius:12px;padding:22px;margin:22px 0}.question h3{margin-top:0}details{background:#f0f6f4;border-radius:8px;margin-top:15px;padding:12px 17px}summary{cursor:pointer;font-weight:bold;color:#165e54}textarea{width:100%;min-height:90px;padding:12px;border:1px solid #9cadba;border-radius:7px;font:inherit;resize:vertical;background:#fffdf6}button{font:inherit;background:var(--accent);border:0;color:white;padding:9px 16px;border-radius:7px;cursor:pointer;margin:5px 8px 5px 0}.toolbar{position:sticky;top:0;padding:10px;background:#ffffffed;border-bottom:1px solid var(--line);z-index:3}.small{font-size:14px;color:var(--muted)}.result{background:#e8f1ec;color:#194c36}.diagram{text-align:left;background:#eef4fa;color:#213d59}footer{margin-top:45px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted)}@media(max-width:700px){main{padding:20px}h1{font-size:27px}table{font-size:14px}pre{font-size:13px}.toolbar{position:static}}@media print{body{background:white;font-size:11pt}main{padding:0;max-width:none}.toolbar,textarea,.small.save{display:none}details{break-inside:avoid}pre{background:#f3f3f3;color:black;font-size:9pt}h2,h3{break-after:avoid}.question{break-inside:auto}header{border-top:3px solid #444}button{display:none}}
+
+.trace{background:#edf5fa;color:#20384e} .answer-output{background:#eaf2e9;color:#254129}
+.table-wrap{max-width:100%;overflow-x:auto}
+.blank{display:none;min-height:40px;border-bottom:1px dashed #83929c}.qtype{color:#526279;font-size:14px}
+@media print{body.hide-answers details{display:none!important}textarea{display:none}.blank{display:block}details{break-inside:auto}pre,tr{break-inside:avoid}thead{display:table-header-group}.table-wrap{overflow:visible}}
+</style></head><body><main><header><span class="tag">정보처리기사 실기 · 2주차 / 09일차</span><h1>09일차 코딩 · Java 메서드와 C·Java 비교</h1><p class="lead">쉬운 설명→응용→심화 · 예제 12개 · 연습 36문제 · 응용 과제 6개</p></header><div class="toolbar"><button id="open" type="button">해설 모두 열기</button><button id="close" type="button">해설 모두 닫기</button><button id="exam" type="button">시험 모드</button><button id="print" type="button">인쇄</button><span id="status" class="small save">답안은 이 브라우저에 자동 저장됩니다.</span></div><div class="note"><b>학습 목표</b> · Java의 static 메서드를 작성하고 매개변수·반환값을 추적합니다. 오버로딩을 구별하고, Java 배열과 C 포인터를 전달했을 때 “복사되는 값”과 “변경되는 대상”을 설명합니다. Java 11·C11 기준이며 상속·오버라이딩은 뒤 단원에서 다룹니다.</div><h2>오늘의 180분</h2><div class="table-wrap"><table><thead><tr><th>시간</th><th>학습 활동</th><th>수업 대상</th></tr></thead><tbody><tr><td>코딩 1교시 0~10분</td><td>08일차 배열·String 복습, 메서드의 입력·출력 찾기</td><td>시작 확인</td></tr><tr><td>10~25분</td><td>static 메서드·매개변수·return·오버로딩</td><td>E01~E05</td></tr><tr><td>25~60분</td><td>직접 작성 25분, 응용 S01 시작 10분</td><td>Q02·Q03·Q08·Q09·Q12, S01</td></tr><tr><td>코딩 2교시 60~80분</td><td>배열 전달·재대입과 원소 변경·C 비교 손 추적</td><td>E06~E12, Q14·Q17·Q20</td></tr><tr><td>80~105분</td><td>입력·조건 변경 검증 15분, S01 완성 10분</td><td>Q26·Q28, S01</td></tr><tr><td>105~120분</td><td>개별 확인·오답 기록·종료 질문</td><td>Q33·Q36</td></tr><tr><td>이론 120~180분</td><td>복습 10분·설명 30분·문제 10분·정리 10분</td><td>테스트 기법·커버리지·경계·회귀</td></tr></tbody></table></div><p>수업 핵심은 표시된 12문제와 S01입니다. 전체 연습 36문제와 응용 과제 6개는 반복 학습용이며 나머지는 선택 보강입니다. 모두를 3시간 안에 푸는 일정이 아닙니다. 수업에서는 핵심 코드를 먼저 손으로 추적하고 실행·변형·채점까지 진행합니다.</p><h3>시작 확인</h3><p>배열 길이는 a.length, 문자열 길이는 s.length()입니다. String 내용 비교에는 equals를 사용합니다. 반복해서 쓴 계산 코드를 이름 붙은 작업으로 묶으면 Java에서는 메서드, C에서는 함수로 부릅니다. 오늘의 Java 코드는 모두 같은 Main 클래스 안에서 static 메서드끼리 호출합니다.</p><h2>1. 쉬운 설명 · 작업대에 입력을 주고 결과 받기</h2><p>메서드는 이름 붙인 작은 작업대입니다. 인자는 호출할 때 실제 넣는 값이고 매개변수는 작업대 안에서 입력을 받을 칸입니다. return은 계산값을 호출한 자리로 돌려보내고 그 호출을 끝냅니다. 화면 출력과 반환은 다른 일입니다.</p><pre class=""><code>static int price(int count) {
+    return count * 1300;
+}
+// static: 이 예에서는 객체를 만들지 않고 호출하는 클래스 메서드
+// int: 반환형, price: 이름, int count: 매개변수
+// price(3): 인자 3을 넣어 호출</code></pre><p>메서드는 main의 중괄호 안이 아니라 <b>Main 클래스 안, main 바깥</b>에 정의합니다. 오늘은 객체 없이 부르기 위해 static을 붙입니다. static이라고 자동 실행되거나, 메서드의 모든 지역변수 값이 다음 호출에 남는 것은 아닙니다. 같은 클래스 안에서는 이름으로, 명확히 쓰면 Main.price(3)처럼 호출할 수 있습니다.</p><h3>예제 E01 · 정의·호출·반환</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int price(int count) { return count * 1300; }
+    public static void main(String[] args) {
+        int total=price(3);
+        System.out.println(total);
+        price(2);
+        System.out.println(total);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>3900
+3900</code></pre><p>첫 호출의 3900을 total에 저장합니다. 둘째 호출도 2600을 반환하지만 저장·출력하지 않아 total은 그대로입니다. 메서드를 정의만 해 둔 경우에는 본문이 실행되지 않습니다.</p><h3>예제 E02 · 기본형은 값의 복사본</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int bonus(int score) {
+        score+=6;
+        return score;
+    }
+    public static void main(String[] args) {
+        int score=70;
+        int result=bonus(score);
+        System.out.println(score+&quot; &quot;+result);
+        score=bonus(score);
+        System.out.println(score);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>70 76
+76</code></pre><div class="table-wrap"><table><thead><tr><th>시점</th><th>main의 score</th><th>bonus의 score</th><th>결과</th></tr></thead><tbody><tr><td>첫 호출 직전</td><td>70</td><td>없음</td><td>—</td></tr><tr><td>첫 호출 내부</td><td>70</td><td>70→76</td><td>76 반환</td></tr><tr><td>첫 복귀 후</td><td>70</td><td>수명 끝</td><td>result=76</td></tr><tr><td>두 번째 복귀 후</td><td>76</td><td>수명 끝</td><td>반환값을 score에 재대입</td></tr></tbody></table></div><p>Java도 C도 값 전달입니다. Java int의 값 70을 복사하므로 매개변수만 바꾸면 원본은 바뀌지 않습니다. 반환값을 원래 변수에 대입하면 그때 원본 변수가 바뀝니다. 호출 위치의 지역변수가 호출된 메서드 안으로 따라 들어가지는 않습니다.</p><h3>예제 E03 · void와 조기 return</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void show(int n) {
+        if(n&lt;0) { System.out.println(&quot;INVALID&quot;); return; }
+        System.out.println(n*2);
+    }
+    public static void main(String[] args) {
+        show(-2);
+        show(4);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>INVALID
+8</code></pre><p>void는 반환값이 없다는 뜻입니다. return;은 값을 돌려주지 않고 메서드를 끝냅니다. void 호출을 int 변수에 저장할 수 없습니다. 반환형이 int라면 정상적으로 끝나는 모든 경로에서 int로 맞는 값을 반환해야 합니다.</p><h2>2. 응용 설명 · 같은 이름, 다른 입력과 배열 처리</h2><h3>예제 E04 · 오버로딩은 입력 목록으로 구별</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int fee(int count) { return count*900; }
+    static int fee(int count,int discount) { return count*900-discount; }
+    public static void main(String[] args) {
+        System.out.println(fee(3));
+        System.out.println(fee(3,200));
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>2700
+2500</code></pre><p>오버로딩은 같은 클래스에서 이름은 같지만 매개변수 목록이 다른 메서드를 정의하는 것입니다. 매개변수의 개수·타입·타입 순서로 구별합니다. 이름이 int a인지 int b인지, 반환형이 int인지 double인지만 다르게 해서는 구별할 수 없습니다. 반환값을 받을 변수의 타입으로 어느 메서드를 부를지 고르지 않습니다.</p><h3>예제 E05 · 정확한 타입과 확대 변환</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static String kind(int x) { return &quot;int&quot;; }
+    static String kind(double x) { return &quot;double&quot;; }
+    public static void main(String[] args) {
+        System.out.println(kind(7));
+        System.out.println(kind(7.0));
+        System.out.println(kind((double)7));
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>int
+double
+double</code></pre><p>7은 int 리터럴, 7.0과 (double)7은 double이므로 해당 매개변수 버전을 선택합니다. 오늘은 기본형의 정확한 일치와 int→double 확대만 다룹니다. double 인자를 int 매개변수에 자동으로 좁히지는 않습니다. 오버로딩은 같은 이름의 여러 입력 형식이며, 상속에서 메서드를 재정의하는 오버라이딩과 다른 개념입니다.</p><div class="table-wrap"><table><thead><tr><th>두 선언</th><th>가능 여부</th><th>이유</th></tr></thead><tbody><tr><td>f(int) / f(int,int)</td><td>가능</td><td>개수가 다름</td></tr><tr><td>f(int,double) / f(double,int)</td><td>가능</td><td>타입 순서가 다름</td></tr><tr><td>int f(int a) / int f(int b)</td><td>불가능</td><td>매개변수 이름만 다름</td></tr><tr><td>int f(int) / double f(int)</td><td>불가능</td><td>반환형만 다름</td></tr></tbody></table></div><h3>예제 E06 · 배열을 전달하면 참조의 값이 복사됨</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void add(int[] a) {
+        for(int i=0;i&lt;a.length;i++) a[i]+=3;
+    }
+    public static void main(String[] args) {
+        int[] values={2,5,8};
+        add(values);
+        System.out.println(values[0]+&quot; &quot;+values[1]+&quot; &quot;+values[2]);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>5 8 11</code></pre><pre class="trace"><code>호출 전 main의 values ───→ 배열 [2,5,8]
+호출 중 main의 values ─┐
+                      ├─→ 같은 배열
+       add의 a ───────┘
+a[i] 대입 → 같은 배열의 실제 원소 변경</code></pre><p>배열 객체 전체가 복사되는 것은 아닙니다. main의 values에 든 참조 값이 매개변수 a로 복사됩니다. 두 참조가 같은 배열을 가리키므로 a[i]를 수정하면 main에서도 바뀐 원소를 봅니다. 이것을 “Java가 배열만 참조 전달한다”라고 외우면 다음 예제를 틀리기 쉽습니다.</p><h3>예제 E07 · 매개변수 재대입은 원본 참조를 바꾸지 않음</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void reset(int[] a) {
+        a[0]=20;
+        a=new int[]{8,9};
+        a[0]=99;
+    }
+    public static void main(String[] args) {
+        int[] values={4,7};
+        reset(values);
+        System.out.println(values[0]+&quot; &quot;+values[1]);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>20 7</code></pre><div class="table-wrap"><table><thead><tr><th>실행</th><th>main의 values</th><th>reset의 a</th><th>관찰</th></tr></thead><tbody><tr><td>호출 직후</td><td>원래 배열</td><td>원래 배열</td><td>[4,7]</td></tr><tr><td>a[0]=20</td><td>원래 배열</td><td>원래 배열</td><td>원래 배열 [20,7]</td></tr><tr><td>a=new int[]{8,9}</td><td>원래 배열</td><td>새 배열</td><td>연결 대상 분리</td></tr><tr><td>a[0]=99</td><td>원래 배열</td><td>새 배열</td><td>main은 여전히 [20,7]</td></tr></tbody></table></div><p>매개변수 a 자체도 별도 변수입니다. a=새 배열은 그 복사본의 참조만 바꿉니다. 호출자도 새 배열로 바꾸려면 메서드에서 배열을 반환하고 <code>values=make();</code>처럼 받아야 합니다.</p><h3>예제 E08 · 새 배열 반환과 String 반환</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int[] make(int base) { return new int[]{base,base+1}; }
+    static String label(String s) { return s+&quot;!&quot;; }
+    public static void main(String[] args) {
+        int[] a=make(10);
+        String s=&quot;GO&quot;;
+        label(s);
+        System.out.println(a[0]+&quot; &quot;+a[1]+&quot; &quot;+s);
+        s=label(s);
+        System.out.println(s);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>10 11 GO
+GO!</code></pre><p>반환형 int[]는 배열의 참조 값을 반환합니다. Java의 new로 만든 배열은 메서드가 끝났다고 즉시 없어지는 지역 배열이 아닙니다. 반면 C 자동 지역 배열의 주소를 반환해 사용하면 수명이 끝난 공간에 접근하는 문제가 생깁니다. String은 불변이므로 label의 결과를 버리면 원래 s는 GO 그대로입니다.</p><h2>3. 심화 설명 · C와 Java를 나란히 추적하기</h2><h3>예제 E09 · Java의 정수 교환은 복사본만</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void swap(int a,int b) { int t=a; a=b; b=t; }
+    public static void main(String[] args) {
+        int x=6,y=17;
+        swap(x,y);
+        System.out.println(x+&quot; &quot;+y);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>6 17</code></pre><h3>예제 E10 · C는 정수의 주소를 전달해 원본 교환</h3><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void swap(int *a,int *b) { int t=*a; *a=*b; *b=t; }
+int main(void) {
+    int x=6,y=17;
+    swap(&amp;x,&amp;y);
+    printf(&quot;%d %d\n&quot;,x,y);
+    return 0;
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>17 6</code></pre><p>C도 주소의 값이 복사되는 값 전달입니다. 복사된 주소를 역참조해 main의 정수를 바꿉니다. 일반 Java에서는 &x나 int* 같은 방식으로 정수 지역변수 주소를 넘기지 않습니다. Java에서는 원본 정수 두 개를 바꾸는 대신 결과를 돌려받거나 배열 원소를 교환할 수 있습니다.</p><h3>예제 E11 · Java 배열 원소 교환</h3><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void swapAt(int[] a,int i,int j) {
+        int t=a[i]; a[i]=a[j]; a[j]=t;
+    }
+    public static void main(String[] args) {
+        int[] a={6,17};
+        swapAt(a,0,1);
+        System.out.println(a[0]+&quot; &quot;+a[1]);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>17 6</code></pre><h3>예제 E12 · C 배열은 주소와 길이를 함께</h3><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int sum(const int *a,int n) {
+    int s=0;
+    for(int i=0;i&lt;n;i++) s+=a[i];
+    return s;
+}
+int main(void) {
+    int a[]={3,7,11};
+    int result=sum(a,3);
+    printf(&quot;%d\n&quot;,result);
+    return 0;
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>21</code></pre><div class="table-wrap"><table><thead><tr><th>비교 지점</th><th>Java</th><th>C</th></tr></thead><tbody><tr><td>기본형 전달</td><td>값 복사</td><td>값 복사</td></tr><tr><td>배열 전달</td><td>배열 참조 값 복사, a.length 사용</td><td>첫 원소 주소 전달, 길이 별도 전달</td></tr><tr><td>원본 원소 변경</td><td>a[i]에 대입</td><td>a[i] 또는 *(a+i)에 대입</td></tr><tr><td>매개변수 재대입</td><td>호출자의 배열 참조 불변</td><td>호출자의 포인터 변수 불변</td></tr><tr><td>같은 이름의 다른 입력 목록</td><td>메서드 오버로딩 가능</td><td>C 함수에는 이런 오버로딩 없음</td></tr><tr><td>static 주의</td><td>여기서는 클래스 메서드</td><td>지역 static은 값 수명 유지. 파일 범위 static은 별개 의미</td></tr></tbody></table></div><div class="note"><b>추적 규칙</b> · 메서드·함수마다 매개변수 칸을 따로 그립니다. 원소 변경과 참조·포인터 변수 재대입을 나눠 적으세요. C에서는 배열 범위를 넘거나 유효하지 않은 주소를 읽는 코드에 정해진 출력값을 붙이지 않습니다. 부작용이 있는 여러 호출은 서로 다른 문장으로 분리해 호출 순서를 확정합니다.</div><h3>실행 방법</h3><pre class=""><code>Java: 전체 코드를 Main.java로 저장
+javac -encoding UTF-8 Main.java
+java Main
+
+C: 전체 코드를 main.c로 저장
+gcc -std=c11 -Wall -Wextra main.c -o main.exe
+.\main.exe
+
+각 코드는 독립 예제입니다. 같은 파일 내용을 교체해 실행하세요.</code></pre><h2>4. 연습문제 36개 · Java 24개 + C 12개</h2><p>언어 표시를 먼저 확인하세요. 출력 예측·빈칸·오류 수정형을 섞었습니다. 빈칸형의 완성 코드와 오류 수정본은 해설 안에 있습니다. 먼저 답·호출별 추적표를 적고 실행하세요.</p><article class="question" id="qQ01"><span class="tag">선택 연습</span><h3>Q01 · 입력 두 개의 곱</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int area(int w,int h) { return w*h; }
+    public static void main(String[] args) {
+        System.out.println(area(4,9));
+    }
+}</code></pre><label for="aQ01">내 답과 풀이 근거</label><textarea id="aQ01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>36</code></pre><p>4와 9가 매개변수에 복사되어 36을 반환합니다.</p></details></article><article class="question" id="qQ02"><span class="tag">수업 핵심</span><h3>Q02 · 반환값을 버린 호출</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int triple(int n) { return n*3; }
+    public static void main(String[] args) {
+        int n=7;
+        triple(n);
+        System.out.println(n);
+    }
+}</code></pre><label for="aQ02">내 답과 풀이 근거</label><textarea id="aQ02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>7</code></pre><p>21을 반환하지만 저장하지 않아 원래 n은 7입니다.</p></details></article><article class="question" id="qQ03"><span class="tag">수업 핵심</span><h3>Q03 · 반환값으로 원본 재대입</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int add(int n) { n+=8; return n; }
+    public static void main(String[] args) {
+        int n=7;
+        n=add(n);
+        System.out.println(n);
+    }
+}</code></pre><label for="aQ03">내 답과 풀이 근거</label><textarea id="aQ03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>15</code></pre><p>매개변수에서 15를 만든 뒤 그 반환값을 main의 n에 대입합니다.</p></details></article><article class="question" id="qQ04"><span class="tag">선택 연습</span><h3>Q04 · void 출력 순서</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void mark(int n) { System.out.print(&quot;[&quot;+n+&quot;]&quot;); }
+    public static void main(String[] args) {
+        mark(2);
+        mark(5);
+        System.out.println();
+    }
+}</code></pre><label for="aQ04">내 답과 풀이 근거</label><textarea id="aQ04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>[2][5]</code></pre><p>두 호출의 print가 이어지고 마지막 println에서 줄이 바뀝니다.</p></details></article><article class="question" id="qQ05"><span class="tag">선택 연습</span><h3>Q05 · 조건별 조기 반환</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int sign(int n) { if(n&lt;0) return -1; if(n==0) return 0; return 1; }
+    public static void main(String[] args) {
+        System.out.println(sign(-8)+&quot; &quot;+sign(0)+&quot; &quot;+sign(12));
+    }
+}</code></pre><label for="aQ05">내 답과 풀이 근거</label><textarea id="aQ05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>-1 0 1</code></pre><p>각 호출이 자신에게 해당하는 첫 return에서 종료합니다.</p></details></article><article class="question" id="qQ06"><span class="tag">선택 연습</span><h3>Q06 · 중첩된 순수 호출</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int step(int n) { return n+4; }
+    public static void main(String[] args) {
+        System.out.println(step(step(2)));
+    }
+}</code></pre><label for="aQ06">내 답과 풀이 근거</label><textarea id="aQ06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>10</code></pre><p>안쪽 step(2)=6을 바깥 step에 넣어 10입니다.</p></details></article><article class="question" id="qQ07"><span class="tag">선택 연습</span><h3>Q07 · 이름은 같아도 다른 칸</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int calc(int value) { value*=2; return value+1; }
+    public static void main(String[] args) {
+        int value=9;
+        int result=calc(3);
+        System.out.println(value+&quot; &quot;+result);
+    }
+}</code></pre><label for="aQ07">내 답과 풀이 근거</label><textarea id="aQ07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>9 7</code></pre><p>main의 value는 9이고 calc의 value는 인자 3으로 시작해 6이 됩니다.</p></details></article><article class="question" id="qQ08"><span class="tag">수업 핵심</span><h3>Q08 · 매개변수 개수로 오버로딩</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int pay(int n) { return n*500; }
+    static int pay(int n,int d) { return n*500-d; }
+    public static void main(String[] args) {
+        System.out.println(pay(4)+&quot; &quot;+pay(4,150));
+    }
+}</code></pre><label for="aQ08">내 답과 풀이 근거</label><textarea id="aQ08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>2000 1850</code></pre><p>인자가 하나면 첫 메서드, 두 개면 둘째 메서드를 선택합니다.</p></details></article><article class="question" id="qQ09"><span class="tag">수업 핵심</span><h3>Q09 · int와 double 오버로딩</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static String tag(int x) { return &quot;I&quot;; }
+    static String tag(double x) { return &quot;D&quot;; }
+    public static void main(String[] args) {
+        System.out.println(tag(3)+&quot; &quot;+tag(3.0)+&quot; &quot;+tag((double)3));
+    }
+}</code></pre><label for="aQ09">내 답과 풀이 근거</label><textarea id="aQ09" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>I D D</code></pre><p>각 호출의 인자 타입이 int,double,double입니다.</p></details></article><article class="question" id="qQ10"><span class="tag">선택 연습</span><h3>Q10 · 매개변수 타입 순서</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static String f(int a,double b) { return &quot;ID&quot;; }
+    static String f(double a,int b) { return &quot;DI&quot;; }
+    public static void main(String[] args) {
+        System.out.println(f(2,3.0)+&quot; &quot;+f(2.0,3));
+    }
+}</code></pre><label for="aQ10">내 답과 풀이 근거</label><textarea id="aQ10" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>ID DI</code></pre><p>타입의 순서가 다르므로 서로 다른 메서드입니다.</p></details></article><article class="question" id="qQ11"><span class="tag">선택 연습</span><h3>Q11 · 반환형만 다른 선언 고치기</h3><p>다음 두 선언이 허용되지 않는 이유를 쓰고 두 기능을 유지하도록 이름을 고치세요. 수정 후 value(3), valueDouble(3)의 결과도 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>static int value(int n) { return n+1; }
+static double value(int n) { return n+0.5; } // 컴파일 오류</code></pre><label for="aQ11">내 답과 풀이 근거</label><textarea id="aQ11" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>4 3.5</code></pre><p>원래 두 value(int)는 반환형만 달라 중복 선언입니다. 둘째 이름을 valueDouble로 바꿔 구별했습니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int value(int n) { return n+1; }
+    static double valueDouble(int n) { return n+0.5; }
+    public static void main(String[] args) {
+        System.out.println(value(3)+&quot; &quot;+valueDouble(3));
+    }
+}</code></pre></details></article><article class="question" id="qQ12"><span class="tag">수업 핵심</span><h3>Q12 · 배열 합계 반환</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int sum(int[] a) { int s=0; for(int x:a) s+=x; return s; }
+    public static void main(String[] args) {
+        int[] a={3,6,12};
+        System.out.println(sum(a));
+    }
+}</code></pre><label for="aQ12">내 답과 풀이 근거</label><textarea id="aQ12" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>21</code></pre><p>같은 배열을 읽으며 3+6+12를 반환하고 원소는 바꾸지 않습니다.</p></details></article><article class="question" id="qQ13"><span class="tag">선택 연습</span><h3>Q13 · 원소를 메서드에서 변경</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void add(int[] a) { a[1]+=7; }
+    public static void main(String[] args) {
+        int[] a={2,5,8};
+        add(a);
+        System.out.println(a[0]+&quot; &quot;+a[1]+&quot; &quot;+a[2]);
+    }
+}</code></pre><label for="aQ13">내 답과 풀이 근거</label><textarea id="aQ13" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>2 12 8</code></pre><p>복사된 참조로 같은 배열의 인덱스 1을 바꿉니다.</p></details></article><article class="question" id="qQ14"><span class="tag">수업 핵심</span><h3>Q14 · 배열 매개변수 재대입</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void reset(int[] a) { a=new int[]{90,91}; }
+    public static void main(String[] args) {
+        int[] a={4,10};
+        reset(a);
+        System.out.println(a[0]+&quot; &quot;+a[1]);
+    }
+}</code></pre><label for="aQ14">내 답과 풀이 근거</label><textarea id="aQ14" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>4 10</code></pre><p>메서드 매개변수 a만 새 배열로 연결됩니다. 호출자의 a는 원래 배열입니다.</p></details></article><article class="question" id="qQ15"><span class="tag">선택 연습</span><h3>Q15 · 원소 변경 후 재대입</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void edit(int[] a) { a[0]=30; a=new int[]{5,6}; a[1]=99; }
+    public static void main(String[] args) {
+        int[] a={7,8};
+        edit(a);
+        System.out.println(a[0]+&quot; &quot;+a[1]);
+    }
+}</code></pre><label for="aQ15">내 답과 풀이 근거</label><textarea id="aQ15" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>30 8</code></pre><p>재대입 전 a[0]=30은 원래 배열에 반영되고 이후 99는 새 배열에만 반영됩니다.</p></details></article><article class="question" id="qQ16"><span class="tag">선택 연습</span><h3>Q16 · 정수 두 개 교환 시도</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void swap(int a,int b) { int t=a; a=b; b=t; }
+    public static void main(String[] args) {
+        int x=12,y=5;
+        swap(x,y);
+        System.out.println(x+&quot; &quot;+y);
+    }
+}</code></pre><label for="aQ16">내 답과 풀이 근거</label><textarea id="aQ16" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>12 5</code></pre><p>매개변수 복사본끼리 바꿔 main의 x,y는 그대로입니다.</p></details></article><article class="question" id="qQ17"><span class="tag">수업 핵심</span><h3>Q17 · 배열 원소 교환 빈칸</h3><p>교환 코드의 빈칸을 채우고 호출 후 결과를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>static void swapAt(int[] a,int i,int j) {
+ int t=a[i]; a[i]=a[j]; a[j]=____;
+}
+// main: a={12,5,9}; swapAt(a,0,2);</code></pre><label for="aQ17">내 답과 풀이 근거</label><textarea id="aQ17" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>9 5 12</code></pre><p>임시변수 t에 원래 a[i]를 보관하고 a[j]의 마지막 대입값으로 사용합니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void swapAt(int[] a,int i,int j) { int t=a[i]; a[i]=a[j]; a[j]=t; }
+    public static void main(String[] args) {
+        int[] a={12,5,9};
+        swapAt(a,0,2);
+        System.out.println(a[0]+&quot; &quot;+a[1]+&quot; &quot;+a[2]);
+    }
+}</code></pre></details></article><article class="question" id="qQ18"><span class="tag">선택 연습</span><h3>Q18 · 반환한 새 배열 받기</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int[] make(int x) { return new int[]{x,x+2}; }
+    public static void main(String[] args) {
+        int[] a=make(6);
+        System.out.println(a[0]+&quot; &quot;+a[1]);
+    }
+}</code></pre><label for="aQ18">내 답과 풀이 근거</label><textarea id="aQ18" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>6 8</code></pre><p>메서드에서 만든 배열의 참조가 반환되어 a에 저장됩니다.</p></details></article><article class="question" id="qQ19"><span class="tag">선택 연습</span><h3>Q19 · String 반환값을 버리기</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static String decorate(String s) { s=s+&quot;?&quot;; return s; }
+    public static void main(String[] args) {
+        String s=&quot;WHY&quot;;
+        decorate(s);
+        System.out.println(s);
+    }
+}</code></pre><label for="aQ19">내 답과 풀이 근거</label><textarea id="aQ19" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>WHY</code></pre><p>메서드 매개변수 s를 새 문자열로 재대입해도 호출자 s는 바뀌지 않습니다.</p></details></article><article class="question" id="qQ20"><span class="tag">수업 핵심</span><h3>Q20 · String 배열의 원소 교체</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void put(String[] a) { a[0]=&quot;NEW&quot;; }
+    public static void main(String[] args) {
+        String[] a={&quot;OLD&quot;,&quot;KEEP&quot;};
+        put(a);
+        System.out.println(a[0]+&quot; &quot;+a[1]);
+    }
+}</code></pre><label for="aQ20">내 답과 풀이 근거</label><textarea id="aQ20" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>NEW KEEP</code></pre><p>String 객체 내용을 고친 것이 아니라 같은 배열의 0번 원소가 가진 참조를 교체했습니다.</p></details></article><article class="question" id="qQ21"><span class="tag">선택 연습</span><h3>Q21 · 앞 n개 합산</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int sum(int[] a,int n) { int s=0; for(int i=0;i&lt;n;i++) s+=a[i]; return s; }
+    public static void main(String[] args) {
+        int[] a={4,8,12,16};
+        System.out.println(sum(a,3));
+    }
+}</code></pre><label for="aQ21">내 답과 풀이 근거</label><textarea id="aQ21" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>24</code></pre><p>0,1,2번 세 원소만 더합니다. n은 실제 배열 길이를 넘지 않아야 합니다.</p></details></article><article class="question" id="qQ22"><span class="tag">선택 연습</span><h3>Q22 · 배열과 정수 오버로딩</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int count(int n) { return n+1; }
+    static int count(int[] a) { return a.length; }
+    public static void main(String[] args) {
+        int[] a={2,4,6};
+        System.out.println(count(5)+&quot; &quot;+count(a));
+    }
+}</code></pre><label for="aQ22">내 답과 풀이 근거</label><textarea id="aQ22" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>6 3</code></pre><p>int 인자와 int[] 인자가 다른 메서드를 선택합니다.</p></details></article><article class="question" id="qQ23"><span class="tag">선택 연습</span><h3>Q23 · 반복 속 호출과 누적</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int square(int n) { return n*n; }
+    public static void main(String[] args) {
+        int s=0;
+        for(int i=1;i&lt;=3;i++) s+=square(i);
+        System.out.println(s);
+    }
+}</code></pre><label for="aQ23">내 답과 풀이 근거</label><textarea id="aQ23" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>14</code></pre><p>1²+2²+3²=1+4+9=14입니다.</p></details></article><article class="question" id="qQ24"><span class="tag">선택 연습</span><h3>Q24 · 2차원 배열 전달</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void set(int[][] a) { a[1][0]=40; }
+    public static void main(String[] args) {
+        int[][] a={{2,3},{4,5}};
+        set(a);
+        System.out.println(a[0][0]+&quot; &quot;+a[1][0]);
+    }
+}</code></pre><label for="aQ24">내 답과 풀이 근거</label><textarea id="aQ24" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>2 40</code></pre><p>매개변수는 바깥 배열의 참조를 복사하고 연결된 같은 행 배열의 원소를 수정합니다.</p></details></article><article class="question" id="qQ25"><span class="tag">선택 연습</span><h3>Q25 · C 정수 값 전달</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int edit(int n) { n=80; return n; }
+int main(void) {
+    int n=13;
+    edit(n);
+    printf(&quot;%d\n&quot;,n);
+    return 0;
+}</code></pre><label for="aQ25">내 답과 풀이 근거</label><textarea id="aQ25" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>13</code></pre><p>매개변수 복사본만 바뀌고 반환값도 받지 않아 main의 n은 13입니다.</p></details></article><article class="question" id="qQ26"><span class="tag">수업 핵심</span><h3>Q26 · C 포인터 매개변수</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void edit(int *p) { *p+=9; }
+int main(void) {
+    int n=13;
+    edit(&amp;n);
+    printf(&quot;%d\n&quot;,n);
+    return 0;
+}</code></pre><label for="aQ26">내 답과 풀이 근거</label><textarea id="aQ26" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>22</code></pre><p>n의 주소 값을 복사받아 *p를 통해 원본 n에 9를 더합니다.</p></details></article><article class="question" id="qQ27"><span class="tag">선택 연습</span><h3>Q27 · C 배열 원소 변경</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void add(int a[],int n) { for(int i=0;i&lt;n;i++) a[i]+=2; }
+int main(void) {
+    int a[]={5,10,15};
+    add(a,3);
+    printf(&quot;%d %d %d\n&quot;,a[0],a[1],a[2]);
+    return 0;
+}</code></pre><label for="aQ27">내 답과 풀이 근거</label><textarea id="aQ27" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>7 12 17</code></pre><p>함수 매개변수의 a[]는 포인터로 조정되며 원본 배열의 원소가 바뀝니다.</p></details></article><article class="question" id="qQ28"><span class="tag">수업 핵심</span><h3>Q28 · C 포인터 자체 이동</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void change(int *p) { *p+=1; p++; *p+=10; }
+int main(void) {
+    int a[]={2,4,6};
+    int *p=a;
+    change(p);
+    printf(&quot;%d %d %d\n&quot;,*p,a[1],a[2]);
+    return 0;
+}</code></pre><label for="aQ28">내 답과 풀이 근거</label><textarea id="aQ28" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>3 14 6</code></pre><p>함수의 p만 다음 원소로 이동합니다. main의 p는 계속 a[0]이고 원소 두 개는 바뀝니다.</p></details></article><article class="question" id="qQ29"><span class="tag">선택 연습</span><h3>Q29 · C 두 정수 원본 교환</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void swap(int *a,int *b) { int t=*a; *a=*b; *b=t; }
+int main(void) {
+    int x=12,y=5;
+    swap(&amp;x,&amp;y);
+    printf(&quot;%d %d\n&quot;,x,y);
+    return 0;
+}</code></pre><label for="aQ29">내 답과 풀이 근거</label><textarea id="aQ29" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>5 12</code></pre><p>주소를 역참조한 대입으로 원본 x,y를 교환합니다.</p></details></article><article class="question" id="qQ30"><span class="tag">선택 연습</span><h3>Q30 · C 부분 배열 전달</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int sum(const int *a,int n) { int s=0; for(int i=0;i&lt;n;i++) s+=a[i]; return s; }
+int main(void) {
+    int a[]={2,5,8,11};
+    printf(&quot;%d\n&quot;,sum(a+1,2));
+    return 0;
+}</code></pre><label for="aQ30">내 답과 풀이 근거</label><textarea id="aQ30" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>13</code></pre><p>함수의 첫 원소가 원본 a[1]이므로 5+8입니다.</p></details></article><article class="question" id="qQ31"><span class="tag">선택 연습</span><h3>Q31 · C 함수 안 static 지역변수</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int next(void) { static int n=0; n+=2; return n; }
+int main(void) {
+    int a=next();
+    int b=next();
+    printf(&quot;%d %d\n&quot;,a,b);
+    return 0;
+}</code></pre><label for="aQ31">내 답과 풀이 근거</label><textarea id="aQ31" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>2 4</code></pre><p>C의 static 지역변수 n은 호출 사이 값이 유지됩니다. Java static 메서드의 일반 지역변수와 구별하세요.</p></details></article><article class="question" id="qQ32"><span class="tag">선택 연습</span><h3>Q32 · C 재귀 복습</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int sum(int n) { if(n==0) return 0; return n+sum(n-1); }
+int main(void) {
+    printf(&quot;%d\n&quot;,sum(4));
+    return 0;
+}</code></pre><label for="aQ32">내 답과 풀이 근거</label><textarea id="aQ32" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>10</code></pre><p>sum(0)=0에서 복귀하며 1,3,6,10을 반환합니다.</p></details></article><article class="question" id="qQ33"><span class="tag">수업 핵심</span><h3>Q33 · C는 이름으로 기능 구별</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int fee(int n) { return n*700; }
+int fee_discount(int n,int d) { return n*700-d; }
+int main(void) {
+    printf(&quot;%d %d\n&quot;,fee(3),fee_discount(3,100));
+    return 0;
+}</code></pre><label for="aQ33">내 답과 풀이 근거</label><textarea id="aQ33" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>2100 2000</code></pre><p>C에서는 매개변수 개수를 바꿔 같은 이름의 두 함수 정의를 만들 수 없습니다. 별도 이름을 사용합니다.</p></details></article><article class="question" id="qQ34"><span class="tag">선택 연습</span><h3>Q34 · C 변경 가능한 문자열 배열</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void first(char *s) { s[0]=&#x27;B&#x27;; }
+int main(void) {
+    char s[]=&quot;CAT&quot;;
+    first(s);
+    printf(&quot;%s\n&quot;,s);
+    return 0;
+}</code></pre><label for="aQ34">내 답과 풀이 근거</label><textarea id="aQ34" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>BAT</code></pre><p>s는 변경 가능한 char 배열입니다. Java String 불변 객체와 같은 방식으로 생각하면 안 됩니다.</p></details></article><article class="question" id="qQ35"><span class="tag">선택 연습</span><h3>Q35 · C 두 출력 매개변수</h3><p>출력 결과를 쓰고 호출별 매개변수·반환값·원본 변화를 설명하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void range(const int *a,int n,int *lo,int *hi) {
+ *lo=a[0]; *hi=a[0];
+ for(int i=1;i&lt;n;i++) { if(a[i]&lt;*lo) *lo=a[i]; if(a[i]&gt;*hi) *hi=a[i]; }
+}
+int main(void) {
+    int a[]={8,-3,14,2};
+    int lo=0,hi=0;
+    range(a,4,&amp;lo,&amp;hi);
+    printf(&quot;%d %d\n&quot;,lo,hi);
+    return 0;
+}</code></pre><label for="aQ35">내 답과 풀이 근거</label><textarea id="aQ35" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>-3 14</code></pre><p>유효한 주소 lo,hi를 통해 서로 다른 두 결과를 저장합니다. 이 문제는 n&gt;=1입니다.</p></details></article><article class="question" id="qQ36"><span class="tag">수업 핵심</span><h3>Q36 · C 배열 길이를 명시적으로</h3><p>함수 안의 sizeof(a)/sizeof(a[0])으로 길이를 구하려는 생각이 잘못된 이유와 올바른 전달 방법을 쓰세요. 아래 수정본의 합계도 구하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int sum(const int *a,int n) { int s=0; for(int i=0;i&lt;n;i++) s+=a[i]; return s; }
+int main(void) {
+    int a[]={6,9,12};
+    int n=(int)(sizeof(a)/sizeof(a[0]));
+    printf(&quot;%d\n&quot;,sum(a,n));
+    return 0;
+}</code></pre><label for="aQ36">내 답과 풀이 근거</label><textarea id="aQ36" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>27</code></pre><p>함수 안의 a는 포인터라 sizeof(a)/sizeof(a[0])으로 배열 길이를 알 수 없습니다. 실제 배열이 있는 main에서 구해 n으로 넘깁니다.</p></details></article><h2>5. 응용 구현 과제 6개</h2><p>S01은 수업에서 나눠 20분 진행합니다. S02~S06은 과제당 15~25분의 선택 보강입니다. 각 요구에 맞는 메서드·함수를 먼저 설계한 뒤 구현하세요. 모든 예제 입력은 유효한 배열·인덱스라는 전제를 따르며, 빈 배열 허용 여부는 과제마다 명시합니다.</p><article class="question" id="qS01"><span class="tag">수업 핵심</span><h3>S01 · 점수 보정과 평균 분리</h3><p>Java에서 void adjust(int[] a,int bonus), double average(int[] a)를 작성하세요. 0~100 점수에 0~10 보너스를 더하되 100 초과는 100으로 제한합니다. average는 빈 배열이면 0.0, 나머지는 실수 평균을 반환합니다.</p><div class="note">[61,96,80]에 bonus=5 → [66,100,85], 평균은 251/3. 출력은 총점도 함께 확인합니다.</div><label for="aS01">내 답과 풀이 근거</label><textarea id="aS01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 보정은 같은 배열 원소를 수정하고 평균은 읽기만 합니다. 평균의 나누기 전에 double로 변환합니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void adjust(int[] a,int bonus) {
+     for(int i=0;i&lt;a.length;i++) { a[i]+=bonus; if(a[i]&gt;100) a[i]=100; }
+    }
+    static double average(int[] a) {
+     if(a.length==0) return 0.0;
+     int sum=0; for(int v:a) sum+=v;
+     return (double)sum/a.length;
+    }
+    public static void main(String[] args) {
+        int[] a={61,96,80};
+        adjust(a,5);
+        System.out.println(a[0]+&quot; &quot;+a[1]+&quot; &quot;+a[2]);
+        System.out.println(average(a));
+    }
+}</code></pre><pre class="answer-output"><code>66 100 85
+83.66666666666667</code></pre><p><b>경계 조건</b> · 빈 배열은 보정 없음·평균 0.0, [100]은 보정 후에도 100입니다. 입력 점수·보너스 범위를 지키세요.</p></details></article><article class="question" id="qS02"><span class="tag">선택 연습</span><h3>S02 · 오버로딩한 결제 금액</h3><p>Java에서 int total(int unit,int count), int total(int unit,int count,int discount)를 만드세요. 세 인자 버전은 두 인자 버전을 호출해 소계를 얻은 뒤 할인하고 0 미만이면 0을 반환합니다. 입력은 음수 아님, 계산은 int 범위 안입니다.</p><div class="note">unit=1200,count=3 → 3600. discount=500이면 3100, discount=5000이면 0.</div><label for="aS02">내 답과 풀이 근거</label><textarea id="aS02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 중복 곱셈을 줄이기 위해 기본 메서드 호출 결과를 활용합니다. 할인 후 음수인지 검사하고 조기 반환합니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int total(int unit,int count) { return unit*count; }
+    static int total(int unit,int count,int discount) {
+     int result=total(unit,count)-discount;
+     if(result&lt;0) return 0;
+     return result;
+    }
+    public static void main(String[] args) {
+        System.out.println(total(1200,3));
+        System.out.println(total(1200,3,500));
+        System.out.println(total(1200,3,5000));
+    }
+}</code></pre><pre class="answer-output"><code>3600
+3100
+0</code></pre><p><b>경계 조건</b> · 수량 0이면 두 인자 결과는 0입니다. 세 인자 버전의 할인액이 소계와 같으면 0을 반환합니다.</p></details></article><article class="question" id="qS03"><span class="tag">선택 연습</span><h3>S03 · 원본 보존 역순 배열</h3><p>Java의 int[] reversed(int[] a)를 작성하세요. 새 배열을 만들고 역순으로 복사해 반환하되 원본은 바꾸지 않습니다. 빈 배열도 허용합니다.</p><div class="note">[3,6,9,12] → 새 배열 [12,9,6,3], 원본은 [3,6,9,12]</div><label for="aS03">내 답과 풀이 근거</label><textarea id="aS03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 길이가 같은 새 배열 out을 만든 뒤 out[i]=a[length-1-i]로 채우고 반환합니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int[] reversed(int[] a) {
+     int[] out=new int[a.length];
+     for(int i=0;i&lt;a.length;i++) out[i]=a[a.length-1-i];
+     return out;
+    }
+    public static void main(String[] args) {
+        int[] a={3,6,9,12};
+        int[] b=reversed(a);
+        System.out.println(a[0]+&quot; &quot;+a[3]);
+        System.out.println(b[0]+&quot; &quot;+b[3]+&quot; &quot;+(a==b));
+    }
+}</code></pre><pre class="answer-output"><code>3 12
+12 3 false</code></pre><p><b>경계 조건</b> · 빈 입력은 길이 0인 새 배열, 한 원소는 같은 값의 새 배열입니다. 반환 배열의 원소를 바꿔도 원본은 바뀌지 않습니다.</p></details></article><article class="question" id="qS04"><span class="tag">선택 연습</span><h3>S04 · 부분 구간 합계 API</h3><p>Java의 int sumRange(int[] a,int from,int to)를 작성하세요. from 포함·to 제외 구간을 더합니다. 0&lt;=from&lt;=to&lt;=a.length이고 합은 int 범위 안입니다.</p><div class="note">[4,7,10,13], from=1,to=3 → 17. from=to이면 0.</div><label for="aS04">내 답과 풀이 근거</label><textarea id="aS04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · i=from부터 i&lt;to까지 순회합니다. API의 끝 제외 규칙을 먼저 적고 빈 구간도 같은 반복으로 처리합니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int sumRange(int[] a,int from,int to) {
+     int s=0;
+     for(int i=from;i&lt;to;i++) s+=a[i];
+     return s;
+    }
+    public static void main(String[] args) {
+        int[] a={4,7,10,13};
+        System.out.println(sumRange(a,1,3));
+        System.out.println(sumRange(a,2,2));
+    }
+}</code></pre><pre class="answer-output"><code>17
+0</code></pre><p><b>경계 조건</b> · 전체 구간은 from=0,to=a.length입니다. 끝 포함으로 잘못 쓰는 실수를 경계값 0·length·동일 시작끝으로 확인하세요.</p></details></article><article class="question" id="qS05"><span class="tag">선택 연습</span><h3>S05 · 상태 변경 후 성공 개수 반환</h3><p>Java int close(String[] status)를 작성하세요. 내용이 &quot;OPEN&quot;인 원소만 &quot;CLOSED&quot;로 교체하고 교체 수를 반환합니다. null·다른 문자열은 유지합니다.</p><div class="note">[&quot;OPEN&quot;,null,new String(&quot;OPEN&quot;),&quot;WAIT&quot;] → CLOSED,null,CLOSED,WAIT 및 반환 2</div><label for="aS05">내 답과 풀이 근거</label><textarea id="aS05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · &quot;OPEN&quot;.equals(status[i])로 null을 안전하게 검사합니다. 배열 원소를 교체하고 count를 누적합니다. String 내부 내용을 수정하는 것이 아닙니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int close(String[] status) {
+     int count=0;
+     for(int i=0;i&lt;status.length;i++) {
+      if(&quot;OPEN&quot;.equals(status[i])) { status[i]=&quot;CLOSED&quot;; count++; }
+     }
+     return count;
+    }
+    public static void main(String[] args) {
+        String[] a={&quot;OPEN&quot;,null,new String(&quot;OPEN&quot;),&quot;WAIT&quot;};
+        int count=close(a);
+        System.out.println(count+&quot; &quot;+a[0]+&quot; &quot;+a[1]+&quot; &quot;+a[2]+&quot; &quot;+a[3]);
+    }
+}</code></pre><pre class="answer-output"><code>2 CLOSED null CLOSED WAIT</code></pre><p><b>경계 조건</b> · 빈 배열은 0, 전부 null이면 0입니다. 같은 배열에 두 번 호출하면 둘째 반환은 0이어야 합니다.</p></details></article><article class="question" id="qS06"><span class="tag">선택 연습</span><h3>S06 · C와 Java로 같은 위치 교환</h3><p>같은 배열 [8,3,15]의 인덱스 0과 2를 교환하세요. Java는 swapAt(int[] a,int i,int j), C는 swapAt(int *a,int i,int j)로 작성합니다. 인덱스는 유효하다고 가정합니다.</p><div class="note">두 언어 모두 [15,3,8]. 정수 인자 두 개만 받는 Java swap으로 바꾸면 원본 원소는 교환되지 않습니다.</div><label for="aS06">내 답과 풀이 근거</label><textarea id="aS06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 임시변수에 a[i] 값을 보관하고 a[i]=a[j], a[j]=temp 순서로 실행합니다. 언어별 전달되는 값의 정체를 그림으로 설명하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void swapAt(int[] a,int i,int j) { int t=a[i]; a[i]=a[j]; a[j]=t; }
+    public static void main(String[] args) {
+        int[] a={8,3,15};
+        swapAt(a,0,2);
+        System.out.println(a[0]+&quot; &quot;+a[1]+&quot; &quot;+a[2]);
+    }
+}</code></pre><pre class="answer-output"><code>15 3 8</code></pre><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void swapAt(int *a,int i,int j) { int t=a[i]; a[i]=a[j]; a[j]=t; }
+int main(void) {
+    int a[]={8,3,15};
+    swapAt(a,0,2);
+    printf(&quot;%d %d %d\n&quot;,a[0],a[1],a[2]);
+    return 0;
+}</code></pre><p><b>경계 조건</b> · i==j이면 값이 그대로입니다. 두 번 같은 위치를 교환하면 원본 순서로 돌아옵니다.</p></details></article><h2>6. 종료 확인</h2><p>① Java 배열은 참조 전달인가요? 복사되는 것을 정확히 말하세요. ② 매개변수 a에 새 배열을 대입하면 호출자의 변수는? ③ 반환형만 바꿔 오버로딩할 수 있나요? ④ C에서 원본 정수를 바꾸려면 어떤 인자를 주나요? ⑤ C 배열 길이는 함수 안에서 sizeof로 알아낼 수 있나요?</p><details><summary>정답과 해설</summary><p>① 참조 값이 복사되는 값 전달입니다. ② 원래 배열을 계속 참조합니다. ③ 아니요. 매개변수 목록이 달라야 합니다. ④ 유효한 원본 주소를 넘기고 함수에서 역참조합니다. ⑤ 포인터 매개변수에서는 불가능하므로 길이를 별도로 전달합니다.</p></details><div class="table-wrap"><table><thead><tr><th>문제</th><th>내 답 / 정답</th><th>잘못 생각한 지점</th><th>새 입력으로 확인</th></tr></thead><tbody><tr><td>직접 기록</td><td>출력과 원본 변화 함께 기록</td><td>값 복사·원소 변경·재대입·오버로딩</td><td>길이·값·호출 인자 하나 바꾸기</td></tr></tbody></table></div><footer>09일차 · 코딩 120분 + 이론 60분. 각 파일은 인터넷 없이 독립 실행됩니다. 해설은 열어 둔 상태로 인쇄하세요. 시험 모드에서는 해설이 인쇄되지 않습니다. 자동 저장은 브라우저와 파일 위치에 따라 제한될 수 있습니다.</footer></main><script>
+document.querySelector('#open').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=true);
+document.querySelector('#close').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=false);
+document.querySelector('#print').onclick=()=>window.print();
+// 저장 기능 없이도 문제·해설은 동작한다. 로컬 파일 저장 제한 시 상태만 알린다.
+let status=document.querySelector('#status');
+document.querySelectorAll('textarea').forEach((x,i)=>{let k=document.title+':'+i;try{x.value=localStorage.getItem(k)||''}catch(err){status.textContent='브라우저 저장이 제한되어 답안이 자동 저장되지 않습니다.'}x.addEventListener('input',()=>{try{localStorage.setItem(k,x.value);status.textContent='이 브라우저에 답안 자동 저장됨'}catch(err){status.textContent='자동 저장 불가: 답안을 별도로 기록하세요.'}})});
+
+document.querySelector('#exam').onclick=()=>{document.body.classList.toggle('hide-answers');let hide=document.body.classList.contains('hide-answers');document.querySelectorAll('details').forEach(x=>{x.open=false;x.hidden=hide});document.querySelector('#open').disabled=hide;document.querySelector('#exam').textContent=hide?'해설 사용하기':'시험 모드';};
+</script></body></html>

@@ -1,0 +1,368 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>07일차 코딩 · C 포인터와 종합</title><style>
+:root{--ink:#202c42;--muted:#526279;--accent:#166774;--paper:#fff;--line:#d9e2ea}
+*{box-sizing:border-box}body{margin:0;background:#edf2f6;color:var(--ink);font:17px/1.85 'Malgun Gothic',sans-serif}main{max-width:1080px;margin:auto;background:white;padding:44px 54px}header{border-top:9px solid var(--accent);padding:26px 0}h1{font-size:34px;line-height:1.4}h2{margin-top:50px;border-bottom:2px solid var(--accent);padding-bottom:10px;font-size:26px}h3{font-size:21px;margin:18px 0 8px}p{margin:12px 0}.lead{font-size:19px}.tag{display:inline-block;background:#e3f2ef;color:#145a54;padding:2px 11px;border-radius:8px;font-size:14px}.note{border-left:5px solid var(--accent);background:#eff7f8;padding:16px 22px;margin:20px 0}.warn{border-color:#b87522;background:#fff7e9}table{border-collapse:collapse;width:100%;margin:18px 0}td,th{border:1px solid var(--line);padding:10px 13px;text-align:left;vertical-align:top}th{background:#eaf1f5}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#142333;color:#e9f3f6;padding:20px;border-radius:9px;font:15px/1.7 Consolas,'Malgun Gothic',monospace}code{font-family:Consolas,monospace}.question{border:1px solid var(--line);border-radius:12px;padding:22px;margin:22px 0}.question h3{margin-top:0}details{background:#f0f6f4;border-radius:8px;margin-top:15px;padding:12px 17px}summary{cursor:pointer;font-weight:bold;color:#165e54}textarea{width:100%;min-height:90px;padding:12px;border:1px solid #9cadba;border-radius:7px;font:inherit;resize:vertical;background:#fffdf6}button{font:inherit;background:var(--accent);border:0;color:white;padding:9px 16px;border-radius:7px;cursor:pointer;margin:5px 8px 5px 0}.toolbar{position:sticky;top:0;padding:10px;background:#ffffffed;border-bottom:1px solid var(--line);z-index:3}.small{font-size:14px;color:var(--muted)}.result{background:#e8f1ec;color:#194c36}.diagram{text-align:left;background:#eef4fa;color:#213d59}footer{margin-top:45px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted)}@media(max-width:700px){main{padding:20px}h1{font-size:27px}table{font-size:14px}pre{font-size:13px}.toolbar{position:static}}@media print{body{background:white;font-size:11pt}main{padding:0;max-width:none}.toolbar,textarea,.small.save{display:none}details{break-inside:avoid}pre{background:#f3f3f3;color:black;font-size:9pt}h2,h3{break-after:avoid}.question{break-inside:auto}header{border-top:3px solid #444}button{display:none}}
+
+.trace{background:#edf5fa;color:#20384e} .answer-output{background:#eaf2e9;color:#254129}
+.blank{display:none;min-height:40px;border-bottom:1px dashed #83929c}.qtype{color:#526279;font-size:14px}
+@media print{body.hide-answers details{display:none!important}textarea{display:none}.blank{display:block}details{break-inside:auto}pre,tr{break-inside:avoid}thead{display:table-header-group}}
+</style></head><body><main><header><span class="tag">정보처리기사 실기 · 2주차 / 07일차</span><h1>07일차 코딩 · C 포인터와 종합</h1><p class="lead">주소에서 시작해 배열·문자열·구조체까지 · 연습 30문제 + 응용 과제 6개</p></header><div class="toolbar"><button id="open" type="button">해설 모두 열기</button><button id="close" type="button">해설 모두 닫기</button><button id="exam" type="button">시험 모드</button><button id="print" type="button">인쇄</button><span id="status" class="small save">답안은 이 브라우저에 자동 저장됩니다.</span></div><div class="note"><b>학습 목표</b> · 주소를 저장하는 칸과 그 주소에 있는 실제 값을 구별합니다. 함수가 원본을 바꾸는 이유를 설명하고, 배열·문자열·구조체를 포인터로 추적합니다. 모든 실행 예제는 C11 기준입니다.</div><h2>오늘의 180분</h2><table><thead><tr><th>시간</th><th>활동</th><th>풀이 대상</th></tr></thead><tbody><tr><td>코딩 1교시 0~10분</td><td>06일차 값 전달 복습, 주소·값 그림 그리기</td><td>시작 확인</td></tr><tr><td>10~25분</td><td>쉬운 설명: &amp;와 *, 포인터 매개변수</td><td>예제 E01~E03</td></tr><tr><td>25~60분</td><td>직접 작성·실행 25분, 응용 S01 시작 10분</td><td>Q01·Q03·Q06·Q08·Q10</td></tr><tr><td>코딩 2교시 60~80분</td><td>문자열·구조체·종합 손 추적</td><td>예제 E04~E07, Q14·Q18·Q21</td></tr><tr><td>80~105분</td><td>조건 변경·실행 15분, S01 완성 10분</td><td>Q23·Q26, S01</td></tr><tr><td>105~120분</td><td>개별 확인·오답 재풀이</td><td>Q29·Q30, 종료 질문</td></tr><tr><td>이론 120~180분</td><td>용어 복습 10분·설명 30분·문제 10분·정리 10분</td><td>정렬·탐색·시간 복잡도</td></tr></tbody></table><p>수업 핵심 12문제와 S01을 정규 수업에서 다룹니다. 전체 30문제와 응용 과제 6개는 충분한 반복을 위한 문제은행이며, 나머지는 선택 보강입니다. 모든 문제를 3시간 안에 끝내는 일정은 아닙니다. 먼저 답을 적고 실행한 뒤 입력을 바꾸세요.</p><h3>시작 확인</h3><p><code>void f(int x) { x = 30; }</code>을 <code>f(n);</code>으로 호출하면 main의 n은 바뀌지 않습니다. 값이 복사되기 때문입니다. 오늘은 “원본을 찾아갈 주소”를 복사해 넘기는 방법을 배웁니다.</p><h2>1. 쉬운 설명 · 집 주소와 집 안의 물건</h2><p>변수를 집이라고 생각해 봅시다. <b>주소</b>는 집의 위치이고 <b>값</b>은 집 안 물건입니다. 포인터는 물건 자체가 아니라 주소를 담는 별도의 변수입니다. 주소를 알아야 그 집 안 물건을 읽거나 바꿀 수 있습니다.</p><table><thead><tr><th>표현</th><th>뜻</th><th>주의</th></tr></thead><tbody><tr><td>int x = 12;</td><td>정수 칸 x에 12 저장</td><td>x는 실제 값</td></tr><tr><td>int *p = &amp;x;</td><td>정수의 주소를 담는 p를 만들고 x의 주소 저장</td><td>선언의 *는 포인터 자료형을 나타냄</td></tr><tr><td>&amp;x</td><td>x의 주소</td><td>주소 연산자</td></tr><tr><td>p</td><td>p에 저장된 주소</td><td>p 자체도 별도 변수</td></tr><tr><td>*p</td><td>p가 가리키는 정수 칸</td><td>식 안의 *는 역참조</td></tr><tr><td>&amp;p</td><td>포인터 변수 p 자신의 주소</td><td>x의 주소와 다름</td></tr></tbody></table><pre class="trace"><code>변수 칸             연결                 값
+p [ x의 주소 ] ───────────────────→ x [ 12 ]
+
+*p = 25;   // x에 25 저장
+p = &amp;y;    // 연결 대상을 y로 변경. x의 값은 바뀌지 않음</code></pre><h3>예제 E01 · 원본 변경과 포인터 이동은 다르다</h3><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int x = 12, y = 40;
+int *p = &amp;x;
+*p = 25;
+p = &amp;y;
+*p += 3;
+printf(&quot;%d %d\n&quot;, x, y);
+return 0;
+}</code></pre><p>처음 *p는 x입니다. 25를 저장한 뒤 p에 y의 주소를 대입하면, 이후 *p는 y가 됩니다. x는 25로 남고 y만 40→43이 됩니다. 메모리 주소의 구체적인 숫자는 실행마다 달라질 수 있어 정답으로 외우지 않습니다. 주소를 확인할 때는 <code>printf("%p", (void *)p);</code>를 사용합니다.</p><h3>예제 E02 · 주소도 값으로 복사된다</h3><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void bonus(int *score) { *score += 7; }
+int main(void) {
+int n = 60;
+bonus(&amp;n);
+printf(&quot;%d\n&quot;, n);
+return 0;
+}</code></pre><p>main은 n의 주소를 넘깁니다. bonus의 score에는 그 주소의 복사본이 생깁니다. 복사된 주소도 같은 n을 가리키므로 *score를 바꾸면 원본 n이 바뀝니다. C는 여기서도 <b>값 전달</b>입니다. “포인터면 참조 전달로 언어 규칙이 바뀐다”라고 외우지 마세요.</p><h3>예제 E03 · 값 교환에는 임시 보관함이 필요하다</h3><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void swap(int *a, int *b) { int t = *a; *a = *b; *b = t; }
+int main(void) {
+int a = 9, b = 22;
+swap(&amp;a, &amp;b);
+printf(&quot;%d %d\n&quot;, a, b);
+return 0;
+}</code></pre><table><thead><tr><th>실행</th><th>a</th><th>b</th><th>t</th></tr></thead><tbody><tr><td>시작</td><td>9</td><td>22</td><td>—</td></tr><tr><td>t = *a (함수 매개변수 a가 가리킨 원본)</td><td>9</td><td>22</td><td>9</td></tr><tr><td>*a = *b</td><td>22</td><td>22</td><td>9</td></tr><tr><td>*b = t</td><td>22</td><td>9</td><td>9</td></tr></tbody></table><div class="note">위 표의 a·b 열은 main의 원본 정수입니다. 함수의 a·b는 주소를 담는 별도 매개변수입니다. 이름이 같다고 같은 칸은 아닙니다. <code>int *p, q;</code>에서 p만 포인터이고 q는 정수입니다. 처음에는 <code>int *p;</code>와 <code>int *q;</code>처럼 따로 선언하세요.</div><h2>2. 응용 설명 · 배열, 문자열, 구조체</h2><p>배열은 같은 자료형의 칸이 이어진 구조입니다. 대부분의 식에서 배열 이름은 첫 원소를 가리키는 포인터로 변환됩니다. <code>a[i]</code>는 <code>*(a+i)</code>와 같습니다. 단, 배열과 포인터 변수는 같은 물건이 아닙니다. 배열 이름 자체에 다른 주소를 대입할 수 없습니다.</p><pre class="trace"><code>int a[4] = {6, 12, 18, 24};
+int *p = a + 1;
+
+인덱스       0      1      2      3      4
+배열 값     [6]   [12]   [18]   [24]   끝 다음
+                   ↑p             ↑a+3   ↑a+4
+*p == 12     *(p+2) == 24     p-a == 1
+a+4는 만들고 비교할 수 있지만 *(a+4)는 읽거나 쓸 수 없음</code></pre><p><code>p+1</code>은 1바이트가 아니라 p가 가리키는 자료형의 원소 하나만큼 이동합니다. int가 몇 바이트인지 외워서 주소를 계산할 필요가 없습니다. 포인터 뺄셈은 같은 배열 안의 두 위치(끝 다음 포함) 사이에서 원소 개수 차이를 구할 때 사용합니다. 결과 자료형은 ptrdiff_t이고 출력 형식은 %td입니다.</p><h3>예제 E04 · 함수에 배열을 넘길 때 길이도 넘긴다</h3><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void raise_all(int *a, int n) {
+ for (int i=0; i&lt;n; i++) a[i] += 2;
+}
+int main(void) {
+int a[] = {6, 12, 18};
+raise_all(a, 3);
+printf(&quot;%d %d %d\n&quot;, a[0], a[1], a[2]);
+return 0;
+}</code></pre><p>함수 매개변수의 <code>int a[]</code>는 <code>int *a</code>로 조정됩니다. 함수는 배열 전체를 복사받지 않고 첫 원소의 주소를 받습니다. 길이가 자동으로 따라오지 않으므로 n도 함께 전달합니다. main의 실제 배열에는 <code>sizeof(a)/sizeof(a[0])</code>를 쓸 수 있지만 포인터 매개변수에 같은 식을 쓰면 배열 길이가 나오지 않습니다.</p><h3>예제 E05 · 문자열의 끝과 변경 가능한 공간</h3><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+char word[] = &quot;TRAIN&quot;;
+char *p = word + 2;
+printf(&quot;%s %c\n&quot;, p, *p);
+*p = &#x27;O&#x27;;
+printf(&quot;%s\n&quot;, word);
+return 0;
+}</code></pre><p>word는 T R A I N 그리고 널 문자 \0을 담는 6칸 배열입니다. %s는 현재 위치부터 \0 직전까지 출력하므로 p는 AIN을 출력합니다. %c는 한 글자 A입니다. 배열 word는 수정할 수 있지만 <code>const char *s = "TRAIN";</code>처럼 문자열 리터럴을 가리키는 경우 그 문자를 바꾸면 안 됩니다. 읽기 전용 문자열은 const로 선언하세요.</p><h3>예제 E06 · 구조체 포인터와 화살표</h3><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+struct Student { int id; int score; };
+void add(struct Student *s) { s-&gt;score += 4; }
+int main(void) {
+struct Student a[] = {{11, 72}, {12, 85}};
+struct Student *p = a + 1;
+add(p);
+printf(&quot;%d %d %d\n&quot;, p-&gt;id, (*p).score, a[0].score);
+return 0;
+}</code></pre><p><code>p->score</code>는 <code>(*p).score</code>와 같습니다. p가 가리킨 구조체의 score입니다. p.score는 p가 구조체 자체가 아니라 포인터이므로 사용할 수 없습니다. 구조체 포인터도 p+1이면 다음 구조체 한 개로 이동합니다.</p><h2>3. 심화 설명 · 가리키는 대상과 실행 순서</h2><p>포인터 문제는 “지금 어디를 가리키는가?”와 “지금 그 칸의 값은 무엇인가?”를 따로 적으면 풀립니다. 같은 주소를 가진 두 포인터를 통한 변경은 같은 원본에 반영됩니다. 포인터 매개변수에 다른 주소를 대입하는 일은 호출자의 포인터 변수를 바꾸는 일과 다릅니다.</p><h3>예제 E07 · 포인터를 옮겨도 호출자의 포인터는 그대로</h3><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void touch(int *p) {
+ *p += 1;
+ p++;
+ *p += 10;
+}
+int main(void) {
+int a[] = {3, 6, 9};
+int *p = a;
+touch(p);
+printf(&quot;%d %d %d\n&quot;, *p, a[1], a[2]);
+return 0;
+}</code></pre><table><thead><tr><th>시점</th><th>main의 p</th><th>touch의 p</th><th>배열</th></tr></thead><tbody><tr><td>호출 직후</td><td>a[0]</td><td>a[0]</td><td>3, 6, 9</td></tr><tr><td>*p += 1 후</td><td>a[0]</td><td>a[0]</td><td>4, 6, 9</td></tr><tr><td>p++ 후</td><td>a[0]</td><td>a[1]</td><td>4, 6, 9</td></tr><tr><td>마지막 변경 후</td><td>a[0]</td><td>a[1]</td><td>4, 16, 9</td></tr></tbody></table><h3>헷갈리는 세 표현</h3><table><thead><tr><th>표현</th><th>동작</th><th>예: p가 a[0]을 가리키면</th></tr></thead><tbody><tr><td>*p++</td><td>*(p++): 현재 원소 값을 사용한 뒤 포인터 이동</td><td>사용한 값은 a[0], 이후 p는 a[1]</td></tr><tr><td>(*p)++</td><td>가리키는 값 증가, 포인터 위치 유지</td><td>a[0]의 값이 1 증가</td></tr><tr><td>*++p</td><td>먼저 포인터 이동, 이동한 곳의 값 사용</td><td>p가 a[1]로 이동하고 a[1] 읽음</td></tr></tbody></table><p>후위 ++의 결과는 증가 전 값이고, 증가는 해당 전체 식이 끝나기 전 완료됩니다. 한 printf 인자 목록에서 p를 바꾸면서 다른 인자로 p를 읽는 식은 만들지 않습니다. 예: <code>printf("%d %d", *p++, *p);</code>에는 정해진 출력 답을 붙이면 안 됩니다. 변경 문장과 출력 문장을 나누세요.</p><div class="note"><b>안전하게 추적할 조건</b> · 초기화하지 않은 포인터, NULL, 수명이 끝난 지역변수 주소, 배열 범위 밖을 역참조하지 않습니다. 지역 배열의 주소를 반환하지 마세요. 끝 다음 위치는 역참조할 수 없습니다. <code>const int *p</code>는 p를 통한 값 변경을 막고, <code>int *const p</code>는 p가 가진 주소의 변경을 막습니다. 이중 포인터 <code>int **</code>는 포인터 변수의 주소를 받는 확장이며, 오늘 필수 문제는 단일 포인터 중심입니다.</div><h3>풀이용 표</h3><table><thead><tr><th>실행 문장</th><th>p의 대상</th><th>q의 대상</th><th>실제 값 변화</th><th>출력</th></tr></thead><tbody><tr><td>처음 선언</td><td>a[0]</td><td>미사용</td><td>배열 초깃값 기록</td><td>—</td></tr><tr><td>한 문장씩</td><td>대상 인덱스 갱신</td><td>대상 인덱스 갱신</td><td>수정한 칸만 갱신</td><td>printf 때만 기록</td></tr></tbody></table><h2>4. 연습문제 30개</h2><p>출력형·빈칸형·오류 수정형을 섞었습니다. 출력에 나타나는 공백과 줄바꿈도 확인하세요. 오류 찾기 문제는 잘못된 코드를 실행하지 말고 수정안을 작성하세요.</p><article class="question" id="qQ01"><span class="tag">수업 핵심</span><h3>Q01 · 주소로 값 바꾸기</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int n=14; int *p=&amp;n;
+*p=31; printf(&quot;%d\n&quot;, n);
+return 0;
+}</code></pre><label for="aQ01">내 답과 풀이 근거</label><textarea id="aQ01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>31</code></pre><p>p는 n의 주소를 담습니다. *p에 대입하면 n이 31이 됩니다.</p></details></article><article class="question" id="qQ02"><span class="tag">선택 연습</span><h3>Q02 · 포인터의 대상 바꾸기</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int x=5,y=17; int *p=&amp;x;
+p=&amp;y; *p-=3; printf(&quot;%d %d\n&quot;,x,y);
+return 0;
+}</code></pre><label for="aQ02">내 답과 풀이 근거</label><textarea id="aQ02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>5 14</code></pre><p>p=&amp;y는 연결만 바꾸고, 이어지는 *p-=3이 y를 바꿉니다.</p></details></article><article class="question" id="qQ03"><span class="tag">수업 핵심</span><h3>Q03 · 두 포인터, 같은 원본</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int n=8; int *p=&amp;n; int *q=p;
+*q+=6; *p*=2; printf(&quot;%d\n&quot;,n);
+return 0;
+}</code></pre><label for="aQ03">내 답과 풀이 근거</label><textarea id="aQ03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>28</code></pre><p>p와 q가 모두 n을 가리켜 8→14→28입니다.</p></details></article><article class="question" id="qQ04"><span class="tag">선택 연습</span><h3>Q04 · 값 전달과 주소 전달</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void f(int x, int *p) { x+=10; *p+=x; }
+int main(void) {
+int a=3,b=4; f(a,&amp;b); printf(&quot;%d %d\n&quot;,a,b);
+return 0;
+}</code></pre><label for="aQ04">내 답과 풀이 근거</label><textarea id="aQ04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>3 17</code></pre><p>x는 복사본 3→13이고 *p는 원본 b입니다. a는 3, b는 4+13=17입니다.</p></details></article><article class="question" id="qQ05"><span class="tag">선택 연습</span><h3>Q05 · 주소를 받는 함수 빈칸</h3><p>n을 42로 바꾸려면 set(____)의 빈칸은? 해설의 완성 코드와 비교하세요.</p><pre class=""><code>void set(int *p) { *p=42; }
+// main 안
+int n=6;
+set(____);
+printf(&quot;%d\n&quot;,n);</code></pre><label for="aQ05">내 답과 풀이 근거</label><textarea id="aQ05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>42</code></pre><p>set은 int *를 받으므로 n의 주소인 &amp;n을 넘깁니다.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void set(int *p) { *p=42; }
+int main(void) {
+int n=6; set(&amp;n); printf(&quot;%d\n&quot;,n);
+return 0;
+}</code></pre></details></article><article class="question" id="qQ06"><span class="tag">수업 핵심</span><h3>Q06 · 두 값 교환</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void swap(int *a, int *b) { int t = *a; *a = *b; *b = t; }
+int main(void) {
+int x=15,y=4; swap(&amp;x,&amp;y); printf(&quot;%d %d\n&quot;,x,y);
+return 0;
+}</code></pre><label for="aQ06">내 답과 풀이 근거</label><textarea id="aQ06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>4 15</code></pre><p>임시 t에 15를 보관한 뒤 x=4, y=15로 바꿉니다.</p></details></article><article class="question" id="qQ07"><span class="tag">선택 연습</span><h3>Q07 · 같은 주소로 교환</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void swap(int *a, int *b) { int t = *a; *a = *b; *b = t; }
+int main(void) {
+int x=13; swap(&amp;x,&amp;x); printf(&quot;%d\n&quot;,x);
+return 0;
+}</code></pre><label for="aQ07">내 답과 풀이 근거</label><textarea id="aQ07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>13</code></pre><p>두 매개변수가 같은 x를 가리켜도 임시변수를 쓰는 교환은 x를 13으로 유지합니다.</p></details></article><article class="question" id="qQ08"><span class="tag">수업 핵심</span><h3>Q08 · 배열 한 칸씩</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int a[]={7,14,21,28}; int *p=a+1;
+printf(&quot;%d %d\n&quot;,*p,*(p+2));
+return 0;
+}</code></pre><label for="aQ08">내 답과 풀이 근거</label><textarea id="aQ08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>14 28</code></pre><p>p는 a[1], p+2는 a[3]입니다.</p></details></article><article class="question" id="qQ09"><span class="tag">선택 연습</span><h3>Q09 · 포인터로 배열 수정</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int a[]={2,5,8}; int *p=a;
+*(p+1)=*p+10; printf(&quot;%d %d %d\n&quot;,a[0],a[1],a[2]);
+return 0;
+}</code></pre><label for="aQ09">내 답과 풀이 근거</label><textarea id="aQ09" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>2 12 8</code></pre><p>a[1]에 a[0]+10=12를 저장합니다.</p></details></article><article class="question" id="qQ10"><span class="tag">수업 핵심</span><h3>Q10 · 배열 전체 갱신</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void add(int *a,int n) { for(int i=0;i&lt;n;i++) a[i]+=i; }
+int main(void) {
+int a[]={4,4,4,4}; add(a,4);
+printf(&quot;%d %d %d %d\n&quot;,a[0],a[1],a[2],a[3]);
+return 0;
+}</code></pre><label for="aQ10">내 답과 풀이 근거</label><textarea id="aQ10" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>4 5 6 7</code></pre><p>함수는 같은 배열의 주소를 사용합니다. 인덱스 0,1,2,3을 각각 더합니다.</p></details></article><article class="question" id="qQ11"><span class="tag">선택 연습</span><h3>Q11 · 부분 배열 전달</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void twice(int *a,int n) { for(int i=0;i&lt;n;i++) a[i]*=2; }
+int main(void) {
+int a[]={3,5,7,9}; twice(a+1,2);
+printf(&quot;%d %d %d %d\n&quot;,a[0],a[1],a[2],a[3]);
+return 0;
+}</code></pre><label for="aQ11">내 답과 풀이 근거</label><textarea id="aQ11" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>3 10 14 9</code></pre><p>함수의 a[0]은 main의 a[1]입니다. 원본 인덱스 1과 2만 두 배가 됩니다.</p></details></article><article class="question" id="qQ12"><span class="tag">선택 연습</span><h3>Q12 · 포인터 차이</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int a[]={1,3,5,7,9}; int *p=a+4,*q=a+1;
+printf(&quot;%td\n&quot;,p-q);
+return 0;
+}</code></pre><label for="aQ12">내 답과 풀이 근거</label><textarea id="aQ12" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>3</code></pre><p>같은 배열의 인덱스 4와 1의 차이, 즉 3원소입니다. 바이트 수가 아닙니다.</p></details></article><article class="question" id="qQ13"><span class="tag">선택 연습</span><h3>Q13 · 끝 다음까지 합산</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int a[]={3,8,2}; int sum=0;
+for(int *p=a;p&lt;a+3;p++) sum+=*p;
+printf(&quot;%d\n&quot;,sum);
+return 0;
+}</code></pre><label for="aQ13">내 답과 풀이 근거</label><textarea id="aQ13" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>13</code></pre><p>p가 a+3이 되면 조건이 거짓이므로 끝 다음을 역참조하지 않습니다.</p></details></article><article class="question" id="qQ14"><span class="tag">수업 핵심</span><h3>Q14 · 문자열의 중간부터 출력</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+char s[]=&quot;PLANT&quot;; char *p=s+2;
+printf(&quot;%c %s\n&quot;,*p,p);
+return 0;
+}</code></pre><label for="aQ14">내 답과 풀이 근거</label><textarea id="aQ14" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>A ANT</code></pre><p>%c는 A 한 글자, %s는 A부터 널 문자 직전까지입니다.</p></details></article><article class="question" id="qQ15"><span class="tag">선택 연습</span><h3>Q15 · 문자열 배열 변경</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+char s[]=&quot;CART&quot;; char *p=s+1;
+*p=&#x27;O&#x27;; printf(&quot;%s\n&quot;,s);
+return 0;
+}</code></pre><label for="aQ15">내 답과 풀이 근거</label><textarea id="aQ15" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>CORT</code></pre><p>s[1]의 A를 O로 바꿉니다. s는 수정 가능한 배열입니다.</p></details></article><article class="question" id="qQ16"><span class="tag">선택 연습</span><h3>Q16 · 널 문자로 짧아지는 문자열</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+char s[]=&quot;GARDEN&quot;; s[3]=&#x27;\0&#x27;;
+printf(&quot;%s %c\n&quot;,s,s[4]);
+return 0;
+}</code></pre><label for="aQ16">내 답과 풀이 근거</label><textarea id="aQ16" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>GAR E</code></pre><p>%s는 새 널 문자가 있는 인덱스 3에서 멈춥니다. 뒤의 s[4]는 여전히 E입니다.</p></details></article><article class="question" id="qQ17"><span class="tag">선택 연습</span><h3>Q17 · 직접 길이 세기</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+int length(const char *p) { int n=0; while(*p!=&#x27;\0&#x27;) { n++; p++; } return n; }
+int main(void) {
+printf(&quot;%d\n&quot;,length(&quot;CABLE&quot;));
+return 0;
+}</code></pre><label for="aQ17">내 답과 풀이 근거</label><textarea id="aQ17" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>5</code></pre><p>널 문자를 제외한 C,A,B,L,E 다섯 글자만 셉니다.</p></details></article><article class="question" id="qQ18"><span class="tag">수업 핵심</span><h3>Q18 · 구조체 포인터 기초</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+struct Pair { int x; int y; };
+int main(void) {
+struct Pair v={6,11}; struct Pair *p=&amp;v;
+p-&gt;x+=p-&gt;y; printf(&quot;%d %d\n&quot;,v.x,v.y);
+return 0;
+}</code></pre><label for="aQ18">내 답과 풀이 근거</label><textarea id="aQ18" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>17 11</code></pre><p>p-&gt;x는 v.x, p-&gt;y는 v.y입니다. x만 6+11로 갱신됩니다.</p></details></article><article class="question" id="qQ19"><span class="tag">선택 연습</span><h3>Q19 · 구조체 배열의 다음 칸</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+struct Pair { int x; int y; };
+int main(void) {
+struct Pair a[]={{2,4},{6,8},{10,12}}; struct Pair *p=a+1;
+p++; printf(&quot;%d %d\n&quot;,p-&gt;x,(*p).y);
+return 0;
+}</code></pre><label for="aQ19">내 답과 풀이 근거</label><textarea id="aQ19" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>10 12</code></pre><p>p는 a[1]에서 a[2]로 구조체 하나만큼 이동합니다.</p></details></article><article class="question" id="qQ20"><span class="tag">선택 연습</span><h3>Q20 · 구조체 복사</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+struct Pair { int x; int y; };
+int main(void) {
+struct Pair a[]={{3,7},{8,12},{20,25}}; struct Pair *p=a;
+p[2]=p[0]; p[0].x=99; printf(&quot;%d %d\n&quot;,a[2].x,a[2].y);
+return 0;
+}</code></pre><label for="aQ20">내 답과 풀이 근거</label><textarea id="aQ20" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>3 7</code></pre><p>구조체 대입은 멤버 값을 복사합니다. 이후 a[0].x를 바꿔도 a[2].x는 3입니다.</p></details></article><article class="question" id="qQ21"><span class="tag">수업 핵심</span><h3>Q21 · 구조체를 함수에서 수정</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+struct Pair { int x; int y; };
+void move(struct Pair *p,int d) { p-&gt;x+=d; p-&gt;y-=d; }
+int main(void) {
+struct Pair a={10,18}; move(&amp;a,4); printf(&quot;%d %d\n&quot;,a.x,a.y);
+return 0;
+}</code></pre><label for="aQ21">내 답과 풀이 근거</label><textarea id="aQ21" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>14 14</code></pre><p>주소를 받았으므로 원본 x는 +4, 원본 y는 -4입니다.</p></details></article><article class="question" id="qQ22"><span class="tag">선택 연습</span><h3>Q22 · 값을 바꾸는 후위 증가</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int a[]={9,18}; int *p=a;
+int old=(*p)++; printf(&quot;%d %d %d\n&quot;,old,*p,a[1]);
+return 0;
+}</code></pre><label for="aQ22">내 답과 풀이 근거</label><textarea id="aQ22" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>9 10 18</code></pre><p>old에는 증가 전 값 9, a[0]에는 10이 저장됩니다. p 위치는 그대로입니다.</p></details></article><article class="question" id="qQ23"><span class="tag">수업 핵심</span><h3>Q23 · 포인터를 바꾸는 후위 증가</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int a[]={9,18}; int *p=a;
+int old=*p++; printf(&quot;%d %d %d\n&quot;,old,*p,a[0]);
+return 0;
+}</code></pre><label for="aQ23">내 답과 풀이 근거</label><textarea id="aQ23" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>9 18 9</code></pre><p>old는 첫 원소 9를 받고 p가 다음 원소로 이동합니다. 배열 값은 변하지 않습니다.</p></details></article><article class="question" id="qQ24"><span class="tag">선택 연습</span><h3>Q24 · 포인터를 먼저 이동</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+
+int main(void) {
+int a[]={4,10,16}; int *p=a;
+int v=*++p; printf(&quot;%d %td\n&quot;,v,p-a);
+return 0;
+}</code></pre><label for="aQ24">내 답과 풀이 근거</label><textarea id="aQ24" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>10 1</code></pre><p>먼저 p가 a[1]로 이동하므로 읽는 값은 10, 인덱스 차이는 1입니다.</p></details></article><article class="question" id="qQ25"><span class="tag">선택 연습</span><h3>Q25 · 함수의 포인터 재대입</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void f(int *p,int *q) { p=q; *p=55; }
+int main(void) {
+int a=8,b=20; int *p=&amp;a; f(p,&amp;b);
+printf(&quot;%d %d %d\n&quot;,a,b,*p);
+return 0;
+}</code></pre><label for="aQ25">내 답과 풀이 근거</label><textarea id="aQ25" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>8 55 8</code></pre><p>함수의 p만 b를 가리키도록 바뀝니다. main의 p는 여전히 a를 가리킵니다.</p></details></article><article class="question" id="qQ26"><span class="tag">수업 핵심</span><h3>Q26 · 이웃 교환 한 차례</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void swap(int *a, int *b) { int t = *a; *a = *b; *b = t; }
+int main(void) {
+int a[]={5,1,4,2};
+for(int i=0;i&lt;3;i++) if(a[i]&gt;a[i+1]) swap(a+i,a+i+1);
+printf(&quot;%d %d %d %d\n&quot;,a[0],a[1],a[2],a[3]);
+return 0;
+}</code></pre><label for="aQ26">내 답과 풀이 근거</label><textarea id="aQ26" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>1 4 2 5</code></pre><p>5가 1,4,2와 차례로 교환되어 끝으로 갑니다. 한 차례만으로 전체가 정렬되지는 않습니다.</p></details></article><article class="question" id="qQ27"><span class="tag">선택 연습</span><h3>Q27 · 함수의 합계와 원본 변경</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+int sum_raise(int *a,int n) { int s=0; for(int i=0;i&lt;n;i++) { s+=a[i]; a[i]++; } return s; }
+int main(void) {
+int a[]={2,6,10}; int s=sum_raise(a,3);
+printf(&quot;%d %d %d %d\n&quot;,s,a[0],a[1],a[2]);
+return 0;
+}</code></pre><label for="aQ27">내 답과 풀이 근거</label><textarea id="aQ27" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>18 3 7 11</code></pre><p>더한 뒤 증가시키므로 합은 원래 값의 합 18이고 원본은 각각 1 증가합니다.</p></details></article><article class="question" id="qQ28"><span class="tag">선택 연습</span><h3>Q28 · NULL을 먼저 검사</h3><p>출력 결과를 쓰고 포인터 대상과 값 변화를 설명하세요.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+int read_value(const int *p) { if(p==NULL) return -1; return *p; }
+int main(void) {
+int n=24; int a=read_value(NULL); int b=read_value(&amp;n);
+printf(&quot;%d %d\n&quot;,a,b);
+return 0;
+}</code></pre><label for="aQ28">내 답과 풀이 근거</label><textarea id="aQ28" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>-1 24</code></pre><p>NULL은 먼저 걸러 -1을 반환합니다. n의 유효한 주소만 역참조합니다.</p></details></article><article class="question" id="qQ29"><span class="tag">수업 핵심</span><h3>Q29 · 빈칸으로 최댓값 완성</h3><p>n≥1일 때 for 안의 if(____ &gt; m) m = ____; 두 빈칸을 인덱스 연산자 없이 채우고 결과를 쓰세요.</p><pre class=""><code>int max_value(const int *a,int n) {
+ int m=a[0];
+ for(int i=1;i&lt;n;i++)
+  if(____ &gt; m) m=____;
+ return m;
+}
+// main: int a[]={-7,3,11,2}; max_value(a,4);</code></pre><label for="aQ29">내 답과 풀이 근거</label><textarea id="aQ29" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>11</code></pre><p>a+i가 i번 원소의 주소이므로 *(a+i)가 그 값입니다. 최댓값 11을 반환합니다.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+int max_value(const int *a,int n) { int m=a[0]; for(int i=1;i&lt;n;i++) if(*(a+i)&gt;m) m=*(a+i); return m; }
+int main(void) {
+int a[]={-7,3,11,2}; printf(&quot;%d\n&quot;,max_value(a,4));
+return 0;
+}</code></pre></details></article><article class="question" id="qQ30"><span class="tag">수업 핵심</span><h3>Q30 · 범위 오류 고치기</h3><p>함수의 반복 조건이 i&lt;=n이었다면 무엇이 잘못되었나요? 수정 조건과 수정 후 합을 쓰세요. 아래 코드는 수정본입니다.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+int sum(const int *a,int n) { int s=0; for(int i=0;i&lt;n;i++) s+=a[i]; return s; }
+int main(void) {
+int a[]={4,7,10}; printf(&quot;%d\n&quot;,sum(a,3));
+return 0;
+}</code></pre><label for="aQ30">내 답과 풀이 근거</label><textarea id="aQ30" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>21</code></pre><p>i&lt;=n은 a[n]을 읽어 범위를 넘습니다. i&lt;n으로 고치면 4+7+10=21입니다.</p></details></article><h2>5. 직접 만드는 응용 과제 6개</h2><p>요구사항 → 입출력 예 → 알고리즘을 먼저 적고 구현하세요. S01은 수업에서 20분 동안 나눠 진행합니다. 나머지는 선택 보강이며, 과제별 권장 시간은 15~25분입니다. 각 과제에 완성 코드와 경계 조건을 제공합니다.</p><article class="question" id="qS01"><span class="tag">수업 핵심</span><h3>S01 · 점수 보정기</h3><p>배열의 각 점수에 5를 더하되 100을 넘으면 100으로 만드세요. void adjust(int *a,int n)을 작성합니다. 점수는 0~100, n은 0 이상이고 실제 배열 길이를 넘지 않습니다.</p><div class="note">입력 [67,98,40,100] → [72,100,45,100]. 빈 범위 n=0이면 변경하지 않습니다.</div><label for="aS01">내 답과 풀이 근거</label><textarea id="aS01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 각 원소에 5를 더한 뒤 100과 비교해 제한합니다. 포인터로 원본을 직접 갱신합니다.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void adjust(int *a,int n) { for(int i=0;i&lt;n;i++) { a[i]+=5; if(a[i]&gt;100) a[i]=100; } }
+int main(void) {
+int a[]={67,98,40,100}; adjust(a,4); adjust(a,0);
+printf(&quot;%d %d %d %d\n&quot;,a[0],a[1],a[2],a[3]);
+return 0;
+}</code></pre><pre class="answer-output"><code>72 100 45 100</code></pre><p><b>경계 조건 확인</b> · [0]→[5], [95]→[100], [96]→[100], n=0에서 불변을 확인하세요.</p></details></article><article class="question" id="qS02"><span class="tag">선택 연습</span><h3>S02 · 배열 뒤집기</h3><p>void reverse(int *a,int n)을 작성해 추가 배열 없이 순서를 뒤집으세요. n≥0입니다.</p><div class="note">[2,5,8,11,14] → [14,11,8,5,2]. 짝수 길이도 처리합니다.</div><label for="aS02">내 답과 풀이 근거</label><textarea id="aS02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 왼쪽 l=0과 오른쪽 r=n-1을 두고 l&lt;r인 동안 교환한 뒤 서로 접근합니다.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void swap(int *a, int *b) { int t = *a; *a = *b; *b = t; }
+void reverse(int *a,int n) { int l=0,r=n-1; while(l&lt;r) { swap(a+l,a+r); l++; r--; } }
+int main(void) {
+int a[]={2,5,8,11,14}; reverse(a,5);
+for(int i=0;i&lt;5;i++) printf(&quot;%d%c&quot;,a[i],i==4?&#x27;\n&#x27;:&#x27; &#x27;);
+return 0;
+}</code></pre><pre class="answer-output"><code>14 11 8 5 2</code></pre><p><b>경계 조건 확인</b> · 길이 0·1은 교환 없음, [1,2,3,4]는 [4,3,2,1]입니다. 두 번 뒤집으면 원본입니다.</p></details></article><article class="question" id="qS03"><span class="tag">선택 연습</span><h3>S03 · 최솟값과 최댓값 함께 반환</h3><p>int range(const int *a,int n,int *lo,int *hi)를 작성하세요. n≤0이면 0을 반환하고 출력 칸을 건드리지 않습니다. n&gt;0이면 두 결과를 써 주고 1을 반환합니다. a·lo·hi는 각 용도에 유효한 공간이며 서로 겹치지 않는다고 가정합니다.</p><div class="note">[12,-3,8,19] → 반환 1, lo=-3, hi=19.</div><label for="aS03">내 답과 풀이 근거</label><textarea id="aS03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 첫 값을 두 기준으로 정한 뒤 남은 원소마다 비교합니다. 정수 반환값은 성공 여부, 포인터 두 개는 계산 결과를 전달합니다.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+int range(const int *a,int n,int *lo,int *hi) {
+ if(n&lt;=0) return 0;
+ *lo=a[0]; *hi=a[0];
+ for(int i=1;i&lt;n;i++) { if(a[i]&lt;*lo) *lo=a[i]; if(a[i]&gt;*hi) *hi=a[i]; }
+ return 1;
+}
+int main(void) {
+int a[]={12,-3,8,19}; int lo=0,hi=0;
+int ok=range(a,4,&amp;lo,&amp;hi); printf(&quot;%d %d %d\n&quot;,ok,lo,hi);
+return 0;
+}</code></pre><pre class="answer-output"><code>1 -3 19</code></pre><p><b>경계 조건 확인</b> · [-5]는 lo=hi=-5입니다. 빈 범위에서는 기존 lo·hi가 유지되어야 합니다.</p></details></article><article class="question" id="qS04"><span class="tag">선택 연습</span><h3>S04 · 문자 등장 횟수</h3><p>int count_char(const char *s,char target)을 작성하세요. 널 종료된 유효한 문자열을 입력받고 원본을 바꾸지 않습니다.</p><div class="note">"BANANA", 'A' → 3. 빈 문자열 → 0.</div><label for="aS04">내 답과 풀이 근거</label><textarea id="aS04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 현재 문자가 널이 아니면 목표와 비교해 세고 주소를 한 칸 옮깁니다.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+int count_char(const char *s,char target) { int n=0; while(*s!=&#x27;\0&#x27;) { if(*s==target) n++; s++; } return n; }
+int main(void) {
+printf(&quot;%d %d\n&quot;,count_char(&quot;BANANA&quot;,&#x27;A&#x27;),count_char(&quot;&quot;,&#x27;A&#x27;));
+return 0;
+}</code></pre><pre class="answer-output"><code>3 0</code></pre><p><b>경계 조건 확인</b> · 목표가 없는 &quot;BEE&quot;, &#x27;A&#x27;는 0, &quot;AAAA&quot;, &#x27;A&#x27;는 4입니다. 널 문자는 세지 않습니다.</p></details></article><article class="question" id="qS05"><span class="tag">선택 연습</span><h3>S05 · 재고 출고 처리</h3><p>struct Item { int code; int stock; };와 int ship(struct Item *p,int qty)를 만드세요. qty&gt;0이고 재고가 충분할 때만 차감 후 1, 그 외에는 0을 반환하세요. p는 유효한 주소입니다.</p><div class="note">재고 12, 출고 5 → 성공·잔여 7. 이어 출고 9 → 실패·잔여 7.</div><label for="aS05">내 답과 풀이 근거</label><textarea id="aS05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 먼저 잘못된 수량과 부족 재고를 검사합니다. 통과한 경우에만 p-&gt;stock을 수정합니다.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+struct Item { int code; int stock; };
+int ship(struct Item *p,int qty) { if(qty&lt;=0 || p-&gt;stock&lt;qty) return 0; p-&gt;stock-=qty; return 1; }
+int main(void) {
+struct Item item={210,12}; int r1=ship(&amp;item,5); int r2=ship(&amp;item,9);
+printf(&quot;%d %d %d\n&quot;,r1,r2,item.stock);
+return 0;
+}</code></pre><pre class="answer-output"><code>1 0 7</code></pre><p><b>경계 조건 확인</b> · 수량 0·음수는 실패, 정확히 남은 재고만큼 출고하면 성공하고 재고가 0입니다.</p></details></article><article class="question" id="qS06"><span class="tag">선택 연습</span><h3>S06 · 포인터 교환으로 선택 정렬</h3><p>void sort(int *a,int n)을 작성하세요. 매 회전 남은 구간의 최솟값 위치를 찾고 맨 앞으로 옮겨 오름차순 정렬합니다. n≥0입니다.</p><div class="note">[13,4,9,1] → [1,4,9,13].</div><label for="aS06">내 답과 풀이 근거</label><textarea id="aS06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 바깥 i는 확정 위치, 안쪽 j는 후보 탐색입니다. 최솟값 인덱스 m을 찾아 swap(a+i,a+m)을 호출합니다.</p><pre class=""><code>#include &lt;stdio.h&gt;
+#include &lt;stddef.h&gt;
+void swap(int *a, int *b) { int t = *a; *a = *b; *b = t; }
+void sort(int *a,int n) {
+ for(int i=0;i&lt;n-1;i++) {
+  int m=i;
+  for(int j=i+1;j&lt;n;j++) if(a[j]&lt;a[m]) m=j;
+  if(m!=i) swap(a+i,a+m);
+ }
+}
+int main(void) {
+int a[]={13,4,9,1}; sort(a,4);
+printf(&quot;%d %d %d %d\n&quot;,a[0],a[1],a[2],a[3]);
+return 0;
+}</code></pre><pre class="answer-output"><code>1 4 9 13</code></pre><p><b>경계 조건 확인</b> · 이미 정렬된 배열, 중복 [3,1,3], n=0·1을 확인하세요. 최솟값 위치를 찾는 중에는 교환하지 않습니다.</p></details></article><h2>6. 종료 확인과 오답 정리</h2><p>① p와 *p의 차이를 한 문장으로 쓰세요. ② 포인터 매개변수도 값 전달인 이유를 설명하세요. ③ p+1은 무엇을 기준으로 움직이나요? ④ 문자열의 %s 출력은 어디에서 끝나나요? ⑤ p->x를 다른 표기로 쓰세요.</p><details><summary>정답과 해설</summary><p>① p는 주소, *p는 그 주소의 대상입니다. ② 주소의 값이 복사되며 원본 주소를 통해 대상에 접근합니다. ③ 포인터가 가리키는 자료형 원소 하나 기준입니다. ④ 널 문자 직전입니다. ⑤ (*p).x입니다.</p></details><table><thead><tr><th>문제 번호</th><th>내 답 → 확인한 답</th><th>틀린 원인</th><th>조건을 바꾼 결과</th></tr></thead><tbody><tr><td>직접 기록</td><td>출력과 대상 인덱스를 함께 기록</td><td>주소/값 혼동, 범위, 호출별 포인터 구별</td><td>입력이나 시작 위치를 한 가지 변경</td></tr></tbody></table><footer>07일차 · 코딩 120분 + 이론 60분. 각 파일은 인터넷 없이 독립 실행됩니다. 해설은 열어 둔 상태로 인쇄하세요. 시험 모드에서는 해설이 인쇄되지 않습니다. 자동 저장은 브라우저와 파일 위치에 따라 제한될 수 있습니다.</footer></main><script>
+document.querySelector('#open').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=true);
+document.querySelector('#close').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=false);
+document.querySelector('#print').onclick=()=>window.print();
+// 저장 기능 없이도 문제·해설은 동작한다. 로컬 파일 저장 제한 시 상태만 알린다.
+let status=document.querySelector('#status');
+document.querySelectorAll('textarea').forEach((x,i)=>{let k=document.title+':'+i;try{x.value=localStorage.getItem(k)||''}catch(err){status.textContent='브라우저 저장이 제한되어 답안이 자동 저장되지 않습니다.'}x.addEventListener('input',()=>{try{localStorage.setItem(k,x.value);status.textContent='이 브라우저에 답안 자동 저장됨'}catch(err){status.textContent='자동 저장 불가: 답안을 별도로 기록하세요.'}})});
+
+document.querySelector('#exam').onclick=()=>{document.body.classList.toggle('hide-answers');let hide=document.body.classList.contains('hide-answers');document.querySelectorAll('details').forEach(x=>{x.open=false;x.hidden=hide});document.querySelector('#open').disabled=hide;document.querySelector('#exam').textContent=hide?'해설 사용하기':'시험 모드';};
+</script></body></html>

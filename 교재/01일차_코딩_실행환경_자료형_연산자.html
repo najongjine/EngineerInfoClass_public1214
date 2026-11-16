@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="비전공자용 01일차 코딩 교재. 120분, 연습 20문항과 점검 5문항, 예제·해설·오답노트 포함." name="description"/>
+<title>01일차 코딩 | 실행 환경·자료형·연산자</title>
+<style>
+      :root {
+        --ink: #17243a;
+        --muted: #56647a;
+        --blue: #2056a3;
+        --paper: #fff;
+        --line: #dce3ee;
+        --bg: #eef2f7;
+        --green: #16726b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 72px;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+        line-height: 1.85;
+        font-size: 16px;
+      }
+      a {
+        color: var(--blue);
+      }
+      header {
+        background: #112b4c;
+        color: white;
+        padding: 52px max(24px, calc((100vw - 1040px) / 2));
+        border-bottom: 7px solid #51bfb0;
+      }
+      header .eyebrow {
+        letter-spacing: 0.16em;
+        color: #a7e0d9;
+        font-size: 13px;
+      }
+      h1 {
+        font-size: clamp(28px, 4vw, 44px);
+        line-height: 1.4;
+        margin: 14px 0;
+      }
+      header p {
+        color: #d2e0f3;
+        margin: 12px 0;
+      }
+      .meta {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .meta span {
+        border: 1px solid #53708f;
+        border-radius: 24px;
+        padding: 5px 14px;
+        font-size: 14px;
+      }
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #fffefa;
+        border-bottom: 1px solid var(--line);
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      button {
+        font: inherit;
+        font-size: 13px;
+        background: #f6f8fc;
+        color: var(--ink);
+        border: 1px solid #c8d3e2;
+        border-radius: 7px;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #e6effa;
+      }
+      #progress,
+      #save-status {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      main {
+        max-width: 1040px;
+        margin: 30px auto;
+        padding: 0 24px 50px;
+      }
+      nav,
+      section {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        margin: 24px 0;
+        padding: 30px 36px;
+        box-shadow: 0 4px 15px #1b355006;
+      }
+      nav ol {
+        columns: 2;
+        column-gap: 36px;
+        margin: 10px 0;
+      }
+      nav li {
+        break-inside: avoid;
+        padding: 3px 0;
+      }
+      h2 {
+        font-size: 25px;
+        line-height: 1.5;
+        margin: 0 0 22px;
+        border-bottom: 2px solid #dbe8f6;
+        padding-bottom: 14px;
+        letter-spacing: -0.03em;
+      }
+      h3 {
+        font-size: 19px;
+        line-height: 1.55;
+        margin: 30px 0 10px;
+      }
+      p {
+        margin: 12px 0;
+      }
+      li {
+        padding: 3px 0;
+      }
+      b,
+      strong {
+        font-weight: 700;
+      }
+      pre {
+        background: #13263d;
+        color: #edf6ff;
+        padding: 19px 22px;
+        border-radius: 9px;
+        overflow-x: auto;
+        line-height: 1.75;
+        font-size: 14px;
+        tab-size: 4;
+        white-space: pre;
+      }
+      code {
+        font-family: Consolas, "D2Coding", monospace;
+      }
+      p code,
+      li code,
+      td code,
+      aside code {
+        background: #eaf0f8;
+        color: #174273;
+        padding: 2px 5px;
+        border-radius: 4px;
+        overflow-wrap: anywhere;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin: 18px 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      th {
+        background: #eaf0f8;
+        text-align: left;
+        color: #23446e;
+      }
+      th,
+      td {
+        border: 1px solid #dce3ee;
+        padding: 11px 13px;
+        vertical-align: top;
+      }
+      tbody tr:nth-child(even) {
+        background: #fafbfd;
+      }
+      aside {
+        padding: 18px 22px;
+        border-left: 5px solid #3b8eab;
+        background: #eff8fc;
+        border-radius: 0 7px 7px 0;
+        margin: 22px 0;
+      }
+      aside p {
+        margin: 7px 0 0;
+      }
+      .warn {
+        background: #fff7e9;
+        border-color: #d69430;
+      }
+      .flow {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 12px;
+        padding: 22px;
+        background: #edf5f6;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .flow span {
+        font-size: 15px;
+      }
+      .question {
+        border: 1px solid #d5deea;
+        border-top: 4px solid #5b86ba;
+        border-radius: 9px;
+        padding: 23px;
+        margin: 26px 0;
+        break-inside: avoid;
+      }
+      .qhead {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .qhead h3 {
+        margin: 0;
+      }
+      .badge {
+        font-size: 12px;
+        border-radius: 20px;
+        background: #e7f1fa;
+        color: #23527c;
+        padding: 3px 11px;
+        white-space: nowrap;
+      }
+      .question label {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      textarea {
+        display: block;
+        width: 100%;
+        border: 1px solid #bccbdb;
+        border-radius: 6px;
+        padding: 12px;
+        font: inherit;
+        font-size: 14px;
+        line-height: 1.7;
+        resize: vertical;
+        margin: 8px 0 14px;
+        background: #fffef8;
+        color: var(--ink);
+      }
+      textarea:focus,
+      input:focus,
+      button:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid #7cb6ed;
+        outline-offset: 2px;
+      }
+      details {
+        margin: 12px 0;
+        background: #f0f6f6;
+        border-radius: 7px;
+        border: 1px solid #d5e6e5;
+      }
+      summary {
+        cursor: pointer;
+        padding: 12px 16px;
+        color: #155f5d;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .answer-body {
+        padding: 0 18px 15px;
+      }
+      .result {
+        white-space: pre-wrap;
+        background: #e2eeed;
+        color: #174941;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 12px 16px;
+        overflow-wrap: anywhere;
+      }
+      .check {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 15px;
+      }
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: #207e78;
+      }
+      .small {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .score {
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+        padding: 20px;
+        background: #edf3fa;
+        border-radius: 8px;
+      }
+      .score input {
+        width: 75px;
+        padding: 7px;
+        font: inherit;
+        border: 1px solid #bdc9d8;
+        border-radius: 5px;
+      }
+      .finish {
+        list-style: none;
+        padding: 0;
+      }
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        margin: 30px;
+      }
+      .print-mode {
+        font-size: 13px;
+      }
+      @media (max-width: 640px) {
+        body {
+          font-size: 15px;
+        }
+        main {
+          padding: 0 12px;
+        }
+        nav,
+        section {
+          padding: 23px 18px;
+          border-radius: 8px;
+        }
+        nav ol {
+          columns: 1;
+        }
+        h2 {
+          font-size: 22px;
+        }
+        h3 {
+          font-size: 18px;
+        }
+        .question {
+          padding: 17px;
+        }
+        .qhead {
+          align-items: flex-start;
+        }
+        pre {
+          padding: 14px;
+          font-size: 13px;
+        }
+        .flow {
+          gap: 6px;
+          padding: 14px 8px;
+        }
+        .flow span {
+          font-size: 12px;
+        }
+        .toolbar {
+          position: static;
+          padding: 10px;
+        }
+        th,
+        td {
+          min-width: 100px;
+          padding: 9px;
+        }
+        header {
+          padding: 34px 24px;
+        }
+      }
+      @page {
+        size: A4;
+        margin: 16mm 14mm;
+      }
+      @media print {
+        body {
+          background: white;
+          font-size: 10.5pt;
+          line-height: 1.65;
+          color: #000;
+        }
+        header {
+          background: white !important;
+          color: #000;
+          padding: 12px 0 20px;
+          border-bottom: 3px solid #333;
+        }
+        header p,
+        header .eyebrow {
+          color: #333;
+        }
+        .meta span {
+          border-color: #777;
+        }
+        .toolbar,
+        nav,
+        .check,
+        footer {
+          display: none !important;
+        }
+        main {
+          max-width: none;
+          margin: 0;
+          padding: 0;
+        }
+        section {
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+          padding: 18px 0;
+          margin: 0;
+          break-before: page;
+        }
+        section:first-of-type {
+          break-before: auto;
+        }
+        h2 {
+          font-size: 17pt;
+        }
+        h3 {
+          font-size: 12pt;
+        }
+        h2,
+        h3,
+        summary {
+          break-after: avoid;
+        }
+        pre {
+          background: #f0f0f0 !important;
+          color: #000 !important;
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
+          font-size: 9pt;
+          border: 1px solid #ccc;
+          padding: 12px;
+        }
+        .question {
+          padding: 12px;
+          margin: 18px 0;
+          break-inside: avoid;
+        }
+        .question h3 {
+          font-size: 11.5pt;
+        }
+        table {
+          font-size: 9pt;
+        }
+        .table-wrap {
+          overflow: visible;
+        }
+        th,
+        td {
+          padding: 7px;
+        }
+        tr,
+        aside {
+          break-inside: avoid;
+        }
+        thead {
+          display: table-header-group;
+        }
+        textarea {
+          min-height: 60px;
+          background: white;
+          border: 1px solid #999;
+          font-size: 9pt;
+        }
+        a {
+          color: #000;
+          text-decoration: none;
+        }
+        .flow {
+          background: #eee;
+        }
+        .result {
+          color: #000;
+          background: #f3f3f3;
+        }
+        body[data-print="student"] details.answer {
+          display: none;
+        }
+        body[data-print="teacher"] details.answer {
+          display: block;
+        }
+        .score input {
+          border: 0;
+        }
+        .badge {
+          border: 1px solid #aaa;
+          background: white;
+          color: #000;
+        }
+      }
+
+      h1,
+      h2,
+      h3 {
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+    </style>
+</head>
+<body>
+<header>
+<div class="eyebrow">정보처리기사 실기 · 8주 40일 과정</div>
+<h1>01일차 · 코딩용<br/>C 실행 환경·자료형·연산자</h1>
+<p>한 줄씩 값을 따라가고, 직접 실행하며 연산 규칙을 익힙니다.</p>
+<div class="meta"><span>코딩 120분</span><span>비전공자 입문</span><span>연습 20 + 점검 5</span></div>
+</header>
+<div aria-label="교재 도구" class="toolbar">
+<button id="close-answers">해설 모두 접기</button><button id="print-student">학생용 인쇄</button><button id="print-teacher">해설 포함 인쇄</button><button id="export">답안 파일 저장</button><button id="import">답안 불러오기</button><button id="reset">답안 초기화</button><input accept="application/json,.json" hidden="" id="import-file" type="file"/><span id="progress" role="status"></span><span id="save-status" role="status"></span>
+</div>
+<main><nav aria-label="목차"><h2>목차 · 코딩용</h2><p>이론 수업은 별도 이론설명·모의고사 HTML로 진행합니다.</p><ol><li><a href="#guide">01 · 코딩 120분 수업 지도</a></li><li><a href="#setup">02 · 기초 — 코드를 쓰면 어떻게 화면에 나타날까?</a></li><li><a href="#variables">03 · 기초 — 변수는 이름표가 붙은 저장 공간</a></li><li><a href="#types">04 · 기초에서 응용으로 — 자료형과 출력 형식</a></li><li><a href="#operators">05 · 응용 — 연산자를 실제 계산으로 이해하기</a></li><li><a href="#deep">06 · 심화 — 증감, 단락 평가, 잘못된 예측 피하기</a></li><li><a href="#trace">07 · 실습 도구 — 손 추적과 조건 변경</a></li><li><a href="#practice">08 · 연습 20문항 — 기초에서 심화까지</a></li><li><a href="#mock">09 · 당일 범위 점검 5문항</a></li><li><a href="#review">10 · 핵심 정리·오답노트·다음 수업</a></li></ol></nav><section id="guide"><h2>01 · 코딩 120분 수업 지도</h2><p>C 파일을 편집·컴파일·실행하고, 변수의 값과 산술·비교·논리·증감 연산의 결과를 한 줄씩 추적합니다.</p><p><b>코딩 1교시 60분 + 코딩 2교시 60분입니다. 이론 60분은 별도 이론용 교재로 진행하여 하루 총 180분을 유지합니다.</b></p><div class="table-wrap"><table><thead><tr><th>시간</th><th>활동</th><th>범위·결과물</th></tr></thead><tbody><tr><td>0~10분</td><td>과정 안내·환경 확인</td><td>02절: hello.c 저장·컴파일·실행</td></tr><tr><td>10~25분</td><td>기초 설명 15분</td><td>03~04절: 변수·대입·자료형·printf</td></tr><tr><td>25~60분</td><td>직접 작성·실행 35분</td><td>연습 01~08: 예상→작성→실행→조건 변경</td></tr><tr><td>60~80분</td><td>손 추적·설명 20분</td><td>05~07절: 연산자·형 변환·증감·단락 평가</td></tr><tr><td>80~105분</td><td>변형·실행 검증 25분</td><td>연습 09~20: 답과 추적 근거를 먼저 작성</td></tr><tr><td>105~120분</td><td>점검·오답 정리 15분</td><td>M01~M05: 8분 풀이+7분 채점·정리</td></tr></tbody></table></div><aside><strong>연습 20문항 + 당일 점검 5문항</strong><p>기초·응용·심화 설명과 예제를 읽고 답·근거를 먼저 적은 뒤 해설을 펼치세요. 연습 문항의 조건 변경은 빠른 학습자를 위한 추가 실습입니다. 원래 문제 번호는 오답 기록을 이어 쓸 수 있도록 유지했습니다.</p></aside><p>답안은 이 교재별로 현재 기기에 저장됩니다. 답안 파일 저장·불러오기와 학생용·해설 포함 인쇄를 사용할 수 있습니다. 기존 통합본의 답안 JSON도 불러올 수 있으며, 이 파일에 해당하는 문항만 반영합니다.</p></section><section id="setup">
+<h2>02 · 기초 — 코드를 쓰면 어떻게 화면에 나타날까?</h2>
+<p>
+          우리가 쓰는 C 코드는 컴퓨터가 바로 실행하는 명령과 다릅니다. <b>편집기</b>는 글을 쓰는 도구, <b>컴파일러</b>는 C 규칙을 검사하고
+          실행 가능한 코드로 바꾸는 도구, <b>터미널</b>은 실행 명령과 결과를 주고받는 창입니다. 편집기를 설치했다고 컴파일러가 자동으로
+          준비되는 것은 아닙니다.
+        </p>
+<div class="flow">
+<span>① 편집·저장<br/>hello.c</span><span>→</span><span>② 컴파일·링크<br/>hello.exe 생성</span><span>→</span><span>③ 실행<br/>화면 출력</span>
+</div>
+<p>
+          Windows PowerShell과 GCC가 준비된 환경을 기준으로 합니다. 경로 혼동을 줄이려면 실습 폴더에서 터미널을 여세요. 파일 확장자가 실제로
+          <code>.c</code>인지 확인합니다. 파일이 <code>hello.c.txt</code>라면 이름을 고칩니다.
+        </p>
+<pre><code>gcc --version
+gcc -std=c11 -Wall -Wextra hello.c -o hello.exe
+.\hello.exe</code></pre>
+<p>
+          첫 명령은 GCC가 있는지 확인합니다. 두 번째 명령은 파일을 검사하고 실행 파일을 만듭니다. <code>-std=c11</code>은 C11 기준,
+          <code>-Wall -Wextra</code>는 자주 놓치는 실수를 경고하도록 하는 옵션입니다. 세 번째 명령이 실행입니다. 다른 IDE를 쓰면 같은 코드를
+          콘솔용 C 프로젝트에 넣고 빌드·실행해도 됩니다.
+        </p>
+<pre><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    printf("Hello, C!\n");
+    return 0;
+}</code></pre>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>부분</th>
+<th>쉬운 뜻</th>
+<th>정확히 알아둘 점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#include &lt;stdio.h&gt;</td>
+<td>출력 도구 사용에 필요한 안내서 읽기</td>
+<td>표준 입출력 헤더의 선언 등을 포함합니다. printf의 실제 구현은 라이브러리와 연결됩니다.</td>
+</tr>
+<tr>
+<td>int main(void)</td>
+<td>프로그램의 출발 함수</td>
+<td>일반적인 콘솔 C 프로그램의 시작점입니다. void는 전달받는 인자가 없다는 뜻입니다.</td>
+</tr>
+<tr>
+<td>{ … }</td>
+<td>함수의 작업 범위</td>
+<td>중괄호로 시작과 끝을 묶습니다.</td>
+</tr>
+<tr>
+<td>printf("Hello, C!\n");</td>
+<td>문장을 화면에 표시</td>
+<td>큰따옴표 안이 출력 형식입니다. \n은 줄바꿈입니다.</td>
+</tr>
+<tr>
+<td>return 0;</td>
+<td>정상 종료를 알림</td>
+<td>운영체제에 종료 상태를 전달합니다. 화면에 0을 출력하지 않습니다.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>함께 실습: 첫 실행을 확인하는 네 단계</h3>
+<ol>
+<li>위 코드를 직접 입력해 <code>hello.c</code>로 저장합니다.</li>
+<li>컴파일 후 <code>Hello, C!</code>가 나오는지 확인합니다.</li>
+<li>문장을 <code>My first program</code>으로 바꿔 저장합니다.</li>
+<li><b>다시 컴파일한 뒤</b> 실행합니다. 소스만 바꾸고 옛 실행 파일을 실행하면 이전 결과가 나옵니다.</li>
+</ol>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>가능한 원인</th>
+<th>바로 해볼 일</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gcc를 찾을 수 없음</td>
+<td>GCC 미설치 또는 PATH 미설정</td>
+<td>강사가 준비한 C 환경으로 먼저 첫 실행. 본인 환경에서는 GCC 설치 위치·PATH 확인 후 터미널 다시 열기</td>
+</tr>
+<tr>
+<td>hello.c: No such file</td>
+<td>터미널이 다른 폴더에 있음</td>
+<td>Get-Location과 Get-ChildItem으로 현재 경로·파일 확인</td>
+</tr>
+<tr>
+<td>expected ; …</td>
+<td>세미콜론 누락 등 문법 오류</td>
+<td>오류가 가리키는 줄과 그 바로 윗줄 확인</td>
+</tr>
+<tr>
+<td>컴파일 실패 후 예전 결과가 나옴</td>
+<td>이전 실행 파일을 다시 실행</td>
+<td>컴파일 오류를 먼저 해결하고 새 빌드가 성공했을 때 실행</td>
+</tr>
+<tr>
+<td>한글이 깨짐</td>
+<td>소스·터미널 인코딩 불일치</td>
+<td>첫 실습은 영문 출력으로 진행하고, 편집기 저장 인코딩과 터미널 표시 환경을 맞추기</td>
+</tr>
+</tbody>
+</table>
+</div>
+<aside class="note">
+<strong>첫날 약속</strong>
+<p>
+            출력 결과가 예상과 다르면 마지막 줄만 보지 말고 <b>값이 마지막으로 바뀐 줄</b>을 찾습니다. 오류 메시지는 실패 판정이 아니라
+            수정할 위치를 알려주는 단서입니다.
+          </p>
+</aside>
+</section><section id="variables">
+<h2>03 · 기초 — 변수는 이름표가 붙은 저장 공간</h2>
+<p>
+          카페 주문 장부에 “잔 수 3”을 적는다고 생각해 봅시다. <code>cups</code>는 칸의 이름, <code>int</code>는 그 칸에 저장할 값의 종류,
+          <code>3</code>은 현재 내용입니다. 비유에서 출발하되, C에서 변수는 <b>자료형을 가진 객체를 이름으로 가리키는 것</b>으로 이해하면
+          됩니다.
+        </p>
+<pre><code>int cups = 3;
+int price = 2400;
+int total = cups * price;
+printf("%d\n", total);</code></pre>
+<p>
+          위처럼 <code>#include</code>와 <code>main</code>이 없는 짧은 코드는 앞 절의 <code>main</code> 중괄호 안,
+          <code>return 0;</code> 앞에 넣습니다. 뒤에 나오는 짧은 예제와 문제에도 같은 규칙을 적용합니다.
+        </p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>실행한 줄</th>
+<th>cups</th>
+<th>price</th>
+<th>total</th>
+<th>화면</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int cups = 3;</td>
+<td>3</td>
+<td>아직 선언 전</td>
+<td>아직 선언 전</td>
+<td>출력 없음</td>
+</tr>
+<tr>
+<td>int price = 2400;</td>
+<td>3</td>
+<td>2400</td>
+<td>아직 선언 전</td>
+<td>출력 없음</td>
+</tr>
+<tr>
+<td>int total = cups * price;</td>
+<td>3</td>
+<td>2400</td>
+<td>7200</td>
+<td>출력 없음</td>
+</tr>
+<tr>
+<td>printf(...);</td>
+<td>3</td>
+<td>2400</td>
+<td>7200</td>
+<td>7200 후 줄바꿈</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>대입은 계산 결과를 덮어쓰는 작업</h3>
+<pre><code>int stock = 12;
+int saved = stock;
+stock = stock - 4;
+printf("%d %d\n", stock, saved);</code></pre>
+<p>
+<code>stock = stock - 4;</code>는 오른쪽의 기존 값 12로 12−4를 계산한 뒤, 왼쪽 칸을 8로 덮어씁니다. <code>saved</code>에는 앞서
+          12라는 값을 복사해 두었습니다. stock이 바뀌어도 saved가 저절로 바뀌지 않습니다. <code>saved = stock;</code>을 다시 실행해야 새
+          값이 복사됩니다.
+        </p>
+<aside class="warn">
+<strong>자주 하는 오해</strong>
+<p>
+<code>=</code>는 대입이고 <code>==</code>는 같은지 비교입니다. <code>stock == 8;</code>은 비교 결과를 만들 뿐 stock에 8을
+            저장하지 않습니다. 지역 변수는 선언만 하면 0으로 초기화되지 않습니다. <code>int x;</code> 다음에 값을 넣지 않고 읽는 코드는
+            오늘의 출력 예측 대상이 아닙니다. <code>int x = 0;</code>처럼 처음 값을 정하세요.
+          </p>
+</aside>
+<h3>출력은 사진, 변수는 현재 상태</h3>
+<pre><code>int n = 4;
+printf("%d ", n);
+n = 9;
+printf("%d\n", n);</code></pre>
+<p>
+          첫 출력 4는 이미 화면에 남았습니다. 뒤에서 n을 9로 바꿔도 첫 출력이 9로 수정되지는 않습니다. 추적표에는 <b>변수 상태</b>와
+          <b>출력 누적</b> 칸을 따로 둡니다.
+        </p>
+</section><section id="types">
+<h2>04 · 기초에서 응용으로 — 자료형과 출력 형식</h2>
+<p>
+          자료형은 “값을 어떤 종류로 저장하고 계산할 것인가”를 정합니다. 사람 수는 보통 정수, 평균 점수는 소수 부분이 필요한 실수, 좌석 등급
+          한 글자는 문자로 표현합니다. 아래 크기는 흔한 환경의 예이며 언어가 모든 환경에서 똑같은 바이트 수를 보장하는 것은 아닙니다.
+        </p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>자료형</th>
+<th>사용 예</th>
+<th>printf 형식</th>
+<th>주의</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>int people = 7;</td>
+<td>%d</td>
+<td>정수. 흔히 4바이트이지만 고정 규칙은 아님</td>
+</tr>
+<tr>
+<td>double</td>
+<td>double average = 82.5;</td>
+<td>%f 또는 %.1f</td>
+<td>실수. %.1f는 소수점 아래 한 자리 표시</td>
+</tr>
+<tr>
+<td>float</td>
+<td>float rate = 1.5f;</td>
+<td>%f</td>
+<td>출력 호출 시 double로 승격됨. 오늘 실수 계산은 double 중심</td>
+</tr>
+<tr>
+<td>char</td>
+<td>char grade = 'B';</td>
+<td>%c</td>
+<td>작은따옴표의 문자 하나. char의 크기는 C에서 1바이트</td>
+</tr>
+<tr>
+<td>문자열 리터럴</td>
+<td>"Welcome"</td>
+<td>%s</td>
+<td>큰따옴표로 묶은 문자열. 배열·널 문자는 03일차에 학습</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre><code>int count = 6;
+double weight = 2.75;
+char grade = 'B';
+printf("count=%d weight=%.2f grade=%c\n", count, weight, grade);</code></pre>
+<p>
+          첫 번째 %d는 count, 두 번째 %.2f는 weight, 세 번째 %c는 grade에 대응합니다. 쉼표로 나열한 값의 순서와 형식을 맞춥니다.
+          <code>%.2f</code>는 출력 모양을 정할 뿐 변수에 저장된 값을 고치지 않습니다. 형식이 맞지 않는 printf는 임의의 출력 답을 붙이지 말고
+          코드를 수정해야 합니다.
+        </p>
+<h3>서식 기호 작은 사전</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>표현</th>
+<th>화면에서의 의미</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\n</td>
+<td>다음 줄로 이동</td>
+<td>printf("A\nB"); → A와 B가 다른 줄</td>
+</tr>
+<tr>
+<td>공백 한 칸</td>
+<td>그대로 한 칸 출력</td>
+<td>printf("%d %d", 2, 5); → 2 5</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>퍼센트 기호 하나</td>
+<td>printf("80%%"); → 80%</td>
+</tr>
+<tr>
+<td>%d / %f / %c / %s</td>
+<td>정수 / 실수 / 문자 / 문자열</td>
+<td>값의 자료형과 형식을 대응시킨다</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>응용 예제: 주문서 한 줄 만들기</h3>
+<pre><code>int cups = 4;
+int unit = 2300;
+double coupon = 500.0;
+double pay = cups * unit - coupon;
+printf("cups=%d pay=%.2f\n", cups, pay);</code></pre>
+<p>
+          4×2300은 정수 9200입니다. 여기에 double인 coupon을 빼면서 실수 계산을 합니다. 손으로 먼저 8700을 구한 후 출력 형식 때문에
+          <code>8700.00</code>이 되는 것을 확인하세요. 원 단위 정산 정책은 별도 요구사항으로 정해야 합니다. 여기서는 자료형 연습을 위해
+          실수를 사용합니다.
+        </p>
+<aside class="note">
+<strong>문자와 문자열</strong>
+<p>
+<code>'B'</code>와 <code>"B"</code>는 다릅니다. 전자는 문자 하나를 나타내는 정수 문자 상수이고, 후자는 문자열 리터럴입니다.
+            <code>char grade = 'B';</code>와 <code>printf("%c", grade);</code>를 한 쌍으로 익히세요.
+          </p>
+</aside>
+</section><section id="operators">
+<h2>05 · 응용 — 연산자를 실제 계산으로 이해하기</h2>
+<h3>① 산술 연산과 정수 나눗셈</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>연산자</th>
+<th>의미</th>
+<th>예와 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ − *</td>
+<td>더하기·빼기·곱하기</td>
+<td>7 + 2 → 9 / 7 - 2 → 5 / 7 * 2 → 14</td>
+</tr>
+<tr>
+<td>/</td>
+<td>나눗셈</td>
+<td>7 / 2 → 3, 7.0 / 2 → 3.5</td>
+</tr>
+<tr>
+<td>%</td>
+<td>정수 나머지</td>
+<td>7 % 2 → 1. 정수 피연산자에 사용</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+          쿠키 17개를 5명에게 똑같이 나눠 주면 한 사람당 3개, 남는 쿠키는 2개입니다. <code>17 / 5</code>가 몫 3, <code>17 % 5</code>가
+          나머지 2입니다. <b>두 피연산자가 정수이면 /의 결과도 정수</b>입니다. double 변수에 나중에 담아도 버려진 소수 부분은 복원되지
+          않습니다.
+        </p>
+<pre><code>int cookies = 17, people = 5;
+double a = cookies / people;
+double b = (double)cookies / people;
+double c = (double)(cookies / people);
+printf("%.1f %.1f %.1f\n", a, b, c);</code></pre>
+<ol>
+<li>a: 정수끼리 17/5를 먼저 계산해 3. 이를 double에 저장하여 3.0.</li>
+<li>b: cookies의 값을 double로 변환한 뒤 17.0/5.0을 계산해 3.4.</li>
+<li>c: 괄호 속 정수 나눗셈을 먼저 끝내 3. 그 뒤 double로 변환하므로 3.0.</li>
+</ol>
+<aside class="note">
+<strong>형 변환의 위치</strong>
+<p>
+<code>(double)cookies</code>는 이 식에서 사용할 값을 변환합니다. cookies 변수 자체의 선언을 double로 바꾸지 않습니다. 정확한
+            평균을 구하려면 <code>(double)sum / count</code>처럼 나누기 전에 변환합니다.
+          </p>
+</aside>
+<h3>② 비교·논리 연산: 질문의 답은 0 또는 1</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>종류</th>
+<th>뜻</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt; &gt;= &lt; &lt;=</td>
+<td>크다·이상·작다·이하</td>
+<td>age &gt;= 18</td>
+</tr>
+<tr>
+<td>== !=</td>
+<td>같다·다르다</td>
+<td>stock == 0, stock != 0</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>그리고: 둘 다 참</td>
+<td>age &gt;= 18 &amp;&amp; ticket == 1</td>
+</tr>
+<tr>
+<td>||</td>
+<td>또는: 하나 이상 참</td>
+<td>member == 1 || coupon == 1</td>
+</tr>
+<tr>
+<td>!</td>
+<td>참·거짓 뒤집기</td>
+<td>!0 → 1, !7 → 0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+          C에서 조건으로 쓰이는 0은 거짓, 0이 아닌 값은 참으로 취급합니다. 비교·논리 연산의 결과는 int 값 0 또는 1입니다. 예를 들어
+          <code>2 &amp;&amp; 8</code>의 결과는 8이 아니라 1입니다. <code>&amp;</code>와 <code>|</code>는 다른 비트 연산자이며 오늘은
+          사용하지 않습니다.
+        </p>
+<pre><code>int age = 18, ticket = 0;
+printf("%d %d %d\n", age &gt;= 18, age &gt;= 18 &amp;&amp; ticket == 1, !(ticket == 1));</code></pre>
+<p>
+          age≥18은 참이지만 표가 없으므로 입장 조건 전체는 거짓입니다. 표가 있다는 명제(ticket==1)는 거짓이므로 이를 뒤집은 결과는 참입니다.
+          <code>18 &lt;= age &lt;= 65</code>처럼 수학식으로 연결하지 말고 <code>age &gt;= 18 &amp;&amp; age &lt;= 65</code>로 작성합니다.
+        </p>
+<h3>③ 연산 우선순위: 계산 순서와 평가 순서를 구별하기</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>높은 쪽부터</th>
+<th>대표 연산자</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>묶기</td>
+<td>( )</td>
+<td>(2 + 3) * 4 → 20</td>
+</tr>
+<tr>
+<td>단항</td>
+<td>! / (double) / 전위 ++ --</td>
+<td>!0 → 1</td>
+</tr>
+<tr>
+<td>곱셈 계열</td>
+<td>* / %</td>
+<td>2 + 3 * 4 → 14</td>
+</tr>
+<tr>
+<td>덧셈 계열</td>
+<td>+ -</td>
+<td>9 - 4 + 2 → 7</td>
+</tr>
+<tr>
+<td>대소 비교</td>
+<td>&lt; &lt;= &gt; &gt;=</td>
+<td>3 + 2 &gt; 4 → 1</td>
+</tr>
+<tr>
+<td>같음 비교</td>
+<td>== !=</td>
+<td>5 &gt; 4 == 1 → 1</td>
+</tr>
+<tr>
+<td>논리 AND 다음 OR</td>
+<td>&amp;&amp; 다음 ||</td>
+<td>1 || 0 &amp;&amp; 0 → 1</td>
+</tr>
+<tr>
+<td>대입</td>
+<td>= += -= 등</td>
+<td>x = 2 + 3 → x에 5 저장</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+          이 표는 오늘 사용하는 연산자만 추린 것입니다. 우선순위는 식이 어떻게 묶이는지를 정하며, 모든 하위 식이 왼쪽부터 실행된다는 뜻은
+          아닙니다. 특히 함수 인자 사이의 평가 순서를 임의로 가정하지 않습니다. 헷갈리는 논리식은 괄호를 넣어 의도를 드러내세요.
+        </p>
+<h3>④ 복합 대입: 현재 값을 갱신하는 약속</h3>
+<pre><code>int points = 10;
+points += 7;
+points *= 2;
+points -= 4;
+printf("%d\n", points);</code></pre>
+<p>
+          오늘의 단순 변수에서 <code>points += 7;</code>은 <code>points = points + 7;</code>과 같은 갱신입니다. 10→17→34→30을 한 줄씩
+          적습니다.
+        </p>
+</section><section id="deep">
+<h2>06 · 심화 — 증감, 단락 평가, 잘못된 예측 피하기</h2>
+<h3>전위·후위 증감은 “식의 값”과 “저장된 값”을 나누어 보기</h3>
+<p>
+<code>++</code>는 1 증가, <code>--</code>는 1 감소입니다. 전위 <code>++n</code>은 갱신한 값을 식의 값으로 사용하고, 후위
+          <code>n++</code>는 갱신 전 값을 식의 값으로 사용합니다. 후위를 “프로그램 맨 마지막에 증가”라고 외우면 틀립니다. 아래처럼 문장이
+          끝나면 증가 결과가 다음 문장에 반영됩니다.
+        </p>
+<pre><code>int n = 6;
+int a = n++;
+int b = ++n;
+printf("%d %d %d\n", n, a, b);</code></pre>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>문장</th>
+<th>식에서 전달한 값</th>
+<th>문장 완료 후 n</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int n = 6;</td>
+<td>6</td>
+<td>6</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>int a = n++;</td>
+<td>기존 n인 6</td>
+<td>7</td>
+<td>6</td>
+<td>—</td>
+</tr>
+<tr>
+<td>int b = ++n;</td>
+<td>증가한 n인 8</td>
+<td>8</td>
+<td>6</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+          단독 문장인 <code>n++;</code>와 <code>++n;</code>는 둘 다 다음 문장에 도달했을 때 n이 1 증가해 있습니다. 차이는 식의 값을 다른
+          곳에서 사용할 때 드러납니다.
+        </p>
+<h3>단락 평가: 뒤쪽 질문을 하지 않는 경우</h3>
+<p>
+<code>A &amp;&amp; B</code>는 A가 거짓이면 B를 평가하지 않습니다. <code>A || B</code>는 A가 참이면 B를 평가하지 않습니다. 앞쪽
+          결과만으로 전체 답이 결정되기 때문입니다. “회원이거나 초대권이 있는가?”에서 이미 회원이라면 초대권을 확인하지 않아도 참인 것과
+          같습니다.
+        </p>
+<pre><code>int x = 0;
+int a = (0 &amp;&amp; ++x);
+int b = (1 || ++x);
+int c = (1 &amp;&amp; ++x);
+printf("%d %d %d %d\n", x, a, b, c);</code></pre>
+<p>
+          a에서는 앞이 0이므로 ++x를 건너뜁니다. b에서는 앞이 1이므로 또 건너뜁니다. c에서만 ++x가 실행되어 x=1입니다. a·b·c에는 각각
+          0·1·1이 저장됩니다. 읽기 쉬운 실무 코드는 부수 효과를 조건식에 과하게 섞지 않습니다. 시험 추적에서는
+          <b>오른쪽 식이 실제로 평가됐는지</b>를 기록하세요.
+        </p>
+<h3>0으로 나누기와 음수 나눗셈</h3>
+<pre><code>int d = 0;
+int safe = (d != 0 &amp;&amp; 12 / d &gt; 2);
+printf("%d\n", safe);</code></pre>
+<p>
+          d!=0이 거짓이라 12/d를 계산하지 않으므로 이 예는 안전합니다. 조건 순서를 바꿔 <code>12 / d &gt; 2 &amp;&amp; d != 0</code>로 쓰면
+          앞에서 이미 0으로 나누게 됩니다. 정수의 0 나눗셈은 정해진 출력이 없습니다. C11 정수 나눗셈은 0 쪽으로 소수 부분을 버립니다.
+          <code>-17 / 5</code>는 -3, <code>-17 % 5</code>는 -2이며, <code>a == (a/b)*b + a%b</code> 관계로 확인할 수 있습니다. 오늘의 금액
+          예제에는 음수를 쓰지 않습니다.
+        </p>
+<aside class="warn">
+<strong>출력값을 정할 수 없는 코드를 숫자 문제로 만들지 않기</strong>
+<p>
+<code>i++ + ++i</code> 또는 <code>printf("%d %d", i++, i++);</code>처럼 같은 변수를 순서가 정해지지 않은 채 여러 번 변경하는
+            식은 C에서 미정의 동작을 일으킵니다. “왼쪽부터 하면 이 숫자”라는 답을 붙이지 않습니다. <b>변경을 각 문장으로 분리</b>하세요.
+            초기화하지 않은 지역 변수 읽기, 맞지 않는 printf 형식, 범위 초과 계산도 피합니다. 이 교재의 실행형 문제는 이런 출력 불확정
+            코드를 사용하지 않습니다.
+          </p>
+</aside>
+<h3>심화 종합 예제: 관람권 묶음 계산</h3>
+<pre><code>int visitors = 23;
+int bundle = 4;
+int groups = visitors / bundle;
+int remain = visitors % bundle;
+double average = (double)visitors / bundle;
+int exact = (remain == 0);
+printf("%d %d %.2f %d\n", groups, remain, average, exact);</code></pre>
+<p>
+          완성 묶음은 5개, 남는 사람은 3명입니다. average는 23/4의 실수 계산값이며 <b>필요한 묶음 수를 올림한 값이 아닙니다</b>. “모두를
+          넣을 수 있는 최소 묶음 수”가 요구되면 계산 목적이 달라집니다. 다음 연습에서 양의 정수에 한정한 올림 공식을 직접 다룹니다.
+        </p>
+</section><section id="trace">
+<h2>07 · 실습 도구 — 손 추적과 조건 변경</h2>
+<p>
+          코드를 실행해서 답만 확인하면 이유를 놓치기 쉽습니다. 먼저 오른쪽 식을 계산하고, 왼쪽 변수에 저장한 뒤, 출력이 있는 줄에서만 화면
+          칸을 채우세요.
+        </p>
+<pre><code>int a = 9, b = 4;
+int c = a / b;
+a += b;
+b = a % 5;
+printf("%d %d %d\n", a, b, c);</code></pre>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>완료한 줄</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>출력 누적</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>선언·초기화</td>
+<td>9</td>
+<td>4</td>
+<td>—</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>c = a / b</td>
+<td>9</td>
+<td>4</td>
+<td>2</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>a += b</td>
+<td>13</td>
+<td>4</td>
+<td>2</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>b = a % 5</td>
+<td>13</td>
+<td>3</td>
+<td>2</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>printf</td>
+<td>13</td>
+<td>3</td>
+<td>2</td>
+<td>13 3 2 후 줄바꿈</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+          조건 변경: a의 초기값만 10으로 바꾸면 c=2, a=14, b=4라서 <code>14 4 2</code>입니다. 한 번에 하나만 바꾸면 어떤 규칙 때문에 결과가
+          바뀌었는지 설명하기 쉽습니다.
+        </p>
+<ol>
+<li><b>예상:</b> 출력 문자열을 공백·줄바꿈까지 종이에 쓴다.</li>
+<li><b>추적:</b> 값을 덮어쓰는 줄마다 표를 갱신한다.</li>
+<li><b>실행:</b> 컴파일 성공 후 결과와 비교한다.</li>
+<li><b>설명:</b> 최초로 예상과 달라진 줄을 찾는다.</li>
+<li><b>변형:</b> 초기값·연산자·형 변환 위치 중 하나만 바꿔 재추적한다.</li>
+</ol>
+<label class="scratch-label">내 추적표·실행 기록<textarea data-save="trace" placeholder="줄 | 계산한 식 | a | b | 출력 누적" rows="6"></textarea>
+</label>
+<aside class="note">
+<strong>디버깅용 출력</strong>
+<p>
+            중간값을 확인하려면 <code>printf("a=%d b=%d\n", a, b);</code>를 문장 사이에 넣습니다. 최종 답안을 작성할 때는 원래 코드에 있던
+            출력만 답합니다. 추가한 디버깅 출력을 원래 정답에 섞지 마세요.
+          </p>
+</aside>
+</section><section id="practice">
+<h2>08 · 연습 20문항 — 기초에서 심화까지</h2><p>01~08은 코딩 1교시, 09~20은 코딩 2교시에 풉니다. main이 생략된 코드는 02절의 틀 안에 넣습니다. 오류 수정·빈칸형은 고친 뒤 컴파일하세요. 출력의 공백·자릿수·줄바꿈을 확인합니다.</p>
+<article class="question" id="q01">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>01 · 출발점과 종료</h3>
+</div>
+<p>다음 빈칸을 완성하세요. 일반적인 콘솔 C 프로그램의 시작 함수와 정상 종료 상태입니다.</p>
+<pre><code>#include &lt;stdio.h&gt;
+int ①(void) {
+    printf("Ready\n");
+    return ②;
+}</code></pre>
+<label>내 답과 근거<textarea aria-label="01번 답안" data-save="q01" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">① main ② 0</pre>
+<p><b>풀이:</b> main은 출발 함수입니다. return 0은 종료 상태를 전달하며 화면에 0을 찍지 않습니다.</p>
+<p><b>조건 변경:</b> 출력 문장을 두 줄로 늘려 보세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="done01" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q02">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>02 · 선언과 초기화</h3>
+</div>
+<p>사람 수 people은 5, 평균 average는 72.5, 등급 grade는 C로 선언·초기화하세요. 세 문장을 작성하세요.</p>
+<label>내 답과 근거<textarea aria-label="02번 답안" data-save="q02" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+int people = 5;
+double average = 72.5;
+char grade = 'C';</pre>
+<p><b>풀이:</b> 사람 수는 정수, 평균은 실수, 한 글자 등급은 char가 적절합니다. C는 작은따옴표로 감쌉니다.</p>
+<p><b>조건 변경:</b> 각 값을 %d, %.1f, %c로 출력하세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="done02" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q03">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>03 · 저장한 값은 따라 바뀔까?</h3>
+</div>
+<p>출력값을 쓰고 y가 그 값인 이유를 설명하세요.</p>
+<pre><code>int x = 9;
+int y = x;
+x = 14;
+printf("%d %d\n", x, y);</code></pre>
+<label>내 답과 근거<textarea aria-label="03번 답안" data-save="q03" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+14 9
+</pre>
+<p><b>풀이:</b> y=x 실행 때 9를 복사합니다. 이후 x만 14로 덮어쓰므로 y는 9입니다.</p>
+<p><b>조건 변경:</b> x=14 뒤에 y=x를 한 줄 추가하면? → 14 14</p>
+</div>
+</details>
+<label class="check"><input data-save="done03" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q04">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>04 · 출력 모양 맞추기</h3>
+</div>
+<p>세 빈칸에 형식 지정자를 넣으세요. 목표 출력은 8 2.50 D입니다.</p>
+<pre><code>int count = 8;
+double length = 2.5;
+char grade = 'D';
+printf("① ② ③\n", count, length, grade);</code></pre>
+<label>내 답과 근거<textarea aria-label="04번 답안" data-save="q04" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">① %d ② %.2f ③ %c</pre>
+<p><b>풀이:</b> %.2f는 소수점 아래 두 자리를 표시합니다. 출력 값의 순서를 바꾸지 않습니다.</p>
+<p><b>조건 변경:</b> %.2f를 %.1f로 바꾸면 2.5로 표시됩니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done04" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q05">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>05 · 화면에 남는 값</h3>
+</div>
+<p>출력 문자열을 쓰세요. 공백도 표현하세요.</p>
+<pre><code>int n = 3;
+printf("%d ", n);
+n += 7;
+printf("%d\n", n);</code></pre>
+<label>내 답과 근거<textarea aria-label="05번 답안" data-save="q05" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+3 10
+</pre>
+<p><b>풀이:</b> 첫 printf가 3과 공백을 출력합니다. 그 뒤 값 갱신은 이미 출력된 3을 고치지 않습니다.</p>
+<p><b>조건 변경:</b> 첫 printf를 삭제하면 10만 출력됩니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done05" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q06">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>06 · 구매 금액 작성</h3>
+</div>
+<p>단가 1800원인 음료 3잔의 금액을 int total에 저장하고 정수로 출력하는 코드를 작성하세요. unit과 cups 변수를 사용하세요.</p>
+<label>내 답과 근거<textarea aria-label="06번 답안" data-save="q06" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+int unit = 1800;
+int cups = 3;
+int total = unit * cups;
+printf("%d\n", total);</pre>
+<p><b>풀이:</b> 곱한 결과를 total에 저장해야 이후에도 사용할 수 있습니다. 예상 출력은 5400입니다.</p>
+<p><b>조건 변경:</b> cups만 5로 바꾸면 9000입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done06" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q07">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>07 · 덮어쓰기 추적</h3>
+</div>
+<p>각 갱신 뒤의 balance와 최종 출력을 쓰세요.</p>
+<pre><code>int balance = 10000;
+balance += 3000;
+balance -= 4500;
+balance += 500;
+printf("%d\n", balance);</code></pre>
+<label>내 답과 근거<textarea aria-label="07번 답안" data-save="q07" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+13000 → 8500 → 9000, 출력 9000
+</pre>
+<p><b>풀이:</b> 10000에 3000을 더하고 4500을 뺀 뒤 500을 더합니다. 매번 직전 값으로 계산합니다.</p>
+<p><b>조건 변경:</b> -=4500을 -=4000으로 바꾸면 9500입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done07" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q08">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>08 · 실행 오류 고치기</h3>
+</div>
+<p>다음 코드의 문법 오류 두 곳을 고치고, C11 기준의 완전한 프로그램으로 작성하세요.</p>
+<pre><code>#include &lt;stdio.h&gt;
+int main(void) {
+    printf("Start\n")
+    return 0;</code></pre>
+<label>내 답과 근거<textarea aria-label="08번 답안" data-save="q08" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+#include &lt;stdio.h&gt;
+int main(void) {
+    printf("Start\n");
+    return 0;
+}</pre>
+<p><b>풀이:</b> printf 문장 끝의 ;와 마지막 닫는 }가 빠졌습니다. 컴파일 성공을 확인한 다음 실행합니다.</p>
+<p><b>조건 변경:</b> Start를 Begin으로 바꾼 뒤 재컴파일하세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="done08" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q09">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>09 · 몫과 나머지</h3>
+</div>
+<p>출력값과 각 숫자의 뜻을 쓰세요.</p>
+<pre><code>int items = 29, size = 6;
+printf("%d %d\n", items / size, items % size);</code></pre>
+<label>내 답과 근거<textarea aria-label="09번 답안" data-save="q09" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+4 5
+</pre>
+<p><b>풀이:</b> 29개를 6개씩 완성 묶음으로 만들면 4묶음, 남는 것은 5개입니다.</p>
+<p><b>조건 변경:</b> items=30이면 5 0입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done09" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q10">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>10 · 늦은 형 변환</h3>
+</div>
+<p>출력 두 개를 쓰고 왜 다른지 설명하세요.</p>
+<pre><code>int sum = 23, count = 5;
+double a = (double)(sum / count);
+double b = (double)sum / count;
+printf("%.1f %.1f\n", a, b);</code></pre>
+<label>내 답과 근거<textarea aria-label="10번 답안" data-save="q10" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+4.0 4.6
+</pre>
+<p>
+<b>풀이:</b> 첫 식은 23/5를 정수 4로 계산한 후 double로 바꿉니다. 두 번째 식은 먼저 23을 double로 바꾸어 실수 나눗셈을
+                합니다.
+              </p>
+<p><b>조건 변경:</b> 첫 식을 (double)sum / count로 고치세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="done10" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q11">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>11 · 평균 버그 수정</h3>
+</div>
+<p>현재 출력은 2.00입니다. 실수 평균 2.75를 계산하도록 value의 초기화 식만 고치세요.</p>
+<pre><code>int total = 11, count = 4;
+double value = total / count;
+printf("%.2f\n", value);</code></pre>
+<label>내 답과 근거<textarea aria-label="11번 답안" data-save="q11" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">double value = (double)total / count;</pre>
+<p><b>풀이:</b> 11/4는 정수 2입니다. 저장 변수만 double이어도 늦습니다. total/(double)count도 가능합니다.</p>
+<p><b>조건 변경:</b> 11.0/4처럼 피연산자 하나를 실수로 써도 됩니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done11" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q12">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>12 · 우선순위 두 가지</h3>
+</div>
+<p>두 출력값을 쓰고 괄호가 바꾼 부분을 설명하세요.</p>
+<pre><code>printf("%d %d\n", 2 + 6 * 4, (2 + 6) * 7);</code></pre>
+<label>내 답과 근거<textarea aria-label="12번 답안" data-save="q12" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+26 56
+</pre>
+<p><b>풀이:</b> 2+6*4=2+24=26. (2+6)*7=8*7=56입니다.</p>
+<p><b>조건 변경:</b> 첫 식을 (2+6)*4로 바꾸면 32입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done12" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q13">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>13 · 경계값 포함하기</h3>
+</div>
+<p>adult와 same에 들어가는 값과 최종 출력을 쓰세요.</p>
+<pre><code>int age = 20;
+int adult = age &gt;= 20;
+int same = age == 21;
+printf("%d %d\n", adult, same);</code></pre>
+<label>내 답과 근거<textarea aria-label="13번 답안" data-save="q13" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+adult=1, same=0, 출력 1 0
+</pre>
+<p><b>풀이:</b> &gt;=는 기준값을 포함하므로 20&gt;=20은 참입니다. ==는 비교 결과를 만들 뿐 age를 바꾸지 않습니다.</p>
+<p><b>조건 변경:</b> age가 19면 0 0, 21이면 1 1입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done13" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q14">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>14 · 둘 다 필요한 조건</h3>
+</div>
+<p>세 출력값을 쓰세요.</p>
+<pre><code>int member = 1, invite = 0;
+printf("%d %d %d\n", member &amp;&amp; invite, member || invite, !invite);</code></pre>
+<label>내 답과 근거<textarea aria-label="14번 답안" data-save="q14" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+0 1 1
+</pre>
+<p><b>풀이:</b> 회원과 초대권이 모두 있는 것은 거짓, 둘 중 하나가 있는 것은 참, 초대권이 없다는 것도 참입니다.</p>
+<p><b>조건 변경:</b> invite를 1로 바꾸면 1 1 0입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done14" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q15">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>15 · 범위 조건 만들기</h3>
+</div>
+<p>score가 60 이상 90 이하인지 검사하여 0 또는 1을 출력하세요. score는 75로 초기화합니다. 조건식에 &amp;&amp;를 사용하세요.</p>
+<label>내 답과 근거<textarea aria-label="15번 답안" data-save="q15" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+int score = 75;
+printf("%d\n", score &gt;= 60 &amp;&amp; score &lt;= 90);</pre>
+<p><b>풀이:</b> 양쪽 범위를 각각 비교한 다음 &amp;&amp;로 연결합니다. 60&lt;=score&lt;=90은 올바른 범위 검사가 아닙니다.</p>
+<p><b>조건 변경:</b> 59→0, 60→1, 90→1, 91→0으로 경계를 확인하세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="done15" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q16">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>16 · 전위와 후위</h3>
+</div>
+<p>문장별 n·a·b를 추적한 후 출력값을 쓰세요.</p>
+<pre><code>int n = 5;
+int a = n++;
+int b = ++n;
+printf("%d %d %d\n", n, a, b);</code></pre>
+<label>내 답과 근거<textarea aria-label="16번 답안" data-save="q16" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+7 5 7
+</pre>
+<p><b>풀이:</b> a=n++에서 a=5, n=6입니다. b=++n에서 n=7이 된 뒤 b=7입니다.</p>
+<p><b>조건 변경:</b> 첫 증감을 ++n으로 바꾸면 7 6 7입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done16" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q17">
+<div class="qhead">
+<span class="badge">심화</span>
+<h3>17 · 평가하지 않은 증가</h3>
+</div>
+<p>출력값을 쓰고 ++x가 실행된 횟수를 쓰세요.</p>
+<pre><code>int x = 2;
+int a = (1 || ++x);
+int b = (1 &amp;&amp; ++x);
+printf("%d %d %d\n", x, a, b);</code></pre>
+<label>내 답과 근거<textarea aria-label="17번 답안" data-save="q17" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+3 1 1
+ / ++x는 1회 실행</pre>
+<p>
+<b>풀이:</b> a는 왼쪽이 참이므로 뒤를 생략합니다. b는 왼쪽이 참이라 뒤도 평가하여 x가 2→3이 됩니다. 논리 결과는 1입니다.
+              </p>
+<p><b>조건 변경:</b> 첫 조건의 1을 0으로 바꾸면 ++x가 두 번 실행되어 4 1 1입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done17" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q18">
+<div class="qhead">
+<span class="badge">심화</span>
+<h3>18 · 필요한 상자 수</h3>
+</div>
+<p>
+            물품은 양의 정수 items개이며 상자 하나에 capacity개를 담습니다. 마지막 상자가 덜 차도 하나가 필요합니다. 빈칸에 capacity를
+            사용한 식을 넣으세요. items=19, capacity=6일 때 상자 4개가 나와야 합니다.
+          </p>
+<pre><code>int items = 19, capacity = 6;
+int boxes = /* 빈칸 */;
+printf("%d\n", boxes);</code></pre>
+<label>내 답과 근거<textarea aria-label="18번 답안" data-save="q18" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">(items + capacity - 1) / capacity</pre>
+<p>
+<b>풀이:</b> 19+6-1=24이고 24/6=4입니다. 오늘은 값이 작은 양의 정수이고 덧셈이 int 범위를 넘지 않는다고 가정합니다. 단순
+                items/capacity는 완성된 상자만 셉니다.
+              </p>
+<p><b>조건 변경:</b> items=18이면 3, 20이면 4인지 확인하세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="done18" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q19">
+<div class="qhead">
+<span class="badge">심화</span>
+<h3>19 · 안전한 나눗셈 조건</h3>
+</div>
+<p>출력값을 쓰고 15/d가 실제 계산되는지 설명하세요.</p>
+<pre><code>int d = 0;
+int result = (d != 0 &amp;&amp; 15 / d &gt; 2);
+printf("%d\n", result);</code></pre>
+<label>내 답과 근거<textarea aria-label="19번 답안" data-save="q19" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+0
+ / 15/d는 계산되지 않음</pre>
+<p><b>풀이:</b> d!=0이 거짓이므로 &amp;&amp; 오른쪽은 평가하지 않습니다. 따라서 0으로 나누지 않습니다.</p>
+<p><b>조건 변경:</b> d=3이면 15/3&gt;2가 참이라 1입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done19" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="q20">
+<div class="qhead">
+<span class="badge">심화</span>
+<h3>20 · 종합 추적표</h3>
+</div>
+<p>a·b·c의 변화를 적고 출력값을 쓰세요.</p>
+<pre><code>int a = 14, b = 4;
+double c = (double)a / b;
+a = a % b + 6;
+b = (a &gt;= 8 &amp;&amp; c &gt; 3.0) + 2;
+printf("%d %d %.2f\n", a, b, c);</code></pre>
+<label>내 답과 근거<textarea aria-label="20번 답안" data-save="q20" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+8 3 3.50
+</pre>
+<p>
+<b>풀이:</b> c는 (double)14/4=3.5입니다. a를 14%4+6=8로 바꿉니다. b는 (a&gt;=8)&amp;&amp;(c&gt;3.0)=1에 2를 더해 3입니다. c는 바뀌지
+                않습니다.
+              </p>
+<p><b>조건 변경:</b> a의 초기값만 15로 바꾸면 9 3 3.75입니다.</p>
+</div>
+</details>
+<label class="check"><input data-save="done20" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+</section><section id="mock">
+<h2>09 · 당일 범위 점검 5문항</h2><p>M01~M05를 8분 동안 실행·검색·해설 없이 풉니다. 남은 7분에 채점하고 틀린 코드를 실행·추적하여 원인을 기록합니다. 주간 모의고사는 05일차에 진행합니다.</p><aside><strong>10점 채점 기준</strong><p>총 10점, 각 2점. M01~M04는 출력 전체가 맞으면 2점, 일부만 맞고 추적 근거가 맞으면 1점. M05는 정확한 형 변환 답 2점, 의미는 맞지만 표현이 불완전하면 1점. 단순 공백·줄바꿈 표기 누락은 일관된 기준으로 최대 1점 감점합니다. 8점 이상을 권장하며 공식 시험 기준과는 별개입니다.</p></aside>
+<article class="question" id="qM01">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>M01 · 값 복사와 갱신</h3>
+</div>
+<p>출력값을 쓰세요.</p>
+<pre><code>int a = 12;
+int b = a;
+a /= 2;
+printf("%d %d\n", a, b);</code></pre>
+<label>내 답과 근거<textarea aria-label="M01번 답안" data-save="qM01" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+6 12
+</pre>
+<p><b>풀이:</b> b에 12를 복사한 다음 a만 6으로 바뀝니다.</p>
+<p class="small">채점: 문항당 2점. 아래 채점 기준을 참고하세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="doneM01" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="qM02">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>M02 · 몫·나머지·실수</h3>
+</div>
+<p>출력값을 쓰세요.</p>
+<pre><code>int n = 17, d = 5;
+printf("%d %d %.1f\n", n / d, n % d, (double)n / d);</code></pre>
+<label>내 답과 근거<textarea aria-label="M02번 답안" data-save="qM02" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+3 2 3.4
+</pre>
+<p><b>풀이:</b> 17/5=3, 17%5=2, 17.0/5=3.4입니다.</p>
+<p class="small">채점: 문항당 2점. 아래 채점 기준을 참고하세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="doneM02" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="qM03">
+<div class="qhead">
+<span class="badge">기초</span>
+<h3>M03 · 후위 감소와 전위 증가</h3>
+</div>
+<p>출력값을 쓰세요.</p>
+<pre><code>int n = 9;
+int a = n--;
+int b = ++n;
+printf("%d %d %d\n", n, a, b);</code></pre>
+<label>내 답과 근거<textarea aria-label="M03번 답안" data-save="qM03" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+9 9 9
+</pre>
+<p><b>풀이:</b> a=n--에서 a=9, n=8. b=++n에서 n=9, b=9입니다.</p>
+<p class="small">채점: 문항당 2점. 아래 채점 기준을 참고하세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="doneM03" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="qM04">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>M04 · 논리와 단락</h3>
+</div>
+<p>출력값을 쓰세요.</p>
+<pre><code>int x = 0;
+int a = (0 &amp;&amp; ++x);
+int b = (0 || ++x);
+printf("%d %d %d\n", x, a, b);</code></pre>
+<label>내 답과 근거<textarea aria-label="M04번 답안" data-save="qM04" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">
+1 0 1
+</pre>
+<p><b>풀이:</b> a의 오른쪽은 건너뜁니다. b의 왼쪽 0은 거짓이므로 오른쪽 ++x를 평가해 x=1, b=1입니다.</p>
+<p class="small">채점: 문항당 2점. 아래 채점 기준을 참고하세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="doneM04" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<article class="question" id="qM05">
+<div class="qhead">
+<span class="badge">응용</span>
+<h3>M05 · 빈칸으로 평균 고치기</h3>
+</div>
+<p>목표 출력 6.25가 나오도록 sum 바로 앞의 빈칸을 채우세요.</p>
+<pre><code>int sum = 25, count = 4;
+double avg = /* 빈칸 */ sum / count;
+printf("%.2f\n", avg);</code></pre>
+<label>내 답과 근거<textarea aria-label="M05번 답안" data-save="qM05" rows="3"></textarea></label>
+<details class="answer">
+<summary>정답·해설 보기</summary>
+<div class="answer-body">
+<b>정답 / 예시 답안</b>
+<pre class="result">(double)</pre>
+<p><b>풀이:</b> 25/4를 실수 계산해야 합니다. avg만 double로 선언하는 것으로는 부족합니다.</p>
+<p class="small">채점: 문항당 2점. 아래 채점 기준을 참고하세요.</p>
+</div>
+</details>
+<label class="check"><input data-save="doneM05" type="checkbox"/> 풀이·해설 확인 완료</label>
+</article>
+<div class="score"><label>코딩 점수 /10 <input data-save="score-code" max="10" min="0" type="number"/></label></div><p>8점 미만이면 정수 나눗셈·형 변환(연습 10·11), 증감·단락 평가(16·17·19)를 다시 풉니다. 정답을 가리고 새 숫자·상황으로 다시 설명하세요.</p></section><section id="review">
+<h2>10 · 핵심 정리·오답노트·다음 수업</h2>
+<h3>오늘 남길 핵심 용어 다섯 개</h3>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>용어</th>
+<th>내 말로 설명하는 예</th>
+</tr>
+</thead>
+<tbody><tr><td>변수</td><td>이름으로 가리키는 저장 공간. 대입하면 현재 값이 갱신된다.</td></tr><tr><td>자료형</td><td>값의 종류와 표현·연산 규칙을 정한다.</td></tr><tr><td>형 변환</td><td>계산에 사용하는 값의 자료형을 바꾼다. 변환 위치가 중요하다.</td></tr><tr><td>증감 연산</td><td>전위·후위에서 식의 값과 갱신 후 변수 값을 구별한다.</td></tr><tr><td>단락 평가</td><td>&amp;&amp;와 ||에서 왼쪽 결과로 전체가 결정되면 오른쪽을 평가하지 않는다.</td></tr></tbody>
+</table>
+</div>
+<label>핵심 용어를 내 문장으로 바꾸기<textarea data-save="keywords" rows="5"></textarea></label>
+<h3>오답노트 한 장</h3>
+<label>틀린 문제·예상·수정·변형 결과<textarea data-save="wrong" placeholder="문제 번호:
+내가 쓴 답 / 확인한 답:
+원인: 문법 / 흐름 / 계산 / 개념 / 답안 표현
+최초로 값이 달라진 줄 또는 핵심 근거:
+조건을 하나 바꾼 문제와 예상 결과:
+실행·교재 확인 결과:
+02일차 시작 때 재풀이 결과:" rows="8"></textarea>
+</label>
+<ul class="finish">
+<li>□ 소스를 바꾼 뒤 다시 컴파일해야 함을 설명한다.</li>
+<li>□ =와 ==를 구별하고 변수·화면을 따로 추적한다.</li>
+<li>□ 17/5, 17%5, (double)17/5의 차이를 말한다.</li>
+<li>□ n++와 ++n의 식 값과 갱신 후 값을 나누어 적는다.</li>
+</ul>
+<p>02일차에는 비교·논리식으로 if·else·switch의 실행 흐름을 고르고, 반복문으로 같은 계산을 여러 번 수행합니다. 틀린 문제 하나의 초기값을 바꿔 다음 수업 시작 때 다시 풀어 보세요.</p>
+</section></main>
+<footer>01일차 · 코딩용 · 예상 → 손 추적 → 실행 → 조건 변경 → 오답 교정</footer>
+<script>
+      (() => {
+        const prefix = "ipe-day01-code-v1:";
+        const fields = [...document.querySelectorAll("[data-save]")];
+        const status = document.getElementById("save-status");
+        const progress = document.getElementById("progress");
+        function read(el) {
+          return el.type === "checkbox" ? el.checked : el.value;
+        }
+        function assign(el, val) {
+          if (el.type === "checkbox") el.checked = val === true;
+          else el.value = typeof val === "string" ? val : String(val ?? "");
+        }
+        function update() {
+          const done = fields.filter((e) => e.type === "checkbox" && e.checked).length;
+          progress.textContent = `확인 완료 ${done} / 25`;
+        }
+        let available = true;
+        try {
+          for (const el of fields) {
+            const raw = localStorage.getItem(prefix + el.dataset.save);
+            if (raw !== null) assign(el, JSON.parse(raw));
+          }
+          status.textContent = "이 기기에 자동 저장";
+        } catch (e) {
+          available = false;
+          status.textContent = "자동 저장 불가 · 답안 파일로 보관하세요";
+        }
+        fields.forEach((el) =>
+          el.addEventListener("input", () => {
+            try {
+              if (available) localStorage.setItem(prefix + el.dataset.save, JSON.stringify(read(el)));
+            } catch (e) {
+              available = false;
+              status.textContent = "자동 저장 불가 · 답안 파일로 보관하세요";
+            }
+            update();
+          }),
+        );
+        update();
+        document.getElementById("close-answers").onclick = () =>
+          document.querySelectorAll("details.answer").forEach((d) => (d.open = false));
+        document.getElementById("export").onclick = () => {
+          const data = {
+            교재: "정보처리기사 01일차 코딩",
+            저장시각: new Date().toISOString(),
+            답안: Object.fromEntries(fields.map((e) => [e.dataset.save, read(e)])),
+          };
+          const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json;charset=utf-8" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "01일차_코딩_내답안.json";
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        };
+        document.getElementById("import").onclick = () => document.getElementById("import-file").click();
+        document.getElementById("import-file").onchange = async (ev) => {
+          const file = ev.target.files[0];
+          if (!file) return;
+          try {
+            const data = JSON.parse(await file.text());
+            if (!["정보처리기사 01일차", "정보처리기사 01일차 코딩"].includes(data.교재) || !data.답안 || typeof data.답안 !== "object") throw Error("형식");
+            if (!confirm("현재 화면의 답안을 파일의 내용으로 바꿀까요?")) return;
+            for (const el of fields) {
+              if (Object.hasOwn(data.답안, el.dataset.save)) {
+                assign(el, data.답안[el.dataset.save]);
+                try {
+                  localStorage.setItem(prefix + el.dataset.save, JSON.stringify(read(el)));
+                } catch (e) {
+                  available = false;
+                }
+              }
+            }
+            update();
+            status.textContent = available ? "답안 불러옴 · 이 기기에 저장됨" : "답안 불러옴 · 자동 저장 불가";
+          } catch (e) {
+            alert("01일차 답안 JSON 파일인지 확인하세요.");
+          } finally {
+            ev.target.value = "";
+          }
+        };
+        function printMode(mode) {
+          const ds = [...document.querySelectorAll("details.answer")];
+          const prior = ds.map((d) => d.open);
+          const restore = () => {
+            ds.forEach((d, i) => (d.open = prior[i]));
+            document.body.removeAttribute("data-print");
+            window.removeEventListener("afterprint", restore);
+          };
+          document.body.dataset.print = mode;
+          ds.forEach((d) => (d.open = mode === "teacher"));
+          window.addEventListener("afterprint", restore);
+          window.print();
+        }
+        document.getElementById("print-student").onclick = () => printMode("student");
+        document.getElementById("print-teacher").onclick = () => printMode("teacher");
+        document.getElementById("reset").onclick = () => {
+          if (!confirm("이 기기의 01일차 코딩용 답안·메모·점수를 모두 지울까요? 먼저 답안 파일을 저장할 수 있습니다.")) return;
+          for (const el of fields) {
+            assign(el, el.type === "checkbox" ? false : "");
+            try {
+              localStorage.removeItem(prefix + el.dataset.save);
+            } catch (e) {}
+          }
+          update();
+          status.textContent = available ? "답안 초기화됨" : "답안 초기화됨 · 자동 저장 불가";
+        };
+      })();
+    </script>
+</body>
+</html>

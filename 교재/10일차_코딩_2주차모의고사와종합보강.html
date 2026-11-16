@@ -1,0 +1,387 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>10일차 코딩 · 2주차 모의고사와 보강</title><style>
+:root{--ink:#202c42;--muted:#526279;--accent:#166774;--paper:#fff;--line:#d9e2ea}
+*{box-sizing:border-box}body{margin:0;background:#edf2f6;color:var(--ink);font:17px/1.85 'Malgun Gothic',sans-serif}main{max-width:1080px;margin:auto;background:white;padding:44px 54px}header{border-top:9px solid var(--accent);padding:26px 0}h1{font-size:34px;line-height:1.4}h2{margin-top:50px;border-bottom:2px solid var(--accent);padding-bottom:10px;font-size:26px}h3{font-size:21px;margin:18px 0 8px}p{margin:12px 0}.lead{font-size:19px}.tag{display:inline-block;background:#e3f2ef;color:#145a54;padding:2px 11px;border-radius:8px;font-size:14px}.note{border-left:5px solid var(--accent);background:#eff7f8;padding:16px 22px;margin:20px 0}.warn{border-color:#b87522;background:#fff7e9}table{border-collapse:collapse;width:100%;margin:18px 0}td,th{border:1px solid var(--line);padding:10px 13px;text-align:left;vertical-align:top}th{background:#eaf1f5}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#142333;color:#e9f3f6;padding:20px;border-radius:9px;font:15px/1.7 Consolas,'Malgun Gothic',monospace}code{font-family:Consolas,monospace}.question{border:1px solid var(--line);border-radius:12px;padding:22px;margin:22px 0}.question h3{margin-top:0}details{background:#f0f6f4;border-radius:8px;margin-top:15px;padding:12px 17px}summary{cursor:pointer;font-weight:bold;color:#165e54}textarea{width:100%;min-height:90px;padding:12px;border:1px solid #9cadba;border-radius:7px;font:inherit;resize:vertical;background:#fffdf6}button{font:inherit;background:var(--accent);border:0;color:white;padding:9px 16px;border-radius:7px;cursor:pointer;margin:5px 8px 5px 0}.toolbar{position:sticky;top:0;padding:10px;background:#ffffffed;border-bottom:1px solid var(--line);z-index:3}.small{font-size:14px;color:var(--muted)}.result{background:#e8f1ec;color:#194c36}.diagram{text-align:left;background:#eef4fa;color:#213d59}footer{margin-top:45px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted)}@media(max-width:700px){main{padding:20px}h1{font-size:27px}table{font-size:14px}pre{font-size:13px}.toolbar{position:static}}@media print{body{background:white;font-size:11pt}main{padding:0;max-width:none}.toolbar,textarea,.small.save{display:none}details{break-inside:avoid}pre{background:#f3f3f3;color:black;font-size:9pt}h2,h3{break-after:avoid}.question{break-inside:auto}header{border-top:3px solid #444}button{display:none}}
+
+.trace{background:#edf5fa;color:#20384e} .answer-output{background:#eaf2e9;color:#254129}
+.table-wrap{max-width:100%;overflow-x:auto}
+.blank{display:none;min-height:40px;border-bottom:1px dashed #83929c}.qtype{color:#526279;font-size:14px}
+@media print{body.hide-answers details{display:none!important}textarea{display:none}.blank{display:block}details{break-inside:auto}pre,tr{break-inside:avoid}thead{display:table-header-group}.table-wrap{overflow:visible}}
+body{overflow-wrap:anywhere}.exam-active .after-exam,.exam-active .grade{display:none!important}.grade{display:block;margin-top:12px;font-size:14px}.grade-select{font:inherit;padding:5px;border:1px solid #93a7b6;border-radius:5px}.score{display:block;font-size:14px;color:#14564d}.exam-active #score-status{display:none}.after-exam{margin-top:36px}h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere}p{overflow-wrap:anywhere}</style></head><body data-exam-book="1"><main><header><span class="tag">정보처리기사 실기 · 2주차 / 10일차</span><h1>10일차 코딩 · 2주차 모의고사와 보강</h1><p class="lead">60분 시험 + 60분 채점·재풀이 · C·Java 연습 32문제 + 응용 과제 6개</p></header><div class="toolbar"><button id="open" type="button">해설 모두 열기</button><button id="close" type="button">해설 모두 닫기</button><button id="exam" type="button">시험 모드</button><button id="print" type="button">현재 모드 인쇄</button><span id="status" class="small save">답안·점수는 이 브라우저에 저장됩니다.</span><span id="score-status" class="score" role="status"></span></div><div class="note"><b>2주차 코딩 평가</b> · C 함수·범위·재귀·포인터와 Java 기본 문법·메서드·배열·String을 종합합니다. 정규시험 20문항은 60분, 채점·보강은 60분입니다. 처음에는 시험만 보입니다. 60분 풀이 후 “채점·보강 열기”를 누르세요.</div><h2>전체 180분 · 평가일 시간표</h2><div class="table-wrap"><table><thead><tr><th>시간</th><th>활동</th><th>결과물</th></tr></thead><tbody><tr><td>0~60분</td><td>코딩 정규시험 M01~M20. 실행·검색·해설 없이 답과 근거 작성</td><td>시험 답안·추적표</td></tr><tr><td>60~80분</td><td>채점·해설 20분. 문항별 0·1·2점 선택</td><td>40점 만점 점수·오답 분류</td></tr><tr><td>80~100분</td><td>오답 코드를 직접 실행하고 조건 변경·재추적</td><td>선택 오답 2~3개·변형 결과</td></tr><tr><td>100~115분</td><td>가장 약한 유형의 S01~S06 중 한 과제 구현</td><td>작동하는 코드 한 개</td></tr><tr><td>115~120분</td><td>해설을 닫고 한 오답 재풀이·다음 복습 정리</td><td>재풀이 근거</td></tr><tr><td>120~150분</td><td>별도 이론 정규시험 20문항</td><td>이론 답안</td></tr><tr><td>150~180분</td><td>이론 채점·책 복습·오답 교정</td><td>핵심 용어와 약점 기록</td></tr></tbody></table></div><p>코딩 모의고사 20문제와 추가 연습 12문제를 합쳐 연습 32문제, 별도의 응용 과제 6개를 제공합니다. 추가 12문제·모든 과제 전체를 정규 수업에서 다 풀지는 않습니다. 채점 때 필요한 설명과 예제는 보강 구역에 있습니다.</p><h3>시험 규칙과 배점</h3><p>M01~M08은 20분, M09~M16은 20분, M17~M20은 작성·수정까지 20분을 권장합니다. 문항마다 정답과 근거 모두 맞으면 2점, 일부만 맞으면 1점, 핵심 원리가 틀리면 0점으로 총 40점입니다. 출력의 공백·줄바꿈도 확인하세요. 코드의 C11·Java 표시를 먼저 읽으세요. 각 코드는 독립 실행하며 모든 배열 인덱스는 0부터입니다.</p><h2>정규시험 · M01~M20 / 60분</h2><article class="question" data-core="1" id="qM01"><span class="tag">정규시험</span><h3>M01 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int f(int x) { x+=4; return x*2; }
+int main(void) {
+    int x=5;
+    int y=f(x);
+    printf(&quot;%d %d\n&quot;,x,y);
+    return 0;
+}</code></pre><label for="aM01">내 답과 풀이 근거</label><textarea id="aM01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>5 18</code></pre><p>복사본 x는 5→9이고 18을 반환합니다. main의 x는 5입니다.</p></details><label class="grade" for="gM01">스스로 채점 <select class="grade-select" id="gM01"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM02"><span class="tag">정규시험</span><h3>M02 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    public static void main(String[] args) {
+        int a=7,b=4;
+        System.out.println(a+b+&quot;Q&quot;);
+        System.out.println(&quot;Q&quot;+a+b);
+        System.out.println((double)a/b);
+    }
+}</code></pre><label for="aM02">내 답과 풀이 근거</label><textarea id="aM02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>11Q
+Q74
+1.75</code></pre><p>첫 줄은 덧셈 후 연결, 둘째는 문자열 연결입니다. 셋째는 나누기 전 double 변환으로 7.0/4입니다.</p></details><label class="grade" for="gM02">스스로 채점 <select class="grade-select" id="gM02"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM03"><span class="tag">정규시험</span><h3>M03 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int next(void) { static int s=3; s+=4; return s; }
+int main(void) {
+    int a=next();
+    int b=next();
+    printf(&quot;%d %d\n&quot;,a,b);
+    return 0;
+}</code></pre><label for="aM03">내 답과 풀이 근거</label><textarea id="aM03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>7 11</code></pre><p>static 지역변수는 호출 사이 값이 남아 3→7→11입니다.</p></details><label class="grade" for="gM03">스스로 채점 <select class="grade-select" id="gM03"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM04"><span class="tag">정규시험</span><h3>M04 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    public static void main(String[] args) {
+        int s=0;
+        for(int i=1;i&lt;=6;i++) {
+         if(i==2) continue;
+         if(i==5) break;
+         s+=i;
+        }
+        System.out.println(s);
+    }
+}</code></pre><label for="aM04">내 답과 풀이 근거</label><textarea id="aM04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>8</code></pre><p>1·3·4만 더합니다. 2는 건너뛰고 5에서 합산 전에 종료합니다.</p></details><label class="grade" for="gM04">스스로 채점 <select class="grade-select" id="gM04"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM05"><span class="tag">정규시험</span><h3>M05 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void swap(int *p,int *q) { int t=*p; *p=*q; *q=t; }
+int main(void) {
+    int a=14,b=6;
+    swap(&amp;a,&amp;b);
+    printf(&quot;%d %d\n&quot;,a,b);
+    return 0;
+}</code></pre><label for="aM05">내 답과 풀이 근거</label><textarea id="aM05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>6 14</code></pre><p>주소를 받아 역참조한 원본 두 칸을 임시변수로 교환합니다.</p></details><label class="grade" for="gM05">스스로 채점 <select class="grade-select" id="gM05"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM06"><span class="tag">정규시험</span><h3>M06 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    public static void main(String[] args) {
+        int[] a={3,8,13};
+        int[] b=a;
+        b[1]+=5;
+        b=new int[]{40,50};
+        System.out.println(a[1]+&quot; &quot;+b[1]+&quot; &quot;+(a==b));
+    }
+}</code></pre><label for="aM06">내 답과 풀이 근거</label><textarea id="aM06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>13 50 false</code></pre><p>재대입 전 b[1] 변경은 원래 배열에 반영됩니다. 이후 b만 새 배열을 참조합니다.</p></details><label class="grade" for="gM06">스스로 채점 <select class="grade-select" id="gM06"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM07"><span class="tag">정규시험</span><h3>M07 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    int a[]={4,9,14,19};
+    int *p=a+1;
+    int old=*p++;
+    (*p)+=2;
+    printf(&quot;%d %d %d\n&quot;,old,*p,a[1]);
+    return 0;
+}</code></pre><label for="aM07">내 답과 풀이 근거</label><textarea id="aM07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>9 16 9</code></pre><p>*p++는 현재 값 9를 쓰고 p를 a[2]로 이동합니다. 그 원소 14에 2를 더합니다.</p></details><label class="grade" for="gM07">스스로 채점 <select class="grade-select" id="gM07"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM08"><span class="tag">정규시험</span><h3>M08 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    public static void main(String[] args) {
+        String s=&quot;level&quot;;
+        s.replace(&quot;l&quot;,&quot;r&quot;);
+        String t=s.substring(1,4);
+        System.out.println(s+&quot; &quot;+t);
+        System.out.println(t.equals(&quot;eve&quot;));
+    }
+}</code></pre><label for="aM08">내 답과 풀이 근거</label><textarea id="aM08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>level eve
+true</code></pre><p>replace 결과를 버려 s는 그대로이고 substring은 1~3번 e,v,e입니다.</p></details><label class="grade" for="gM08">스스로 채점 <select class="grade-select" id="gM08"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM09"><span class="tag">정규시험</span><h3>M09 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int r(int n) {
+ if(n==0) return 1;
+ return n+r(n-1);
+}
+int main(void) {
+    printf(&quot;%d\n&quot;,r(3));
+    return 0;
+}</code></pre><label for="aM09">내 답과 풀이 근거</label><textarea id="aM09" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>7</code></pre><p>r(0)=1, r(1)=2, r(2)=4, r(3)=7로 복귀합니다.</p></details><label class="grade" for="gM09">스스로 채점 <select class="grade-select" id="gM09"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM10"><span class="tag">정규시험</span><h3>M10 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int f(int n) { return n+2; }
+    static double f(double n) { return n/2; }
+    public static void main(String[] args) {
+        System.out.println(f(8));
+        System.out.println(f(8.0));
+    }
+}</code></pre><label for="aM10">내 답과 풀이 근거</label><textarea id="aM10" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>10
+4.0</code></pre><p>int와 double 인자가 서로 다른 오버로딩을 선택합니다.</p></details><label class="grade" for="gM10">스스로 채점 <select class="grade-select" id="gM10"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM11"><span class="tag">정규시험</span><h3>M11 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    char s[]=&quot;PLAN&quot;;
+    char *p=s+1;
+    p[1]=&#x27;I&#x27;;
+    printf(&quot;%s %s\n&quot;,s,p);
+    return 0;
+}</code></pre><label for="aM11">내 답과 풀이 근거</label><textarea id="aM11" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>PLIN LIN</code></pre><p>p[1]은 원본 s[2]입니다. A가 I로 바뀌고 %s는 각 시작점부터 널 직전까지 출력합니다.</p></details><label class="grade" for="gM11">스스로 채점 <select class="grade-select" id="gM11"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM12"><span class="tag">정규시험</span><h3>M12 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    public static void main(String[] args) {
+        int[][] a={{1,4},{2,5,8}};
+        for(int r=0;r&lt;a.length;r++) {
+         int s=0;
+         for(int c=0;c&lt;a[r].length;c++) s+=a[r][c];
+         System.out.println(s);
+        }
+    }
+}</code></pre><label for="aM12">내 답과 풀이 근거</label><textarea id="aM12" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>5
+15</code></pre><p>각 행마다 합을 초기화하고 해당 행 길이만큼 더합니다.</p></details><label class="grade" for="gM12">스스로 채점 <select class="grade-select" id="gM12"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM13"><span class="tag">정규시험</span><h3>M13 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+struct Box { int id; int count; };
+void put(struct Box *p) { p-&gt;count+=3; }
+int main(void) {
+    struct Box a[]={{31,4},{32,7}};
+    struct Box *p=a+1;
+    put(p);
+    printf(&quot;%d %d %d\n&quot;,p-&gt;id,p-&gt;count,a[0].count);
+    return 0;
+}</code></pre><label for="aM13">내 답과 풀이 근거</label><textarea id="aM13" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>32 10 4</code></pre><p>p는 두 번째 구조체를 가리킵니다. 원본의 count 7만 10으로 바뀝니다.</p></details><label class="grade" for="gM13">스스로 채점 <select class="grade-select" id="gM13"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM14"><span class="tag">정규시험</span><h3>M14 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int change(int x) { x+=10; return x; }
+    public static void main(String[] args) {
+        int x=6;
+        change(x);
+        int y=change(x);
+        System.out.println(x+&quot; &quot;+y);
+    }
+}</code></pre><label for="aM14">내 답과 풀이 근거</label><textarea id="aM14" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>6 16</code></pre><p>첫 반환값은 버리고, 둘째 반환값은 y에만 저장했습니다.</p></details><label class="grade" for="gM14">스스로 채점 <select class="grade-select" id="gM14"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM15"><span class="tag">정규시험</span><h3>M15 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void move(int *p) { p++; *p=25; }
+int main(void) {
+    int a[]={5,10,15};
+    int *p=a;
+    move(p);
+    printf(&quot;%d %d\n&quot;,*p,a[1]);
+    return 0;
+}</code></pre><label for="aM15">내 답과 풀이 근거</label><textarea id="aM15" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>5 25</code></pre><p>함수의 포인터 복사본만 이동합니다. main의 p는 a[0]을 유지하지만 a[1]은 수정됩니다.</p></details><label class="grade" for="gM15">스스로 채점 <select class="grade-select" id="gM15"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM16"><span class="tag">정규시험</span><h3>M16 · 출력 예측</h3><p>출력 결과와 근거를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int[] build(int n) { return new int[]{n,n+3}; }
+    public static void main(String[] args) {
+        int[] a={1,2};
+        int[] b=build(7);
+        a=b;
+        b[0]=20;
+        System.out.println(a[0]+&quot; &quot;+a[1]);
+    }
+}</code></pre><label for="aM16">내 답과 풀이 근거</label><textarea id="aM16" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>20 10</code></pre><p>a=b로 같은 반환 배열을 참조하므로 b[0] 변경을 a에서도 봅니다.</p></details><label class="grade" for="gM16">스스로 채점 <select class="grade-select" id="gM16"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM17"><span class="tag">정규시험</span><h3>M17 · 작성·수정</h3><p>빈칸 두 곳을 채워 원소마다 자기 인덱스를 더하세요. 호출 후 배열도 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>void plus(int *a,int n) {
+ for(int i=0;i&lt;____;i++) ____ += i;
+}
+// a={6,6,6}; plus(a,3);</code></pre><label for="aM17">내 답과 풀이 근거</label><textarea id="aM17" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>6 7 8</code></pre><p>i&lt;n으로 유효 원소만 순회하고 a[i]에 인덱스를 더합니다.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void plus(int *a,int n) {
+ for(int i=0;i&lt;n;i++) a[i]+=i;
+}
+int main(void) {
+    int a[]={6,6,6};
+    plus(a,3);
+    printf(&quot;%d %d %d\n&quot;,a[0],a[1],a[2]);
+    return 0;
+}</code></pre></details><label class="grade" for="gM17">스스로 채점 <select class="grade-select" id="gM17"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM18"><span class="tag">정규시험</span><h3>M18 · 작성·수정</h3><p>null이 섞인 String 배열에서 내용이 정확히 &quot;OK&quot;인 항목 수를 반환하는 static int count(String[] a)를 작성하세요. 예제 결과도 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>// 입력: {&quot;OK&quot;, null, new String(&quot;OK&quot;), &quot;ok&quot;}
+// 빈 배열은 0. 대소문자는 구분합니다.
+static int count(String[] a) {
+    // 직접 작성
+}</code></pre><label for="aM18">내 답과 풀이 근거</label><textarea id="aM18" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>2</code></pre><p>리터럴의 equals로 null을 안전하게 검사하고 내용이 OK인 두 항목을 셉니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int count(String[] a) {
+     int n=0;
+     for(String s:a) if(&quot;OK&quot;.equals(s)) n++;
+     return n;
+    }
+    public static void main(String[] args) {
+        String[] a={&quot;OK&quot;,null,new String(&quot;OK&quot;),&quot;ok&quot;};
+        System.out.println(count(a));
+    }
+}</code></pre></details><label class="grade" for="gM18">스스로 채점 <select class="grade-select" id="gM18"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM19"><span class="tag">정규시험</span><h3>M19 · 작성·수정</h3><p>오류의 원인을 쓰고 조건을 고치세요. 수정 후 출력도 쓰세요.</p><p><b>언어</b> · C11</p><pre class=""><code>int sum(const int *a,int n) {
+ int s=0;
+ for(int i=0;i&lt;=n;i++) s+=a[i];
+ return s;
+}
+// a={7,11,15}; sum(a,3);</code></pre><label for="aM19">내 답과 풀이 근거</label><textarea id="aM19" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>33</code></pre><p>i&lt;=n은 없는 a[n]을 읽습니다. i&lt;n으로 고쳐야 하며 합은 33입니다.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int sum(const int *a,int n) {
+ int s=0;
+ for(int i=0;i&lt;n;i++) s+=a[i];
+ return s;
+}
+int main(void) {
+    int a[]={7,11,15};
+    printf(&quot;%d\n&quot;,sum(a,3));
+    return 0;
+}</code></pre></details><label class="grade" for="gM19">스스로 채점 <select class="grade-select" id="gM19"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="1" id="qM20"><span class="tag">정규시험</span><h3>M20 · 작성·수정</h3><p>다음 메서드를 내용 비교로 고치고 null 입력도 안전하게 처리하세요. 두 호출의 결과를 쓰세요.</p><p><b>언어</b> · Java</p><pre class=""><code>static boolean same(String s) { return s==&quot;PASS&quot;; }
+// same(new String(&quot;PASS&quot;)), same(null)</code></pre><label for="aM20">내 답과 풀이 근거</label><textarea id="aM20" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>true
+false</code></pre><p>참조 비교 대신 내용 비교를 하고 null 안전성을 위해 리터럴에서 equals를 호출합니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static boolean same(String s) { return &quot;PASS&quot;.equals(s); }
+    public static void main(String[] args) {
+        System.out.println(same(new String(&quot;PASS&quot;)));
+        System.out.println(same(null));
+    }
+}</code></pre></details><label class="grade" for="gM20">스스로 채점 <select class="grade-select" id="gM20"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><div class="after-exam"><h2>채점 후 · 약점에 맞춰 읽는 설명</h2><div class="table-wrap"><table><thead><tr><th>시험 문항</th><th>복습 주제</th></tr></thead><tbody><tr><td>M01</td><td>C 값 전달·return</td></tr><tr><td>M02</td><td>Java 연산·출력</td></tr><tr><td>M03</td><td>C static 지역변수</td></tr><tr><td>M04</td><td>Java 반복·분기</td></tr><tr><td>M05</td><td>C 주소 매개변수</td></tr><tr><td>M06</td><td>Java 배열 참조</td></tr><tr><td>M07</td><td>C 포인터·증감</td></tr><tr><td>M08</td><td>Java String 불변</td></tr><tr><td>M09</td><td>C 재귀</td></tr><tr><td>M10</td><td>Java 오버로딩</td></tr><tr><td>M11</td><td>C 문자열 포인터</td></tr><tr><td>M12</td><td>Java 2차원 배열</td></tr><tr><td>M13</td><td>C 구조체 포인터</td></tr><tr><td>M14</td><td>Java 매개변수·반환</td></tr><tr><td>M15</td><td>C 포인터 재대입</td></tr><tr><td>M16</td><td>Java 배열 반환</td></tr><tr><td>M17</td><td>C 배열 작성</td></tr><tr><td>M18</td><td>Java String 작성</td></tr><tr><td>M19</td><td>C 범위 오류 수정</td></tr><tr><td>M20</td><td>Java 비교 오류 수정</td></tr></tbody></table></div><h3>쉬운 설명 · 기본형은 복사본, 반환값은 받아야 사용</h3><p>작업대에 숫자 쪽지를 복사해 건네는 상황을 떠올리세요. 작업대 안 쪽지를 고쳐도 원래 쪽지는 그대로입니다. C 함수와 Java 메서드는 모두 값 전달입니다. return은 호출한 자리에 결과를 보내며 printf·println과 다릅니다.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int add(int n) { n+=5; return n; }
+int main(void) {
+    int a=9;
+    int b=add(a);
+    printf(&quot;%d %d\n&quot;,a,b);
+    return 0;
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>9 14</code></pre><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int add(int n) { n+=5; return n; }
+    public static void main(String[] args) {
+        int a=9;
+        int b=add(a);
+        System.out.println(a+&quot; &quot;+b);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>9 14</code></pre><p>두 언어 모두 a는 9, 반환값을 받은 b는 14입니다. a를 바꾸려면 a=add(a)로 받아야 합니다. Java 메서드는 Main 클래스 안이면서 main 바깥에 정의합니다. 오늘의 Java 호출은 객체 없이 부르는 static 메서드입니다.</p><h3>응용 설명 · 주소·참조를 복사해 같은 원본 접근</h3><p>집 주소를 두 장 복사하면 종이는 두 장이어도 가리키는 집은 같습니다. C 포인터의 주소 값, Java 배열 참조 값이 복사되면 같은 원소를 수정할 수 있습니다. 매개변수 자체를 다른 대상으로 재대입하는 것은 원본 변수의 재대입이 아닙니다.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void touch(int *p) { *p+=4; }
+int main(void) {
+    int a=9;
+    touch(&amp;a);
+    printf(&quot;%d\n&quot;,a);
+    return 0;
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>13</code></pre><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void touch(int[] a) { a[0]+=4; a=new int[]{90}; }
+    public static void main(String[] args) {
+        int[] a={9};
+        touch(a);
+        System.out.println(a[0]);
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>13</code></pre><pre class="trace"><code>호출자 a ─┐
+         ├──→ 원래 배열 [9] → 원소 변경 후 [13]
+매개변수 ─┘
+매개변수 = 새 배열 → 매개변수만 새 연결, 호출자 연결 유지</code></pre><h3>심화 설명 · 호출마다 지역 칸, static 수명·오버로딩 구분</h3><p>C의 함수 내부 static 지역변수는 호출 사이 값을 유지합니다. Java의 static 메서드라는 말은 그 안 모든 지역변수가 값을 유지한다는 뜻이 아닙니다. 재귀는 호출마다 다른 매개변수 칸을 그린 뒤 마지막 호출부터 반환값을 계산합니다. Java 오버로딩은 입력의 개수·타입·타입 순서로 구별하며 반환형만으로 나누지 않습니다.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int r(int n) { if(n==0) return 2; return r(n-1)+3; }
+int main(void) {
+    printf(&quot;%d\n&quot;,r(2));
+    return 0;
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>8</code></pre><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static String type(int n) { return &quot;I&quot;; }
+    static String type(double n) { return &quot;D&quot;; }
+    public static void main(String[] args) {
+        System.out.println(type(5)+&quot; &quot;+type(5.0));
+    }
+}</code></pre><p><b>실행 결과</b></p><pre class="answer-output"><code>I D</code></pre><div class="table-wrap"><table><thead><tr><th>혼동</th><th>올바른 구별</th></tr></thead><tbody><tr><td>배열 길이</td><td>Java a.length / C는 길이 별도 전달</td></tr><tr><td>문자열 길이</td><td>Java s.length() / C 널 종료 char 배열</td></tr><tr><td>문자열 비교</td><td>Java equals / C 내용 비교에는 strcmp 등</td></tr><tr><td>반환형만 다름</td><td>Java 오버로딩 기준으로 부족</td></tr><tr><td>C 끝 다음 포인터</td><td>만들 수 있어도 역참조 금지</td></tr><tr><td>Java String 불변</td><td>문자열 내용 수정과 변수 재대입을 구별</td></tr></tbody></table></div><h2>추가 연습 · R01~R12</h2><p>32개 연습 중 보강용 12문제입니다. 시험에서 틀린 유형의 문제부터 선택하세요. 실행하기 전에 답과 변화를 먼저 기록합니다.</p><article class="question" data-core="0" id="qR01"><span class="tag">선택 보강</span><h3>R01 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int price(int n) { return n*600; }
+int main(void) {
+    int n=4;
+    price(n);
+    printf(&quot;%d\n&quot;,n);
+    return 0;
+}</code></pre><label for="aR01">내 답과 풀이 근거</label><textarea id="aR01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>4</code></pre><p>2400을 반환해도 원래 변수에 대입하지 않았습니다.</p></details><label class="grade" for="gR01">스스로 채점 <select class="grade-select" id="gR01"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR02"><span class="tag">선택 보강</span><h3>R02 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void f(int[] a) { a[0]=18; }
+    public static void main(String[] args) {
+        int[] a={3,6};
+        f(a);
+        System.out.println(a[0]+&quot; &quot;+a[1]);
+    }
+}</code></pre><label for="aR02">내 답과 풀이 근거</label><textarea id="aR02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>18 6</code></pre><p>같은 배열의 첫 원소를 변경합니다.</p></details><label class="grade" for="gR02">스스로 채점 <select class="grade-select" id="gR02"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR03"><span class="tag">선택 보강</span><h3>R03 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int next(void) { int n=2; n+=3; return n; }
+int main(void) {
+    int a=next();
+    int b=next();
+    printf(&quot;%d %d\n&quot;,a,b);
+    return 0;
+}</code></pre><label for="aR03">내 답과 풀이 근거</label><textarea id="aR03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>5 5</code></pre><p>자동 지역변수 n은 매번 2로 시작합니다.</p></details><label class="grade" for="gR03">스스로 채점 <select class="grade-select" id="gR03"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR04"><span class="tag">선택 보강</span><h3>R04 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int fee(int n) { return n*300; }
+    static int fee(int n,int d) { return n*300-d; }
+    public static void main(String[] args) {
+        System.out.println(fee(5)+&quot; &quot;+fee(5,200));
+    }
+}</code></pre><label for="aR04">내 답과 풀이 근거</label><textarea id="aR04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>1500 1300</code></pre><p>인자 개수로 호출할 메서드가 달라집니다.</p></details><label class="grade" for="gR04">스스로 채점 <select class="grade-select" id="gR04"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR05"><span class="tag">선택 보강</span><h3>R05 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    int a[]={3,7,11,15};
+    int *p=a+2;
+    printf(&quot;%d %d\n&quot;,*p,*(p-1));
+    return 0;
+}</code></pre><label for="aR05">내 답과 풀이 근거</label><textarea id="aR05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>11 7</code></pre><p>p는 인덱스 2이며 p-1은 인덱스 1입니다.</p></details><label class="grade" for="gR05">스스로 채점 <select class="grade-select" id="gR05"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR06"><span class="tag">선택 보강</span><h3>R06 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    public static void main(String[] args) {
+        String a=&quot;RAIN&quot;;
+        String b=new String(a);
+        System.out.println(a==b);
+        System.out.println(a.equals(b));
+    }
+}</code></pre><label for="aR06">내 답과 풀이 근거</label><textarea id="aR06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>false
+true</code></pre><p>객체는 다르지만 내용이 같습니다.</p></details><label class="grade" for="gR06">스스로 채점 <select class="grade-select" id="gR06"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR07"><span class="tag">선택 보강</span><h3>R07 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int r(int n) { if(n&lt;=1) return 1; return n*r(n-1); }
+int main(void) {
+    printf(&quot;%d\n&quot;,r(4));
+    return 0;
+}</code></pre><label for="aR07">내 답과 풀이 근거</label><textarea id="aR07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>24</code></pre><p>4×3×2×1=24입니다.</p></details><label class="grade" for="gR07">스스로 채점 <select class="grade-select" id="gR07"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR08"><span class="tag">선택 보강</span><h3>R08 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    public static void main(String[] args) {
+        int[] a={4,6,8};
+        for(int v:a) v+=5;
+        System.out.println(a[0]+&quot; &quot;+a[2]);
+    }
+}</code></pre><label for="aR08">내 답과 풀이 근거</label><textarea id="aR08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>4 8</code></pre><p>향상된 for의 정수 복사본만 바꿔 배열 원소는 그대로입니다.</p></details><label class="grade" for="gR08">스스로 채점 <select class="grade-select" id="gR08"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR09"><span class="tag">선택 보강</span><h3>R09 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+
+int main(void) {
+    char s[]=&quot;GREEN&quot;;
+    s[2]=&#x27;\0&#x27;;
+    printf(&quot;%s %c\n&quot;,s,s[4]);
+    return 0;
+}</code></pre><label for="aR09">내 답과 풀이 근거</label><textarea id="aR09" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>GR N</code></pre><p>새 널 문자가 인덱스 2에 있어 %s는 GR까지만 출력하며 뒤의 N은 남아 있습니다.</p></details><label class="grade" for="gR09">스스로 채점 <select class="grade-select" id="gR09"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR10"><span class="tag">선택 보강</span><h3>R10 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int[] make(int n) { return new int[]{n,n*2}; }
+    public static void main(String[] args) {
+        int[] a=make(4);
+        System.out.println(a[0]+a[1]);
+    }
+}</code></pre><label for="aR10">내 답과 풀이 근거</label><textarea id="aR10" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>12</code></pre><p>새 배열은 [4,8]이며 합은 12입니다.</p></details><label class="grade" for="gR10">스스로 채점 <select class="grade-select" id="gR10"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR11"><span class="tag">선택 보강</span><h3>R11 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+struct S { int value; };
+int main(void) {
+    struct S a={12};
+    struct S *p=&amp;a;
+    p-&gt;value-=5;
+    printf(&quot;%d\n&quot;,a.value);
+    return 0;
+}</code></pre><label for="aR11">내 답과 풀이 근거</label><textarea id="aR11" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>7</code></pre><p>화살표는 가리키는 구조체의 멤버에 접근합니다.</p></details><label class="grade" for="gR11">스스로 채점 <select class="grade-select" id="gR11"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qR12"><span class="tag">선택 보강</span><h3>R12 · 출력·원본 변화 추적</h3><p>출력과 그 이유를 적고 입력 한 개를 바꿔 재추적하세요.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    public static void main(String[] args) {
+        int[][] a={{2},{3,5}};
+        int s=0;
+        for(int r=0;r&lt;a.length;r++)
+         for(int c=0;c&lt;a[r].length;c++) s+=a[r][c];
+        System.out.println(s);
+    }
+}</code></pre><label for="aR12">내 답과 풀이 근거</label><textarea id="aR12" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer-output"><code>10</code></pre><p>행 길이별로 2+3+5를 더합니다.</p></details><label class="grade" for="gR12">스스로 채점 <select class="grade-select" id="gR12"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><h2>응용 과제 6개 · 약점 하나를 골라 구현</h2><p>정규 수업에서는 가장 약한 과제 한 개를 15분 진행하고, 나머지는 과제당 15~25분의 선택 보강으로 사용합니다. 요구·알고리즘·예시·경계 조건을 확인한 후 작성하세요.</p><article class="question" data-core="0" id="qS01"><span class="tag">선택 보강</span><h3>S01 · C 구간 합계</h3><p>C의 int sum(const int *a,int n)을 만들고 시작 위치를 바꿔 연속 부분 구간의 합을 구하세요. n은 실제 남은 원소 수 이하이며 합은 int 범위입니다.</p><div class="note">[5,9,13,17]의 인덱스 1부터 2개 → 22</div><label for="aS01">내 답과 풀이 근거</label><textarea id="aS01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 주소 a+1과 길이 2를 전달합니다. 0~n−1만 읽고, n=0이면 0을 반환합니다.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int sum(const int *a,int n) { int s=0; for(int i=0;i&lt;n;i++) s+=a[i]; return s; }
+int main(void) {
+    int a[]={5,9,13,17};
+    printf(&quot;%d %d\n&quot;,sum(a+1,2),sum(a,0));
+    return 0;
+}</code></pre><pre class="answer-output"><code>22 0</code></pre><p><b>경계 조건</b> · 빈 구간은 0. 전체 길이 4이면 합 44입니다. 범위를 넘는 n을 넘기지 마세요.</p></details><label class="grade" for="gS01">스스로 채점 <select class="grade-select" id="gS01"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qS02"><span class="tag">선택 보강</span><h3>S02 · Java 점수 제한</h3><p>Java void clamp(int[] a)를 작성해 음수는 0, 100 초과는 100, 나머지는 유지하세요. 원본 배열을 변경하고 빈 배열도 허용합니다.</p><div class="note">[-4,72,108] → [0,72,100]</div><label for="aS02">내 답과 풀이 근거</label><textarea id="aS02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 각 원소를 읽고 하한·상한을 비교한 뒤 같은 칸에 대입합니다. 매개변수를 새 배열로 재대입하지 않습니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static void clamp(int[] a) { for(int i=0;i&lt;a.length;i++) { if(a[i]&lt;0) a[i]=0; else if(a[i]&gt;100) a[i]=100; } }
+    public static void main(String[] args) {
+        int[] a={-4,72,108};
+        clamp(a);
+        System.out.println(a[0]+&quot; &quot;+a[1]+&quot; &quot;+a[2]);
+    }
+}</code></pre><pre class="answer-output"><code>0 72 100</code></pre><p><b>경계 조건</b> · [0,100]은 그대로, 빈 배열은 변경 없음입니다.</p></details><label class="grade" for="gS02">스스로 채점 <select class="grade-select" id="gS02"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qS03"><span class="tag">선택 보강</span><h3>S03 · C 특정 문자 치환</h3><p>변경 가능한 널 종료 char 배열에서 old와 같은 모든 문자를 newc로 바꾸는 void replace(char *s,char old,char newc)를 작성하세요.</p><div class="note">&quot;tomato&quot;에서 o→a → &quot;tamata&quot;</div><label for="aS03">내 답과 풀이 근거</label><textarea id="aS03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 널 문자 전까지 이동하며 일치하는 칸만 바꿉니다. 문자열 리터럴을 수정 대상으로 전달하지 않습니다.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void replace(char *s,char old,char newc) { while(*s!=&#x27;\0&#x27;) { if(*s==old) *s=newc; s++; } }
+int main(void) {
+    char s[]=&quot;tomato&quot;;
+    replace(s,&#x27;o&#x27;,&#x27;a&#x27;);
+    printf(&quot;%s\n&quot;,s);
+    return 0;
+}</code></pre><pre class="answer-output"><code>tamata</code></pre><p><b>경계 조건</b> · 빈 문자열은 그대로, 대상 문자가 없으면 그대로입니다. newc는 널 문자가 아닌 문자로 제한합니다.</p></details><label class="grade" for="gS03">스스로 채점 <select class="grade-select" id="gS03"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qS04"><span class="tag">선택 보강</span><h3>S04 · Java 조건 필터 새 배열</h3><p>Java int[] positive(int[] a)를 작성해 양수만 원래 순서대로 새 배열에 담아 반환하세요. 원본은 유지하고 양수가 없으면 길이 0 배열입니다.</p><div class="note">[0,5,-2,8] → [5,8]</div><label for="aS04">내 답과 풀이 근거</label><textarea id="aS04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 첫 순회에서 양수 개수를 세고 정확한 크기의 배열을 만듭니다. 둘째 순회에서 양수를 차례로 복사합니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int[] positive(int[] a) {
+     int n=0; for(int v:a) if(v&gt;0) n++;
+     int[] out=new int[n]; int k=0;
+     for(int v:a) if(v&gt;0) out[k++]=v;
+     return out;
+    }
+    public static void main(String[] args) {
+        int[] a={0,5,-2,8};
+        int[] b=positive(a);
+        System.out.println(b.length+&quot; &quot;+b[0]+&quot; &quot;+b[1]+&quot; &quot;+a[0]);
+    }
+}</code></pre><pre class="answer-output"><code>2 5 8 0</code></pre><p><b>경계 조건</b> · 모두 0 이하이면 길이 0이므로 반환 배열 원소를 출력할 때도 길이 확인이 필요합니다.</p></details><label class="grade" for="gS04">스스로 채점 <select class="grade-select" id="gS04"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qS05"><span class="tag">선택 보강</span><h3>S05 · C 선택 정렬·최솟값 위치</h3><p>C void sort(int *a,int n)을 작성해 매 회전 남은 최솟값을 찾아 맨 앞으로 교환하세요. n&gt;=0, 실제 길이 이하입니다.</p><div class="note">[11,4,9,2] → [2,4,9,11]</div><label for="aS05">내 답과 풀이 근거</label><textarea id="aS05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 최솟값 인덱스를 찾는 동안은 비교만 하고, 회전이 끝나면 한 번 교환합니다.</p><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+void sort(int *a,int n) {
+ for(int i=0;i&lt;n-1;i++) {
+  int m=i;
+  for(int j=i+1;j&lt;n;j++) if(a[j]&lt;a[m]) m=j;
+  int t=a[i]; a[i]=a[m]; a[m]=t;
+ }
+}
+int main(void) {
+    int a[]={11,4,9,2};
+    sort(a,4);
+    printf(&quot;%d %d %d %d\n&quot;,a[0],a[1],a[2],a[3]);
+    return 0;
+}</code></pre><pre class="answer-output"><code>2 4 9 11</code></pre><p><b>경계 조건</b> · n=0·1이면 교환 없음. 중복 [3,1,3]도 [1,3,3]으로 정렬합니다.</p></details><label class="grade" for="gS05">스스로 채점 <select class="grade-select" id="gS05"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><article class="question" data-core="0" id="qS06"><span class="tag">선택 보강</span><h3>S06 · C·Java 합격 인원 API</h3><p>70 이상을 합격으로 세는 함수를 두 언어로 구현하세요. C는 count(const int *a,int n), Java는 count(int[] a)입니다. 점수 배열은 유효하고 빈 범위도 허용합니다.</p><div class="note">[69,70,92,30] → 2</div><label for="aS06">내 답과 풀이 근거</label><textarea id="aS06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>알고리즘</b> · 합격 수를 0으로 시작해 각 값이 70 이상이면 증가시킵니다. 끝에서 개수를 반환합니다.</p><p><b>언어</b> · Java</p><pre class=""><code>public class Main {
+    static int count(int[] a) { int n=0; for(int v:a) if(v&gt;=70) n++; return n; }
+    public static void main(String[] args) {
+        int[] a={69,70,92,30};
+        System.out.println(count(a));
+    }
+}</code></pre><pre class="answer-output"><code>2</code></pre><p><b>언어</b> · C11</p><pre class=""><code>#include &lt;stdio.h&gt;
+int count(const int *a,int n) { int k=0; for(int i=0;i&lt;n;i++) if(a[i]&gt;=70) k++; return k; }
+int main(void) {
+    int a[]={69,70,92,30};
+    printf(&quot;%d\n&quot;,count(a,4));
+    return 0;
+}</code></pre><p><b>경계 조건</b> · 빈 범위 0, 정확히 70도 합격입니다. 69·70·71로 경계 조건을 재검사하세요.</p></details><label class="grade" for="gS06">스스로 채점 <select class="grade-select" id="gS06"><option value="">미채점</option><option value="2">2점 · 답과 근거 정확</option><option value="1">1점 · 일부 정확</option><option value="0">0점 · 재풀이</option></select></label></article><h2>오답 한 개를 내 것으로 만들기</h2><p>① 내 답과 실제 결과를 적습니다. ② 마지막으로 값이나 연결 대상이 바뀐 문장을 찾습니다. ③ 문법·흐름·값 전달·주소·타입 중 틀린 원인을 고릅니다. ④ 숫자나 호출 조건 하나를 바꿔 예상하고 실행합니다. ⑤ 해설을 닫고 원문을 재풀이합니다.</p><div class="table-wrap"><table><thead><tr><th>문항</th><th>내 답 / 정답</th><th>원인</th><th>변경한 조건 / 새 결과</th><th>재풀이</th></tr></thead><tbody><tr><td>직접 기록</td><td>값과 출력 줄 구별</td><td>원인을 한 문장으로</td><td>변형은 한 번에 하나씩</td><td>근거 없이 외우지 않기</td></tr></tbody></table></div></div><footer>10일차 · 코딩 120분 + 이론 60분. 파일마다 독립 실행됩니다. 시험 모드는 정규시험만, 채점·보강 모드는 복습과 추가 문제도 표시합니다. 해설을 인쇄하려면 먼저 여세요. 브라우저·파일 위치에 따라 저장이 제한될 수 있습니다.</footer></main><script>
+document.querySelector('#open').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=true);
+document.querySelector('#close').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=false);
+document.querySelector('#print').onclick=()=>window.print();
+// 저장 기능 없이도 문제·해설은 동작한다. 로컬 파일 저장 제한 시 상태만 알린다.
+let status=document.querySelector('#status');
+document.querySelectorAll('textarea').forEach((x,i)=>{let k=document.title+':'+i;try{x.value=localStorage.getItem(k)||''}catch(err){status.textContent='브라우저 저장이 제한되어 답안이 자동 저장되지 않습니다.'}x.addEventListener('input',()=>{try{localStorage.setItem(k,x.value);status.textContent='이 브라우저에 답안 자동 저장됨'}catch(err){status.textContent='자동 저장 불가: 답안을 별도로 기록하세요.'}})});
+
+const isExamBook=document.body.dataset.examBook==='1';
+function examMode(active){document.body.classList.toggle('exam-active',active);document.body.classList.toggle('hide-answers',active);document.querySelectorAll('details').forEach(x=>{x.open=false;x.hidden=active});document.querySelector('#open').disabled=active;document.querySelector('#exam').textContent=active?'채점·보강 열기':(isExamBook?'시험 모드로 돌아가기':'해설 숨기기');}
+document.querySelector('#exam').onclick=()=>examMode(!document.body.classList.contains('hide-answers'));
+function score(){let xs=[...document.querySelectorAll('article[data-core="1"] select')];let done=xs.filter(x=>x.value!=='');let sum=done.reduce((n,x)=>n+Number(x.value),0);document.querySelector('#score-status').textContent=xs.length?'정규시험 '+sum+'/'+(xs.length*2)+'점 · 채점 '+done.length+'/'+xs.length+'문항':'';}
+document.querySelectorAll('select.grade-select').forEach((x)=>{const k=document.title+':grade:'+x.id;try{x.value=localStorage.getItem(k)||''}catch(e){}x.onchange=()=>{try{localStorage.setItem(k,x.value)}catch(e){document.querySelector('#status').textContent='저장 제한: 점수를 별도로 기록하세요.'}score()};});
+score();examMode(isExamBook);
+</script></body></html>

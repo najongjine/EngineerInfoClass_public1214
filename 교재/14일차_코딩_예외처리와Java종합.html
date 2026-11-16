@@ -1,0 +1,828 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>14일차 코딩 · 예외 처리와 Java 종합</title><style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#edf2f5;color:#213044;font:17px/1.8 "Malgun Gothic",sans-serif;overflow-wrap:anywhere}main{max-width:1080px;margin:auto;background:white;padding:44px 54px}header{border-top:9px solid #146d73;padding:18px 0 12px}h1{font-size:35px;line-height:1.4;letter-spacing:-1px}h2{font-size:25px;margin:44px 0 18px;border-bottom:2px solid #146d73;padding-bottom:9px}h3{font-size:20px;line-height:1.55}p{margin:12px 0}.lead{font-size:19px}.tag{font-size:14px;color:#125c61;background:#e6f3f2;padding:4px 10px;border-radius:6px;display:inline-block}.small{color:#54677b;font-size:14px}.note{background:#eff8f7;border-left:5px solid #17797b;padding:16px 21px;margin:20px 0}.warn{background:#fff7e8;border-color:#bf7c20}.question{border:1px solid #cbd9e1;border-radius:12px;padding:22px;margin:23px 0}.question h3{margin:10px 0}.toolbar{background:#ffffffed;position:sticky;top:0;border-bottom:1px solid #cbd9e1;padding:9px 0;z-index:5}button{font:inherit;font-size:14px;background:#146d73;color:white;border:0;border-radius:6px;padding:9px 12px;cursor:pointer;margin:3px}button:focus-visible,summary:focus-visible{outline:3px solid #e7aa37;outline-offset:3px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#14283a;color:#eef6fb;font:15px/1.65 Consolas,"Malgun Gothic",monospace;padding:19px;border-radius:8px}pre.output{background:#eaf2f7;color:#20344b}code{font-family:Consolas,"Malgun Gothic",monospace}table{border-collapse:collapse;width:100%;margin:18px 0;font-size:16px}th,td{border:1px solid #cbd9e1;text-align:left;vertical-align:top;padding:10px 12px}th{background:#edf3f6}details{background:#f0f6f5;padding:12px 16px;border-radius:8px;margin:15px 0}summary{font-weight:bold;color:#125e61;cursor:pointer}textarea{display:block;width:100%;min-height:80px;background:#fffdf5;font:inherit;border:1px solid #9badbc;border-radius:6px;padding:10px;resize:vertical}label{font-size:14px;color:#526477}.blank{display:none;height:60px;border-bottom:1px dashed #9badbc}.hidden-solutions details{display:none!important}.pill{font-size:13px;padding:2px 8px;background:#f8edcf;border-radius:5px}.choices{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}.choices li{background:#f4f7f9;padding:8px 12px;border-radius:5px}.trace{font-variant-numeric:tabular-nums}.diagram{font-family:Consolas,"Malgun Gothic",monospace;background:#f6f8fa;padding:16px;border:1px solid #d5e0e7;white-space:pre-wrap}.toc{background:#f1f6f8;padding:18px 24px}.toc p{margin:5px 0}footer{border-top:1px solid #cedae1;color:#5e7081;font-size:14px;margin-top:45px;padding-top:18px}.original{white-space:pre-wrap;background:#f8fafb;padding:14px;font:16px/1.85 "Malgun Gothic",sans-serif;color:#213044}.original-image{max-width:100%;height:auto;display:block}.answer-line{font-weight:bold;color:#135c61}.table-wrap{overflow-x:auto}@media(max-width:720px){main{padding:22px 18px}h1{font-size:28px}h2{font-size:23px}.question{padding:15px}pre{font-size:13px}.toolbar{position:static}.choices{grid-template-columns:1fr}table{font-size:14px}td,th{padding:7px}}@media print{body{font-size:10.5pt;background:white}main{padding:0;max-width:none}h1{font-size:24pt}h2{font-size:17pt;break-after:avoid}h3{break-after:avoid}pre{font-size:9pt;background:#f2f4f5;color:#111}.toolbar,textarea{display:none}.blank{display:block}.question,details,tr{break-inside:avoid}header{border-top-width:5px}.choices{display:block}.choices li{background:white;padding:3px}.note{background:#f5f5f5}details{background:#f5f5f5}.original{font-size:10.5pt;padding:5px}}
+</style></head><body data-book="coding"><main><header><span class="tag">정보처리기사 실기 · 3주차 / 14일차</span><h1>14일차 코딩 · 예외 처리와 Java 종합</h1><p class="lead">쉬운 설명 → 응용 → 심화 · 연습 36문제 · 제작 시나리오 8개</p></header><div class="toolbar"><button type="button" id="show">해설 모두 열기</button><button type="button" id="hide">해설 모두 닫기</button><button type="button" id="exam">시험 모드</button><button type="button" id="print">현재 모드 인쇄</button><span class="small">답안 자동 저장 · 저장 가능 여부는 브라우저 설정에 따라 다릅니다.</span></div><div class="note"><b>오늘 할 일</b> · 예외가 발생한 줄을 찾고, 건너뛸 코드를 지운 다음, catch와 finally의 순서대로 값을 추적합니다. 마지막에는 객체·상속·static을 섞어 직접 작성합니다.</div><h2>120분 수업 순서</h2><div class="table-wrap"><table><thead><tr><th>시간</th><th>활동</th></tr></thead><tbody><tr><td>0~10분</td><td>13일차 복습: 객체별 필드와 static 공유값, 오버라이딩 기준 확인</td></tr><tr><td>10~25분</td><td>쉬운 설명과 E01~E03: 정상·예외·finally 흐름</td></tr><tr><td>25~60분</td><td>C01~C08 직접 추적·실행 + C13·C14 비교 작성</td></tr><tr><td>60~80분</td><td>응용·심화 예제: 반복 위치, throw·throws, return, 다형성</td></tr><tr><td>80~105분</td><td>필수 C16·C25·C29·C36 추적·실행. 빠르면 나머지 중 2~4개 선택</td></tr><tr><td>105~120분</td><td>제작 과제 P01 구현 → 정상·실패 입력 검증. 빠르면 P02 선택</td></tr></tbody></table></div><p>이후 이론 설명·복습 40분 + 이론 기출 모의고사 15분 + 채점·정리 5분으로 하루 총 180분입니다. 연습 36문제와 제작 과제 8개를 모두 120분 안에 풀도록 요구하지 않습니다. 수업 필수는 위 표의 14문제와 P01이며, 나머지는 같은 유형의 추가 연습입니다.</p><div class="note"><b>실행 방법</b> · 각 코드 블록은 서로 독립된 전체 프로그램입니다. 하나씩 <code>Main.java</code>로 저장하고 <code>javac -encoding UTF-8 Main.java</code> 다음 <code>java Main</code>을 실행하세요. 한 파일에 여러 문제의 Main을 함께 넣지 마세요. C09·C35는 의도한 컴파일 오류를 고치는 문제입니다.</div><h2>1. 쉬운 설명 · 문제가 생겼을 때 갈 길을 정하기</h2><p>예외는 실행 중 정상 작업을 계속하기 어려운 상황입니다. 숫자 대신 글자가 들어오거나, 없는 배열 칸을 읽거나, 정수를 0으로 나누는 경우가 있습니다. 예외를 잡으면 정해 둔 대체 작업을 하고 다음 흐름을 이어갈 수 있습니다.</p><div class="table-wrap"><table><thead><tr><th>문법</th><th>쉽게 말하면</th><th>기억할 점</th></tr></thead><tbody><tr><td>try</td><td>우선 이 일을 해 보기</td><td>위에서 아래로 실행</td></tr><tr><td>catch</td><td>문제가 생기면 이쪽에서 처리</td><td>실제 예외와 맞는 catch 한 곳</td></tr><tr><td>finally</td><td>이 구간을 떠나기 전에 마무리</td><td>정상·예외·return에도 실행</td></tr><tr><td>throw</td><td>지금 예외를 발생시키기</td><td>실행문</td></tr><tr><td>throws</td><td>이 메서드가 예외를 밖으로 보낼 수 있다고 선언</td><td>메서드 선언부. 처리 기능은 없음</td></tr></tbody></table></div><h3>예제 E01 · 예외가 없으면</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int divisor = 4;
+        try {
+            System.out.print(&quot;start &quot;);
+            System.out.print(28 / divisor + &quot; &quot;);
+        } catch (ArithmeticException e) {
+            System.out.print(&quot;error &quot;);
+        } finally {
+            System.out.print(&quot;finish &quot;);
+        }
+        System.out.println(&quot;next&quot;);
+    }
+}</code></pre><pre class="output"><code>start 7 finish next</code></pre><p>28/4는 정상입니다. catch는 지나치고 finally를 실행한 뒤 바깥으로 갑니다.</p><h3>예제 E02 · 중간에서 예외가 나면</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int divisor = 0;
+        try {
+            System.out.print(&quot;start &quot;);
+            System.out.print(28 / divisor + &quot; &quot;);
+            System.out.print(&quot;success &quot;);
+        } catch (ArithmeticException e) {
+            System.out.print(&quot;error &quot;);
+        } finally {
+            System.out.print(&quot;finish &quot;);
+        }
+        System.out.println(&quot;next&quot;);
+    }
+}</code></pre><pre class="output"><code>start error finish next</code></pre><p>나눗셈 줄에서 흐름이 꺾입니다. success로 복귀하지 않습니다. catch → finally → next로 진행합니다.</p><div class="diagram">정상: try 끝까지 → catch 건너뜀 → finally → 다음 줄
+예외: try 중단 → 맞는 catch → finally → 다음 줄
+미처리 예외: try 중단 → finally → 바깥 처리기 찾기</div><p>예외가 발생했다는 이유만으로 앞서 바뀐 변수까지 원상복구되지는 않습니다. 또한 catch 뒤에 있는 코드를 계속 실행하려면 해당 예외가 처리되어야 합니다.</p><h3>먼저 알아둘 대표 예외</h3><div class="table-wrap"><table><thead><tr><th>예외</th><th>발생 예</th><th>직관</th></tr></thead><tbody><tr><td>ArithmeticException</td><td>정수 12 / zero, zero가 0</td><td>나눌 수 없음</td></tr><tr><td>ArrayIndexOutOfBoundsException</td><td>길이3 배열의 a[3]</td><td>없는 칸</td></tr><tr><td>NullPointerException</td><td>null인 s의 s.length()</td><td>객체가 없음</td></tr><tr><td>NumberFormatException</td><td>Integer.parseInt("hi")</td><td>숫자로 바꿀 수 없음</td></tr><tr><td>IllegalArgumentException</td><td>허용 범위 밖 입력을 직접 거절</td><td>인수가 조건에 맞지 않음</td></tr><tr><td>ClassCastException</td><td>실제 부모 객체를 자식 객체로 형변환</td><td>실제 객체 종류가 맞지 않음</td></tr></tbody></table></div><h3>예제 E03 · 서로 다른 실패를 구분하기</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        for (String raw : new String[]{&quot;6&quot;, &quot;?&quot;, &quot;0&quot;}) {
+            try {
+                int n = Integer.parseInt(raw);
+                System.out.print(24 / n + &quot; &quot;);
+            } catch (NumberFormatException e) {
+                System.out.print(&quot;문자오류 &quot;);
+            } catch (ArithmeticException e) {
+                System.out.print(&quot;나눗셈오류 &quot;);
+            }
+        }
+    }
+}</code></pre><pre class="output"><code>4 문자오류 나눗셈오류</code></pre><p>"?"는 변환 단계에서 실패합니다. "0"은 정수 변환에는 성공하고 나눗셈에서 실패합니다. 한 try에서 catch를 두 개 모두 실행하는 것은 아닙니다.</p><div class="note"><b>손으로 푸는 순서</b> · ① 현재 값 적기 ② 실제 객체 확인 ③ 예외 발생 줄 표시 ④ 같은 try의 남은 줄 지우기 ⑤ 맞는 catch 한 곳 ⑥ finally ⑦ 반환값과 출력 순서를 따로 적기.</div><h2>2. 응용 설명 · 반복과 메서드에 예외 섞기</h2><h3>try를 어디에 두느냐가 계속 처리할 범위를 정한다</h3><pre class="syntax"><code>// 원소별 처리: 하나가 실패해도 다음 원소로 간다.
+for (int n : data) {
+    try { /* 현재 원소 처리 */ }
+    catch (ArithmeticException e) { /* 현재 원소 실패 처리 */ }
+}
+
+// 전체 처리: 중간 실패 시 반복문을 벗어난다.
+try {
+    for (int n : data) { /* 원소 처리 */ }
+} catch (ArithmeticException e) { /* 전체 작업 실패 처리 */ }</code></pre><p>성적 100명 중 한 명의 잘못된 입력만 제외하려면 원소마다 처리합니다. 전체 작업이 함께 성공해야 하는 상황은 별도 설계가 필요합니다. try를 바깥에 둔다고 이미 바뀐 데이터가 자동으로 되돌아가지는 않습니다. C13·C14를 나란히 추적해 보세요.</p><h3>예제 E04 · throw는 발생, throws는 선언</h3><pre class="java"><code>public class Main {
+    static int checkedScore(int score) throws Exception {
+        if (score &lt; 0 || score &gt; 100) throw new Exception(&quot;score&quot;);
+        return score;
+    }
+    public static void main(String[] args) {
+        for (int n : new int[]{40, -2, 80}) {
+            try {
+                System.out.print(checkedScore(n) + &quot; &quot;);
+            } catch (Exception e) {
+                System.out.print(&quot;범위오류 &quot;);
+            }
+        }
+    }
+}</code></pre><pre class="output"><code>40 범위오류 80</code></pre><p>메서드 안 throw가 잘못된 점수를 거절합니다. throws Exception은 호출자에게 처리 책임을 알립니다. 이 예제에서는 main의 catch가 처리합니다.</p><div class="table-wrap"><table><thead><tr><th>종류</th><th>기준</th><th>호출자에게 요구되는 것</th></tr></thead><tbody><tr><td>checked 예외</td><td>Exception 계열 중 RuntimeException 계열을 제외한 예외</td><td>catch로 처리하거나 throws로 전달 선언</td></tr><tr><td>unchecked 예외</td><td>RuntimeException 계열. 예: 숫자 변환·배열·정수 나눗셈 오류</td><td>catch나 throws가 컴파일 시 필수는 아님. 필요에 따라 처리</td></tr></tbody></table></div><p>모든 오류가 catch(Exception)으로 잡히는 것은 아닙니다. Error 계열은 별개입니다. 오늘 연습에서는 보통의 예외 흐름에 집중합니다.</p><h3>catch는 구체적인 자식 타입부터</h3><pre class="syntax"><code>try {
+    // 변환·계산
+} catch (NumberFormatException e) {
+    // 숫자 변환 실패만 처리
+} catch (IllegalArgumentException e) {
+    // NumberFormatException도 포함하는 더 넓은 범위
+} catch (Exception e) {
+    // 나머지 Exception 계열
+}</code></pre><p>상속 관계에서 큰 범위가 앞에 있으면 뒤의 작은 범위는 도달할 수 없어 컴파일 오류입니다. 이미 실행한 catch 안에서 새로 난 예외는 옆 catch가 받지 않습니다. 바깥 try가 필요합니다.</p><h2>3. 심화 설명 · 반환값·객체·공유값을 함께 추적하기</h2><h3>예제 E05 · return 값을 준비한 뒤 finally 실행</h3><pre class="java"><code>public class Main {
+    static int calc() {
+        int x = 3;
+        try {
+            x += 4;
+            return x;
+        } finally {
+            x += 5;
+            System.out.print(x + &quot; &quot;);
+        }
+    }
+    public static void main(String[] args) {
+        System.out.println(calc());
+    }
+}</code></pre><pre class="output"><code>12 7</code></pre><p>반환 준비 값은 7입니다. finally가 지역변수 x를 12로 바꾸어 먼저 출력합니다. 호출자에게 돌아가는 기본형 값은 준비해 둔 7입니다.</p><p>객체 참조를 반환할 때는 같은 객체의 필드가 finally에서 바뀌면 그 변경이 보입니다(C26). finally 자체가 return하거나 예외를 던지면 앞의 반환·예외를 덮을 수 있습니다(C27·C28). 마무리 코드에는 흐름을 덮는 return을 쓰지 않는 편이 좋습니다.</p><div class="note warn"><b>finally의 범위</b> · 보통의 메서드 실행에서는 정상·예외·return·break·continue 때 모두 거칩니다. JVM 강제 종료, 프로세스 중단, 전원 종료처럼 실행 자체가 끊기면 보장할 수 없습니다.</div><h3>예제 E06 · 메서드는 실제 객체, static은 공유</h3><pre class="java"><code>class Meter {
+    static int calls;
+    int base = 3;
+    int read(int n) { calls++; return 9 / n; }
+}
+class FastMeter extends Meter {
+    int base = 18;
+    @Override int read(int n) { calls++; return base / n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Meter a = new FastMeter();
+        Meter b = new FastMeter();
+        int total = 0;
+        try {
+            total += a.read(3);
+            total += b.read(0);
+            total += 100;
+        } catch (ArithmeticException e) {
+            total += a.base;
+        } finally {
+            System.out.print(Meter.calls + &quot; &quot;);
+        }
+        System.out.println(total);
+    }
+}</code></pre><pre class="output"><code>2 9</code></pre><p>a.read(3)은 실제 FastMeter의 18/3=6입니다. b.read(0)은 calls를 증가시킨 뒤 실패합니다. catch의 a.base는 참조 타입 Meter 기준인 3입니다. calls=2, total=9입니다.</p><div class="table-wrap"><table><thead><tr><th>추적 대상</th><th>확인할 것</th></tr></thead><tbody><tr><td>필드 p.x</td><td>참조 변수에 선언한 타입</td></tr><tr><td>오버라이딩 메서드 p.calc()</td><td>실제로 new한 객체 타입</td></tr><tr><td>static 필드</td><td>같은 클래스의 여러 객체가 공유하는 한 값</td></tr><tr><td>예외 발생 전 변경</td><td>이미 완료했다면 그대로 남음</td></tr><tr><td>예외 발생 줄의 대입</td><td>오른쪽 계산이 끝나지 않으면 대입 완료 안 됨</td></tr></tbody></table></div><h2>4. 연습 36문제 · 먼저 답을 쓰고 실행하기</h2><p>C09·C35는 컴파일 가능 여부와 수정 방법을 쓰세요. 나머지는 출력 결과를 줄바꿈까지 예측하고, 예외가 발생한 줄·건너뛴 줄·변수 변화를 기록하세요. 출력 끝의 공백은 채점 핵심에서 제외합니다.</p><h3>기본 C01~C12 · 실행 흐름</h3><article class="question" id="C01"><span class="tag">연습 C01</span><h3>정상 실행이면 catch는 건너뛴다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        try {
+            System.out.print(&quot;A&quot;);
+            System.out.print(18 / 3);
+        } catch (ArithmeticException e) {
+            System.out.print(&quot;B&quot;);
+        } finally {
+            System.out.print(&quot;C&quot;);
+        }
+        System.out.print(&quot;D&quot;);
+    }
+}</code></pre><label for="aC01">내 답과 풀이 근거</label><textarea id="aC01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>A6CD</code></pre><p>18 / 3은 정상입니다. catch는 건너뛰고 finally의 C와 바깥 D를 출력합니다.</p></details></article><article class="question" id="C02"><span class="tag">연습 C02</span><h3>예외 발생 줄 아래는 실행하지 않는다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int d = 0;
+        try {
+            System.out.print(&quot;S&quot;);
+            System.out.print(24 / d);
+            System.out.print(&quot;T&quot;);
+        } catch (ArithmeticException e) {
+            System.out.print(&quot;E&quot;);
+        } finally {
+            System.out.print(&quot;F&quot;);
+        }
+        System.out.print(&quot;Z&quot;);
+    }
+}</code></pre><label for="aC02">내 답과 풀이 근거</label><textarea id="aC02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>SEFZ</code></pre><p>나눗셈에서 예외가 발생합니다. T는 실행하지 않습니다. catch → finally → 바깥 순서입니다.</p></details></article><article class="question" id="C03"><span class="tag">연습 C03</span><h3>배열의 마지막 인덱스</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int[] a = {6, 9};
+        try {
+            System.out.print(a[1]);
+            System.out.print(a[2]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.print(&quot;I&quot;);
+        }
+        System.out.print(a.length);
+    }
+}</code></pre><label for="aC03">내 답과 풀이 근거</label><textarea id="aC03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>9I2</code></pre><p>길이는 2이고 유효 인덱스는 0, 1입니다. a[2]에서 예외가 발생합니다.</p></details></article><article class="question" id="C04"><span class="tag">연습 C04</span><h3>null은 빈 문자열이 아니다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        String s = null;
+        try {
+            System.out.print(&quot;P&quot;);
+            System.out.print(s.length());
+        } catch (NullPointerException e) {
+            System.out.print(&quot;N&quot;);
+        } finally {
+            System.out.print(&quot;Q&quot;);
+        }
+    }
+}</code></pre><label for="aC04">내 답과 풀이 근거</label><textarea id="aC04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>PNQ</code></pre><p>null은 가리키는 객체가 없습니다. length()를 호출할 수 없습니다. ""의 길이 0과 구별합니다.</p></details></article><article class="question" id="C05"><span class="tag">연습 C05</span><h3>숫자로 바꿀 수 없는 문자열</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int n = 7;
+        try {
+            n = Integer.parseInt(&quot;4x&quot;);
+            n += 2;
+        } catch (NumberFormatException e) {
+            n += 10;
+        }
+        System.out.println(n);
+    }
+}</code></pre><label for="aC05">내 답과 풀이 근거</label><textarea id="aC05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>17</code></pre><p>변환이 실패해서 n에 새 값을 대입하지 못합니다. 기존 7에 catch의 10만 더합니다.</p></details></article><article class="question" id="C06"><span class="tag">연습 C06</span><h3>여러 catch 중 맞는 한 곳</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        try {
+            int x = Integer.parseInt(&quot;0&quot;);
+            System.out.print(36 / x);
+        } catch (NumberFormatException e) {
+            System.out.print(&quot;N&quot;);
+        } catch (ArithmeticException e) {
+            System.out.print(&quot;A&quot;);
+        } catch (Exception e) {
+            System.out.print(&quot;E&quot;);
+        }
+    }
+}</code></pre><label for="aC06">내 답과 풀이 근거</label><textarea id="aC06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>A</code></pre><p>"0"은 정상 변환됩니다. 정수 나눗셈이 실패하므로 ArithmeticException catch 하나만 실행합니다.</p></details></article><article class="question" id="C07"><span class="tag">연습 C07</span><h3>부모 예외 catch도 잡을 수 있다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        try {
+            int[] a = {4};
+            System.out.print(a[3]);
+        } catch (RuntimeException e) {
+            System.out.print(&quot;R&quot;);
+        } catch (Exception e) {
+            System.out.print(&quot;E&quot;);
+        }
+    }
+}</code></pre><label for="aC07">내 답과 풀이 근거</label><textarea id="aC07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>R</code></pre><p>ArrayIndexOutOfBoundsException은 RuntimeException의 자손입니다. 먼저 일치한 R만 실행합니다.</p></details></article><article class="question" id="C08"><span class="tag">연습 C08</span><h3>대입 완료 시점과 값 변화</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int total = 2, d = 0;
+        try {
+            total += 4;
+            total = total + 30 / d;
+            total += 100;
+        } catch (ArithmeticException e) {
+            total *= 3;
+        } finally {
+            total--;
+        }
+        System.out.println(total);
+    }
+}</code></pre><label for="aC08">내 답과 풀이 근거</label><textarea id="aC08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>17</code></pre><p>2 → 6. 나눗셈 실패로 그 대입은 완료되지 않습니다. catch에서 18, finally에서 17입니다.</p></details></article><article class="question" id="C09"><span class="tag">연습 C09</span><h3>catch 순서 오류를 고쳐라</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        try {
+            System.out.println(Integer.parseInt(&quot;bad&quot;));
+        } catch (Exception e) {
+            System.out.println(&quot;E&quot;);
+        } catch (NumberFormatException e) {
+            System.out.println(&quot;N&quot;);
+        }
+    }
+}</code></pre><label for="aC09">내 답과 풀이 근거</label><textarea id="aC09" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>컴파일 오류. NumberFormatException catch를 Exception catch보다 앞에 둡니다. 수정 후 출력: N</code></pre><p>부모 Exception이 먼저 모든 해당 예외를 잡으므로 뒤 자식 catch에 도달할 수 없습니다.</p></details></article><article class="question" id="C10"><span class="tag">연습 C10</span><h3>catch에서 예외가 나면 어디로 가나</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        try {
+            try {
+                int d = 0;
+                System.out.print(10 / d);
+            } catch (ArithmeticException e) {
+                System.out.print(&quot;A&quot;);
+                Integer.parseInt(&quot;no&quot;);
+            } catch (NumberFormatException e) {
+                System.out.print(&quot;B&quot;);
+            } finally {
+                System.out.print(&quot;F&quot;);
+            }
+        } catch (NumberFormatException e) {
+            System.out.print(&quot;O&quot;);
+        }
+    }
+}</code></pre><label for="aC10">내 답과 풀이 근거</label><textarea id="aC10" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>AFO</code></pre><p>같은 try에 나란히 붙은 catch끼리 넘기지 않습니다. catch 안에서 새 예외가 나면 finally 후 바깥 처리기로 갑니다.</p></details></article><article class="question" id="C11"><span class="tag">연습 C11</span><h3>정수 나눗셈과 실수 나눗셈</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int zero = 0;
+        try {
+            System.out.print(7.0 / zero);
+            System.out.print(&quot;|&quot;);
+            System.out.print(7 / zero);
+        } catch (ArithmeticException e) {
+            System.out.print(&quot;A&quot;);
+        }
+    }
+}</code></pre><label for="aC11">내 답과 풀이 근거</label><textarea id="aC11" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>Infinity|A</code></pre><p>7.0 / 0은 부동소수점 연산으로 Infinity입니다. 정수 7 / 0에서 ArithmeticException이 발생합니다.</p></details></article><article class="question" id="C12"><span class="tag">연습 C12</span><h3>맞는 catch가 없을 때 finally</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        try {
+            try {
+                int[] a = {2};
+                System.out.print(a[2]);
+            } catch (ArithmeticException e) {
+                System.out.print(&quot;A&quot;);
+            } finally {
+                System.out.print(&quot;F&quot;);
+            }
+            System.out.print(&quot;X&quot;);
+        } catch (Exception e) {
+            System.out.print(&quot;O&quot;);
+        }
+    }
+}</code></pre><label for="aC12">내 답과 풀이 근거</label><textarea id="aC12" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>FO</code></pre><p>배열 예외는 안쪽 ArithmeticException과 맞지 않습니다. 안쪽 finally 후 바깥 catch로 가며 X는 건너뜁니다.</p></details></article><h3>응용 C13~C24 · 반복·호출·검사</h3><article class="question" id="C13"><span class="tag">연습 C13</span><h3>반복마다 처리하면 다음 데이터로 간다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int[] a = {3, 0, 6};
+        for (int n : a) {
+            try {
+                System.out.print(30 / n + &quot; &quot;);
+            } catch (ArithmeticException e) {
+                System.out.print(&quot;X &quot;);
+            }
+        }
+    }
+}</code></pre><label for="aC13">내 답과 풀이 근거</label><textarea id="aC13" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>10 X 5</code></pre><p>try-catch가 반복문 안에 있습니다. 0의 실패만 처리하고 다음 원소 6을 계산합니다.</p></details></article><article class="question" id="C14"><span class="tag">연습 C14</span><h3>반복문 전체를 감싸면 끝난다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int[] a = {3, 0, 6};
+        try {
+            for (int n : a) {
+                System.out.print(30 / n + &quot; &quot;);
+            }
+        } catch (ArithmeticException e) {
+            System.out.print(&quot;X&quot;);
+        }
+    }
+}</code></pre><label for="aC14">내 답과 풀이 근거</label><textarea id="aC14" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>10 X</code></pre><p>0에서 try 전체를 벗어납니다. 반복문으로 되돌아가지 않으므로 6은 처리하지 않습니다.</p></details></article><article class="question" id="C15"><span class="tag">연습 C15</span><h3>두 위험 중 실제 먼저 만나는 예외</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int[] a = {5, 0};
+        int sum = 0;
+        try {
+            for (int i = 0; i &lt;= a.length; i++) {
+                sum += 20 / a[i];
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            sum += 100;
+        } catch (ArithmeticException e) {
+            sum += 10;
+        } finally {
+            sum += 1;
+        }
+        System.out.println(sum);
+    }
+}</code></pre><label for="aC15">내 답과 풀이 근거</label><textarea id="aC15" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>15</code></pre><p>i=0에서 4. i=1에서 0으로 나눠 catch로 갑니다. i=2의 배열 오류까지는 도달하지 않습니다. 4+10+1=15입니다.</p></details></article><article class="question" id="C16"><span class="tag">연습 C16</span><h3>문자열 변환·나눗셈·집계</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        String[] data = {&quot;3&quot;, &quot;?&quot;, &quot;0&quot;, &quot;6&quot;};
+        int sum = 0;
+        for (String s : data) {
+            try {
+                sum += 18 / Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                sum += 7;
+            } catch (ArithmeticException e) {
+                sum += 11;
+            }
+        }
+        System.out.println(sum);
+    }
+}</code></pre><label for="aC16">내 답과 풀이 근거</label><textarea id="aC16" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>27</code></pre><p>정상 6 → 변환 실패 +7 → 나눗셈 실패 +11 → 정상 +3입니다. 총 27입니다.</p></details></article><article class="question" id="C17"><span class="tag">연습 C17</span><h3>throw로 범위를 검사한다</h3><pre class="java"><code>public class Main {
+    static void check(int n) {
+        if (n &lt; 0 || n &gt; 100) throw new IllegalArgumentException();
+    }
+    public static void main(String[] args) {
+        int[] scores = {84, 105, 60};
+        for (int n : scores) {
+            try {
+                check(n);
+                System.out.print(&quot;Y&quot;);
+            } catch (IllegalArgumentException e) {
+                System.out.print(&quot;N&quot;);
+            }
+        }
+    }
+}</code></pre><label for="aC17">내 답과 풀이 근거</label><textarea id="aC17" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>YNY</code></pre><p>105만 검사에서 예외를 던집니다. 그 반복의 Y는 실행하지 않습니다.</p></details></article><article class="question" id="C18"><span class="tag">연습 C18</span><h3>continue 전에 finally가 있다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int sum = 0, count = 0;
+        for (int n : new int[]{2, 0, 5}) {
+            try {
+                if (n == 0) continue;
+                sum += n;
+            } finally {
+                count++;
+            }
+        }
+        System.out.println(sum + &quot; &quot; + count);
+    }
+}</code></pre><label for="aC18">내 답과 풀이 근거</label><textarea id="aC18" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>7 3</code></pre><p>continue도 try를 떠나는 동작입니다. 세 번 모두 finally가 실행되어 count는 3입니다.</p></details></article><article class="question" id="C19"><span class="tag">연습 C19</span><h3>throw와 throws를 함께 읽는다</h3><pre class="java"><code>public class Main {
+    static void check(int n) throws Exception {
+        if (n == 0) throw new Exception(&quot;empty&quot;);
+    }
+    public static void main(String[] args) {
+        try {
+            check(0);
+            System.out.print(&quot;OK&quot;);
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+    }
+}</code></pre><label for="aC19">내 답과 풀이 근거</label><textarea id="aC19" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>empty</code></pre><p>throws는 처리 코드가 아닙니다. check 안의 throw가 실제 예외를 만들고 호출한 곳의 catch가 처리합니다.</p></details></article><article class="question" id="C20"><span class="tag">연습 C20</span><h3>호출 스택을 거슬러 올라간다</h3><pre class="java"><code>public class Main {
+    static void work() {
+        try {
+            System.out.print(&quot;W&quot;);
+            int d = 0;
+            System.out.print(16 / d);
+        } finally {
+            System.out.print(&quot;F&quot;);
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            work();
+            System.out.print(&quot;M&quot;);
+        } catch (ArithmeticException e) {
+            System.out.print(&quot;C&quot;);
+        }
+        System.out.print(&quot;E&quot;);
+    }
+}</code></pre><label for="aC20">내 답과 풀이 근거</label><textarea id="aC20" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>WFCE</code></pre><p>work는 예외를 잡지 못합니다. work의 finally F를 실행한 뒤 main의 catch C로 갑니다. M은 실행하지 않습니다.</p></details></article><article class="question" id="C21"><span class="tag">연습 C21</span><h3>생성자 실패 전 공유값은 바뀔 수 있다</h3><pre class="java"><code>class Ticket {
+    static int attempts;
+    Ticket(int n) {
+        attempts++;
+        if (n &lt; 0) throw new IllegalArgumentException();
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        try {
+            new Ticket(3);
+            new Ticket(-1);
+            new Ticket(8);
+        } catch (IllegalArgumentException e) {
+            System.out.print(Ticket.attempts);
+        }
+    }
+}</code></pre><label for="aC21">내 답과 풀이 근거</label><textarea id="aC21" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>2</code></pre><p>첫 생성과 실패한 두 번째 생성 모두 attempts++까지 실행합니다. 세 번째 생성은 건너뜁니다. 생성 실패가 이전 변경을 자동 취소하지 않습니다.</p></details></article><article class="question" id="C22"><span class="tag">연습 C22</span><h3>잘못된 다운캐스팅</h3><pre class="java"><code>class Animal {}
+class Cat extends Animal {}
+public class Main {
+
+    public static void main(String[] args) {
+        Animal a = new Animal();
+        try {
+            Cat c = (Cat) a;
+            System.out.print(&quot;C&quot;);
+        } catch (ClassCastException e) {
+            System.out.print(&quot;X&quot;);
+        } finally {
+            System.out.print(&quot;F&quot;);
+        }
+    }
+}</code></pre><label for="aC22">내 답과 풀이 근거</label><textarea id="aC22" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>XF</code></pre><p>실제 객체가 Animal이므로 Cat 객체로 바꿀 수 없습니다. 변수에 적은 타입만 보고 판단하면 안 됩니다.</p></details></article><article class="question" id="C23"><span class="tag">연습 C23</span><h3>다시 던지는 예외</h3><pre class="java"><code>public class Main {
+    static void run() {
+        try {
+            Integer.parseInt(&quot;x&quot;);
+        } catch (NumberFormatException e) {
+            System.out.print(&quot;I&quot;);
+            throw new IllegalStateException();
+        } finally {
+            System.out.print(&quot;F&quot;);
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            run();
+        } catch (IllegalStateException e) {
+            System.out.print(&quot;O&quot;);
+        }
+    }
+}</code></pre><label for="aC23">내 답과 풀이 근거</label><textarea id="aC23" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>IFO</code></pre><p>run의 catch가 I를 출력한 뒤 새 예외를 던집니다. finally F를 거쳐 바깥 catch O로 전달합니다.</p></details></article><article class="question" id="C24"><span class="tag">연습 C24</span><h3>한 catch로 두 타입을 처리한다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        for (String s : new String[]{&quot;2&quot;, &quot;x&quot;, &quot;0&quot;}) {
+            try {
+                System.out.print(14 / Integer.parseInt(s));
+            } catch (NumberFormatException | ArithmeticException e) {
+                System.out.print(&quot;E&quot;);
+            }
+        }
+    }
+}</code></pre><label for="aC24">내 답과 풀이 근거</label><textarea id="aC24" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>7EE</code></pre><p>멀티 catch의 |는 두 예외 중 하나를 처리합니다. 두 예외는 서로 부모·자식 관계가 아니므로 이 조합은 가능합니다.</p></details></article><h3>심화 C25~C36 · 반환·다형성·공유값</h3><article class="question" id="C25"><span class="tag">연습 C25</span><h3>return에 담긴 값과 지역변수</h3><pre class="java"><code>public class Main {
+    static int f() {
+        int x = 2;
+        try {
+            x += 4;
+            return x;
+        } finally {
+            x += 5;
+            System.out.print(x + &quot; &quot;);
+        }
+    }
+    public static void main(String[] args) {
+        System.out.println(f());
+    }
+}</code></pre><label for="aC25">내 답과 풀이 근거</label><textarea id="aC25" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>11 6</code></pre><p>x는 2 → 6. return x가 6을 준비합니다. finally가 x를 11로 바꾸어 출력하지만 준비된 기본형 반환값 6은 그대로입니다.</p></details></article><article class="question" id="C26"><span class="tag">연습 C26</span><h3>객체를 반환하면 내부 변경은 보인다</h3><pre class="java"><code>class Box { int value = 4; }
+public class Main {
+    static Box make() {
+        Box b = new Box();
+        try {
+            return b;
+        } finally {
+            b.value = 9;
+        }
+    }
+    public static void main(String[] args) {
+        System.out.println(make().value);
+    }
+}</code></pre><label for="aC26">내 답과 풀이 근거</label><textarea id="aC26" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>9</code></pre><p>return은 Box 참조를 준비합니다. finally가 같은 객체의 value를 9로 바꾸므로 호출한 곳에서도 9를 봅니다.</p></details></article><article class="question" id="C27"><span class="tag">연습 C27</span><h3>finally의 return은 앞 반환을 덮는다</h3><pre class="java"><code>public class Main {
+    static int f() {
+        try {
+            return 3;
+        } finally {
+            return 8;
+        }
+    }
+    public static void main(String[] args) {
+        System.out.println(f());
+    }
+}</code></pre><label for="aC27">내 답과 풀이 근거</label><textarea id="aC27" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>8</code></pre><p>finally가 자기 return 8로 종료되어 try의 return 3을 덮어씁니다. 시험 추적용이며 실제 작성에서는 피할 코드입니다.</p></details></article><article class="question" id="C28"><span class="tag">연습 C28</span><h3>finally가 예외를 던지면 반환되지 않는다</h3><pre class="java"><code>public class Main {
+    static int f() {
+        try {
+            return 5;
+        } finally {
+            System.out.print(&quot;F&quot;);
+            throw new IllegalStateException();
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            System.out.print(f());
+        } catch (IllegalStateException e) {
+            System.out.print(&quot;E&quot;);
+        }
+    }
+}</code></pre><label for="aC28">내 답과 풀이 근거</label><textarea id="aC28" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>FE</code></pre><p>try에서 5를 준비했지만 finally가 F를 출력하고 예외로 종료합니다. 5는 호출자에게 반환되지 않습니다.</p></details></article><article class="question" id="C29"><span class="tag">연습 C29</span><h3>필드와 오버라이딩 메서드의 기준</h3><pre class="java"><code>class Parent {
+    int x = 4;
+    int calc(int n) { return x / n; }
+}
+class Child extends Parent {
+    int x = 18;
+    @Override int calc(int n) { return x / n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Parent p = new Child();
+        int sum = 0;
+        try {
+            sum += p.calc(3);
+            sum += p.calc(0);
+            sum += 100;
+        } catch (ArithmeticException e) {
+            sum += p.x;
+        }
+        System.out.println(sum);
+    }
+}</code></pre><label for="aC29">내 답과 풀이 근거</label><textarea id="aC29" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>10</code></pre><p>메서드는 실제 Child 객체 기준: 18/3=6. 실패 후 catch의 p.x는 참조 타입 Parent 기준인 4입니다. 6+4=10입니다.</p></details></article><article class="question" id="C30"><span class="tag">연습 C30</span><h3>공유 시도 횟수와 객체별 성공 횟수</h3><pre class="java"><code>class Worker {
+    static int attempts;
+    int success;
+    void run(int d) {
+        attempts++;
+        int result = 12 / d;
+        success++;
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Worker a = new Worker(), b = new Worker();
+        for (int i = 0; i &lt; 3; i++) {
+            try {
+                if (i == 1) b.run(0); else a.run(2);
+            } catch (ArithmeticException e) {
+                System.out.print(&quot;X &quot;);
+            }
+        }
+        System.out.println(Worker.attempts + &quot; &quot; + a.success + &quot; &quot; + b.success);
+    }
+}</code></pre><label for="aC30">내 답과 풀이 근거</label><textarea id="aC30" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>X 3 2 0</code></pre><p>attempts는 매 호출 전 증가해 3입니다. b는 나눗셈에서 실패하여 success++를 못 합니다. a만 두 번 성공합니다.</p></details></article><article class="question" id="C31"><span class="tag">연습 C31</span><h3>인터페이스·추상 클래스·예외 종합</h3><pre class="java"><code>interface Task { int apply(int n); }
+abstract class Base implements Task {
+    static int calls;
+    void mark() { calls++; }
+}
+class Half extends Base {
+    public int apply(int n) { mark(); return n / 2; }
+}
+class Fail extends Base {
+    public int apply(int n) { mark(); throw new IllegalArgumentException(); }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Task[] tasks = {new Half(), new Fail(), new Half()};
+        int sum = 0;
+        for (Task t : tasks) {
+            try {
+                sum += t.apply(10);
+            } catch (IllegalArgumentException e) {
+                sum -= 2;
+            }
+        }
+        System.out.println(sum + &quot; &quot; + Base.calls);
+    }
+}</code></pre><label for="aC31">내 답과 풀이 근거</label><textarea id="aC31" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>8 3</code></pre><p>apply는 실제 객체 메서드를 호출합니다. Half 5, Fail 예외로 -2, Half 5입니다. Base.mark()는 세 번 호출되어 calls=3입니다.</p></details></article><article class="question" id="C32"><span class="tag">연습 C32</span><h3>식 중간에 예외가 나도 앞선 증가는 남는다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int i = 2, result = 9, zero = 0;
+        try {
+            result = ++i + 6 / zero;
+        } catch (ArithmeticException e) {
+            System.out.println(i + &quot; &quot; + result);
+        }
+    }
+}</code></pre><label for="aC32">내 답과 풀이 근거</label><textarea id="aC32" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>3 9</code></pre><p>왼쪽 ++i는 이미 실행되어 3입니다. 뒤의 나눗셈이 실패하므로 result에 새 값을 넣는 대입은 완료되지 않습니다.</p></details></article><article class="question" id="C33"><span class="tag">연습 C33</span><h3>중첩 finally의 실행 순서</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        try {
+            try {
+                System.out.print(&quot;A&quot;);
+                throw new IllegalArgumentException();
+            } finally {
+                System.out.print(&quot;B&quot;);
+            }
+        } catch (RuntimeException e) {
+            System.out.print(&quot;C&quot;);
+        } finally {
+            System.out.print(&quot;D&quot;);
+        }
+    }
+}</code></pre><label for="aC33">내 답과 풀이 근거</label><textarea id="aC33" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>ABCD</code></pre><p>안쪽 try A → 안쪽 finally B → 바깥 catch C → 바깥 finally D입니다.</p></details></article><article class="question" id="C34"><span class="tag">연습 C34</span><h3>break로 나가도 finally를 거친다</h3><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        for (int n = 1; n &lt;= 4; n++) {
+            try {
+                System.out.print(n);
+                if (n == 2) break;
+            } finally {
+                System.out.print(&quot;F&quot;);
+            }
+        }
+        System.out.print(&quot;Z&quot;);
+    }
+}</code></pre><label for="aC34">내 답과 풀이 근거</label><textarea id="aC34" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>1F2FZ</code></pre><p>n=2의 break가 실행되어도 그 반복의 finally F를 거칩니다. 이후 반복문 바깥 Z를 출력합니다.</p></details></article><article class="question" id="C35"><span class="tag">연습 C35</span><h3>checked 예외를 처리하지 않으면</h3><pre class="java"><code>public class Main {
+    static void read() throws Exception {
+        throw new Exception(&quot;fail&quot;);
+    }
+    public static void main(String[] args) {
+        read();
+        System.out.println(&quot;done&quot;);
+    }
+}</code></pre><label for="aC35">내 답과 풀이 근거</label><textarea id="aC35" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>컴파일 오류. main에서 try-catch로 처리하거나 main 선언에 throws Exception을 추가해야 합니다.</code></pre><p>read가 선언한 Exception은 checked 예외입니다. 호출자는 잡거나 전달을 선언해야 합니다. throws를 지운다고 해결되지 않습니다.</p></details></article><article class="question" id="C36"><span class="tag">연습 C36</span><h3>Java 종합 · 변환·다형성·공유값·finally</h3><pre class="java"><code>class Service {
+    static int calls;
+    int calc(int n) { calls++; return 20 / n; }
+}
+class DoubleService extends Service {
+    @Override int calc(int n) { calls++; return 40 / n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Service s = new DoubleService();
+        int total = 0;
+        for (String raw : new String[]{&quot;4&quot;, &quot;x&quot;, &quot;0&quot;, &quot;5&quot;}) {
+            try {
+                total += s.calc(Integer.parseInt(raw));
+            } catch (NumberFormatException e) {
+                total -= 1;
+            } catch (ArithmeticException e) {
+                total -= 3;
+            } finally {
+                System.out.print(Service.calls + &quot; &quot;);
+            }
+        }
+        System.out.println(&quot;| &quot; + total);
+    }
+}</code></pre><label for="aC36">내 답과 풀이 근거</label><textarea id="aC36" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="output"><code>1 1 2 3 | 14</code></pre><p>"4"는 자식 메서드에서 40/4=10, calls=1입니다. x는 변환 단계 실패로 호출 횟수가 늘지 않고 total=9입니다. 0은 메서드 안에서 실패하여 calls=2, total=6입니다. 5는 8을 더해 total=14, calls=3입니다.</p></details></article><h2>5. 직접 만드는 시나리오 8개</h2><p>요구사항만 읽고 먼저 작성하세요. 해설에는 전체 실행 코드, 기대 출력, 추가 검증 입력이 있습니다. P01이 오늘 수업 필수이며 P02~P08은 추가 제작 연습입니다. P08은 이론 학습 후 도전합니다.</p><article class="question" id="P01"><span class="tag">제작 P01</span><h3>성적 문자열 정제기</h3><p><b>요구사항</b> · 입력 {"75", "bad", "110", "90", "-3"}에서 0~100인 정수만 합산하세요. 유효 개수, 합계, 정수 평균을 출력하세요. 숫자 변환 실패와 범위 오류는 모두 오류 개수에 포함합니다.</p><p><b>설계 힌트</b> · 원소마다 try → 정수 변환 → 범위 검사 → 성공 집계. 실패한 원소는 합계와 유효 개수를 바꾸지 않습니다.</p><label for="aP01">내 답과 풀이 근거</label><textarea id="aP01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        String[] input = {&quot;75&quot;, &quot;bad&quot;, &quot;110&quot;, &quot;90&quot;, &quot;-3&quot;};
+        int sum = 0, valid = 0, errors = 0;
+        for (String raw : input) {
+            try {
+                int n = Integer.parseInt(raw);
+                if (n &lt; 0 || n &gt; 100) throw new IllegalArgumentException();
+                sum += n;
+                valid++;
+            } catch (IllegalArgumentException e) {
+                errors++;
+            }
+        }
+        System.out.println(valid + &quot; &quot; + sum + &quot; &quot; + (valid == 0 ? 0 : sum / valid));
+        System.out.println(&quot;errors=&quot; + errors);
+    }
+}</code></pre><pre class="output"><code>2 165 82
+errors=3</code></pre><p>NumberFormatException은 IllegalArgumentException의 자식이므로 같은 catch로 처리할 수 있습니다. 유효 값이 하나도 없는 경우 0으로 나누지 않게 합니다. 추가 검증: {"x","101"}이면 0 0 0 / errors=2입니다.</p></details></article><article class="question" id="P02"><span class="tag">제작 P02</span><h3>재고를 지키는 주문 처리기</h3><p><b>요구사항</b> · 초기 재고 10개입니다. 주문 {"3", "x", "8", "2", "0"}을 순서대로 처리하세요. 수량이 양수이고 현재 재고 이하일 때만 차감합니다. 성공 주문 수와 최종 재고를 출력하세요.</p><p><b>설계 힌트</b> · 변환과 모든 검사를 먼저 마친 뒤 재고를 차감합니다. 실패를 catch했다고 재고가 자동으로 복구되지는 않습니다.</p><label for="aP02">내 답과 풀이 근거</label><textarea id="aP02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>class Inventory {
+    int count;
+    Inventory(int n) { count = n; }
+    void order(int amount) {
+        if (amount &lt;= 0 || amount &gt; count) throw new IllegalArgumentException();
+        count -= amount;
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Inventory stock = new Inventory(10);
+        int ok = 0;
+        for (String raw : new String[]{&quot;3&quot;, &quot;x&quot;, &quot;8&quot;, &quot;2&quot;, &quot;0&quot;}) {
+            try {
+                stock.order(Integer.parseInt(raw));
+                ok++;
+            } catch (IllegalArgumentException e) {
+                System.out.print(&quot;X &quot;);
+            }
+        }
+        System.out.println(&quot;| &quot; + ok + &quot; &quot; + stock.count);
+    }
+}</code></pre><pre class="output"><code>X X X | 2 5</code></pre><p>3개 성공 → 재고7, x 실패, 8개 실패, 2개 성공 → 재고5, 0개 실패입니다. 추가 검증: 재고5에서 주문5는 성공하고 재고0이 됩니다.</p></details></article><article class="question" id="P03"><span class="tag">제작 P03</span><h3>출금 시뮬레이터와 시도 횟수</h3><p><b>요구사항</b> · 계좌 잔액 500에서 {120, -5, 600, 80}을 출금하세요. 0 이하 또는 잔액 초과면 예외를 던집니다. static attempts는 실패도 세고 객체의 success는 성공만 셉니다.</p><p><b>설계 힌트</b> · 시도 횟수 증가 → 조건 검사 → 잔액 차감 → 성공 횟수 증가 순서로 작성합니다.</p><label for="aP03">내 답과 풀이 근거</label><textarea id="aP03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>class Account {
+    static int attempts;
+    int balance, success;
+    Account(int n) { balance = n; }
+    void withdraw(int n) {
+        attempts++;
+        if (n &lt;= 0 || n &gt; balance) throw new IllegalArgumentException();
+        balance -= n;
+        success++;
+    }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Account a = new Account(500);
+        for (int n : new int[]{120, -5, 600, 80}) {
+            try { a.withdraw(n); }
+            catch (IllegalArgumentException e) { System.out.print(&quot;X &quot;); }
+        }
+        System.out.println(&quot;| &quot; + a.balance + &quot; &quot; + Account.attempts + &quot; &quot; + a.success);
+    }
+}</code></pre><pre class="output"><code>X X | 300 4 2</code></pre><p>정상 출금은 120과 80입니다. 실패 두 건은 잔액에 영향을 주지 않습니다. 추가 검증: 새 계좌에서 잔액과 같은 금액은 출금할 수 있습니다.</p></details></article><article class="question" id="P04"><span class="tag">제작 P04</span><h3>상속을 사용한 거리 요금 계산</h3><p><b>요구사항</b> · Fare 참조로 StudentFare 객체를 사용하세요. 거리 문자열 {"6", "-1", "?", "3"}을 처리하여 성공 요금 합계를 출력하세요. 일반 요금은 거리×100, 학생 요금은 거리×60이며 음수 거리는 거절합니다.</p><p><b>설계 힌트</b> · 부모 메서드에 공통 거리 검사, 자식에 요금 계산을 둡니다. 원소마다 예외를 처리하고 다음 입력을 계속 읽습니다.</p><label for="aP04">내 답과 풀이 근거</label><textarea id="aP04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>class Fare {
+    void check(int km) { if (km &lt; 0) throw new IllegalArgumentException(); }
+    int price(int km) { check(km); return km * 100; }
+}
+class StudentFare extends Fare {
+    @Override int price(int km) { check(km); return km * 60; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Fare fare = new StudentFare();
+        int total = 0, errors = 0;
+        for (String raw : new String[]{&quot;6&quot;, &quot;-1&quot;, &quot;?&quot;, &quot;3&quot;}) {
+            try { total += fare.price(Integer.parseInt(raw)); }
+            catch (IllegalArgumentException e) { errors++; }
+        }
+        System.out.println(total + &quot; &quot; + errors);
+    }
+}</code></pre><pre class="output"><code>540 2</code></pre><p>호출은 실제 StudentFare 객체 기준입니다. 6×60 + 3×60 = 540입니다. 추가 검증: 거리0은 허용하며 요금0입니다.</p></details></article><article class="question" id="P05"><span class="tag">제작 P05</span><h3>인터페이스 작업 처리기와 종료 기록</h3><p><b>요구사항</b> · Job 인터페이스를 구현한 DivideJob으로 {4, 0, 2}를 처리하세요. 각 작업은 24/n을 반환합니다. 실패는 합계에 더하지 않고, finally에서 모든 처리 횟수를 기록하세요.</p><p><b>설계 힌트</b> · 인터페이스 배열이나 공통 참조로 호출할 수 있게 만듭니다. 정상 결과 합계와 시도 횟수를 따로 둡니다.</p><label for="aP05">내 답과 풀이 근거</label><textarea id="aP05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>interface Job { int run(int n); }
+class DivideJob implements Job {
+    public int run(int n) { return 24 / n; }
+}
+public class Main {
+
+    public static void main(String[] args) {
+        Job job = new DivideJob();
+        int total = 0, finished = 0;
+        for (int n : new int[]{4, 0, 2}) {
+            try { total += job.run(n); }
+            catch (ArithmeticException e) { System.out.print(&quot;E &quot;); }
+            finally { finished++; }
+        }
+        System.out.println(&quot;| &quot; + total + &quot; &quot; + finished);
+    }
+}</code></pre><pre class="output"><code>E | 18 3</code></pre><p>24/4=6, 실패, 24/2=12입니다. finally는 세 작업에서 모두 실행됩니다. 추가 검증: {0,0}이면 합계0, 처리2입니다.</p></details></article><article class="question" id="P06"><span class="tag">제작 P06</span><h3>최대 세 번 재시도하기</h3><p><b>요구사항</b> · read()가 처음 두 호출에서는 IllegalStateException을 던지고 세 번째에는 42를 반환하도록 만드세요. 최대 3번 시도하고 성공하면 즉시 반복을 끝내세요. 매 시도마다 finally에서 F를 출력하세요.</p><p><b>설계 힌트</b> · 반복 번호 → try에서 호출 → 성공이면 break → 실패면 다음 반복. break 직전에도 finally가 실행됩니다.</p><label for="aP06">내 답과 풀이 근거</label><textarea id="aP06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>public class Main {
+    static int calls;
+    static int read() {
+        calls++;
+        if (calls &lt; 3) throw new IllegalStateException();
+        return 42;
+    }
+    public static void main(String[] args) {
+        boolean ok = false;
+        for (int i = 1; i &lt;= 3; i++) {
+            try {
+                int value = read();
+                System.out.print(value + &quot; &quot;);
+                ok = true;
+                break;
+            } catch (IllegalStateException e) {
+                System.out.print(&quot;retry &quot;);
+            } finally {
+                System.out.print(&quot;F &quot;);
+            }
+        }
+        System.out.println(&quot;| &quot; + ok + &quot; &quot; + calls);
+    }
+}</code></pre><pre class="output"><code>retry F retry F 42 F | true 3</code></pre><p>실패2회 후 성공1회입니다. 무한 반복 대신 상한을 둡니다. 추가 검증: 최대 시도를2로 바꾸면 retry F retry F | false 2입니다.</p></details></article><article class="question" id="P07"><span class="tag">제작 P07</span><h3>행 데이터 오류 분류기</h3><p><b>요구사항</b> · 문자열 {"A:12", "B:x", "broken", "C:8", "D:-2"}를 이름:점수로 분리하세요. 형식 오류, 숫자 오류, 범위 오류를 따로 세고 정상 점수 합계를 출력하세요. 점수는 0~100만 허용합니다.</p><p><b>설계 힌트</b> · split(":", -1) 결과 길이를 먼저 확인합니다. 그 뒤 숫자 변환을 하고 범위를 검사합니다. catch는 자식 NumberFormatException부터 둡니다.</p><label for="aP07">내 답과 풀이 근거</label><textarea id="aP07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int sum = 0, format = 0, number = 0, range = 0;
+        for (String row : new String[]{&quot;A:12&quot;, &quot;B:x&quot;, &quot;broken&quot;, &quot;C:8&quot;, &quot;D:-2&quot;}) {
+            String[] cells = row.split(&quot;:&quot;, -1);
+            if (cells.length != 2 || cells[0].isEmpty() || cells[1].isEmpty()) {
+                format++;
+                continue;
+            }
+            try {
+                int n = Integer.parseInt(cells[1]);
+                if (n &lt; 0 || n &gt; 100) throw new IllegalArgumentException();
+                sum += n;
+            } catch (NumberFormatException e) {
+                number++;
+            } catch (IllegalArgumentException e) {
+                range++;
+            }
+        }
+        System.out.println(sum + &quot; &quot; + format + &quot; &quot; + number + &quot; &quot; + range);
+    }
+}</code></pre><pre class="output"><code>20 1 1 1</code></pre><p>A와 C가 정상입니다. broken은 형식, B는 숫자 변환, D는 범위 오류입니다. 추가 검증: "Z:"는 형식 오류로 셉니다.</p></details></article><article class="question" id="P08"><span class="tag">제작 P08</span><h3>선택 심화 · FIFO 페이지 교체를 코드로 구현</h3><p><b>요구사항</b> · 프레임 3개를 -1로 비워 두고 페이지 참조 {2, 5, 2, 7, 8, 5}를 처리하세요. 이미 있으면 적중, 없으면 next 위치에 넣고 next를 순환시킵니다. 페이지 부재 횟수와 마지막 프레임을 출력하세요.</p><p><b>설계 힌트</b> · 각 페이지를 프레임 전체에서 검색 → 적중이면 유지 → 부재면 frames[next] 교체 → next=(next+1)%3. 적중 시 next를 바꾸면 FIFO가 아닙니다.</p><label for="aP08">내 답과 풀이 근거</label><textarea id="aP08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 풀이</summary><pre class="java"><code>public class Main {
+
+    public static void main(String[] args) {
+        int[] frames = {-1, -1, -1};
+        int next = 0, faults = 0;
+        for (int page : new int[]{2, 5, 2, 7, 8, 5}) {
+            boolean hit = false;
+            for (int value : frames) {
+                if (value == page) hit = true;
+            }
+            if (!hit) {
+                frames[next] = page;
+                next = (next + 1) % frames.length;
+                faults++;
+            }
+        }
+        System.out.println(&quot;faults=&quot; + faults);
+        for (int value : frames) System.out.print(value + &quot; &quot;);
+    }
+}</code></pre><pre class="output"><code>faults=4
+8 5 7</code></pre><p>2·5·7 최초 적재3회, 8 적재1회입니다. 마지막5는 적중입니다. 이론의 FIFO와 연결하는 선택 심화 과제입니다. 추가 검증: {1,1,1}은 부재1회입니다.</p></details></article><h2>6. 마무리 1분</h2><p>“예외 뒤의 같은 try는 건너뛴다.” “catch는 맞는 한 곳만.” “finally를 거친 뒤 돌아가거나 바깥으로 간다.” “앞서 바뀐 값은 자동으로 복구되지 않는다.” 이 네 문장을 C36의 각 줄에 연결할 수 있으면 오늘 목표를 달성했습니다.</p><footer>14일차 · 코딩 120분 + 이론 60분 = 총 180분 · 인터넷 연결 없이 사용하는 독립형 HTML</footer></main><script>
+const prefix='course-day14:'+document.body.dataset.book+':';
+document.querySelectorAll('textarea').forEach(el=>{try{el.value=localStorage.getItem(prefix+el.id)||''}catch(e){}el.addEventListener('input',()=>{try{localStorage.setItem(prefix+el.id,el.value)}catch(e){}})});
+document.getElementById('show').onclick=()=>{document.body.classList.remove('hidden-solutions');document.querySelectorAll('details').forEach(x=>x.open=true);document.getElementById('exam').textContent='시험 모드'};
+document.getElementById('hide').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=false);
+document.getElementById('exam').onclick=()=>{const b=document.body.classList.toggle('hidden-solutions');document.querySelectorAll('details').forEach(x=>x.open=false);document.getElementById('exam').textContent=b?'해설 보기 모드':'시험 모드'};
+document.getElementById('print').onclick=()=>window.print();
+</script></body></html>

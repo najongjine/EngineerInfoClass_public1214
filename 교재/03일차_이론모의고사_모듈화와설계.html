@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="03일차 학습 범위에 해당하는 기출모음 PDF의 실제 복원 기출 152문항. 원문·정답·출처를 모두 내장한 독립형 HTML." name="description"/><title>03일차 이론모의고사 | 모듈화와 설계 · 중복 제거 85문항</title><style>
+:root{--ink:#172b40;--muted:#52677b;--accent:#176d70;--line:#d6e1e8}*{box-sizing:border-box}body{margin:0;background:#eef2f6;color:var(--ink);font:16px/1.8 "Malgun Gothic",sans-serif}header{background:#15344e;color:white;padding:42px max(22px,calc((100vw - 1000px)/2));border-bottom:6px solid #53c6b6}.eyebrow{font-size:13px;letter-spacing:2px;color:#a9e5da}h1{font-size:34px;line-height:1.45;margin:12px 0}header p{color:#d1e3ed}.badges{display:flex;gap:10px;flex-wrap:wrap}.badges span{border:1px solid #688896;padding:3px 12px;border-radius:20px;font-size:14px}main{max-width:1044px;margin:28px auto;padding:0 22px 50px}section,.question{background:white;border:1px solid var(--line);border-radius:12px;padding:24px 30px;margin:22px 0}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}button,select,input,textarea{font:inherit}button{background:white;color:#195963;border:1px solid #b4cbd3;border-radius:6px;padding:8px 12px;cursor:pointer;font-size:14px}button:hover{background:#eaf6f4}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #e8a334;outline-offset:2px}h2{font-size:24px;line-height:1.5;margin:8px 0 18px}h3{font-size:20px;line-height:1.6;margin:0 0 9px}.muted,.source{color:var(--muted);font-size:13px}.source{overflow-wrap:anywhere;margin:8px 0}.notice{border-left:4px solid var(--accent);background:#eef8f5;padding:12px 18px;margin:18px 0}.filtergrid{display:flex;gap:14px;flex-wrap:wrap;align-items:end}.filtergrid label{flex:1 1 180px;display:block;font-size:14px}.filtergrid select,.filtergrid input{display:block;width:100%;padding:8px;border:1px solid #b7cbd3;border-radius:5px;background:white}#jump-number{width:80px;padding:6px}#status{padding:10px 0;font-size:14px;color:#215a63}.tag{display:inline-block;background:#e4f3f0;color:#20685d;border-radius:5px;padding:2px 9px;font-size:12px;margin-right:8px}.original{background:white;border:1px solid #e0e6eb;padding:10px;margin:15px 0}.source-img{display:block;width:100%;height:auto;max-width:780px;margin:auto;cursor:zoom-in}.answer-input{display:block;width:100%;min-height:86px;padding:12px;border:1px solid #b9cad3;border-radius:6px;font:15px/1.7 "Malgun Gothic",sans-serif;resize:vertical;margin-top:6px}.answer-label{font-size:14px;color:var(--muted)}details{border:1px solid #d5e6e1;background:#f1f8f5;border-radius:8px;margin-top:15px;padding:12px 17px}summary{cursor:pointer;color:#155f59;font-weight:bold}.answer-line{font-weight:bold;font-size:18px;white-space:pre-wrap}.score{display:flex;flex-wrap:wrap;gap:16px;margin-top:15px;font-size:14px;align-items:center}.score select{padding:5px}.score input{width:17px;height:17px;vertical-align:middle;accent-color:#176d70}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{border:1px solid var(--line);text-align:left;padding:9px 12px}th{background:#eaf2f6}.exam-mode .solution,.exam-mode #print-answers{display:none!important}[hidden]{display:none!important}.paper-blank{display:none}footer{text-align:center;color:var(--muted);font-size:13px;padding:20px}dialog{max-width:96vw;width:1100px;max-height:94vh;border:1px solid #8eabb9;border-radius:10px;padding:18px}dialog::backdrop{background:#102739b8}.zoom-scroll{overflow:auto;max-height:78vh}dialog img{display:block;max-width:none;width:1000px;height:auto}#zoom-close{margin-bottom:12px}.warn{color:#99481f}#save-status{font-size:13px;color:var(--muted)}
+@media(max-width:640px){header{padding:28px 20px}h1{font-size:27px}main{padding:0 10px}section,.question{padding:19px 15px;border-radius:8px}.original{padding:4px}h3{font-size:18px}h2{font-size:21px}.source-img{min-width:0}.toolbar button{padding:7px 9px}}
+@page{size:A4;margin:15mm}@media print{body{background:white;font-size:10.5pt;line-height:1.6;color:black}header{background:white;color:black;padding:10px 0;border-bottom:2px solid black}header p,.eyebrow{color:#333}h1{font-size:22pt}.badges span{border-color:#888}main{max-width:none;margin:0;padding:0}.screen-only,.toolbar,.answer-label,.answer-input,.score,.enlarge,footer,dialog{display:none!important}section{border:0;padding:0;margin:18px 0}.question{border:1px solid #bbb;padding:12px 16px;border-radius:0;break-inside:avoid;margin:16px 0}h2,h3{break-after:avoid}h3{font-size:12pt}.source{font-size:8.5pt}.source-img{max-width:135mm;max-height:180mm;object-fit:contain}.original{border:0;padding:0;margin:10px 0}.paper-blank{display:block;height:14mm;border-bottom:1px dashed #aaa}details{background:white;border:0;padding:6px 0}summary{font-size:10pt}.answer-line{font-size:11pt}body[data-print="student"] .solution{display:none!important}body[data-print="teacher"] .paper-blank{display:none}.source-catalog{break-before:page}.notice{background:white;border-color:#555}}
+h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere}.answer-label{display:block;margin-top:12px}@media print{.question[data-kind="practical"] .source-img{max-width:160mm}}
+.problem-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:17px;line-height:1.85;color:var(--ink)}
+.diagram{margin:18px auto 4px;max-width:740px}
+.diagram svg{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fbfdfe}
+.diagram line{stroke:#35576b;stroke-width:2.2}.diagram marker path{fill:#35576b}
+.diagram .node rect{fill:#edf6f5;stroke:#31757b;stroke-width:1.7}
+.diagram .node text{text-anchor:middle;font:22px "Malgun Gothic",sans-serif;fill:#172b40}
+.diagram figcaption{font-size:13px;color:var(--muted);margin-top:7px;overflow-wrap:anywhere}
+@media print{.problem-text{font-size:10.5pt}.diagram{max-width:150mm}.diagram svg{max-height:75mm}}
+</style></head><body><header><div class="eyebrow">정보처리기사 · 실제 복원 기출 모음</div><h1>03일차 이론모의고사<br/>모듈화와 설계</h1><p>모듈화·재사용·응집도·결합도부터 구조도와 아키텍처까지</p><div class="badges"><span>중복 제거 기출 85문항</span><span>필기 74 · 실기 11</span><span>텍스트 문제·직접 그린 구조도·정답 내장</span></div></header><main>
+<section id="guide"><h2>수록 범위와 풀이 방법</h2><p>기출모음 폴더의 필기·실기 PDF에서 모듈화와 설계 관련 문제를 모았습니다. 동일한 지문과 보기를 가진 재출제 문항은 한 번만 수록했습니다.</p><div class="notice">문제와 보기는 선택·검색할 수 있는 텍스트로 옮겼고, 모듈 구조도는 SVG로 다시 그렸습니다. 각 문항의 연도·회차·원래 문제번호·PDF 쪽수·출처 파일명을 표시했습니다.</div><p>전체 기출을 주제별로 풀거나 ‘오늘 수업 10문항’으로 시작하세요. 문제와 정답, 학습 기능을 이 HTML 안에 넣었습니다.</p><p class="muted">재사용을 지원하는 프레임워크·CASE, 설계 패턴의 일반 개념, 하향식 설계·HIPO·클린 코드 등 비교에 필요한 문항은 ‘연계’ 항목으로 표시했습니다. 원문의 과거 표현·오탈자는 필요한 경우 풀이에 설명했습니다.</p></section>
+<section class="screen-only"><h2>문제 선택·학습 도구</h2><div class="filtergrid"><label>주제<select id="topic"><option value="all">전체 주제</option><option value="모듈화·독립성·설계 원칙">모듈화·독립성·설계 원칙 (12)</option><option value="공통 모듈·명세 원칙">공통 모듈·명세 원칙 (1)</option><option value="재사용·컴포넌트·라이브러리">재사용·컴포넌트·라이브러리 (7)</option><option value="재사용 지원·프레임워크">재사용 지원·프레임워크 (6)</option><option value="설계 패턴·재사용 연계">설계 패턴·재사용 연계 (6)</option><option value="재사용 지원·CASE">재사용 지원·CASE (2)</option><option value="재공학·역공학·이식">재공학·역공학·이식 (4)</option><option value="응집도·종류와 순서">응집도·종류와 순서 (9)</option><option value="결합도·종류와 순서">결합도·종류와 순서 (16)</option><option value="Fan-In·Fan-Out·구조도">Fan-In·Fan-Out·구조도 (2)</option><option value="정보 은닉·추상화">정보 은닉·추상화 (4)</option><option value="하향식·상향식 설계">하향식·상향식 설계 (2)</option><option value="아키텍처·설계 과정·품질">아키텍처·설계 과정·품질 (2)</option><option value="파이프-필터·아키텍처 비교">파이프-필터·아키텍처 비교 (3)</option><option value="MVC 패턴">MVC 패턴 (1)</option><option value="분산 아키텍처 비교">분산 아키텍처 비교 (1)</option><option value="기능 계층·HIPO">기능 계층·HIPO (3)</option><option value="책임 분리·클린 코드">책임 분리·클린 코드 (4)</option></select></label><label>시험 구분<select id="kind"><option value="all">필기 + 실기</option><option value="written">필기</option><option value="practical">실기</option></select></label><label>검색<input id="search" placeholder="용어·연도·파일명 검색" type="search"/></label></div><div class="toolbar"><button id="all">전체 기출</button><button id="core">오늘 수업 10문항</button><label for="jump-number">문항 번호</label><input id="jump-number" max="85" min="1" type="number" value="1"/><button id="jump">이동</button></div><div class="toolbar"><button id="show">표시 문항 정답 열기</button><button id="hide">정답 모두 닫기</button><button id="exam">시험 모드 · 해설 잠금</button><button id="print-student">문제지 인쇄</button><button id="print-answers">해설 포함 인쇄</button></div><div class="toolbar"><button id="export">답안 저장</button><button id="import">답안 불러오기</button><button id="reset">답안 초기화</button><input accept=".json,application/json" hidden="" id="import-file" type="file"/></div><div id="status" role="status"></div><div id="save-status" role="status"></div></section>
+<article class="question" data-core="yes" data-kind="practical" data-original-id="Q001" data-search="모듈화·독립성·설계 원칙 소프트웨어 패키징이란 모듈별로 생성한 실행 파일들을 묶어 배포용 설치 파일을 만드는 것을 말한다. 소스 코드는 향후 관리를 고려하여 모듈화하여 패키징한다. 모듈화는 모듈 간 ( ① )의 최소화와 모듈 내 요소들의 ( ② )를 최대화 하는 것이 목표이다. 괄호(①, ②)에 들어갈 알맞은 용어를 쓰시오. (5점)
+
+답
+•① :
+
+•② : 2020년 1회 실기 · 원문 5번 · pdf 4쪽 학습 항목 01 모듈화 · 출처: 1. 2020년1회_기사실기기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q001"><h3><span class="tag">Q001</span><span class="tag">수업</span>모듈화·독립성·설계 원칙</h3><p class="source">2020년 1회 실기 · 원문 5번 · PDF 4쪽<br/>학습 항목 01 모듈화 · 출처: 1. 2020년1회_기사실기기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 패키징이란 모듈별로 생성한 실행 파일들을 묶어 배포용 설치 파일을 만드는 것을 말한다. 소스 코드는 향후 관리를 고려하여 모듈화하여 패키징한다. 모듈화는 모듈 간 ( ① )의 최소화와 모듈 내 요소들의 ( ② )를 최대화 하는 것이 목표이다. 괄호(①, ②)에 들어갈 알맞은 용어를 쓰시오. (5점)
+
+답
+•① :
+
+•② :</div></div><label class="answer-label" for="a-Q001">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q001" id="a-Q001" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ① 결합도(Coupling)  ② 응집도(Cohesion)</p><p>모듈 사이는 낮은 결합도, 모듈 내부는 높은 응집도를 지향한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q001 채점" data-save="score-Q001"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q001" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q002" data-search="모듈화·독립성·설계 원칙 바람직한 소프트웨어 설계 지침이 아닌 것은?
+① 모듈의 기능을 예측할 수 있도록 정의한다.
+② 이식성을 고려한다.
+③ 적당한 모듈의 크기를 유지한다.
+④ 가능한 모듈을 독립적으로 생성하고 결합도를 최대화한다. 2021년 1회 필기 · 원문 17번 · pdf 2쪽 학습 항목 01 모듈화 · 출처: 1. 2021년1회_기사필기 기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q002"><h3><span class="tag">Q002</span>모듈화·독립성·설계 원칙</h3><p class="source">2021년 1회 필기 · 원문 17번 · PDF 2쪽<br/>학습 항목 01 모듈화 · 출처: 1. 2021년1회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">바람직한 소프트웨어 설계 지침이 아닌 것은?
+① 모듈의 기능을 예측할 수 있도록 정의한다.
+② 이식성을 고려한다.
+③ 적당한 모듈의 크기를 유지한다.
+④ 가능한 모듈을 독립적으로 생성하고 결합도를 최대화한다.</div></div><label class="answer-label" for="a-Q002">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q002" id="a-Q002" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q002 채점" data-save="score-Q002"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q002" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q003" data-search="모듈화·독립성·설계 원칙 다음 설명에 부합하는 용어로 옳은 것은?
+
+ㆍ소프트웨어 구조를 이루며, 다른 것들과 구별될 수 있는 독립적인 기능을 갖는 단위이다.
+ㆍ하나 또는 몇 개의 논리적인 기능을 수행하기 위한 명령어들의 집합이라고도 할 수 있다.
+ㆍ서로 모여 하나의 완전한 프로그램으로 만들어질 수 있다.
+
+① 통합 프로그램 ② 저장소
+③ 모듈 ④ 데이터 2021년 3회 필기 · 원문 24번 · pdf 2쪽 학습 항목 01 모듈화 · 출처: 3. 2021년3회_기사필기 기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q003"><h3><span class="tag">Q003</span>모듈화·독립성·설계 원칙</h3><p class="source">2021년 3회 필기 · 원문 24번 · PDF 2쪽<br/>학습 항목 01 모듈화 · 출처: 3. 2021년3회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">다음 설명에 부합하는 용어로 옳은 것은?
+
+ㆍ소프트웨어 구조를 이루며, 다른 것들과 구별될 수 있는 독립적인 기능을 갖는 단위이다.
+ㆍ하나 또는 몇 개의 논리적인 기능을 수행하기 위한 명령어들의 집합이라고도 할 수 있다.
+ㆍ서로 모여 하나의 완전한 프로그램으로 만들어질 수 있다.
+
+① 통합 프로그램 ② 저장소
+③ 모듈 ④ 데이터</div></div><label class="answer-label" for="a-Q003">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q003" id="a-Q003" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q003 채점" data-save="score-Q003"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q003" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q004" data-search="모듈화·독립성·설계 원칙 모듈화(modularity)와 관련한 설명으로 틀린 것은?
+① 소프트웨어의 모듈은 프로그래밍 언어에서 subroutine,
+function 등으로 표현될 수 있다.
+② 모듈의 수가 증가하면 상대적으로 각 모듈의 크기가 커지며,
+모듈 사이의 상호교류가 감소하여 과부하(overload) 현상이 나타난다.
+③ 모듈화는 시스템을 지능적으로 관리할 수 있도록 해주며복잡,
+도 문제를 해결하는 데 도움을 준다.
+④ 모듈화는 시스템의 유지보수와 수정을 용이하게 한다. 2021년 3회 필기 · 원문 77번 · pdf 6쪽 학습 항목 01 모듈화 · 출처: 3. 2021년3회_기사필기 기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q004"><h3><span class="tag">Q004</span>모듈화·독립성·설계 원칙</h3><p class="source">2021년 3회 필기 · 원문 77번 · PDF 6쪽<br/>학습 항목 01 모듈화 · 출처: 3. 2021년3회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">모듈화(Modularity)와 관련한 설명으로 틀린 것은?
+① 소프트웨어의 모듈은 프로그래밍 언어에서 Subroutine,
+Function 등으로 표현될 수 있다.
+② 모듈의 수가 증가하면 상대적으로 각 모듈의 크기가 커지며,
+모듈 사이의 상호교류가 감소하여 과부하(Overload) 현상이 나타난다.
+③ 모듈화는 시스템을 지능적으로 관리할 수 있도록 해주며복잡,
+도 문제를 해결하는 데 도움을 준다.
+④ 모듈화는 시스템의 유지보수와 수정을 용이하게 한다.</div></div><label class="answer-label" for="a-Q004">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q004" id="a-Q004" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q004 채점" data-save="score-Q004"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q004" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q005" data-search="모듈화·독립성·설계 원칙 소프트웨어 모듈화의 장점이 아닌 것은?
+① 오류의 파급 효과를 최소화한다.
+② 기능의 분리가 가능하여 인터페이스가 복잡하다.
+③ 모듈의 재사용 가능으로 개발과 유지보수가 용이하다.
+④ 프로그램의 효율적인 관리가 가능하다. 2022년 1회 필기 · 원문 24번 · pdf 2쪽 학습 항목 01 모듈화 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q005"><h3><span class="tag">Q005</span>모듈화·독립성·설계 원칙</h3><p class="source">2022년 1회 필기 · 원문 24번 · PDF 2쪽<br/>학습 항목 01 모듈화 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 모듈화의 장점이 아닌 것은?
+① 오류의 파급 효과를 최소화한다.
+② 기능의 분리가 가능하여 인터페이스가 복잡하다.
+③ 모듈의 재사용 가능으로 개발과 유지보수가 용이하다.
+④ 프로그램의 효율적인 관리가 가능하다.</div></div><label class="answer-label" for="a-Q005">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q005" id="a-Q005" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q005 채점" data-save="score-Q005"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q005" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q006" data-search="모듈화·독립성·설계 원칙 소프트웨어 개발에서 모듈(module)이 되기 위한 주요 특징에 해당하 지 않는 것은?
+① 다른 것들과 구별될 수 있는 독립적인 기능을 가진 단위(unit)
+이다.
+② 독립적인 컴파일이 가능하다.
+③ 유일한 이름을 가져야 한다.
+④ 다른 모듈에서의 접근이 불가능해야 한다. 2022년 1회 필기 · 원문 70번 · pdf 5쪽 학습 항목 01 모듈화 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q006"><h3><span class="tag">Q006</span>모듈화·독립성·설계 원칙</h3><p class="source">2022년 1회 필기 · 원문 70번 · PDF 5쪽<br/>학습 항목 01 모듈화 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 개발에서 모듈(Module)이 되기 위한 주요 특징에 해당하 지 않는 것은?
+① 다른 것들과 구별될 수 있는 독립적인 기능을 가진 단위(Unit)
+이다.
+② 독립적인 컴파일이 가능하다.
+③ 유일한 이름을 가져야 한다.
+④ 다른 모듈에서의 접근이 불가능해야 한다.</div></div><label class="answer-label" for="a-Q006">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q006" id="a-Q006" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q006 채점" data-save="score-Q006"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q006" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q007" data-search="모듈화·독립성·설계 원칙 모듈화(modularity)와 관련한 설명으로 틀린 것은?
+① 시스템을 모듈로 분할하면 각각의 모듈을 별개로 만들고 수정
+할 수 있기 때문에 좋은 구조가 된다.
+② 응집도는 모듈과 모듈 사이의 상호의존 또는 연관 정도를 의미
+한다.
+③ 모듈 간의 결합도가 약해야 독립적인 모듈이 될 수 있다.
+④ 모듈 내 구성 요소들 간의 응집도가 강해야 좋은 모듈 설계이다. 2022년 2회 필기 · 원문 80번 · pdf 7쪽 학습 항목 01 모듈화 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q007"><h3><span class="tag">Q007</span>모듈화·독립성·설계 원칙</h3><p class="source">2022년 2회 필기 · 원문 80번 · PDF 7쪽<br/>학습 항목 01 모듈화 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">모듈화(Modularity)와 관련한 설명으로 틀린 것은?
+① 시스템을 모듈로 분할하면 각각의 모듈을 별개로 만들고 수정
+할 수 있기 때문에 좋은 구조가 된다.
+② 응집도는 모듈과 모듈 사이의 상호의존 또는 연관 정도를 의미
+한다.
+③ 모듈 간의 결합도가 약해야 독립적인 모듈이 될 수 있다.
+④ 모듈 내 구성 요소들 간의 응집도가 강해야 좋은 모듈 설계이다.</div></div><label class="answer-label" for="a-Q007">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q007" id="a-Q007" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q007 채점" data-save="score-Q007"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q007" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q008" data-search="모듈화·독립성·설계 원칙 바람직한 소프트웨어 설계 지침이 아닌 것은?
+① 적당한 모듈의 크기를 유지한다.
+② 모듈 간의 접속 관계를 분석하여 복잡도와 중복을 줄인다.
+③ 모듈 간의 결합도는 강할수록 바람직하다.
+④ 모듈 간의 효과적인 제어를 위해 설계에서 계층적 자료 조직이
+제시되어야 한다. 2023년 02회 필기 · 원문 20번 · pdf 2쪽 학습 항목 01 모듈화 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q008"><h3><span class="tag">Q008</span>모듈화·독립성·설계 원칙</h3><p class="source">2023년 02회 필기 · 원문 20번 · PDF 2쪽<br/>학습 항목 01 모듈화 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">바람직한 소프트웨어 설계 지침이 아닌 것은?
+① 적당한 모듈의 크기를 유지한다.
+② 모듈 간의 접속 관계를 분석하여 복잡도와 중복을 줄인다.
+③ 모듈 간의 결합도는 강할수록 바람직하다.
+④ 모듈 간의 효과적인 제어를 위해 설계에서 계층적 자료 조직이
+제시되어야 한다.</div></div><label class="answer-label" for="a-Q008">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q008" id="a-Q008" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q008 채점" data-save="score-Q008"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q008" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q011" data-search="모듈화·독립성·설계 원칙 바람직한 소프트웨어 설계 지침이 아닌 것은?
+① 결합도를 최소화하고 응집도를 최대화한다.
+② 복잡도와 중복성을 줄이고 일관성을 유지시킨다.
+③ 하나의 입구와 하나의 출구를 갖도록 해야 한다.
+④ 모듈의 크기를 가능한 작게 구성하여 병행성 수준을 높여야
+한다. 2024년 2회 필기 · 원문 7번 · pdf 1쪽 학습 항목 01 모듈화 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q009"><h3><span class="tag">Q009</span>모듈화·독립성·설계 원칙</h3><p class="source">2024년 2회 필기 · 원문 7번 · PDF 1쪽<br/>학습 항목 01 모듈화 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">바람직한 소프트웨어 설계 지침이 아닌 것은?
+① 결합도를 최소화하고 응집도를 최대화한다.
+② 복잡도와 중복성을 줄이고 일관성을 유지시킨다.
+③ 하나의 입구와 하나의 출구를 갖도록 해야 한다.
+④ 모듈의 크기를 가능한 작게 구성하여 병행성 수준을 높여야
+한다.</div></div><label class="answer-label" for="a-Q009">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q011" id="a-Q009" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q009 채점" data-save="score-Q011"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q011" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q012" data-search="모듈화·독립성·설계 원칙 효과적인 모듈 설계를 위한 유의사항으로 거리가 먼 것은?
+① 모듈 간의 결합도를 약하게 하면 모듈 독립성이 향상된다.
+② 하나의 입구와 하나의 출구를 갖도록 해야한다.
+③ 모듈의 기능은 예측이 가능해야 하며 지나치게 제한적이어서
+는 안 된다.
+④ 일관성을 줄이고 중복성을 유지시킨다. 2024년 2회 필기 · 원문 33번 · pdf 3쪽 학습 항목 01 모듈화 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q010"><h3><span class="tag">Q010</span>모듈화·독립성·설계 원칙</h3><p class="source">2024년 2회 필기 · 원문 33번 · PDF 3쪽<br/>학습 항목 01 모듈화 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">효과적인 모듈 설계를 위한 유의사항으로 거리가 먼 것은?
+① 모듈 간의 결합도를 약하게 하면 모듈 독립성이 향상된다.
+② 하나의 입구와 하나의 출구를 갖도록 해야한다.
+③ 모듈의 기능은 예측이 가능해야 하며 지나치게 제한적이어서
+는 안 된다.
+④ 일관성을 줄이고 중복성을 유지시킨다.</div></div><label class="answer-label" for="a-Q010">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q012" id="a-Q010" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q010 채점" data-save="score-Q012"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q012" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q014" data-search="모듈화·독립성·설계 원칙 효과적인 모듈 설계를 위한 유의사항으로 거리가 먼 것은?
+① 모듈 간의 결합도를 강하게 하면 모듈 독립성이 향상된다.
+② 복잡도와 중복성을 줄이고 일관성을 유지시킨다.
+③ 모듈의 기능은 예측이 가능해야 한다.
+④ 유지보수가 용이해야 한다. 2025년 1회 필기 · 원문 62번 · pdf 4쪽 학습 항목 01 모듈화 · 출처: 1. 2025년1회_정보처리기사필기기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q011"><h3><span class="tag">Q011</span>모듈화·독립성·설계 원칙</h3><p class="source">2025년 1회 필기 · 원문 62번 · PDF 4쪽<br/>학습 항목 01 모듈화 · 출처: 1. 2025년1회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">효과적인 모듈 설계를 위한 유의사항으로 거리가 먼 것은?
+① 모듈 간의 결합도를 강하게 하면 모듈 독립성이 향상된다.
+② 복잡도와 중복성을 줄이고 일관성을 유지시킨다.
+③ 모듈의 기능은 예측이 가능해야 한다.
+④ 유지보수가 용이해야 한다.</div></div><label class="answer-label" for="a-Q011">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q014" id="a-Q011" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q011 채점" data-save="score-Q014"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q014" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q015" data-search="모듈화·독립성·설계 원칙 모듈화를 통해 분리된 시스템의 각 기능들로서브루틴서브시스템, , , 소프트웨어 내의 프로그램작업, 단위 등과 같은 의미로 사용되는 것은?
+① module ② component
+③ things ④ prototype 2025년 3회 필기 · 원문 20번 · pdf 2쪽 학습 항목 01 모듈화 · 출처: 1. 2025년3회_정보처리기사필기기출문제.pdf" data-topic="모듈화·독립성·설계 원칙" id="Q012"><h3><span class="tag">Q012</span>모듈화·독립성·설계 원칙</h3><p class="source">2025년 3회 필기 · 원문 20번 · PDF 2쪽<br/>학습 항목 01 모듈화 · 출처: 1. 2025년3회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">모듈화를 통해 분리된 시스템의 각 기능들로서브루틴서브시스템, , , 소프트웨어 내의 프로그램작업, 단위 등과 같은 의미로 사용되는 것은?
+① Module ② Component
+③ Things ④ Prototype</div></div><label class="answer-label" for="a-Q012">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q015" id="a-Q012" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>모듈은 독립적인 기능을 갖는 단위이다. 높은 응집도와 낮은 결합도를 지향하고, 기능·크기·인터페이스를 명확히 한다. 모듈을 지나치게 작게 나누면 연결·통합 비용이 커질 수 있다. 복잡도·중복성은 줄이고 일관성은 유지한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q012 채점" data-save="score-Q015"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q015" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="yes" data-kind="written" data-original-id="Q020" data-search="공통 모듈·명세 원칙 공통 모듈에 대한 명세 기법 중 해당 기능에 대해 일관되게 이해되고 한 가지로 해석될 수 있도록 작성하는 원칙은?
+① 상호작용성 ② 명확성
+③ 독립성 ④ 내용성 2023년 02회 필기 · 원문 19번 · pdf 2쪽 학습 항목 02 공통 모듈 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf" data-topic="공통 모듈·명세 원칙" id="Q013"><h3><span class="tag">Q013</span><span class="tag">수업</span>공통 모듈·명세 원칙</h3><p class="source">2023년 02회 필기 · 원문 19번 · PDF 2쪽<br/>학습 항목 02 공통 모듈 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">공통 모듈에 대한 명세 기법 중 해당 기능에 대해 일관되게 이해되고 한 가지로 해석될 수 있도록 작성하는 원칙은?
+① 상호작용성 ② 명확성
+③ 독립성 ④ 내용성</div></div><label class="answer-label" for="a-Q013">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q020" id="a-Q013" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>기능을 일관되게 이해하고 한 가지 의미로 해석할 수 있도록 기술하는 원칙은 명확성이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q013 채점" data-save="score-Q020"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q020" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q021" data-search="재사용·컴포넌트·라이브러리 소프트웨어의 일부분을 다른 시스템에서 사용할 수 있는 정도를 의미하는 것은?
+① 신뢰성(reliability) ② 유지보수성(maintainability)
+③ 가시성(visibility) ④ 재사용성(reusability) 2021년 1회 필기 · 원문 33번 · pdf 3쪽 학습 항목 03 소프트웨어 재사용 · 출처: 1. 2021년1회_기사필기 기출문제.pdf" data-topic="재사용·컴포넌트·라이브러리" id="Q014"><h3><span class="tag">Q014</span>재사용·컴포넌트·라이브러리</h3><p class="source">2021년 1회 필기 · 원문 33번 · PDF 3쪽<br/>학습 항목 03 소프트웨어 재사용 · 출처: 1. 2021년1회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어의 일부분을 다른 시스템에서 사용할 수 있는 정도를 의미하는 것은?
+① 신뢰성(Reliability) ② 유지보수성(Maintainability)
+③ 가시성(Visibility) ④ 재사용성(Reusability)</div></div><label class="answer-label" for="a-Q014">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q021" id="a-Q014" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>재사용은 이미 개발한 코드·모듈·컴포넌트·문서 등을 다른 시스템에서 활용하는 것이다. 검증된 자산으로 생산성·품질 향상과 시간·비용 절감을 기대할 수 있다. 컴포넌트는 명확한 역할과 인터페이스를 갖는 재사용 단위이며, 라이브러리는 필요할 때 찾아 쓸 수 있는 프로그램 모음이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q014 채점" data-save="score-Q021"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q021" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q022" data-search="재사용·컴포넌트·라이브러리 라이브러리의 개념과 구성에 대한 설명 중 틀린 것은?
+① 라이브러리란 필요할 때 찾아서 쓸 수 있도록 모듈화되어 제공
+되는 프로그램을 말한다.
+② 프로그래밍 언어에 따라 일반적으로 도움말설치, 파일샘플,
+코드 등을 제공한다.
+③ 외부 라이브러리는 프로그래밍 언어가 기본적으로 가지고 있
+는 라이브러리를 의미하며표준, 라이브러리는 별도의 파일 설치를 필요로 하는 라이브러리를 의미한다.
+④ 라이브러리는 모듈과 패키지를 총칭하며모듈이, 개별 파일이
+라면 패키지는 파일들을 모아 놓은 폴더라고 볼 수 있다. 2021년 1회 필기 · 원문 77번 · pdf 6쪽 학습 항목 03 소프트웨어 재사용 · 출처: 1. 2021년1회_기사필기 기출문제.pdf" data-topic="재사용·컴포넌트·라이브러리" id="Q015"><h3><span class="tag">Q015</span>재사용·컴포넌트·라이브러리</h3><p class="source">2021년 1회 필기 · 원문 77번 · PDF 6쪽<br/>학습 항목 03 소프트웨어 재사용 · 출처: 1. 2021년1회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">라이브러리의 개념과 구성에 대한 설명 중 틀린 것은?
+① 라이브러리란 필요할 때 찾아서 쓸 수 있도록 모듈화되어 제공
+되는 프로그램을 말한다.
+② 프로그래밍 언어에 따라 일반적으로 도움말설치, 파일샘플,
+코드 등을 제공한다.
+③ 외부 라이브러리는 프로그래밍 언어가 기본적으로 가지고 있
+는 라이브러리를 의미하며표준, 라이브러리는 별도의 파일 설치를 필요로 하는 라이브러리를 의미한다.
+④ 라이브러리는 모듈과 패키지를 총칭하며모듈이, 개별 파일이
+라면 패키지는 파일들을 모아 놓은 폴더라고 볼 수 있다.</div></div><label class="answer-label" for="a-Q015">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q022" id="a-Q015" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>재사용은 이미 개발한 코드·모듈·컴포넌트·문서 등을 다른 시스템에서 활용하는 것이다. 검증된 자산으로 생산성·품질 향상과 시간·비용 절감을 기대할 수 있다. 컴포넌트는 명확한 역할과 인터페이스를 갖는 재사용 단위이며, 라이브러리는 필요할 때 찾아 쓸 수 있는 프로그램 모음이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q015 채점" data-save="score-Q022"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q022" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q023" data-search="재사용·컴포넌트·라이브러리 소프트웨어 개발 방법론 중 cbd(component based development) 에 대한 설명으로 틀린 것은?
+① 생산성과 품질을 높이고유지보수, 비용을 최소화할 수 있다.
+② 컴포넌트 제작 기법을 통해 재사용성을 향상시킨다.
+③ 모듈의 분할과 정복에 의한 하향식 설계방식이다.
+④ 독립적인 컴포넌트 단위의 관리로 복잡성을 최소화할 수 있다. 2021년 1회 필기 · 원문 82번 · pdf 6쪽 학습 항목 03 소프트웨어 재사용 · 출처: 1. 2021년1회_기사필기 기출문제.pdf" data-topic="재사용·컴포넌트·라이브러리" id="Q016"><h3><span class="tag">Q016</span>재사용·컴포넌트·라이브러리</h3><p class="source">2021년 1회 필기 · 원문 82번 · PDF 6쪽<br/>학습 항목 03 소프트웨어 재사용 · 출처: 1. 2021년1회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 개발 방법론 중 CBD(Component Based Development) 에 대한 설명으로 틀린 것은?
+① 생산성과 품질을 높이고유지보수, 비용을 최소화할 수 있다.
+② 컴포넌트 제작 기법을 통해 재사용성을 향상시킨다.
+③ 모듈의 분할과 정복에 의한 하향식 설계방식이다.
+④ 독립적인 컴포넌트 단위의 관리로 복잡성을 최소화할 수 있다.</div></div><label class="answer-label" for="a-Q016">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q023" id="a-Q016" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>재사용은 이미 개발한 코드·모듈·컴포넌트·문서 등을 다른 시스템에서 활용하는 것이다. 검증된 자산으로 생산성·품질 향상과 시간·비용 절감을 기대할 수 있다. 컴포넌트는 명확한 역할과 인터페이스를 갖는 재사용 단위이며, 라이브러리는 필요할 때 찾아 쓸 수 있는 프로그램 모음이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q016 채점" data-save="score-Q023"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q023" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q024" data-search="재사용·컴포넌트·라이브러리 소프트웨어를 재사용함으로써 얻을 수 있는 이점으로 가장 거리가 먼 것은?
+① 생산성 증가
+② 프로젝트 문서 공유
+③ 소프트웨어 품질 향상
+④ 새로운 개발 방법론 도입 용이 2022년 1회 필기 · 원문 32번 · pdf 3쪽 학습 항목 03 소프트웨어 재사용 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf" data-topic="재사용·컴포넌트·라이브러리" id="Q017"><h3><span class="tag">Q017</span>재사용·컴포넌트·라이브러리</h3><p class="source">2022년 1회 필기 · 원문 32번 · PDF 3쪽<br/>학습 항목 03 소프트웨어 재사용 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어를 재사용함으로써 얻을 수 있는 이점으로 가장 거리가 먼 것은?
+① 생산성 증가
+② 프로젝트 문서 공유
+③ 소프트웨어 품질 향상
+④ 새로운 개발 방법론 도입 용이</div></div><label class="answer-label" for="a-Q017">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q024" id="a-Q017" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>재사용으로 생산성·품질 향상과 개발 문서 공유를 기대할 수 있다. 새로운 개발 방법론의 도입이 쉬워진다는 것은 재사용의 직접적인 이점으로 보기 어렵다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q017 채점" data-save="score-Q024"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q024" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q025" data-search="재사용·컴포넌트·라이브러리 명백한 역할을 가지고 독립적으로 존재할 수 있는 시스템의 부분으로 넓은 의미에서는 재사용되는 모든 단위라고 볼 수 있으며인터페이, 스를 통해서만 접근할 수 있는 것은?
+① model ② sheet
+③ component ④ cell 2022년 2회 필기 · 원문 14번 · pdf 2쪽 학습 항목 03 소프트웨어 재사용 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf" data-topic="재사용·컴포넌트·라이브러리" id="Q018"><h3><span class="tag">Q018</span>재사용·컴포넌트·라이브러리</h3><p class="source">2022년 2회 필기 · 원문 14번 · PDF 2쪽<br/>학습 항목 03 소프트웨어 재사용 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">명백한 역할을 가지고 독립적으로 존재할 수 있는 시스템의 부분으로 넓은 의미에서는 재사용되는 모든 단위라고 볼 수 있으며인터페이, 스를 통해서만 접근할 수 있는 것은?
+① Model ② Sheet
+③ Component ④ Cell</div></div><label class="answer-label" for="a-Q018">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q025" id="a-Q018" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>재사용은 이미 개발한 코드·모듈·컴포넌트·문서 등을 다른 시스템에서 활용하는 것이다. 검증된 자산으로 생산성·품질 향상과 시간·비용 절감을 기대할 수 있다. 컴포넌트는 명확한 역할과 인터페이스를 갖는 재사용 단위이며, 라이브러리는 필요할 때 찾아 쓸 수 있는 프로그램 모음이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q018 채점" data-save="score-Q025"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q025" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="yes" data-kind="written" data-original-id="Q026" data-search="재사용·컴포넌트·라이브러리 전자 칩과 같은 소프트웨어 부품즉, 블록모듈을( ) 만들어서 끼워 맞추는 방법으로 소프트웨어를 완성시키는 재사용 방법은?
+① 합성 중심 ② 생성 중심
+③ 분리 중심 ④ 구조 중심 2023년 01회 필기 · 원문 96번 · pdf 7쪽 학습 항목 03 소프트웨어 재사용 · 출처: 1. 2023년01회_정보처리기사필기기출문제.pdf" data-topic="재사용·컴포넌트·라이브러리" id="Q019"><h3><span class="tag">Q019</span><span class="tag">수업</span>재사용·컴포넌트·라이브러리</h3><p class="source">2023년 01회 필기 · 원문 96번 · PDF 7쪽<br/>학습 항목 03 소프트웨어 재사용 · 출처: 1. 2023년01회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">전자 칩과 같은 소프트웨어 부품즉, 블록모듈을( ) 만들어서 끼워 맞추는 방법으로 소프트웨어를 완성시키는 재사용 방법은?
+① 합성 중심 ② 생성 중심
+③ 분리 중심 ④ 구조 중심</div></div><label class="answer-label" for="a-Q019">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q026" id="a-Q019" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>기존 소프트웨어 부품을 만들어 두고 조립하는 방식은 합성 중심(Composition-Based) 재사용이다. 생성 중심 재사용과 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q019 채점" data-save="score-Q026"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q026" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q032" data-search="재사용·컴포넌트·라이브러리 다음 설명에 해당하는 소프트웨어 개발 방법론은 무엇인가?
+
+ㆍ기존의 시스템이나 소프트웨어를 구성하는 컴포넌트를 조 합하여 하나의 새로운 애플리케이션을 만드는 방법론이다.
+ㆍ컴포넌트의 재사용(reusability)이 가능하여 시간과 노력 을 절감할 수 있다.
+
+① 구조적 방법론 ② 정보공학 방법론
+③ agile 방법론 ④ cbd 방법론 2025년 2회 필기 · 원문 82번 · pdf 6쪽 학습 항목 03 소프트웨어 재사용 · 출처: 2. 2025년2회_정보처리기사필기기출문제.pdf" data-topic="재사용·컴포넌트·라이브러리" id="Q020"><h3><span class="tag">Q020</span>재사용·컴포넌트·라이브러리</h3><p class="source">2025년 2회 필기 · 원문 82번 · PDF 6쪽<br/>학습 항목 03 소프트웨어 재사용 · 출처: 2. 2025년2회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">다음 설명에 해당하는 소프트웨어 개발 방법론은 무엇인가?
+
+ㆍ기존의 시스템이나 소프트웨어를 구성하는 컴포넌트를 조 합하여 하나의 새로운 애플리케이션을 만드는 방법론이다.
+ㆍ컴포넌트의 재사용(Reusability)이 가능하여 시간과 노력 을 절감할 수 있다.
+
+① 구조적 방법론 ② 정보공학 방법론
+③ Agile 방법론 ④ CBD 방법론</div></div><label class="answer-label" for="a-Q020">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q032" id="a-Q020" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>재사용은 이미 개발한 코드·모듈·컴포넌트·문서 등을 다른 시스템에서 활용하는 것이다. 검증된 자산으로 생산성·품질 향상과 시간·비용 절감을 기대할 수 있다. 컴포넌트는 명확한 역할과 인터페이스를 갖는 재사용 단위이며, 라이브러리는 필요할 때 찾아 쓸 수 있는 프로그램 모음이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q020 채점" data-save="score-Q032"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q032" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q036" data-search="재사용 지원·프레임워크 프레임워크(framework)에 대한 설명으로 옳은 것은?
+① 소프트웨어 구성에 필요한 기본 구조를 제공함으로써 재사용
+이 가능하게 해준다
+② 소프트웨어 개발 시 구조가 잡혀 있기 때문에 확장이 불가능하
+다.
+③ 소프트웨어 아키텍처(architecture)와 동일한 개념이다.
+④ 모듈화(modularity)가 불가능하다. 2021년 2회 필기 · 원문 68번 · pdf 5쪽 학습 항목 03 재사용 연계 · 출처: 2. 2021년2회_기사필기 기출문제.pdf" data-topic="재사용 지원·프레임워크" id="Q021"><h3><span class="tag">Q021</span>재사용 지원·프레임워크</h3><p class="source">2021년 2회 필기 · 원문 68번 · PDF 5쪽<br/>학습 항목 03 재사용 연계 · 출처: 2. 2021년2회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">프레임워크(Framework)에 대한 설명으로 옳은 것은?
+① 소프트웨어 구성에 필요한 기본 구조를 제공함으로써 재사용
+이 가능하게 해준다
+② 소프트웨어 개발 시 구조가 잡혀 있기 때문에 확장이 불가능하
+다.
+③ 소프트웨어 아키텍처(Architecture)와 동일한 개념이다.
+④ 모듈화(Modularity)가 불가능하다.</div></div><label class="answer-label" for="a-Q021">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q036" id="a-Q021" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>프레임워크는 재사용 가능한 기본 구조와 공통 기능을 제공한다. 일반적인 라이브러리 호출과 달리 프레임워크가 사용자 코드의 실행을 제어하는 IoC 관점이 중요하다. 확장·모듈화·개발과 변경의 용이성을 지원하지만 특정 기술에 대한 종속 등도 검토한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q021 채점" data-save="score-Q036"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q036" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q037" data-search="재사용 지원·프레임워크 소프트웨어 개발 프레임워크와 관련한 설명으로 틀린 것은?
+① 반제품 상태의 제품을 토대로 도메인별로 필요한 서비스 컴포
+넌트를 사용하여 재사용성 확대와 성능을 보장 받을 수 있게 하는 개발 소프트웨어이다.
+② 개발해야 할 애플리케이션의 일부분이 이미 구현되어 있어 동
+일한 로직 반복을 줄일 수 있다.
+③ 라이브러리와 달리 사용자 코드가 직접 호출하여 사용하기 때
+문에 소프트웨어 개발 프레임워크가 직접 코드의 흐름을 제어 할 수 없다.
+④ 생산성 향상과 유지보수성 향상 등의 장점이 있다. 2021년 3회 필기 · 원문 86번 · pdf 7쪽 학습 항목 03 재사용 연계 · 출처: 3. 2021년3회_기사필기 기출문제.pdf" data-topic="재사용 지원·프레임워크" id="Q022"><h3><span class="tag">Q022</span>재사용 지원·프레임워크</h3><p class="source">2021년 3회 필기 · 원문 86번 · PDF 7쪽<br/>학습 항목 03 재사용 연계 · 출처: 3. 2021년3회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 개발 프레임워크와 관련한 설명으로 틀린 것은?
+① 반제품 상태의 제품을 토대로 도메인별로 필요한 서비스 컴포
+넌트를 사용하여 재사용성 확대와 성능을 보장 받을 수 있게 하는 개발 소프트웨어이다.
+② 개발해야 할 애플리케이션의 일부분이 이미 구현되어 있어 동
+일한 로직 반복을 줄일 수 있다.
+③ 라이브러리와 달리 사용자 코드가 직접 호출하여 사용하기 때
+문에 소프트웨어 개발 프레임워크가 직접 코드의 흐름을 제어 할 수 없다.
+④ 생산성 향상과 유지보수성 향상 등의 장점이 있다.</div></div><label class="answer-label" for="a-Q022">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q037" id="a-Q022" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>프레임워크는 재사용 가능한 기본 구조와 공통 기능을 제공한다. 일반적인 라이브러리 호출과 달리 프레임워크가 사용자 코드의 실행을 제어하는 IoC 관점이 중요하다. 확장·모듈화·개발과 변경의 용이성을 지원하지만 특정 기술에 대한 종속 등도 검토한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q022 채점" data-save="score-Q037"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q037" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q038" data-search="재사용 지원·프레임워크 소프트웨어 개발 프레임워크와 관련한 설명으로 가장 적절하지 않은 것은?
+① 반제품 상태의 제품을 토대로 도메인별로 필요한 서비스 컴포
+넌트를 사용하여 재사용성 확대와 성능을 보장 받을 수 있게 하는 개발 소프트웨어이다.
+② 라이브러리와는 달리 사용자 코드에서 프레임워크를 호출해서
+사용하고그에, 대한 제어도 사용자 코드가 가지는 방식이다.
+③ 설계 관점에 개발 방식을 패턴화시키기 위한 노력의 결과물인
+소프트웨어 디자인 패턴을 반제품 소프트웨어 상태로 집적화 시킨 것으로 볼 수 있다.
+④ 프레임워크의 동작 원리를 그 제어 흐름의 일반적인 프로그램
+흐름과 반대로 동작한다고 해서 ioc(inversion of control)이 라고 설명하기도 한다. 2022년 2회 필기 · 원문 85번 · pdf 7쪽 학습 항목 03 재사용 연계 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf" data-topic="재사용 지원·프레임워크" id="Q023"><h3><span class="tag">Q023</span>재사용 지원·프레임워크</h3><p class="source">2022년 2회 필기 · 원문 85번 · PDF 7쪽<br/>학습 항목 03 재사용 연계 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 개발 프레임워크와 관련한 설명으로 가장 적절하지 않은 것은?
+① 반제품 상태의 제품을 토대로 도메인별로 필요한 서비스 컴포
+넌트를 사용하여 재사용성 확대와 성능을 보장 받을 수 있게 하는 개발 소프트웨어이다.
+② 라이브러리와는 달리 사용자 코드에서 프레임워크를 호출해서
+사용하고그에, 대한 제어도 사용자 코드가 가지는 방식이다.
+③ 설계 관점에 개발 방식을 패턴화시키기 위한 노력의 결과물인
+소프트웨어 디자인 패턴을 반제품 소프트웨어 상태로 집적화 시킨 것으로 볼 수 있다.
+④ 프레임워크의 동작 원리를 그 제어 흐름의 일반적인 프로그램
+흐름과 반대로 동작한다고 해서 IoC(Inversion of Control)이 라고 설명하기도 한다.</div></div><label class="answer-label" for="a-Q023">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q038" id="a-Q023" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>프레임워크는 재사용 가능한 기본 구조와 공통 기능을 제공한다. 일반적인 라이브러리 호출과 달리 프레임워크가 사용자 코드의 실행을 제어하는 IoC 관점이 중요하다. 확장·모듈화·개발과 변경의 용이성을 지원하지만 특정 기술에 대한 종속 등도 검토한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q023 채점" data-save="score-Q038"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q038" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q039" data-search="재사용 지원·프레임워크 다음 설명에 해당하는 소프트웨어는?
+
+ㆍ개발해야 할 애플리케이션의 일부분이 이미 내장된 클래 스 라이브러리로 구현이 되어 있다.
+ㆍ따라서, 그 기반이 되는 이미 존재하는 부분을 확장 및 이용하는 것으로 볼 수 있다.
+ㆍjava 기반의 대표적인 소프트웨어로는 스프링(spring) 이 있다.
+
+① 전역 함수 라이브러리
+② 소프트웨어 개발 프레임워크
+③ 컨테이너 아키텍처
+④ 어휘 분석기 2022년 2회 필기 · 원문 91번 · pdf 8쪽 학습 항목 03 재사용 연계 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf" data-topic="재사용 지원·프레임워크" id="Q024"><h3><span class="tag">Q024</span>재사용 지원·프레임워크</h3><p class="source">2022년 2회 필기 · 원문 91번 · PDF 8쪽<br/>학습 항목 03 재사용 연계 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">다음 설명에 해당하는 소프트웨어는?
+
+ㆍ개발해야 할 애플리케이션의 일부분이 이미 내장된 클래 스 라이브러리로 구현이 되어 있다.
+ㆍ따라서, 그 기반이 되는 이미 존재하는 부분을 확장 및 이용하는 것으로 볼 수 있다.
+ㆍJAVA 기반의 대표적인 소프트웨어로는 스프링(Spring) 이 있다.
+
+① 전역 함수 라이브러리
+② 소프트웨어 개발 프레임워크
+③ 컨테이너 아키텍처
+④ 어휘 분석기</div></div><label class="answer-label" for="a-Q024">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q039" id="a-Q024" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>프레임워크는 재사용 가능한 기본 구조와 공통 기능을 제공한다. 일반적인 라이브러리 호출과 달리 프레임워크가 사용자 코드의 실행을 제어하는 IoC 관점이 중요하다. 확장·모듈화·개발과 변경의 용이성을 지원하지만 특정 기술에 대한 종속 등도 검토한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q024 채점" data-save="score-Q039"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q039" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q041" data-search="재사용 지원·프레임워크 소프트웨어 개발 프레임워크를 적용할 경우 기대 효과로 거리가 먼 것은?
+① 품질 보증 ② 시스템 복잡도 증가
+③ 개발 용이성 ④ 변경 용이성 2023년 02회 필기 · 원문 95번 · pdf 7쪽 학습 항목 03 재사용 연계 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf" data-topic="재사용 지원·프레임워크" id="Q025"><h3><span class="tag">Q025</span>재사용 지원·프레임워크</h3><p class="source">2023년 02회 필기 · 원문 95번 · PDF 7쪽<br/>학습 항목 03 재사용 연계 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 개발 프레임워크를 적용할 경우 기대 효과로 거리가 먼 것은?
+① 품질 보증 ② 시스템 복잡도 증가
+③ 개발 용이성 ④ 변경 용이성</div></div><label class="answer-label" for="a-Q025">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q041" id="a-Q025" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>프레임워크는 재사용 가능한 기본 구조와 공통 기능을 제공한다. 일반적인 라이브러리 호출과 달리 프레임워크가 사용자 코드의 실행을 제어하는 IoC 관점이 중요하다. 확장·모듈화·개발과 변경의 용이성을 지원하지만 특정 기술에 대한 종속 등도 검토한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q025 채점" data-save="score-Q041"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q041" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q043" data-search="재사용 지원·프레임워크 소프트웨어 개발 프레임워크를 적용할 경우 기대효과로 거리가 먼 것은?
+① 품질 보증 ② 기술 종속성
+③ 개발 용이성 ④ 변경 용이성 2025년 2회 필기 · 원문 91번 · pdf 6쪽 학습 항목 03 재사용 연계 · 출처: 2. 2025년2회_정보처리기사필기기출문제.pdf" data-topic="재사용 지원·프레임워크" id="Q026"><h3><span class="tag">Q026</span>재사용 지원·프레임워크</h3><p class="source">2025년 2회 필기 · 원문 91번 · PDF 6쪽<br/>학습 항목 03 재사용 연계 · 출처: 2. 2025년2회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 개발 프레임워크를 적용할 경우 기대효과로 거리가 먼 것은?
+① 품질 보증 ② 기술 종속성
+③ 개발 용이성 ④ 변경 용이성</div></div><label class="answer-label" for="a-Q026">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q043" id="a-Q026" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>프레임워크는 재사용 가능한 기본 구조와 공통 기능을 제공한다. 일반적인 라이브러리 호출과 달리 프레임워크가 사용자 코드의 실행을 제어하는 IoC 관점이 중요하다. 확장·모듈화·개발과 변경의 용이성을 지원하지만 특정 기술에 대한 종속 등도 검토한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q026 채점" data-save="score-Q043"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q043" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q045" data-search="설계 패턴·재사용 연계 디자인 패턴을 이용한 소프트웨어 재사용으로 얻어지는 장점이 아닌 것은?
+① 소프트웨어 코드의 품질을 향상시킬 수 있다.
+② 개발 프로세스를 무시할 수 있다.
+③ 개발자들 사이의 의사소통을 원활하게 할 수 있다.
+④ 소프트웨어의 품질과 생산성을 향상시킬 수 있다. 2021년 1회 필기 · 원문 11번 · pdf 1쪽 학습 항목 03·19 설계 패턴 연계 · 출처: 1. 2021년1회_기사필기 기출문제.pdf" data-topic="설계 패턴·재사용 연계" id="Q027"><h3><span class="tag">Q027</span>설계 패턴·재사용 연계</h3><p class="source">2021년 1회 필기 · 원문 11번 · PDF 1쪽<br/>학습 항목 03·19 설계 패턴 연계 · 출처: 1. 2021년1회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">디자인 패턴을 이용한 소프트웨어 재사용으로 얻어지는 장점이 아닌 것은?
+① 소프트웨어 코드의 품질을 향상시킬 수 있다.
+② 개발 프로세스를 무시할 수 있다.
+③ 개발자들 사이의 의사소통을 원활하게 할 수 있다.
+④ 소프트웨어의 품질과 생산성을 향상시킬 수 있다.</div></div><label class="answer-label" for="a-Q027">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q045" id="a-Q027" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>패턴은 반복되는 설계 문제에 적용하는 전형적인 해결 방식이다. 구조 이해·의사소통·재사용·생산성에 도움을 주지만 개발 프로세스를 생략하게 하지는 않는다. 도입 초기의 학습·적용 비용이 들 수 있으며 절차형 언어에서 효율이 극대화된다는 설명은 적절하지 않다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q027 채점" data-save="score-Q045"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q045" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q046" data-search="설계 패턴·재사용 연계 소프트웨어 설계에서 자주 발생하는 문제에 대한 일반적이고 반복적 인 해결 방법을 무엇이라고 하는가?
+① 모듈 분해 ② 디자인 패턴
+③ 연관 관계 ④ 클래스 도출 2022년 1회 필기 · 원문 17번 · pdf 2쪽 학습 항목 03·19 설계 패턴 연계 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf" data-topic="설계 패턴·재사용 연계" id="Q028"><h3><span class="tag">Q028</span>설계 패턴·재사용 연계</h3><p class="source">2022년 1회 필기 · 원문 17번 · PDF 2쪽<br/>학습 항목 03·19 설계 패턴 연계 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 설계에서 자주 발생하는 문제에 대한 일반적이고 반복적 인 해결 방법을 무엇이라고 하는가?
+① 모듈 분해 ② 디자인 패턴
+③ 연관 관계 ④ 클래스 도출</div></div><label class="answer-label" for="a-Q028">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q046" id="a-Q028" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>패턴은 반복되는 설계 문제에 적용하는 전형적인 해결 방식이다. 구조 이해·의사소통·재사용·생산성에 도움을 주지만 개발 프로세스를 생략하게 하지는 않는다. 도입 초기의 학습·적용 비용이 들 수 있으며 절차형 언어에서 효율이 극대화된다는 설명은 적절하지 않다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q028 채점" data-save="score-Q046"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q046" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q047" data-search="설계 패턴·재사용 연계 디자인 패턴 사용의 장·단점에 대한 설명으로 거리가 먼 것은?
+① 소프트웨어 구조 파악이 용이하다.
+② 객체지향 설계 및 구현의 생산성을 높이는데 적합하다.
+③ 재사용을 위한 개발 시간이 단축된다.
+④ 절차형 언어와 함께 이용될 때 효율이 극대화된다. 2023년 03회 필기 · 원문 5번 · pdf 1쪽 학습 항목 03·19 설계 패턴 연계 · 출처: 3. 2023년03회_정보처리기사필기기출문제.pdf" data-topic="설계 패턴·재사용 연계" id="Q029"><h3><span class="tag">Q029</span>설계 패턴·재사용 연계</h3><p class="source">2023년 03회 필기 · 원문 5번 · PDF 1쪽<br/>학습 항목 03·19 설계 패턴 연계 · 출처: 3. 2023년03회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">디자인 패턴 사용의 장·단점에 대한 설명으로 거리가 먼 것은?
+① 소프트웨어 구조 파악이 용이하다.
+② 객체지향 설계 및 구현의 생산성을 높이는데 적합하다.
+③ 재사용을 위한 개발 시간이 단축된다.
+④ 절차형 언어와 함께 이용될 때 효율이 극대화된다.</div></div><label class="answer-label" for="a-Q029">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q047" id="a-Q029" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>패턴은 반복되는 설계 문제에 적용하는 전형적인 해결 방식이다. 구조 이해·의사소통·재사용·생산성에 도움을 주지만 개발 프로세스를 생략하게 하지는 않는다. 도입 초기의 학습·적용 비용이 들 수 있으며 절차형 언어에서 효율이 극대화된다는 설명은 적절하지 않다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q029 채점" data-save="score-Q047"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q047" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q049" data-search="설계 패턴·재사용 연계 객체지향 소프트웨어 설계 시 디자인 패턴을 구성하는 요소로서 가장 거리가 먼 것은?
+① 실제 적용된 사례 ② 문제 및 배경
+③ 개발자의 성명 ④ 재사용 가능한 샘플코드 2024년 3회 필기 · 원문 14번 · pdf 1쪽 학습 항목 03·19 설계 패턴 연계 · 출처: 3. 2024년3회_정보처리기사필기기출문제.pdf" data-topic="설계 패턴·재사용 연계" id="Q030"><h3><span class="tag">Q030</span>설계 패턴·재사용 연계</h3><p class="source">2024년 3회 필기 · 원문 14번 · PDF 1쪽<br/>학습 항목 03·19 설계 패턴 연계 · 출처: 3. 2024년3회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">객체지향 소프트웨어 설계 시 디자인 패턴을 구성하는 요소로서 가장 거리가 먼 것은?
+① 실제 적용된 사례 ② 문제 및 배경
+③ 개발자의 성명 ④ 재사용 가능한 샘플코드</div></div><label class="answer-label" for="a-Q030">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q049" id="a-Q030" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>문제와 배경·적용 사례·재사용할 수 있는 예제 등은 패턴을 설명하는 내용이다. 개발자의 성명은 이 문항의 패턴 구성요소에 해당하지 않는다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q030 채점" data-save="score-Q049"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q049" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q050" data-search="설계 패턴·재사용 연계 디자인 패턴 사용의 장단점에 대한 설명으로 거리가 먼 것은?
+① 소프트웨어 구조 파악이 용이하다.
+② 초기 투자 비용 및 개발 시간이 절약된다.
+③ 재사용을 위한 개발 시간이 단축된다.
+④ 객체지향 설계 및 구현의 생산성을 높이는데 적합하다. 2025년 1회 필기 · 원문 15번 · pdf 2쪽 학습 항목 03·19 설계 패턴 연계 · 출처: 1. 2025년1회_정보처리기사필기기출문제.pdf" data-topic="설계 패턴·재사용 연계" id="Q031"><h3><span class="tag">Q031</span>설계 패턴·재사용 연계</h3><p class="source">2025년 1회 필기 · 원문 15번 · PDF 2쪽<br/>학습 항목 03·19 설계 패턴 연계 · 출처: 1. 2025년1회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">디자인 패턴 사용의 장단점에 대한 설명으로 거리가 먼 것은?
+① 소프트웨어 구조 파악이 용이하다.
+② 초기 투자 비용 및 개발 시간이 절약된다.
+③ 재사용을 위한 개발 시간이 단축된다.
+④ 객체지향 설계 및 구현의 생산성을 높이는데 적합하다.</div></div><label class="answer-label" for="a-Q031">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q050" id="a-Q031" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>패턴은 재사용과 유지보수·구조 이해에 도움이 되지만, 도입 초기에는 학습·적용에 필요한 투자 비용과 시간이 들 수 있다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q031 채점" data-save="score-Q050"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q050" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q051" data-search="설계 패턴·재사용 연계 소프트웨어 설계에서 각 모듈의 세분화된 역할이나 모듈들 간의 인터페이스와 같은 코드를 작성하는 수준의 세부적인 구현 방안을 설계할 때 참조할 수 있는 전형적인 해결 방식 또는 예제를 의미하는 것은?
+① 모듈 분해 ② 클래스 도출
+③ 연관 관계 ④ 디자인 패턴 2025년 1회 필기 · 원문 17번 · pdf 2쪽 학습 항목 03·19 설계 패턴 연계 · 출처: 1. 2025년1회_정보처리기사필기기출문제.pdf" data-topic="설계 패턴·재사용 연계" id="Q032"><h3><span class="tag">Q032</span>설계 패턴·재사용 연계</h3><p class="source">2025년 1회 필기 · 원문 17번 · PDF 2쪽<br/>학습 항목 03·19 설계 패턴 연계 · 출처: 1. 2025년1회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 설계에서 각 모듈의 세분화된 역할이나 모듈들 간의 인터페이스와 같은 코드를 작성하는 수준의 세부적인 구현 방안을 설계할 때 참조할 수 있는 전형적인 해결 방식 또는 예제를 의미하는 것은?
+① 모듈 분해 ② 클래스 도출
+③ 연관 관계 ④ 디자인 패턴</div></div><label class="answer-label" for="a-Q032">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q051" id="a-Q032" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>패턴은 반복되는 설계 문제에 적용하는 전형적인 해결 방식이다. 구조 이해·의사소통·재사용·생산성에 도움을 주지만 개발 프로세스를 생략하게 하지는 않는다. 도입 초기의 학습·적용 비용이 들 수 있으며 절차형 언어에서 효율이 극대화된다는 설명은 적절하지 않다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q032 채점" data-save="score-Q051"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q051" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q052" data-search="재사용 지원·case case(computer aided software engineering)에 대한 설명으로 틀린 것은?
+① 소프트웨어 모듈의 재사용성이 향상된다.
+② 자동화된 기법을 통해 소프트웨어 품질이 향상된다.
+③ 소프트웨어 사용자들에게 사용 방법을 신속히 숙지시키기 위
+해 사용된다.
+④ 소프트웨어 유지보수를 간편하게 수행할 수 있다. 2021년 1회 필기 · 원문 20번 · pdf 2쪽 학습 항목 03 재사용 연계 · 출처: 1. 2021년1회_기사필기 기출문제.pdf" data-topic="재사용 지원·CASE" id="Q033"><h3><span class="tag">Q033</span>재사용 지원·CASE</h3><p class="source">2021년 1회 필기 · 원문 20번 · PDF 2쪽<br/>학습 항목 03 재사용 연계 · 출처: 1. 2021년1회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">CASE(Computer Aided Software Engineering)에 대한 설명으로 틀린 것은?
+① 소프트웨어 모듈의 재사용성이 향상된다.
+② 자동화된 기법을 통해 소프트웨어 품질이 향상된다.
+③ 소프트웨어 사용자들에게 사용 방법을 신속히 숙지시키기 위
+해 사용된다.
+④ 소프트웨어 유지보수를 간편하게 수행할 수 있다.</div></div><label class="answer-label" for="a-Q033">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q052" id="a-Q033" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>CASE는 소프트웨어 개발 과정을 자동화하여 품질·생산성·유지보수성·모듈 재사용성 향상을 지원하는 도구이다. 일반 사용자에게 소프트웨어 사용법을 빠르게 익히게 하는 도구라는 설명과 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q033 채점" data-save="score-Q052"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q052" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q055" data-search="재사용 지원·case 다음 중 case의 장점이 아닌 것은?
+① 자동화된 기법을 통해 소프트웨어 품질이 향상된다.
+② 소프트웨어의 유지보수를 간편하게 수행할 수 있다.
+③ 소프트웨어의 생산성이 향상된다.
+④ 소프트웨어 모듈의 재사용성이 줄어든다. 2026년 1회 필기 · 원문 2번 · pdf 1쪽 학습 항목 03 재사용 연계 · 출처: 2. 2026년1회_정보처리기사필기기출문제.pdf" data-topic="재사용 지원·CASE" id="Q034"><h3><span class="tag">Q034</span>재사용 지원·CASE</h3><p class="source">2026년 1회 필기 · 원문 2번 · PDF 1쪽<br/>학습 항목 03 재사용 연계 · 출처: 2. 2026년1회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">다음 중 CASE의 장점이 아닌 것은?
+① 자동화된 기법을 통해 소프트웨어 품질이 향상된다.
+② 소프트웨어의 유지보수를 간편하게 수행할 수 있다.
+③ 소프트웨어의 생산성이 향상된다.
+④ 소프트웨어 모듈의 재사용성이 줄어든다.</div></div><label class="answer-label" for="a-Q034">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q055" id="a-Q034" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>CASE는 소프트웨어 개발 과정을 자동화하여 품질·생산성·유지보수성·모듈 재사용성 향상을 지원하는 도구이다. 일반 사용자에게 소프트웨어 사용법을 빠르게 익히게 하는 도구라는 설명과 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q034 채점" data-save="score-Q055"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q055" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q058" data-search="재공학·역공학·이식 소프트웨어 재공학의 주요 활동 중 기존 소프트웨어 시스템을 새로운 기술 또는 하드웨어 환경에서 사용할 수 있도록 변환하는 작업을 의미하는 것은?
+① analysis ② migration
+③ restructuring ④ reverse engineering 2022년 1회 필기 · 원문 27번 · pdf 2쪽 학습 항목 04 재공학·역공학·재구조화 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf" data-topic="재공학·역공학·이식" id="Q035"><h3><span class="tag">Q035</span>재공학·역공학·이식</h3><p class="source">2022년 1회 필기 · 원문 27번 · PDF 2쪽<br/>학습 항목 04 재공학·역공학·재구조화 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 재공학의 주요 활동 중 기존 소프트웨어 시스템을 새로운 기술 또는 하드웨어 환경에서 사용할 수 있도록 변환하는 작업을 의미하는 것은?
+① Analysis ② Migration
+③ Restructuring ④ Reverse Engineering</div></div><label class="answer-label" for="a-Q035">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q058" id="a-Q035" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>기존 소프트웨어를 다른 운영체제·하드웨어 등 새 환경에서 사용하도록 변환하는 활동은 이식(Migration)이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q035 채점" data-save="score-Q058"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q058" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q059" data-search="재공학·역공학·이식 소프트웨어 재공학의 주요 활동 중 기존 소프트웨어를 다른 운영체제 나 하드웨어 환경에서 사용할 수 있도록 변환하는 것은?
+① 역공학 ② 분석
+③ 재구성 ④ 이식 2022년 3회 필기 · 원문 95번 · pdf 7쪽 학습 항목 04 재공학·역공학·재구조화 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf" data-topic="재공학·역공학·이식" id="Q036"><h3><span class="tag">Q036</span>재공학·역공학·이식</h3><p class="source">2022년 3회 필기 · 원문 95번 · PDF 7쪽<br/>학습 항목 04 재공학·역공학·재구조화 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 재공학의 주요 활동 중 기존 소프트웨어를 다른 운영체제 나 하드웨어 환경에서 사용할 수 있도록 변환하는 것은?
+① 역공학 ② 분석
+③ 재구성 ④ 이식</div></div><label class="answer-label" for="a-Q036">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q059" id="a-Q036" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>기존 소프트웨어를 다른 운영체제·하드웨어 등 새 환경에서 사용하도록 변환하는 활동은 이식(Migration)이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q036 채점" data-save="score-Q059"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q059" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q060" data-search="재공학·역공학·이식 소프트웨어 재공학이 소프트웨어의 재개발에 비해 갖는 장점으로 거리가 먼 것은?
+① 위험부담 감소 ② 비용 절감
+③ 시스템 명세의 오류억제 ④ 개발 시간의 증가 2023년 01회 필기 · 원문 39번 · pdf 3쪽 학습 항목 04 재공학·역공학·재구조화 · 출처: 1. 2023년01회_정보처리기사필기기출문제.pdf" data-topic="재공학·역공학·이식" id="Q037"><h3><span class="tag">Q037</span>재공학·역공학·이식</h3><p class="source">2023년 01회 필기 · 원문 39번 · PDF 3쪽<br/>학습 항목 04 재공학·역공학·재구조화 · 출처: 1. 2023년01회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 재공학이 소프트웨어의 재개발에 비해 갖는 장점으로 거리가 먼 것은?
+① 위험부담 감소 ② 비용 절감
+③ 시스템 명세의 오류억제 ④ 개발 시간의 증가</div></div><label class="answer-label" for="a-Q037">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q060" id="a-Q037" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>기존 자산을 활용하는 재공학은 위험·비용·개발 시간을 줄일 수 있다. 시스템 명세의 오류 억제는 이 문항에서 재개발 대비 주된 장점으로 보지 않는다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q037 채점" data-save="score-Q060"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q060" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="yes" data-kind="written" data-original-id="Q062" data-search="재공학·역공학·이식 소프트웨어 재공학(reengineering)에 대한 설명으로 틀린 것은?
+① 기존 시스템을 이용하여 보다 나은 시스템을 구축하는 것이다.
+② 유지보수 비용의 최소화를 위해 유지보수성과 품질을 향상시
+키는 것을 목적으로 한다.
+③ 소프트웨어 위기를 해결하는 방법 중 하나로 꼽힌다.
+④ 소프트웨어의 수명이 연장되지만개발, 비용이 증가한다. 2024년 2회 필기 · 원문 96번 · pdf 7쪽 학습 항목 04 재공학·역공학·재구조화 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf" data-topic="재공학·역공학·이식" id="Q038"><h3><span class="tag">Q038</span><span class="tag">수업</span>재공학·역공학·이식</h3><p class="source">2024년 2회 필기 · 원문 96번 · PDF 7쪽<br/>학습 항목 04 재공학·역공학·재구조화 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 재공학(Reengineering)에 대한 설명으로 틀린 것은?
+① 기존 시스템을 이용하여 보다 나은 시스템을 구축하는 것이다.
+② 유지보수 비용의 최소화를 위해 유지보수성과 품질을 향상시
+키는 것을 목적으로 한다.
+③ 소프트웨어 위기를 해결하는 방법 중 하나로 꼽힌다.
+④ 소프트웨어의 수명이 연장되지만개발, 비용이 증가한다.</div></div><label class="answer-label" for="a-Q038">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q062" id="a-Q038" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>재공학은 기존 시스템을 분석·개선하여 유지보수성과 품질을 높이고 비용을 줄이려는 활동이다. 이 문항에서는 “소프트웨어의 수명이 연장되지만 개발 비용이 증가한다”는 ④가 복원본의 정답이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q038 채점" data-save="score-Q062"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q062" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="yes" data-kind="practical" data-original-id="Q065" data-search="응집도·종류와 순서 모듈에 대한 다음 설명에서 각 지문 ①~③ 에 해당하는 응집도 (cohesion) 를 &lt;보기&gt;에서 찾아 기호
+
+로 쓰시오 . (5 점 )
+
+① 내부의 요소들이 기능적으로 연관성은 없으나, 순차적으로 실행될 때의 응집도
+
+② 서로 다른 기능을 수행하지만 동일한 입력과 출력을 사용할 때의 응집도
+
+③ 하나의 기능에 밀접하게 관련되어 있거나 연관되어 있을 때의 응집도
+
+&lt;보기&gt;
+
+㉠ 기능적 응집도 ㉡ 순차적 응집도 ㉢ 교환적 응집도 ㉣ 절차적 응집도
+
+㉤ 시간적 응집도 ㉥ 논리적 응집도 ㉦ 우연적 응집도
+
+답
+
+ㆍ①
+
+ㆍ②
+
+ㆍ③ 2021년 2회 실기 · 원문 11번 · pdf 6쪽 학습 항목 05~11 응집도 · 출처: 2. 2021년2회_기사실기 기출문제.pdf" data-topic="응집도·종류와 순서" id="Q039"><h3><span class="tag">Q039</span><span class="tag">수업</span>응집도·종류와 순서</h3><p class="source">2021년 2회 실기 · 원문 11번 · PDF 6쪽<br/>학습 항목 05~11 응집도 · 출처: 2. 2021년2회_기사실기 기출문제.pdf</p><div class="original"><div class="problem-text">모듈에 대한 다음 설명에서 각 지문 ①~③ 에 해당하는 응집도 (Cohesion) 를 &lt;보기&gt;에서 찾아 기호
+
+로 쓰시오 . (5 점 )
+
+① 내부의 요소들이 기능적으로 연관성은 없으나, 순차적으로 실행될 때의 응집도
+
+② 서로 다른 기능을 수행하지만 동일한 입력과 출력을 사용할 때의 응집도
+
+③ 하나의 기능에 밀접하게 관련되어 있거나 연관되어 있을 때의 응집도
+
+&lt;보기&gt;
+
+㉠ 기능적 응집도 ㉡ 순차적 응집도 ㉢ 교환적 응집도 ㉣ 절차적 응집도
+
+㉤ 시간적 응집도 ㉥ 논리적 응집도 ㉦ 우연적 응집도
+
+답
+
+ㆍ①
+
+ㆍ②
+
+ㆍ③</div></div><label class="answer-label" for="a-Q039">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q065" id="a-Q039" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ① ㉣  ② ㉢  ③ ㉠</p><p>단순한 수행 순서로 묶임=절차적, 동일 입출력 공유=교환적, 하나의 기능에 밀접함=기능적이다. “순차적으로 실행”이라는 말만 보고 순차적 응집도로 고르지 않는다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q039 채점" data-save="score-Q065"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q065" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="practical" data-original-id="Q066" data-search="응집도·종류와 순서 다음에 제시된 응집도(cohesion) 를 높은 순에서 낮은 순으로 나열하시오. (5 점)
+
+㉠ 기능적 응집도(functional cohesion)
+
+㉡ 교환적 응집도(communication cohesion)
+
+㉢ 우연적 응집도(coincidental cohesion)
+
+㉣ 시간적 응집도(temporal cohesion)
+
+답 : ( ) → ( ) → ( ) → ( ) 2024년 1회 실기 · 원문 4번 · pdf 3쪽 학습 항목 05~11 응집도 · 출처: 1. 2024년1회_정보처리기사실기_기출문제.pdf" data-topic="응집도·종류와 순서" id="Q040"><h3><span class="tag">Q040</span>응집도·종류와 순서</h3><p class="source">2024년 1회 실기 · 원문 4번 · PDF 3쪽<br/>학습 항목 05~11 응집도 · 출처: 1. 2024년1회_정보처리기사실기_기출문제.pdf</p><div class="original"><div class="problem-text">다음에 제시된 응집도(Cohesion) 를 높은 순에서 낮은 순으로 나열하시오. (5 점)
+
+㉠ 기능적 응집도(Functional Cohesion)
+
+㉡ 교환적 응집도(Communication Cohesion)
+
+㉢ 우연적 응집도(Coincidental Cohesion)
+
+㉣ 시간적 응집도(Temporal Cohesion)
+
+답 : ( ) → ( ) → ( ) → ( )</div></div><label class="answer-label" for="a-Q040">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q066" id="a-Q040" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ㉠ → ㉡ → ㉣ → ㉢</p><p>제시된 네 종류만 높은 순으로 나열하면 기능적 → 교환적 → 시간적 → 우연적이다. 전체 분류의 순차적·절차적·논리적은 이 보기에는 없다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q040 채점" data-save="score-Q066"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q066" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="practical" data-original-id="Q067" data-search="응집도·종류와 순서 모듈에 대한 다음 설명에 해당하는 응집도 (cohesion) 를 &lt;보기&gt;에서 찾아 기호( ㉠~㉦ )로 쓰시오.
+
+(5점)
+
+모듈 내 하나의 활동으로부터 나온 출력 데이터를 그 다음 활동의 입력 데이터로 사용할 경우의 응집도
+
+&lt;보기&gt;
+
+㉠ 기능적 응집도 ㉡ 순차적 응집도 ㉢ 교환적 응집도 ㉣ 절차적 응집도
+
+㉤ 시간적 응집도 ㉥ 논리적 응집도 ㉦ 우연적 응집도
+
+답 : 2024년 2회 실기 · 원문 15번 · pdf 10쪽 학습 항목 05~11 응집도 · 출처: 2. 2024년2회_정보처리기사실기_기출문제.pdf" data-topic="응집도·종류와 순서" id="Q041"><h3><span class="tag">Q041</span>응집도·종류와 순서</h3><p class="source">2024년 2회 실기 · 원문 15번 · PDF 10쪽<br/>학습 항목 05~11 응집도 · 출처: 2. 2024년2회_정보처리기사실기_기출문제.pdf</p><div class="original"><div class="problem-text">모듈에 대한 다음 설명에 해당하는 응집도 (Cohesion) 를 &lt;보기&gt;에서 찾아 기호( ㉠~㉦ )로 쓰시오.
+
+(5점)
+
+모듈 내 하나의 활동으로부터 나온 출력 데이터를 그 다음 활동의 입력 데이터로 사용할 경우의 응집도
+
+&lt;보기&gt;
+
+㉠ 기능적 응집도 ㉡ 순차적 응집도 ㉢ 교환적 응집도 ㉣ 절차적 응집도
+
+㉤ 시간적 응집도 ㉥ 논리적 응집도 ㉦ 우연적 응집도
+
+답 :</div></div><label class="answer-label" for="a-Q041">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q067" id="a-Q041" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ㉡ 순차적 응집도</p><p>앞 활동에서 나온 출력 데이터를 다음 활동의 입력으로 사용한다는 점이 핵심이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q041 채점" data-save="score-Q067"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q067" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q069" data-search="응집도·종류와 순서 다음 중 응집도가 가장 높은 것은?
+① 절차적 응집도 ② 순차적 응집도
+③ 우연적 응집도 ④ 논리적 응집도 2021년 1회 필기 · 원문 73번 · pdf 5쪽 학습 항목 05~11 응집도 · 출처: 1. 2021년1회_기사필기 기출문제.pdf" data-topic="응집도·종류와 순서" id="Q042"><h3><span class="tag">Q042</span>응집도·종류와 순서</h3><p class="source">2021년 1회 필기 · 원문 73번 · PDF 5쪽<br/>학습 항목 05~11 응집도 · 출처: 1. 2021년1회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">다음 중 응집도가 가장 높은 것은?
+① 절차적 응집도 ② 순차적 응집도
+③ 우연적 응집도 ④ 논리적 응집도</div></div><label class="answer-label" for="a-Q042">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q069" id="a-Q042" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>제시된 보기 중에서는 순차적 응집도가 가장 높다. 전체 응집도 분류에서 가장 높은 기능적 응집도는 이 보기에 없으므로, 보기 안의 순서를 비교해야 한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q042 채점" data-save="score-Q069"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q069" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q070" data-search="응집도·종류와 순서 다음 중 가장 강한 응집도(cohesion)는?
+① sequential cohesion
+② procedural cohesion
+③ logical cohesion
+④ coincidental cohesion 2021년 2회 필기 · 원문 67번 · pdf 5쪽 학습 항목 05~11 응집도 · 출처: 2. 2021년2회_기사필기 기출문제.pdf" data-topic="응집도·종류와 순서" id="Q043"><h3><span class="tag">Q043</span>응집도·종류와 순서</h3><p class="source">2021년 2회 필기 · 원문 67번 · PDF 5쪽<br/>학습 항목 05~11 응집도 · 출처: 2. 2021년2회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">다음 중 가장 강한 응집도(Cohesion)는?
+① Sequential Cohesion
+② Procedural Cohesion
+③ Logical Cohesion
+④ Coincidental Cohesion</div></div><label class="answer-label" for="a-Q043">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q070" id="a-Q043" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>제시된 보기 중에서는 순차적 응집도가 가장 높다. 전체 응집도 분류에서 가장 높은 기능적 응집도는 이 보기에 없으므로, 보기 안의 순서를 비교해야 한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q043 채점" data-save="score-Q070"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q070" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q071" data-search="응집도·종류와 순서 모듈 내 구성 요소들이 서로 다른 기능을 같은 시간대에 함께 실행하 는 경우의 응집도(cohesion)는?
+① temporal cohesion ② logical cohesion
+③ coincidental cohesion ④ sequential cohesion 2021년 3회 필기 · 원문 61번 · pdf 5쪽 학습 항목 05~11 응집도 · 출처: 3. 2021년3회_기사필기 기출문제.pdf" data-topic="응집도·종류와 순서" id="Q044"><h3><span class="tag">Q044</span>응집도·종류와 순서</h3><p class="source">2021년 3회 필기 · 원문 61번 · PDF 5쪽<br/>학습 항목 05~11 응집도 · 출처: 3. 2021년3회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">모듈 내 구성 요소들이 서로 다른 기능을 같은 시간대에 함께 실행하 는 경우의 응집도(Cohesion)는?
+① Temporal Cohesion ② Logical Cohesion
+③ Coincidental Cohesion ④ Sequential Cohesion</div></div><label class="answer-label" for="a-Q044">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q071" id="a-Q044" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>다른 기능을 같은 시점에 실행한다는 이유로 모인 경우는 시간적(Temporal) 응집도이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q044 채점" data-save="score-Q071"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q071" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q072" data-search="응집도·종류와 순서 다음 중 myers가 구분한 응집도(cohesion)의 정도에서 가장 낮은 응집도를 갖는 단계는?
+① 순차적 응집도(sequential cohesion)
+② 기능적 응집도(functional cohesion)
+③ 시간적 응집도(temporal cohesion)
+④ 우연적 응집도(coincidental cohesion) 2022년 2회 필기 · 원문 73번 · pdf 6쪽 학습 항목 05~11 응집도 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf" data-topic="응집도·종류와 순서" id="Q045"><h3><span class="tag">Q045</span>응집도·종류와 순서</h3><p class="source">2022년 2회 필기 · 원문 73번 · PDF 6쪽<br/>학습 항목 05~11 응집도 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">다음 중 Myers가 구분한 응집도(Cohesion)의 정도에서 가장 낮은 응집도를 갖는 단계는?
+① 순차적 응집도(Sequential Cohesion)
+② 기능적 응집도(Functional Cohesion)
+③ 시간적 응집도(Temporal Cohesion)
+④ 우연적 응집도(Coincidental Cohesion)</div></div><label class="answer-label" for="a-Q045">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q072" id="a-Q045" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>관련성이 없는 기능들이 모인 우연적(Coincidental) 응집도가 가장 낮다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q045 채점" data-save="score-Q072"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q072" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q073" data-search="응집도·종류와 순서 한 모듈 내의 각 구성 요소들이 공통의 목적을 달성하기 위하여 서로 얼마나 관련이 있는지의 기능적 연관의 정도를 나타내는 것은?
+① cohesion ② coupling
+③ structure ④ unity 2023년 01회 필기 · 원문 12번 · pdf 1쪽 학습 항목 05~11 응집도 · 출처: 1. 2023년01회_정보처리기사필기기출문제.pdf" data-topic="응집도·종류와 순서" id="Q046"><h3><span class="tag">Q046</span>응집도·종류와 순서</h3><p class="source">2023년 01회 필기 · 원문 12번 · PDF 1쪽<br/>학습 항목 05~11 응집도 · 출처: 1. 2023년01회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">한 모듈 내의 각 구성 요소들이 공통의 목적을 달성하기 위하여 서로 얼마나 관련이 있는지의 기능적 연관의 정도를 나타내는 것은?
+① Cohesion ② Coupling
+③ Structure ④ Unity</div></div><label class="answer-label" for="a-Q046">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q073" id="a-Q046" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>응집도는 한 모듈 내부 요소들의 기능적 관련성이다. 높은 순서는 기능적 &gt; 순차적 &gt; 통신적(교환적) &gt; 절차적 &gt; 시간적 &gt; 논리적 &gt; 우연적이다. 앞 출력이 다음 입력이면 순차적, 같은 입출력을 공유하면 통신적, 실행 순서 중심이면 절차적, 같은 시점이면 시간적이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q046 채점" data-save="score-Q073"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q073" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q074" data-search="응집도·종류와 순서 응집도의 종류 중 서로 간에 어떠한 의미 있는 연관 관계도 지니지 않은 기능 요소로 구성되는 경우이며서로, 다른 상위 모듈에 의해 호출되어 처리 상의 연관성이 없는 서로 다른 기능을 수행하는 경우의 응집도는?
+① functional cohesion ② sequential cohesion
+③ logical cohesion ④ coincidental cohesion 2023년 03회 필기 · 원문 74번 · pdf 5쪽 학습 항목 05~11 응집도 · 출처: 3. 2023년03회_정보처리기사필기기출문제.pdf" data-topic="응집도·종류와 순서" id="Q047"><h3><span class="tag">Q047</span>응집도·종류와 순서</h3><p class="source">2023년 03회 필기 · 원문 74번 · PDF 5쪽<br/>학습 항목 05~11 응집도 · 출처: 3. 2023년03회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">응집도의 종류 중 서로 간에 어떠한 의미 있는 연관 관계도 지니지 않은 기능 요소로 구성되는 경우이며서로, 다른 상위 모듈에 의해 호출되어 처리 상의 연관성이 없는 서로 다른 기능을 수행하는 경우의 응집도는?
+① Functional Cohesion ② Sequential Cohesion
+③ Logical Cohesion ④ Coincidental Cohesion</div></div><label class="answer-label" for="a-Q047">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q074" id="a-Q047" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>관련성이 없는 기능들이 모인 우연적(Coincidental) 응집도가 가장 낮다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q047 채점" data-save="score-Q074"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q074" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="yes" data-kind="practical" data-original-id="Q079" data-search="결합도·종류와 순서 결합도의 종류에 대한 다음 설명에서 괄호(①, ②, ③)에 들어갈 알맞은 답을 보기에서 찾아 기호로 쓰시오. (5점)
+
+1. ( ① )는 모듈 간의 인터페이스로 데이터, 지역 변수 등을 직접 참조하거나 수정할 때의 결합도다
+
+2. ( ② )는 모듈 간의 인터페이스로 배열이나 레코드 등의 자료구조가 전달될 때의 결합도다.
+
+3. ( ③ )는 모듈 간의 인터페이스로 파라미터가 아닌 모듈 밖에 선언된 전역 변수를 사용하여 전역 변수를 갱신하는 방식으로 상호작용하는 때의 결합도다
+
+&lt;보기&gt;
+
+㉠ 자료 결합도 ㉡ 스탬프 결합도 ㉢ 제어 결합도
+
+㉣ 공통 결합도 ㉤ 내용 결합도 ㉥ 외부 결합도
+
+답
+
+ㆍ①
+
+ㆍ②
+
+ㆍ③ 2021년 1회 실기 · 원문 19번 · pdf 9쪽 학습 항목 12~17 결합도 · 출처: 1. 2021년1회_기사실기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q048"><h3><span class="tag">Q048</span><span class="tag">수업</span>결합도·종류와 순서</h3><p class="source">2021년 1회 실기 · 원문 19번 · PDF 9쪽<br/>학습 항목 12~17 결합도 · 출처: 1. 2021년1회_기사실기 기출문제.pdf</p><div class="original"><div class="problem-text">결합도의 종류에 대한 다음 설명에서 괄호(①, ②, ③)에 들어갈 알맞은 답을 보기에서 찾아 기호로 쓰시오. (5점)
+
+1. ( ① )는 모듈 간의 인터페이스로 데이터, 지역 변수 등을 직접 참조하거나 수정할 때의 결합도다
+
+2. ( ② )는 모듈 간의 인터페이스로 배열이나 레코드 등의 자료구조가 전달될 때의 결합도다.
+
+3. ( ③ )는 모듈 간의 인터페이스로 파라미터가 아닌 모듈 밖에 선언된 전역 변수를 사용하여 전역 변수를 갱신하는 방식으로 상호작용하는 때의 결합도다
+
+&lt;보기&gt;
+
+㉠ 자료 결합도 ㉡ 스탬프 결합도 ㉢ 제어 결합도
+
+㉣ 공통 결합도 ㉤ 내용 결합도 ㉥ 외부 결합도
+
+답
+
+ㆍ①
+
+ㆍ②
+
+ㆍ③</div></div><label class="answer-label" for="a-Q048">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q079" id="a-Q048" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ① ㉤  ② ㉡  ③ ㉣</p><p>다른 모듈 내부의 데이터·지역 변수 직접 참조·수정=내용, 배열·레코드 전달=스탬프, 공용 전역 변수 공유=공통 결합도이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q048 채점" data-save="score-Q079"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q079" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="practical" data-original-id="Q080" data-search="결합도·종류와 순서 결합도(coupling)의 종류 중 단순 처리 대상인 데이터만 전달되는 것이 아니라 어떻게 처리해야
+
+하는지를 결정하는 제어 요소가 전달되는 경우의 결합도를 영문으로 쓰시오. (5 점 )
+
+답 : 2021년 3회 실기 · 원문 6번 · pdf 4쪽 학습 항목 12~17 결합도 · 출처: 3. 2021년3회_기사실기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q049"><h3><span class="tag">Q049</span>결합도·종류와 순서</h3><p class="source">2021년 3회 실기 · 원문 6번 · PDF 4쪽<br/>학습 항목 12~17 결합도 · 출처: 3. 2021년3회_기사실기 기출문제.pdf</p><div class="original"><div class="problem-text">결합도(Coupling)의 종류 중 단순 처리 대상인 데이터만 전달되는 것이 아니라 어떻게 처리해야
+
+하는지를 결정하는 제어 요소가 전달되는 경우의 결합도를 영문으로 쓰시오. (5 점 )
+
+답 :</div></div><label class="answer-label" for="a-Q049">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q080" id="a-Q049" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: Control 또는 Control Coupling</p><p>원문은 영문 답안을 요구한다. 처리할 데이터뿐 아니라 어떻게 처리할지를 정하는 제어 요소가 전달되므로 제어 결합도이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q049 채점" data-save="score-Q080"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q080" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="practical" data-original-id="Q081" data-search="결합도·종류와 순서 모듈에 대한 다음 설명에 해당하는 결합도(coupling) 를 &lt;보기&gt;에서 찾아 기호(㉠ ~ ㉥ )로 쓰시오.
+
+(5점)
+
+ㆍ어떤 모듈이 다른 모듈 내부의 논리적인 흐름을 제어하기 위해 제어 신호나 제어 요소를 전달하는 결합
+
+도이다.
+
+ㆍ하위 모듈에서 상위 모듈로 제어 신호가 이동하여 하위 모듈이 상위 모듈에게 처리 명령을 내리는 권리
+
+전도 현상이 발생하게 된다.
+
+&lt;보기&gt;
+
+㉠ 자료 결합도 ㉡ 스탬프 결합도 ㉢ 제어 결합도
+
+㉣ 공통 결합도 ㉤ 내용 결합도 ㉥ 외부 결합도
+
+답 : 2024년 2회 실기 · 원문 18번 · pdf 11쪽 학습 항목 12~17 결합도 · 출처: 2. 2024년2회_정보처리기사실기_기출문제.pdf" data-topic="결합도·종류와 순서" id="Q050"><h3><span class="tag">Q050</span>결합도·종류와 순서</h3><p class="source">2024년 2회 실기 · 원문 18번 · PDF 11쪽<br/>학습 항목 12~17 결합도 · 출처: 2. 2024년2회_정보처리기사실기_기출문제.pdf</p><div class="original"><div class="problem-text">모듈에 대한 다음 설명에 해당하는 결합도(Coupling) 를 &lt;보기&gt;에서 찾아 기호(㉠ ~ ㉥ )로 쓰시오.
+
+(5점)
+
+ㆍ어떤 모듈이 다른 모듈 내부의 논리적인 흐름을 제어하기 위해 제어 신호나 제어 요소를 전달하는 결합
+
+도이다.
+
+ㆍ하위 모듈에서 상위 모듈로 제어 신호가 이동하여 하위 모듈이 상위 모듈에게 처리 명령을 내리는 권리
+
+전도 현상이 발생하게 된다.
+
+&lt;보기&gt;
+
+㉠ 자료 결합도 ㉡ 스탬프 결합도 ㉢ 제어 결합도
+
+㉣ 공통 결합도 ㉤ 내용 결합도 ㉥ 외부 결합도
+
+답 :</div></div><label class="answer-label" for="a-Q050">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q081" id="a-Q050" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ㉢ 제어 결합도</p><p>다른 모듈의 내부 논리 흐름을 결정하는 제어 신호·제어 요소가 전달된다. 권리 전도 현상도 제어 결합도의 단서이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q050 채점" data-save="score-Q081"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q081" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="practical" data-original-id="Q082" data-search="결합도·종류와 순서 다음은 결합도 (coupling)에 대한 설명이다 . 괄호(①~③ )에 들어갈 알맞은 결합도를
+
+&lt;보기&gt;에서 찾아 기호( ㉠~㉥ ) 로 쓰시오. (5점)
+
+ㆍ( ① ) : 한 모듈이 다른 모듈의 내부 기능 및 그 내부 자료를 직접 참조하거나 수정할 때의 결합도이
+
+다.
+
+ㆍ( ② ) : 모듈 간의 인터페이스로 배열이나 레코드 등의 자료 구조가 전달될 때의 결합도이다.
+
+ㆍ( ③ ) : 공유되는 공통 데이터 영역을 여러 모듈이 사용할 때의 결합도로, 파라미터가 아닌 모듈 밖
+
+에 선언된 전역 변수를 사용하여 전역 변수를 갱신하는 방식으로 상호작용하는 때의 결합도이다.
+
+&lt;보기&gt;
+
+㉠ 외부 결합도 ㉡ 스탬프 결합도 ㉢ 제어 결합도
+
+㉣ 자료 결합도 ㉤ 내용 결합도 ㉥ 공통 결합도
+
+답
+
+ㆍ①
+
+ㆍ②
+
+ㆍ③ 2025년 1회 실기 · 원문 7번 · pdf 5쪽 학습 항목 12~17 결합도 · 출처: 1. 2025년1회_정보처리기사실기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q051"><h3><span class="tag">Q051</span>결합도·종류와 순서</h3><p class="source">2025년 1회 실기 · 원문 7번 · PDF 5쪽<br/>학습 항목 12~17 결합도 · 출처: 1. 2025년1회_정보처리기사실기 기출문제.pdf</p><div class="original"><div class="problem-text">다음은 결합도 (Coupling)에 대한 설명이다 . 괄호(①~③ )에 들어갈 알맞은 결합도를
+
+&lt;보기&gt;에서 찾아 기호( ㉠~㉥ ) 로 쓰시오. (5점)
+
+ㆍ( ① ) : 한 모듈이 다른 모듈의 내부 기능 및 그 내부 자료를 직접 참조하거나 수정할 때의 결합도이
+
+다.
+
+ㆍ( ② ) : 모듈 간의 인터페이스로 배열이나 레코드 등의 자료 구조가 전달될 때의 결합도이다.
+
+ㆍ( ③ ) : 공유되는 공통 데이터 영역을 여러 모듈이 사용할 때의 결합도로, 파라미터가 아닌 모듈 밖
+
+에 선언된 전역 변수를 사용하여 전역 변수를 갱신하는 방식으로 상호작용하는 때의 결합도이다.
+
+&lt;보기&gt;
+
+㉠ 외부 결합도 ㉡ 스탬프 결합도 ㉢ 제어 결합도
+
+㉣ 자료 결합도 ㉤ 내용 결합도 ㉥ 공통 결합도
+
+답
+
+ㆍ①
+
+ㆍ②
+
+ㆍ③</div></div><label class="answer-label" for="a-Q051">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q082" id="a-Q051" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ① ㉤  ② ㉡  ③ ㉥</p><p>내부 기능·자료 직접 참조=내용, 자료구조 전달=스탬프, 공용 전역 영역 공유=공통이다. 회차마다 보기 기호가 달라지므로 이름과 기호를 함께 확인한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q051 채점" data-save="score-Q082"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q082" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="practical" data-original-id="Q083" data-search="결합도·종류와 순서 모듈에 대한 다음 설명에 해당하는 결합도 (coupling) 를 &lt;보기&gt;에서 찾아 기호( ㉠~㉥ ) 로 쓰시오. (5 점)
+
+• 한 모듈이 다른 모듈의 내부 기능 및 그 내부 자료를 직접 참조하거나 수정할 때의 결합도이다.
+• 한 모듈이 다른 모듈의 내부 처리 과정이나 특정 위치로 직접 분기하여 실행을 제어할 때 발생한다.
+• 모듈 간 결합도가 가장 높은 형태로 , 모듈의 독립성을 저해하고 유지보수를 어렵게 만든다 .
+
+&lt;보기 &gt;
+
+㉠ 자료 결합도 ㉡ 스탬프 결합도 ㉢ 제어 결합도
+㉣ 공통 결합도 ㉤ 내용 결합도 ㉥ 외부 결합도
+
+답 : 2026년 2회 실기 · 원문 10번 · pdf 6쪽 학습 항목 12~17 결합도 · 출처: 3. 2026년2회_정보처리기사 실기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q052"><h3><span class="tag">Q052</span>결합도·종류와 순서</h3><p class="source">2026년 2회 실기 · 원문 10번 · PDF 6쪽<br/>학습 항목 12~17 결합도 · 출처: 3. 2026년2회_정보처리기사 실기 기출문제.pdf</p><div class="original"><div class="problem-text">모듈에 대한 다음 설명에 해당하는 결합도 (Coupling) 를 &lt;보기&gt;에서 찾아 기호( ㉠~㉥ ) 로 쓰시오. (5 점)
+
+• 한 모듈이 다른 모듈의 내부 기능 및 그 내부 자료를 직접 참조하거나 수정할 때의 결합도이다.
+• 한 모듈이 다른 모듈의 내부 처리 과정이나 특정 위치로 직접 분기하여 실행을 제어할 때 발생한다.
+• 모듈 간 결합도가 가장 높은 형태로 , 모듈의 독립성을 저해하고 유지보수를 어렵게 만든다 .
+
+&lt;보기 &gt;
+
+㉠ 자료 결합도 ㉡ 스탬프 결합도 ㉢ 제어 결합도
+㉣ 공통 결합도 ㉤ 내용 결합도 ㉥ 외부 결합도
+
+답 :</div></div><label class="answer-label" for="a-Q052">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q083" id="a-Q052" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ㉤ 내용 결합도</p><p>다른 모듈의 내부 기능·자료를 직접 참조·수정하거나 내부 특정 위치로 직접 분기한다는 설명이 내용 결합도의 단서이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q052 채점" data-save="score-Q083"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q083" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q084" data-search="결합도·종류와 순서 결합도가 낮은 것부터 높은 순으로 옳게 나열한 것은?
+
+(ㄱ내용) 결합도 (ㄴ자료) 결합도 (ㄷ공통) 결합도 (ㄹ스탬프) 결합도 (ㅁ외부) 결합도 (ㅂ제어) 결합도
+
+① (ㄱ) → (ㄴ) → (ㄹ) → (ㅂ) → (ㅁ) → (ㄷ)
+② (ㄴ) → (ㄹ) → (ㅁ) → (ㅂ) → (ㄷ) → (ㄱ)
+③ (ㄴ) → (ㄹ) → (ㅂ) → (ㅁ) → (ㄷ) → (ㄱ)
+④ (ㄱ) → (ㄴ) → (ㄹ) → (ㅁ) → (ㅂ) → (ㄷ) 2021년 1회 필기 · 원문 64번 · pdf 5쪽 학습 항목 12~17 결합도 · 출처: 1. 2021년1회_기사필기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q053"><h3><span class="tag">Q053</span>결합도·종류와 순서</h3><p class="source">2021년 1회 필기 · 원문 64번 · PDF 5쪽<br/>학습 항목 12~17 결합도 · 출처: 1. 2021년1회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">결합도가 낮은 것부터 높은 순으로 옳게 나열한 것은?
+
+(ㄱ내용) 결합도 (ㄴ자료) 결합도 (ㄷ공통) 결합도 (ㄹ스탬프) 결합도 (ㅁ외부) 결합도 (ㅂ제어) 결합도
+
+① (ㄱ) → (ㄴ) → (ㄹ) → (ㅂ) → (ㅁ) → (ㄷ)
+② (ㄴ) → (ㄹ) → (ㅁ) → (ㅂ) → (ㄷ) → (ㄱ)
+③ (ㄴ) → (ㄹ) → (ㅂ) → (ㅁ) → (ㄷ) → (ㄱ)
+④ (ㄱ) → (ㄴ) → (ㄹ) → (ㅁ) → (ㅂ) → (ㄷ)</div></div><label class="answer-label" for="a-Q053">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q084" id="a-Q053" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>결합도는 모듈 사이의 의존 정도이다. 낮은 순서는 자료 &lt; 스탬프 &lt; 제어 &lt; 외부 &lt; 공통 &lt; 내용이다. 개별 업무값=자료, 복합 자료구조=스탬프, 제어 신호=제어, 외부 규약·형식=외부, 공용 전역 영역=공통, 다른 모듈의 내부 직접 참조·변경=내용으로 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q053 채점" data-save="score-Q084"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q084" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q085" data-search="결합도·종류와 순서 다음 중 가장 약한 결합도(coupling)는?
+① common coupling ② content coupling
+③ external coupling ④ stamp coupling 2021년 2회 필기 · 원문 74번 · pdf 6쪽 학습 항목 12~17 결합도 · 출처: 2. 2021년2회_기사필기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q054"><h3><span class="tag">Q054</span>결합도·종류와 순서</h3><p class="source">2021년 2회 필기 · 원문 74번 · PDF 6쪽<br/>학습 항목 12~17 결합도 · 출처: 2. 2021년2회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">다음 중 가장 약한 결합도(Coupling)는?
+① Common Coupling ② Content Coupling
+③ External Coupling ④ Stamp Coupling</div></div><label class="answer-label" for="a-Q054">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q085" id="a-Q054" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>이 보기 중 가장 약한 것은 스탬프(Stamp) 결합도이다. 전체 분류에서 더 약한 자료(Data) 결합도는 보기에 없으므로 선택지 안에서 비교한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q054 채점" data-save="score-Q085"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q085" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q086" data-search="결합도·종류와 순서 모듈의 독립성을 높이기 위한 결합도(coupling)와 관련한 설명으로 틀린 것은?
+① 오류가 발생했을 때 전파되어 다른 오류의 원인이 되는 파문
+효과(ripple effect)를 최소화해야 한다.
+② 인터페이스가 정확히 설정되어 있지 않을 경우 불필요한 인터
+페이스가 나타나 모듈 사이의 의존도는 높아지고 결합도가 증 가한다.
+③ 모듈들이 변수를 공유하여 사용하게 하거나 제어 정보를 교류
+하게 함으로써 결합도를 낮추어야 한다.
+④ 다른 모듈과 데이터 교류가 필요한 경우 전역변수(global
+variable)보다는 매개변수(parameter)를 사용하는 것이 결합 도를 낮추는 데 도움이 된다. 2021년 3회 필기 · 원문 75번 · pdf 6쪽 학습 항목 12~17 결합도 · 출처: 3. 2021년3회_기사필기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q055"><h3><span class="tag">Q055</span>결합도·종류와 순서</h3><p class="source">2021년 3회 필기 · 원문 75번 · PDF 6쪽<br/>학습 항목 12~17 결합도 · 출처: 3. 2021년3회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">모듈의 독립성을 높이기 위한 결합도(Coupling)와 관련한 설명으로 틀린 것은?
+① 오류가 발생했을 때 전파되어 다른 오류의 원인이 되는 파문
+효과(Ripple Effect)를 최소화해야 한다.
+② 인터페이스가 정확히 설정되어 있지 않을 경우 불필요한 인터
+페이스가 나타나 모듈 사이의 의존도는 높아지고 결합도가 증 가한다.
+③ 모듈들이 변수를 공유하여 사용하게 하거나 제어 정보를 교류
+하게 함으로써 결합도를 낮추어야 한다.
+④ 다른 모듈과 데이터 교류가 필요한 경우 전역변수(Global
+Variable)보다는 매개변수(Parameter)를 사용하는 것이 결합 도를 낮추는 데 도움이 된다.</div></div><label class="answer-label" for="a-Q055">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q086" id="a-Q055" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>결합도는 모듈 사이의 의존 정도이다. 낮은 순서는 자료 &lt; 스탬프 &lt; 제어 &lt; 외부 &lt; 공통 &lt; 내용이다. 개별 업무값=자료, 복합 자료구조=스탬프, 제어 신호=제어, 외부 규약·형식=외부, 공용 전역 영역=공통, 다른 모듈의 내부 직접 참조·변경=내용으로 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q055 채점" data-save="score-Q086"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q086" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q087" data-search="결합도·종류와 순서 좋은 소프트웨어 설계를 위한 소프트웨어의 모듈간의 결합도 (coupling)와 모듈 내 요소 간 응집도(cohesion)에 대한 설명으로 옳은 것은?
+① 응집도는 낮게 결합도는 높게 설계한다.
+② 응집도는 높게 결합도는 낮게 설계한다.
+③ 양쪽 모두 낮게 설계한다.
+④ 양쪽 모두 높게 설계한다. 2022년 1회 필기 · 원문 68번 · pdf 5쪽 학습 항목 12~17 결합도 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q056"><h3><span class="tag">Q056</span>결합도·종류와 순서</h3><p class="source">2022년 1회 필기 · 원문 68번 · PDF 5쪽<br/>학습 항목 12~17 결합도 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">좋은 소프트웨어 설계를 위한 소프트웨어의 모듈간의 결합도 (Coupling)와 모듈 내 요소 간 응집도(Cohesion)에 대한 설명으로 옳은 것은?
+① 응집도는 낮게 결합도는 높게 설계한다.
+② 응집도는 높게 결합도는 낮게 설계한다.
+③ 양쪽 모두 낮게 설계한다.
+④ 양쪽 모두 높게 설계한다.</div></div><label class="answer-label" for="a-Q056">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q087" id="a-Q056" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>결합도는 모듈 사이의 의존 정도이다. 낮은 순서는 자료 &lt; 스탬프 &lt; 제어 &lt; 외부 &lt; 공통 &lt; 내용이다. 개별 업무값=자료, 복합 자료구조=스탬프, 제어 신호=제어, 외부 규약·형식=외부, 공용 전역 영역=공통, 다른 모듈의 내부 직접 참조·변경=내용으로 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q056 채점" data-save="score-Q087"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q087" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q088" data-search="결합도·종류와 순서 한 모듈이 다른 모듈의 내부 기능 및 그 내부 자료를 참조하는 경우의 결합도는?
+① 내용 결합도(content coupling)
+② 제어 결합도(control coupling)
+③ 공통 결합도(common coupling)
+④ 스탬프 결합도(stamp coupling) 2022년 2회 필기 · 원문 78번 · pdf 7쪽 학습 항목 12~17 결합도 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q057"><h3><span class="tag">Q057</span>결합도·종류와 순서</h3><p class="source">2022년 2회 필기 · 원문 78번 · PDF 7쪽<br/>학습 항목 12~17 결합도 · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">한 모듈이 다른 모듈의 내부 기능 및 그 내부 자료를 참조하는 경우의 결합도는?
+① 내용 결합도(Content Coupling)
+② 제어 결합도(Control Coupling)
+③ 공통 결합도(Common Coupling)
+④ 스탬프 결합도(Stamp Coupling)</div></div><label class="answer-label" for="a-Q057">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q088" id="a-Q057" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>결합도는 모듈 사이의 의존 정도이다. 낮은 순서는 자료 &lt; 스탬프 &lt; 제어 &lt; 외부 &lt; 공통 &lt; 내용이다. 개별 업무값=자료, 복합 자료구조=스탬프, 제어 신호=제어, 외부 규약·형식=외부, 공용 전역 영역=공통, 다른 모듈의 내부 직접 참조·변경=내용으로 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q057 채점" data-save="score-Q088"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q088" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q089" data-search="결합도·종류와 순서 다음 결합도의 종류에 대한 설명 중 틀린 것은?
+① 자료 결합도 : 모듈 간의 인터페이스가 자료 요소로만 구성될
+때의 결합도
+② 내용 결합도 : 한 모듈이 다른 모듈과 제어 신호를 이용하여
+통신하고공유되는, 공통 데이터 영역을 사용할 때의 결합도
+③ 스탬프 결합도 : 모듈 간의 인터페이스로배열의, 자료 구조가
+전달될 때의 결합도
+④ 외부 결합도 : 어떤 모듈에서 선언한 데이터를 다른 모듈에서
+참조할 때의 결합도 2022년 3회 필기 · 원문 2번 · pdf 1쪽 학습 항목 12~17 결합도 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf" data-topic="결합도·종류와 순서" id="Q058"><h3><span class="tag">Q058</span>결합도·종류와 순서</h3><p class="source">2022년 3회 필기 · 원문 2번 · PDF 1쪽<br/>학습 항목 12~17 결합도 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">다음 결합도의 종류에 대한 설명 중 틀린 것은?
+① 자료 결합도 : 모듈 간의 인터페이스가 자료 요소로만 구성될
+때의 결합도
+② 내용 결합도 : 한 모듈이 다른 모듈과 제어 신호를 이용하여
+통신하고공유되는, 공통 데이터 영역을 사용할 때의 결합도
+③ 스탬프 결합도 : 모듈 간의 인터페이스로배열의, 자료 구조가
+전달될 때의 결합도
+④ 외부 결합도 : 어떤 모듈에서 선언한 데이터를 다른 모듈에서
+참조할 때의 결합도</div></div><label class="answer-label" for="a-Q058">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q089" id="a-Q058" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>복원본 정답은 ②이다. 제어 신호 전달은 제어 결합도, 공용 데이터 영역 공유는 공통 결합도의 단서이며 내용 결합도는 다른 모듈 내부를 직접 참조·변경하는 관계이다. 원문의 외부 결합도 설명은 현재 교재의 외부 규약·형식 중심 설명보다 축약되어 있으므로 용어 정의를 함께 확인한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q058 채점" data-save="score-Q089"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q089" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q090" data-search="결합도·종류와 순서 다음 중 가장 결합도가 강한 것은?
+① date coupling ② stamp coupling
+③ common coupling ④ control coupling 2023년 02회 필기 · 원문 5번 · pdf 1쪽 학습 항목 12~17 결합도 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf" data-topic="결합도·종류와 순서" id="Q059"><h3><span class="tag">Q059</span>결합도·종류와 순서</h3><p class="source">2023년 02회 필기 · 원문 5번 · PDF 1쪽<br/>학습 항목 12~17 결합도 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">다음 중 가장 결합도가 강한 것은?
+① Date Coupling ② Stamp Coupling
+③ Common Coupling ④ Control Coupling</div></div><label class="answer-label" for="a-Q059">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q090" id="a-Q059" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>이 보기 중 가장 강한 것은 공통(Common) 결합도이다. 전체 분류에서 가장 강한 내용(Content) 결합도는 보기에 없다. 원문의 Date Coupling은 자료 결합도를 가리킨 오탈자로 보아 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q059 채점" data-save="score-Q090"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q090" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q092" data-search="결합도·종류와 순서 결합도(coupling) 단계를 약한 순서에서 강한 순서로 가장 옳게 표시한 것은?
+① stamp → data → control → common → content
+② control → data → stamp → common → content
+③ content → stamp → control → common → data
+④ data → stamp → control → common → content 2023년 02회 필기 · 원문 76번 · pdf 6쪽 학습 항목 12~17 결합도 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf" data-topic="결합도·종류와 순서" id="Q060"><h3><span class="tag">Q060</span>결합도·종류와 순서</h3><p class="source">2023년 02회 필기 · 원문 76번 · PDF 6쪽<br/>학습 항목 12~17 결합도 · 출처: 2. 2023년02회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">결합도(Coupling) 단계를 약한 순서에서 강한 순서로 가장 옳게 표시한 것은?
+① Stamp → Data → Control → Common → Content
+② Control → Data → Stamp → Common → Content
+③ Content → Stamp → Control → Common → Data
+④ Data → Stamp → Control → Common → Content</div></div><label class="answer-label" for="a-Q060">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q092" id="a-Q060" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>결합도는 모듈 사이의 의존 정도이다. 낮은 순서는 자료 &lt; 스탬프 &lt; 제어 &lt; 외부 &lt; 공통 &lt; 내용이다. 개별 업무값=자료, 복합 자료구조=스탬프, 제어 신호=제어, 외부 규약·형식=외부, 공용 전역 영역=공통, 다른 모듈의 내부 직접 참조·변경=내용으로 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q060 채점" data-save="score-Q092"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q092" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q094" data-search="결합도·종류와 순서 어떤 모듈이 다른 모듈의 내부 논리 조직을 제어하기 위한 목적으로 제어신호를 이용하여 통신하는 경우이며하위, 모듈에서 상위 모듈 로 제어신호가 이동하여 상위 모듈에게 처리 명령을 부여하는 권리 전도현상이 발생하게 되는 결합도는?
+① data coupling ② stamp coupling
+③ control coupling ④ common coupling 2024년 1회 필기 · 원문 77번 · pdf 5쪽 학습 항목 12~17 결합도 · 출처: 1. 2024년1회_정보처리기사필기기출문제.pdf" data-topic="결합도·종류와 순서" id="Q061"><h3><span class="tag">Q061</span>결합도·종류와 순서</h3><p class="source">2024년 1회 필기 · 원문 77번 · PDF 5쪽<br/>학습 항목 12~17 결합도 · 출처: 1. 2024년1회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">어떤 모듈이 다른 모듈의 내부 논리 조직을 제어하기 위한 목적으로 제어신호를 이용하여 통신하는 경우이며하위, 모듈에서 상위 모듈 로 제어신호가 이동하여 상위 모듈에게 처리 명령을 부여하는 권리 전도현상이 발생하게 되는 결합도는?
+① Data Coupling ② Stamp Coupling
+③ Control Coupling ④ Common Coupling</div></div><label class="answer-label" for="a-Q061">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q094" id="a-Q061" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>결합도는 모듈 사이의 의존 정도이다. 낮은 순서는 자료 &lt; 스탬프 &lt; 제어 &lt; 외부 &lt; 공통 &lt; 내용이다. 개별 업무값=자료, 복합 자료구조=스탬프, 제어 신호=제어, 외부 규약·형식=외부, 공용 전역 영역=공통, 다른 모듈의 내부 직접 참조·변경=내용으로 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q061 채점" data-save="score-Q094"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q094" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q095" data-search="결합도·종류와 순서 결합도(coupling)에 대한 설명으로 틀린 것은?
+① 데이터 결합도(data coupling)는 두 모듈이 매개 변수로 자료
+를 전달할 때 자료 구조 형태로 전달되어 이용될 때 데이터가 결합되어 있다고 한다.
+② 내용 결합도(content coupling)는 하나의 모듈이 직접적으로
+다른 모듈의 내용을 참조할 때 두 모듈은 내용적으로 결합되어 있다고 한다.
+③ 공통 결합도(common coupling)는 두 모듈이 동일한 전역 데
+이터를 접근한다면 공통 결합되어 있다고 한다.
+④ 결합도(coupling)는 두 모듈 간의 상호작용또는, 의존도 정도
+를 나타내는 것이다. 2024년 2회 필기 · 원문 19번 · pdf 2쪽 학습 항목 12~17 결합도 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf" data-topic="결합도·종류와 순서" id="Q062"><h3><span class="tag">Q062</span>결합도·종류와 순서</h3><p class="source">2024년 2회 필기 · 원문 19번 · PDF 2쪽<br/>학습 항목 12~17 결합도 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">결합도(Coupling)에 대한 설명으로 틀린 것은?
+① 데이터 결합도(Data Coupling)는 두 모듈이 매개 변수로 자료
+를 전달할 때 자료 구조 형태로 전달되어 이용될 때 데이터가 결합되어 있다고 한다.
+② 내용 결합도(Content Coupling)는 하나의 모듈이 직접적으로
+다른 모듈의 내용을 참조할 때 두 모듈은 내용적으로 결합되어 있다고 한다.
+③ 공통 결합도(Common Coupling)는 두 모듈이 동일한 전역 데
+이터를 접근한다면 공통 결합되어 있다고 한다.
+④ 결합도(Coupling)는 두 모듈 간의 상호작용또는, 의존도 정도
+를 나타내는 것이다.</div></div><label class="answer-label" for="a-Q062">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q095" id="a-Q062" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>배열·레코드 등 자료구조를 전달하는 것은 스탬프 결합도이다. 이를 자료(Data) 결합도라고 한 ①을 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q062 채점" data-save="score-Q095"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q095" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q096" data-search="결합도·종류와 순서 다음 내용이 설명하는 결합도는?
+
+한 모듈이 다른 모듈의 상세한 처리 절차를 알고 있어 이 를 통제하는 경우나 처리 기능이 두 모듈에 분리되어 설계 된 경우에 발생하며권리, 전도 현상이 발생할 수 있다.
+
+① 제어 결합도 ② 스탬프 결합도
+③ 외부 결합도 ④ 내용 결합도 2024년 2회 필기 · 원문 64번 · pdf 5쪽 학습 항목 12~17 결합도 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf" data-topic="결합도·종류와 순서" id="Q063"><h3><span class="tag">Q063</span>결합도·종류와 순서</h3><p class="source">2024년 2회 필기 · 원문 64번 · PDF 5쪽<br/>학습 항목 12~17 결합도 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">다음 내용이 설명하는 결합도는?
+
+한 모듈이 다른 모듈의 상세한 처리 절차를 알고 있어 이 를 통제하는 경우나 처리 기능이 두 모듈에 분리되어 설계 된 경우에 발생하며권리, 전도 현상이 발생할 수 있다.
+
+① 제어 결합도 ② 스탬프 결합도
+③ 외부 결합도 ④ 내용 결합도</div></div><label class="answer-label" for="a-Q063">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q096" id="a-Q063" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>결합도는 모듈 사이의 의존 정도이다. 낮은 순서는 자료 &lt; 스탬프 &lt; 제어 &lt; 외부 &lt; 공통 &lt; 내용이다. 개별 업무값=자료, 복합 자료구조=스탬프, 제어 신호=제어, 외부 규약·형식=외부, 공용 전역 영역=공통, 다른 모듈의 내부 직접 참조·변경=내용으로 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q063 채점" data-save="score-Q096"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q096" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="practical" data-original-id="Q103" data-search="fan-in·fan-out·구조도 다음의 모듈 관계를 표현한 시스템 구조도를 참고하여 팬인(fan-in)이 2 이상인 모듈을 모두 쓰시오. (5점) 2020년 1회 실기 · 원문 16번 · pdf 8쪽 학습 항목 18 fan-in·fan-out · 출처: 1. 2020년1회_기사실기기출문제.pdf" data-topic="Fan-In·Fan-Out·구조도" id="Q064"><h3><span class="tag">Q064</span>Fan-In·Fan-Out·구조도</h3><p class="source">2020년 1회 실기 · 원문 16번 · PDF 8쪽<br/>학습 항목 18 Fan-In·Fan-Out · 출처: 1. 2020년1회_기사실기기출문제.pdf</p><div class="original"><div class="problem-text">다음의 모듈 관계를 표현한 시스템 구조도를 참고하여 팬인(Fan-In)이 2 이상인 모듈을 모두 쓰시오. (5점)</div><figure class="diagram"><svg aria-label="모듈 호출 구조도" role="img" viewbox="0 0 700 340"><title>모듈 호출 구조도</title><desc>A→B,C,D; B→E; C→F; D→F,G; E→H; F→H; G→I</desc><defs><marker id="arrow" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="10" refy="5" viewbox="0 0 10 10"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs><line marker-end="url(#arrow)" x1="350" x2="100" y1="47" y2="93"></line><line marker-end="url(#arrow)" x1="350" x2="350" y1="47" y2="93"></line><line marker-end="url(#arrow)" x1="350" x2="600" y1="47" y2="93"></line><line marker-end="url(#arrow)" x1="100" x2="100" y1="137" y2="183"></line><line marker-end="url(#arrow)" x1="350" x2="350" y1="137" y2="183"></line><line marker-end="url(#arrow)" x1="600" x2="350" y1="137" y2="183"></line><line marker-end="url(#arrow)" x1="600" x2="600" y1="137" y2="183"></line><line marker-end="url(#arrow)" x1="100" x2="225" y1="227" y2="273"></line><line marker-end="url(#arrow)" x1="350" x2="225" y1="227" y2="273"></line><line marker-end="url(#arrow)" x1="600" x2="600" y1="227" y2="273"></line><g class="node"><rect height="44" rx="5" width="84" x="308" y="3"></rect><text x="350" y="32">A</text></g><g class="node"><rect height="44" rx="5" width="84" x="58" y="93"></rect><text x="100" y="122">B</text></g><g class="node"><rect height="44" rx="5" width="84" x="308" y="93"></rect><text x="350" y="122">C</text></g><g class="node"><rect height="44" rx="5" width="84" x="558" y="93"></rect><text x="600" y="122">D</text></g><g class="node"><rect height="44" rx="5" width="84" x="58" y="183"></rect><text x="100" y="212">E</text></g><g class="node"><rect height="44" rx="5" width="84" x="308" y="183"></rect><text x="350" y="212">F</text></g><g class="node"><rect height="44" rx="5" width="84" x="558" y="183"></rect><text x="600" y="212">G</text></g><g class="node"><rect height="44" rx="5" width="84" x="183" y="273"></rect><text x="225" y="302">H</text></g><g class="node"><rect height="44" rx="5" width="84" x="558" y="273"></rect><text x="600" y="302">I</text></g></svg><figcaption>호출 관계: A→B,C,D; B→E; C→F; D→F,G; E→H; F→H; G→I</figcaption></figure></div><label class="answer-label" for="a-Q064">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q103" id="a-Q064" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: F, H</p><p>원문 구조도에서 F와 H에는 들어오는 직접 호출이 각각 2개 있다. 문제는 Fan-In이 2 이상인 모듈을 모두 요구한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q064 채점" data-save="score-Q103"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q103" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="yes" data-kind="practical" data-original-id="Q104" data-search="fan-in·fan-out·구조도 다음의 모듈 관계를 표현한 시스템 구조도를 참고하여 모듈 f의 팬인 (fan-in)과 팬아웃(fan-out)을 구하시오. (5점) 2022년 2회 실기 · 원문 20번 · pdf 13쪽 학습 항목 18 fan-in·fan-out · 출처: 2. 2022년2회_정보처리기사실기 기출문제.pdf" data-topic="Fan-In·Fan-Out·구조도" id="Q065"><h3><span class="tag">Q065</span><span class="tag">수업</span>Fan-In·Fan-Out·구조도</h3><p class="source">2022년 2회 실기 · 원문 20번 · PDF 13쪽<br/>학습 항목 18 Fan-In·Fan-Out · 출처: 2. 2022년2회_정보처리기사실기 기출문제.pdf</p><div class="original"><div class="problem-text">다음의 모듈 관계를 표현한 시스템 구조도를 참고하여 모듈 F의 팬인 (Fan-In)과 팬아웃(Fan-Out)을 구하시오. (5점)</div><figure class="diagram"><svg aria-label="모듈 호출 구조도" role="img" viewbox="0 0 700 340"><title>모듈 호출 구조도</title><desc>A→B,C,D; B→E,F; C→F; D→F; F→G,H</desc><defs><marker id="arrow" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="10" refy="5" viewbox="0 0 10 10"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs><line marker-end="url(#arrow)" x1="350" x2="100" y1="47" y2="93"></line><line marker-end="url(#arrow)" x1="350" x2="350" y1="47" y2="93"></line><line marker-end="url(#arrow)" x1="350" x2="600" y1="47" y2="93"></line><line marker-end="url(#arrow)" x1="100" x2="100" y1="137" y2="183"></line><line marker-end="url(#arrow)" x1="100" x2="350" y1="137" y2="183"></line><line marker-end="url(#arrow)" x1="350" x2="350" y1="137" y2="183"></line><line marker-end="url(#arrow)" x1="600" x2="350" y1="137" y2="183"></line><line marker-end="url(#arrow)" x1="350" x2="225" y1="227" y2="273"></line><line marker-end="url(#arrow)" x1="350" x2="475" y1="227" y2="273"></line><g class="node"><rect height="44" rx="5" width="84" x="308" y="3"></rect><text x="350" y="32">A</text></g><g class="node"><rect height="44" rx="5" width="84" x="58" y="93"></rect><text x="100" y="122">B</text></g><g class="node"><rect height="44" rx="5" width="84" x="308" y="93"></rect><text x="350" y="122">C</text></g><g class="node"><rect height="44" rx="5" width="84" x="558" y="93"></rect><text x="600" y="122">D</text></g><g class="node"><rect height="44" rx="5" width="84" x="58" y="183"></rect><text x="100" y="212">E</text></g><g class="node"><rect height="44" rx="5" width="84" x="308" y="183"></rect><text x="350" y="212">F</text></g><g class="node"><rect height="44" rx="5" width="84" x="183" y="273"></rect><text x="225" y="302">G</text></g><g class="node"><rect height="44" rx="5" width="84" x="433" y="273"></rect><text x="475" y="302">H</text></g></svg><figcaption>호출 관계: A→B,C,D; B→E,F; C→F; D→F; F→G,H</figcaption></figure></div><label class="answer-label" for="a-Q065">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q104" id="a-Q065" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ① Fan-In: 3  ② Fan-Out: 2</p><p>원문 구조도에서 F를 호출하는 모듈은 3개, F가 직접 호출하는 모듈은 2개이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q065 채점" data-save="score-Q104"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q104" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q110" data-search="정보 은닉·추상화 객체지향 설계에서 객체가 가지고 있는 속성과 오퍼레이션의 일부를 감추어서 객체의 외부에서는 접근이 불가능하게 하는 개념은?
+① 조직화(organizing)
+② 캡슐화(encapsulation)
+③ 정보 은닉(infomation hiding)
+④ 구조화(structuralization) 2021년 2회 필기 · 원문 20번 · pdf 2쪽 학습 항목 01·19 설계 원칙 연계 · 출처: 2. 2021년2회_기사필기 기출문제.pdf" data-topic="정보 은닉·추상화" id="Q066"><h3><span class="tag">Q066</span>정보 은닉·추상화</h3><p class="source">2021년 2회 필기 · 원문 20번 · PDF 2쪽<br/>학습 항목 01·19 설계 원칙 연계 · 출처: 2. 2021년2회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">객체지향 설계에서 객체가 가지고 있는 속성과 오퍼레이션의 일부를 감추어서 객체의 외부에서는 접근이 불가능하게 하는 개념은?
+① 조직화(Organizing)
+② 캡슐화(Encapsulation)
+③ 정보 은닉(Infomation Hiding)
+④ 구조화(Structuralization)</div></div><label class="answer-label" for="a-Q066">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q110" id="a-Q066" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ② · ③</p><p>복원본 정답표는 ② 캡슐화와 ③ 정보 은닉을 모두 인정한다. 내부 속성과 동작의 일부를 감추고 외부 접근을 제한한다는 공통 단서를 확인한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q066 채점" data-save="score-Q110"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q110" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q111" data-search="정보 은닉·추상화 소프트웨어 설계에서 사용되는 대표적인 추상화(abstraction) 기법 이 아닌 것은?
+① 자료 추상화 ② 제어 추상화
+③ 과정 추상화 ④ 강도 추상화 2021년 3회 필기 · 원문 4번 · pdf 1쪽 학습 항목 01·19 설계 원칙 연계 · 출처: 3. 2021년3회_기사필기 기출문제.pdf" data-topic="정보 은닉·추상화" id="Q067"><h3><span class="tag">Q067</span>정보 은닉·추상화</h3><p class="source">2021년 3회 필기 · 원문 4번 · PDF 1쪽<br/>학습 항목 01·19 설계 원칙 연계 · 출처: 3. 2021년3회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 설계에서 사용되는 대표적인 추상화(Abstraction) 기법 이 아닌 것은?
+① 자료 추상화 ② 제어 추상화
+③ 과정 추상화 ④ 강도 추상화</div></div><label class="answer-label" for="a-Q067">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q111" id="a-Q067" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>대표적인 설계 추상화는 자료·제어·과정 추상화이다. 강도 추상화는 해당 분류가 아니다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q067 채점" data-save="score-Q111"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q111" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="yes" data-kind="written" data-original-id="Q112" data-search="정보 은닉·추상화 객체지향 설계에서 정보 은닉(information hiding)과 관련한 설명으 로 틀린 것은?
+① 필요하지 않은 정보는 접근할 수 없도록 하여 한 모듈 또는
+하부 시스템이 다른 모듈의 구현에 영향을 받지 않게 설계되는 것을 의미한다.
+② 모듈들 사이의 독립성을 유지시키는 데 도움이 된다.
+③ 설계에서 은닉되어야 할 기본 정보로는 ip 주소와 같은 물리적
+코드상세, 데이터 구조 등이 있다.
+④ 모듈 내부의 자료 구조와 접근 동작들에만 수정을 국한하기
+때문에 요구사항 등 변화에 따른 수정이 불가능하다. 2021년 3회 필기 · 원문 5번 · pdf 1쪽 학습 항목 01·19 설계 원칙 연계 · 출처: 3. 2021년3회_기사필기 기출문제.pdf" data-topic="정보 은닉·추상화" id="Q068"><h3><span class="tag">Q068</span><span class="tag">수업</span>정보 은닉·추상화</h3><p class="source">2021년 3회 필기 · 원문 5번 · PDF 1쪽<br/>학습 항목 01·19 설계 원칙 연계 · 출처: 3. 2021년3회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">객체지향 설계에서 정보 은닉(Information Hiding)과 관련한 설명으 로 틀린 것은?
+① 필요하지 않은 정보는 접근할 수 없도록 하여 한 모듈 또는
+하부 시스템이 다른 모듈의 구현에 영향을 받지 않게 설계되는 것을 의미한다.
+② 모듈들 사이의 독립성을 유지시키는 데 도움이 된다.
+③ 설계에서 은닉되어야 할 기본 정보로는 IP 주소와 같은 물리적
+코드상세, 데이터 구조 등이 있다.
+④ 모듈 내부의 자료 구조와 접근 동작들에만 수정을 국한하기
+때문에 요구사항 등 변화에 따른 수정이 불가능하다.</div></div><label class="answer-label" for="a-Q068">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q112" id="a-Q068" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>정보 은닉은 내부 구현에 대한 의존과 변경의 파급을 줄인다. 요구사항 변화에 따른 수정이 불가능하다는 뜻이 아니다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q068 채점" data-save="score-Q112"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q112" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q113" data-search="정보 은닉·추상화 객체지향에서 정보 은닉과 가장 밀접한 관계가 있는 것은?
+① encapsulation ② class
+③ method ④ instance 2024년 1회 필기 · 원문 4번 · pdf 1쪽 학습 항목 01·19 설계 원칙 연계 · 출처: 1. 2024년1회_정보처리기사필기기출문제.pdf" data-topic="정보 은닉·추상화" id="Q069"><h3><span class="tag">Q069</span>정보 은닉·추상화</h3><p class="source">2024년 1회 필기 · 원문 4번 · PDF 1쪽<br/>학습 항목 01·19 설계 원칙 연계 · 출처: 1. 2024년1회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">객체지향에서 정보 은닉과 가장 밀접한 관계가 있는 것은?
+① Encapsulation ② Class
+③ Method ④ Instance</div></div><label class="answer-label" for="a-Q069">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q113" id="a-Q069" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>캡슐화(Encapsulation)는 데이터와 연산을 묶고 내부 구현을 외부에서 함부로 접근하지 못하도록 하는 정보 은닉과 밀접하다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q069 채점" data-save="score-Q113"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q113" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q116" data-search="하향식·상향식 설계 소프트웨어 설계 시 제일 상위에 있는 main user function에서 시작하여 기능을 하위 기능들로 분할해 가면서 설계하는 방식은?
+① 객체 지향 설계 ② 데이터 흐름 설계
+③ 상향식 설계 ④ 하향식 설계 2021년 1회 필기 · 원문 19번 · pdf 2쪽 학습 항목 01·18 설계 분해 연계 · 출처: 1. 2021년1회_기사필기 기출문제.pdf" data-topic="하향식·상향식 설계" id="Q070"><h3><span class="tag">Q070</span>하향식·상향식 설계</h3><p class="source">2021년 1회 필기 · 원문 19번 · PDF 2쪽<br/>학습 항목 01·18 설계 분해 연계 · 출처: 1. 2021년1회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 설계 시 제일 상위에 있는 main user function에서 시작하여 기능을 하위 기능들로 분할해 가면서 설계하는 방식은?
+① 객체 지향 설계 ② 데이터 흐름 설계
+③ 상향식 설계 ④ 하향식 설계</div></div><label class="answer-label" for="a-Q070">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q116" id="a-Q070" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>하향식 설계는 상위의 주요 기능을 하위 기능으로 분해한다. 상향식 설계는 하위 단위부터 설계·구성하여 통합한다. 하향식에서는 초기부터 낮은 수준의 데이터 구조 세부사항을 모두 정할 필요가 없고, 상향식에서는 인터페이스가 성립되어야 기능 추가가 가능하다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q070 채점" data-save="score-Q116"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q116" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q117" data-search="하향식·상향식 설계 설계 기법 중 하향식 설계 방법과 상향식 설계 방법에 대한 비교 설명으로 가장 옳지 않은 것은?
+① 하향식 설계에서는 통합 검사 시 인터페이스가 이미 정의되어
+있어 통합이 간단하다.
+② 하향식 설계에서 레벨이 낮은 데이터 구조의 세부 사항은 설계
+초기 단계에서 필요하다.
+③ 상향식 설계는 최하위 수준에서 각각의 모듈들을 설계하고 이
+러한 모듈이 완성되면 이들을 결합하여 검사한다.
+④ 상향식 설계에서는 인터페이스가 이미 성립되어 있지 않더라
+도 기능 추가가 쉽다. 2022년 1회 필기 · 원문 5번 · pdf 1쪽 학습 항목 01·18 설계 분해 연계 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf" data-topic="하향식·상향식 설계" id="Q071"><h3><span class="tag">Q071</span>하향식·상향식 설계</h3><p class="source">2022년 1회 필기 · 원문 5번 · PDF 1쪽<br/>학습 항목 01·18 설계 분해 연계 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">설계 기법 중 하향식 설계 방법과 상향식 설계 방법에 대한 비교 설명으로 가장 옳지 않은 것은?
+① 하향식 설계에서는 통합 검사 시 인터페이스가 이미 정의되어
+있어 통합이 간단하다.
+② 하향식 설계에서 레벨이 낮은 데이터 구조의 세부 사항은 설계
+초기 단계에서 필요하다.
+③ 상향식 설계는 최하위 수준에서 각각의 모듈들을 설계하고 이
+러한 모듈이 완성되면 이들을 결합하여 검사한다.
+④ 상향식 설계에서는 인터페이스가 이미 성립되어 있지 않더라
+도 기능 추가가 쉽다.</div></div><label class="answer-label" for="a-Q071">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q117" id="a-Q071" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>이 복원본의 정답은 ④이다. 상향식 설계에서는 인터페이스가 이미 성립되어 있어야 기능 추가가 가능하다는 것이 원문 해설의 근거이다. 다만 ②의 “하향식 설계 초기에 낮은 수준의 데이터 구조 세부가 필요하다”는 표현도 일반적인 하향식 설명과 맞지 않으므로, 원문 표현과 정답을 보존한 문항이라는 점에 주의한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q071 채점" data-save="score-Q117"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q117" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q120" data-search="아키텍처·설계 과정·품질 소프트웨어 아키텍처 설계에서 시스템 품질 속성이 아닌 것은?
+① 가용성(availability)
+② 독립성(isolation)
+③ 변경 용이성(modifiability)
+④ 사용성(usability) 2021년 2회 필기 · 원문 12번 · pdf 1쪽 학습 항목 19 소프트웨어 아키텍처 · 출처: 2. 2021년2회_기사필기 기출문제.pdf" data-topic="아키텍처·설계 과정·품질" id="Q072"><h3><span class="tag">Q072</span>아키텍처·설계 과정·품질</h3><p class="source">2021년 2회 필기 · 원문 12번 · PDF 1쪽<br/>학습 항목 19 소프트웨어 아키텍처 · 출처: 2. 2021년2회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 아키텍처 설계에서 시스템 품질 속성이 아닌 것은?
+① 가용성(Availability)
+② 독립성(Isolation)
+③ 변경 용이성(Modifiability)
+④ 사용성(Usability)</div></div><label class="answer-label" for="a-Q072">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q120" id="a-Q072" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>이 문항은 가용성·변경 용이성·사용성을 아키텍처의 품질 속성으로 구분한다. Isolation(독립성)은 이 보기에서 해당하지 않는 항목이다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q072 채점" data-save="score-Q120"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q120" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q121" data-search="아키텍처·설계 과정·품질 아키텍처 설계 과정이 올바른 순서로 나열된 것은?
+
+㉮ 설계 목표 설정
+㉯ 시스템 타입 결정
+㉰ 스타일 적용 및 커스터마이즈
+㉱ 서브시스템의 기능인터페이스, 동작 작성
+㉲ 아키텍처 설계 검토
+
+①㉮ → ㉯ → ㉰ → ㉱ → ㉲
+② ㉲ → ㉮ → ㉯ → ㉱ → ㉰
+③ ㉮ → ㉲ → ㉯ → ㉱ → ㉰
+④ ㉮ → ㉯ → ㉰ → ㉲ → ㉱ 2022년 1회 필기 · 원문 15번 · pdf 2쪽 학습 항목 19 소프트웨어 아키텍처 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf" data-topic="아키텍처·설계 과정·품질" id="Q073"><h3><span class="tag">Q073</span>아키텍처·설계 과정·품질</h3><p class="source">2022년 1회 필기 · 원문 15번 · PDF 2쪽<br/>학습 항목 19 소프트웨어 아키텍처 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">아키텍처 설계 과정이 올바른 순서로 나열된 것은?
+
+㉮ 설계 목표 설정
+㉯ 시스템 타입 결정
+㉰ 스타일 적용 및 커스터마이즈
+㉱ 서브시스템의 기능인터페이스, 동작 작성
+㉲ 아키텍처 설계 검토
+
+①㉮ → ㉯ → ㉰ → ㉱ → ㉲
+② ㉲ → ㉮ → ㉯ → ㉱ → ㉰
+③ ㉮ → ㉲ → ㉯ → ㉱ → ㉰
+④ ㉮ → ㉯ → ㉰ → ㉲ → ㉱</div></div><label class="answer-label" for="a-Q073">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q121" id="a-Q073" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>아키텍처는 전체의 주요 구성요소·관계·상호작용을 정하는 큰 구조이다. 설계 목표 설정 → 시스템 타입 결정 → 스타일 적용·커스터마이즈 → 서브시스템 기능·인터페이스·동작 작성 → 설계 검토 순서로 본다. 성능·가용성·사용성·변경 용이성 등의 품질을 고려한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q073 채점" data-save="score-Q121"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q121" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="yes" data-kind="written" data-original-id="Q125" data-search="파이프-필터·아키텍처 비교 서브시스템이 입력 데이터를 받아 처리하고 결과를 다른 시스템에 보내는 작업이 반복되는 아키텍처 스타일은?
+① 클라이언트 서버 구조 ② 계층 구조
+③ mvc 구조 ④ 파이프 필터 구조 2021년 2회 필기 · 원문 13번 · pdf 1쪽 학습 항목 19·20 파이프-필터 · 출처: 2. 2021년2회_기사필기 기출문제.pdf" data-topic="파이프-필터·아키텍처 비교" id="Q074"><h3><span class="tag">Q074</span>파이프-필터·아키텍처 비교</h3><p class="source">2021년 2회 필기 · 원문 13번 · PDF 1쪽<br/>학습 항목 19·20 파이프-필터 · 출처: 2. 2021년2회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">서브시스템이 입력 데이터를 받아 처리하고 결과를 다른 시스템에 보내는 작업이 반복되는 아키텍처 스타일은?
+① 클라이언트 서버 구조 ② 계층 구조
+③ MVC 구조 ④ 파이프 필터 구조</div></div><label class="answer-label" for="a-Q074">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q125" id="a-Q074" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>파이프-필터는 데이터를 변환하는 필터와 전달하는 파이프를 연결한다. 앞 처리의 결과가 다음 처리의 입력이 된다. 파이프가 데이터를 양방향으로만 전달하거나 단계 이동에 오버헤드가 없다고 단정한 설명은 틀리다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q074 채점" data-save="score-Q125"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q125" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q126" data-search="파이프-필터·아키텍처 비교 소프트웨어 아키텍처와 관련한 설명으로 틀린 것은?
+① 파이프 필터 아키텍처에서 데이터는 파이프를 통해 양방향으
+로 흐르며필터, 이동 시 오버헤드가 발생하지 않는다.
+② 외부에서 인식할 수 있는 특성이 담긴 소프트웨어의 골격이
+되는 기본 구조로 볼 수 있다.
+③ 데이터 중심 아키텍처는 공유 데이터 저장소를 통해 접근자
+간의 통신이 이루어지므로 각 접근자의 수정과 확장이 용이하 다.
+④ 이해 관계자들의 품질 요구사항을 반영하여 품질 속성을 결정
+한다. 2021년 3회 필기 · 원문 20번 · pdf 2쪽 학습 항목 19·20 파이프-필터 · 출처: 3. 2021년3회_기사필기 기출문제.pdf" data-topic="파이프-필터·아키텍처 비교" id="Q075"><h3><span class="tag">Q075</span>파이프-필터·아키텍처 비교</h3><p class="source">2021년 3회 필기 · 원문 20번 · PDF 2쪽<br/>학습 항목 19·20 파이프-필터 · 출처: 3. 2021년3회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 아키텍처와 관련한 설명으로 틀린 것은?
+① 파이프 필터 아키텍처에서 데이터는 파이프를 통해 양방향으
+로 흐르며필터, 이동 시 오버헤드가 발생하지 않는다.
+② 외부에서 인식할 수 있는 특성이 담긴 소프트웨어의 골격이
+되는 기본 구조로 볼 수 있다.
+③ 데이터 중심 아키텍처는 공유 데이터 저장소를 통해 접근자
+간의 통신이 이루어지므로 각 접근자의 수정과 확장이 용이하 다.
+④ 이해 관계자들의 품질 요구사항을 반영하여 품질 속성을 결정
+한다.</div></div><label class="answer-label" for="a-Q075">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q126" id="a-Q075" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>파이프-필터는 데이터를 변환하는 필터와 전달하는 파이프를 연결한다. 앞 처리의 결과가 다음 처리의 입력이 된다. 파이프가 데이터를 양방향으로만 전달하거나 단계 이동에 오버헤드가 없다고 단정한 설명은 틀리다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q075 채점" data-save="score-Q126"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q126" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q127" data-search="파이프-필터·아키텍처 비교 파이프 필터 형태의 소프트웨어 아키텍처에 대한 설명으로 옳은 것은?
+① 노드와 간선으로 구성된다.
+② 서브시스템이 입력 데이터를 받아 처리하고 결과를 다음 서브
+시스템으로 넘겨주는 과정을 반복한다.
+③ 계층 모델이라고도 한다.
+④ 3개의 서브시스템모델뷰제어으로( , , ) 구성되어 있다. 2022년 3회 필기 · 원문 14번 · pdf 2쪽 학습 항목 19·20 파이프-필터 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf" data-topic="파이프-필터·아키텍처 비교" id="Q076"><h3><span class="tag">Q076</span>파이프-필터·아키텍처 비교</h3><p class="source">2022년 3회 필기 · 원문 14번 · PDF 2쪽<br/>학습 항목 19·20 파이프-필터 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">파이프 필터 형태의 소프트웨어 아키텍처에 대한 설명으로 옳은 것은?
+① 노드와 간선으로 구성된다.
+② 서브시스템이 입력 데이터를 받아 처리하고 결과를 다음 서브
+시스템으로 넘겨주는 과정을 반복한다.
+③ 계층 모델이라고도 한다.
+④ 3개의 서브시스템모델뷰제어으로( , , ) 구성되어 있다.</div></div><label class="answer-label" for="a-Q076">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q127" id="a-Q076" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>파이프-필터는 데이터를 변환하는 필터와 전달하는 파이프를 연결한다. 앞 처리의 결과가 다음 처리의 입력이 된다. 파이프가 데이터를 양방향으로만 전달하거나 단계 이동에 오버헤드가 없다고 단정한 설명은 틀리다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q076 채점" data-save="score-Q127"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q127" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="yes" data-kind="written" data-original-id="Q132" data-search="mvc 패턴 소프트웨어 아키텍처 모델 중 mvc(model-view-controller)와 관련 한 설명으로 틀린 것은?
+① mvc 모델은 사용자 인터페이스를 담당하는 계층의 응집도를
+높일 수 있고여러, 개의 다른 ui를 만들어 그 사이에 결합도를 낮출 수 있다.
+② 모델(model)은 뷰(view)와 제어(controller) 사이에서 전달
+자 역할을 하며뷰마다, 모델 서브시스템이 각각 하나씩 연결 된다.
+③ 뷰(view)는 모델(model)에 있는 데이터를 사용자 인터페이스
+에 보이는 역할을 담당한다.
+④ 제어(controller)는 모델(model)에 명령을 보냄으로써 모델의
+상태를 변경할 수 있다. 2022년 2회 필기 · 원문 20번 · pdf 2쪽 학습 항목 23 mvc · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf" data-topic="MVC 패턴" id="Q077"><h3><span class="tag">Q077</span><span class="tag">수업</span>MVC 패턴</h3><p class="source">2022년 2회 필기 · 원문 20번 · PDF 2쪽<br/>학습 항목 23 MVC · 출처: 2. 2022년2회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">소프트웨어 아키텍처 모델 중 MVC(Model-View-Controller)와 관련 한 설명으로 틀린 것은?
+① MVC 모델은 사용자 인터페이스를 담당하는 계층의 응집도를
+높일 수 있고여러, 개의 다른 UI를 만들어 그 사이에 결합도를 낮출 수 있다.
+② 모델(Model)은 뷰(View)와 제어(Controller) 사이에서 전달
+자 역할을 하며뷰마다, 모델 서브시스템이 각각 하나씩 연결 된다.
+③ 뷰(View)는 모델(Model)에 있는 데이터를 사용자 인터페이스
+에 보이는 역할을 담당한다.
+④ 제어(Controller)는 모델(Model)에 명령을 보냄으로써 모델의
+상태를 변경할 수 있다.</div></div><label class="answer-label" for="a-Q077">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q132" id="a-Q077" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>Model은 데이터·업무 규칙, View는 사용자에게 보이는 표현, Controller는 입력·요청의 해석과 처리 흐름을 담당한다. Model을 View와 Controller의 단순 전달자로 보거나 각 View에 Model이 반드시 하나씩 필요하다고 하는 설명과 구별한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q077 채점" data-save="score-Q132"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q132" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q134" data-search="분산 아키텍처 비교 분산 시스템을 위한 마스터슬레이브- (master-slave) 아키텍처에 대한 설명으로 틀린 것은?
+① 일반적으로 실시간 시스템에서 사용된다.
+② 마스터 프로세스는 일반적으로 연산통신조정을, , 책임진다.
+③ 슬레이브 프로세스는 데이터 수집 기능을 수행할 수 없다.
+④ 마스터 프로세스는 슬레이브 프로세스들을 제어할 수 있다. 2021년 3회 필기 · 원문 9번 · pdf 1쪽 학습 항목 19 아키텍처 연계 · 출처: 3. 2021년3회_기사필기 기출문제.pdf" data-topic="분산 아키텍처 비교" id="Q078"><h3><span class="tag">Q078</span>분산 아키텍처 비교</h3><p class="source">2021년 3회 필기 · 원문 9번 · PDF 1쪽<br/>학습 항목 19 아키텍처 연계 · 출처: 3. 2021년3회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">분산 시스템을 위한 마스터슬레이브- (Master-Slave) 아키텍처에 대한 설명으로 틀린 것은?
+① 일반적으로 실시간 시스템에서 사용된다.
+② 마스터 프로세스는 일반적으로 연산통신조정을, , 책임진다.
+③ 슬레이브 프로세스는 데이터 수집 기능을 수행할 수 없다.
+④ 마스터 프로세스는 슬레이브 프로세스들을 제어할 수 있다.</div></div><label class="answer-label" for="a-Q078">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q134" id="a-Q078" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ③</p><p>마스터-슬레이브 아키텍처에서는 마스터가 연산·통신·조정을 담당하고 슬레이브 작업을 제어할 수 있다. 슬레이브도 데이터 수집 등의 기능을 수행할 수 있으므로 수행할 수 없다는 설명은 틀리다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q078 채점" data-save="score-Q134"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q134" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q137" data-search="기능 계층·hipo hipo(hierarchy input process output)에 대한 설명으로 거리가 먼 것은?
+① 상향식 소프트웨어 개발을 위한 문서화 도구이다.
+② hipo 차트 종류에는 가시적 도표총체적, 도표세부적, 도표가
+있다.
+③ 기능과 자료의 의존 관계를 동시에 표현할 수 있다.
+④ 보기 쉽고 이해하기 쉽다. 2022년 3회 필기 · 원문 4번 · pdf 1쪽 학습 항목 01·18 설계 분해 연계 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf" data-topic="기능 계층·HIPO" id="Q079"><h3><span class="tag">Q079</span>기능 계층·HIPO</h3><p class="source">2022년 3회 필기 · 원문 4번 · PDF 1쪽<br/>학습 항목 01·18 설계 분해 연계 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">HIPO(Hierarchy Input Process Output)에 대한 설명으로 거리가 먼 것은?
+① 상향식 소프트웨어 개발을 위한 문서화 도구이다.
+② HIPO 차트 종류에는 가시적 도표총체적, 도표세부적, 도표가
+있다.
+③ 기능과 자료의 의존 관계를 동시에 표현할 수 있다.
+④ 보기 쉽고 이해하기 쉽다.</div></div><label class="answer-label" for="a-Q079">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q137" id="a-Q079" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>HIPO는 기능을 계층으로 분해하고 입력·처리·출력을 문서화하는 하향식 개발 도구이다. 가시적 도표·총체적 도표·세부적 도표로 구성되며 기능과 자료의 의존 관계를 표현한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q079 채점" data-save="score-Q137"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q137" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q140" data-search="기능 계층·hipo 다음 설명에 해당하는 도표는?
+
+시스템의 기능을 여러 개의 고유 모듈들로 분할하여 이들 간의 인터페이스를 계층 구조로 표현한 것으로, 가시적 도표(visual table of contents), 총체적 도표(overview diagram), 세부적 도표(detail diagram)가 있다.
+
+① flow chart ② burn-down chart
+③ visual diagram ④ hipo chart 2024년 2회 필기 · 원문 4번 · pdf 1쪽 학습 항목 01·18 설계 분해 연계 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf" data-topic="기능 계층·HIPO" id="Q080"><h3><span class="tag">Q080</span>기능 계층·HIPO</h3><p class="source">2024년 2회 필기 · 원문 4번 · PDF 1쪽<br/>학습 항목 01·18 설계 분해 연계 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">다음 설명에 해당하는 도표는?
+
+시스템의 기능을 여러 개의 고유 모듈들로 분할하여 이들 간의 인터페이스를 계층 구조로 표현한 것으로, 가시적 도표(Visual Table of Contents), 총체적 도표(Overview Diagram), 세부적 도표(Detail Diagram)가 있다.
+
+① Flow Chart ② Burn-down Chart
+③ Visual Diagram ④ HIPO Chart</div></div><label class="answer-label" for="a-Q080">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q140" id="a-Q080" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ④</p><p>HIPO는 기능을 계층으로 분해하고 입력·처리·출력을 문서화하는 하향식 개발 도구이다. 가시적 도표·총체적 도표·세부적 도표로 구성되며 기능과 자료의 의존 관계를 표현한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q080 채점" data-save="score-Q140"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q140" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q141" data-search="기능 계층·hipo hipo chart에 대한 설명으로 틀린 것은?
+① hipo 차트 종류에는 가시적 도표총체적, 도표세부적, 도표가
+있다.
+② 충분한 사전 지식과 학습이 없으면 이해하기 어렵다.
+③ 기능과 자료의 의존 관계를 동시에 표현할 수 있다.
+④ 하향식 소프트웨어 개발을 위한 문서화 도구이다. 2024년 2회 필기 · 원문 10번 · pdf 1쪽 학습 항목 01·18 설계 분해 연계 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf" data-topic="기능 계층·HIPO" id="Q081"><h3><span class="tag">Q081</span>기능 계층·HIPO</h3><p class="source">2024년 2회 필기 · 원문 10번 · PDF 1쪽<br/>학습 항목 01·18 설계 분해 연계 · 출처: 2. 2024년2회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">HIPO Chart에 대한 설명으로 틀린 것은?
+① HIPO 차트 종류에는 가시적 도표총체적, 도표세부적, 도표가
+있다.
+② 충분한 사전 지식과 학습이 없으면 이해하기 어렵다.
+③ 기능과 자료의 의존 관계를 동시에 표현할 수 있다.
+④ 하향식 소프트웨어 개발을 위한 문서화 도구이다.</div></div><label class="answer-label" for="a-Q081">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q141" id="a-Q081" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>HIPO는 기능을 계층으로 분해하고 입력·처리·출력을 문서화하는 하향식 개발 도구이다. 가시적 도표·총체적 도표·세부적 도표로 구성되며 기능과 자료의 의존 관계를 표현한다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q081 채점" data-save="score-Q141"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q141" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q145" data-search="책임 분리·클린 코드 클린 코드 작성원칙에 대한 설명으로 틀린 것은?
+① 코드의 중복을 최소화 한다.
+② 코드가 다른 모듈에 미치는 영향을 최대화하도록 작성한다.
+③ 누구든지 코드를 쉽게 읽을 수 있도록 작성한다.
+④ 간단하게 코드를 작성한다. 2021년 2회 필기 · 원문 21번 · pdf 2쪽 학습 항목 01·02 모듈 설계 연계 · 출처: 2. 2021년2회_기사필기 기출문제.pdf" data-topic="책임 분리·클린 코드" id="Q082"><h3><span class="tag">Q082</span>책임 분리·클린 코드</h3><p class="source">2021년 2회 필기 · 원문 21번 · PDF 2쪽<br/>학습 항목 01·02 모듈 설계 연계 · 출처: 2. 2021년2회_기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">클린 코드 작성원칙에 대한 설명으로 틀린 것은?
+① 코드의 중복을 최소화 한다.
+② 코드가 다른 모듈에 미치는 영향을 최대화하도록 작성한다.
+③ 누구든지 코드를 쉽게 읽을 수 있도록 작성한다.
+④ 간단하게 코드를 작성한다.</div></div><label class="answer-label" for="a-Q082">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q145" id="a-Q082" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>한 번에 한 가지 책임을 수행하도록 단순하게 구성하고 중복과 다른 모듈에 미치는 영향을 줄인다. 추상화에서는 상위 수준에 핵심 특성을, 하위 수준에 구체적인 세부를 둔다. 코드의 중복이나 다른 모듈에 대한 영향을 최대화한다는 설명은 틀리다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q082 채점" data-save="score-Q145"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q145" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q146" data-search="책임 분리·클린 코드 클린 코드(clean code)를 작성하기 위한 원칙으로 틀린 것은?
+① 추상화 : 하위 클래스메소드함수를/ / 통해 애플리케이션의 특
+성을 간략하게 나타내고상세, 내용은 상위 클래스메소드함/ / 수에서 구현한다.
+② 의존성 : 다른 모듈에 미치는 영향을 최소화하도록 작성한다.
+③ 가독성 : 누구든지 읽기 쉽게 코드를 작성한다.
+④ 중복성 : 중복을 최소화 할 수 있는 코드를 작성한다. 2022년 1회 필기 · 원문 21번 · pdf 2쪽 학습 항목 01·02 모듈 설계 연계 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf" data-topic="책임 분리·클린 코드" id="Q083"><h3><span class="tag">Q083</span>책임 분리·클린 코드</h3><p class="source">2022년 1회 필기 · 원문 21번 · PDF 2쪽<br/>학습 항목 01·02 모듈 설계 연계 · 출처: 1. 2022년1회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">클린 코드(Clean Code)를 작성하기 위한 원칙으로 틀린 것은?
+① 추상화 : 하위 클래스메소드함수를/ / 통해 애플리케이션의 특
+성을 간략하게 나타내고상세, 내용은 상위 클래스메소드함/ / 수에서 구현한다.
+② 의존성 : 다른 모듈에 미치는 영향을 최소화하도록 작성한다.
+③ 가독성 : 누구든지 읽기 쉽게 코드를 작성한다.
+④ 중복성 : 중복을 최소화 할 수 있는 코드를 작성한다.</div></div><label class="answer-label" for="a-Q083">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q146" id="a-Q083" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ①</p><p>한 번에 한 가지 책임을 수행하도록 단순하게 구성하고 중복과 다른 모듈에 미치는 영향을 줄인다. 추상화에서는 상위 수준에 핵심 특성을, 하위 수준에 구체적인 세부를 둔다. 코드의 중복이나 다른 모듈에 대한 영향을 최대화한다는 설명은 틀리다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q083 채점" data-save="score-Q146"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q146" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q147" data-search="책임 분리·클린 코드 다음 중 클린 코드 작성원칙으로 거리가 먼 것은?
+① 누구든지 쉽게 이해하는 코드 작성
+② 중복이 최대화된 코드 작성
+③ 다른 모듈에 미치는 영향 최소화
+④ 단순명료한, 코드 작성 2022년 3회 필기 · 원문 34번 · pdf 3쪽 학습 항목 01·02 모듈 설계 연계 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf" data-topic="책임 분리·클린 코드" id="Q084"><h3><span class="tag">Q084</span>책임 분리·클린 코드</h3><p class="source">2022년 3회 필기 · 원문 34번 · PDF 3쪽<br/>학습 항목 01·02 모듈 설계 연계 · 출처: 3. 2022년3회_정보처리기사필기 기출문제.pdf</p><div class="original"><div class="problem-text">다음 중 클린 코드 작성원칙으로 거리가 먼 것은?
+① 누구든지 쉽게 이해하는 코드 작성
+② 중복이 최대화된 코드 작성
+③ 다른 모듈에 미치는 영향 최소화
+④ 단순명료한, 코드 작성</div></div><label class="answer-label" for="a-Q084">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q147" id="a-Q084" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>한 번에 한 가지 책임을 수행하도록 단순하게 구성하고 중복과 다른 모듈에 미치는 영향을 줄인다. 추상화에서는 상위 수준에 핵심 특성을, 하위 수준에 구체적인 세부를 둔다. 코드의 중복이나 다른 모듈에 대한 영향을 최대화한다는 설명은 틀리다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q084 채점" data-save="score-Q147"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q147" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<article class="question" data-core="no" data-kind="written" data-original-id="Q151" data-search="책임 분리·클린 코드 다음에서 설명하는 클린 코드 작성 원칙은?
+
+ㆍ한 번에 한 가지 처리만 수행한다.
+ㆍ클래스메소드함수를/ / 최소 단위로 분리한다.
+
+① 다형성 ② 단순성
+③ 추상화 ④ 의존성 2026년 1회 필기 · 원문 27번 · pdf 2쪽 학습 항목 01·02 모듈 설계 연계 · 출처: 2. 2026년1회_정보처리기사필기기출문제.pdf" data-topic="책임 분리·클린 코드" id="Q085"><h3><span class="tag">Q085</span>책임 분리·클린 코드</h3><p class="source">2026년 1회 필기 · 원문 27번 · PDF 2쪽<br/>학습 항목 01·02 모듈 설계 연계 · 출처: 2. 2026년1회_정보처리기사필기기출문제.pdf</p><div class="original"><div class="problem-text">다음에서 설명하는 클린 코드 작성 원칙은?
+
+ㆍ한 번에 한 가지 처리만 수행한다.
+ㆍ클래스메소드함수를/ / 최소 단위로 분리한다.
+
+① 다형성 ② 단순성
+③ 추상화 ④ 의존성</div></div><label class="answer-label" for="a-Q085">내 답과 판단 근거<textarea class="answer-input" data-save="answer-Q151" id="a-Q085" rows="3"></textarea></label><div class="paper-blank"></div><details class="solution"><summary>정답·풀이 핵심 보기</summary><p class="answer-line">정답: ②</p><p>한 번에 한 가지 책임을 수행하도록 단순하게 구성하고 중복과 다른 모듈에 미치는 영향을 줄인다. 추상화에서는 상위 수준에 핵심 특성을, 하위 수준에 구체적인 세부를 둔다. 코드의 중복이나 다른 모듈에 대한 영향을 최대화한다는 설명은 틀리다.</p><p class="muted">정답 출처: 해당 복원본의 정답·해설</p></details><div class="score"><label>자기 채점 <select aria-label="Q085 채점" data-save="score-Q151"><option value="">미채점</option><option value="1">정답</option><option value="partial">부분 정답</option><option value="0">오답</option></select></label><label><input data-save="done-Q151" type="checkbox"/> 풀이·교정 완료</label></div></article>
+<section class="screen-only"><h2>오답·복습 메모</h2><label for="notes">문항 번호 / 틀린 이유 / 구별할 단서</label><textarea class="answer-input" data-save="notes" id="notes" rows="6"></textarea></section>
+<section class="source-catalog"><h2>출처 확인표</h2><p class="muted">파일명은 확인을 위한 텍스트입니다. 다른 파일을 여는 링크는 없습니다.</p><div class="table-wrap"><table><thead><tr><th>원본 PDF</th><th>수록 문제번호</th></tr></thead><tbody><tr><td>1. 2020년1회_기사실기기출문제.pdf</td><td>5, 16</td></tr><tr><td>1. 2021년1회_기사실기 기출문제.pdf</td><td>19</td></tr><tr><td>1. 2021년1회_기사필기 기출문제.pdf</td><td>17, 33, 77, 82, 11, 20, 73, 64, 19</td></tr><tr><td>1. 2022년1회_정보처리기사필기 기출문제.pdf</td><td>24, 70, 32, 17, 27, 68, 5, 15, 21</td></tr><tr><td>1. 2023년01회_정보처리기사필기기출문제.pdf</td><td>96, 39, 12</td></tr><tr><td>1. 2024년1회_정보처리기사실기_기출문제.pdf</td><td>4</td></tr><tr><td>1. 2024년1회_정보처리기사필기기출문제.pdf</td><td>77, 4</td></tr><tr><td>1. 2025년1회_정보처리기사실기 기출문제.pdf</td><td>7</td></tr><tr><td>1. 2025년1회_정보처리기사필기기출문제.pdf</td><td>62, 15, 17</td></tr><tr><td>1. 2025년3회_정보처리기사필기기출문제.pdf</td><td>20</td></tr><tr><td>2. 2021년2회_기사실기 기출문제.pdf</td><td>11</td></tr><tr><td>2. 2021년2회_기사필기 기출문제.pdf</td><td>68, 67, 74, 20, 12, 13, 21</td></tr><tr><td>2. 2022년2회_정보처리기사실기 기출문제.pdf</td><td>20</td></tr><tr><td>2. 2022년2회_정보처리기사필기 기출문제.pdf</td><td>80, 14, 85, 91, 73, 78, 20</td></tr><tr><td>2. 2023년02회_정보처리기사필기기출문제.pdf</td><td>20, 19, 95, 5, 76</td></tr><tr><td>2. 2024년2회_정보처리기사실기_기출문제.pdf</td><td>15, 18</td></tr><tr><td>2. 2024년2회_정보처리기사필기기출문제.pdf</td><td>7, 33, 96, 19, 64, 4, 10</td></tr><tr><td>2. 2025년2회_정보처리기사필기기출문제.pdf</td><td>82, 91</td></tr><tr><td>2. 2026년1회_정보처리기사필기기출문제.pdf</td><td>2, 27</td></tr><tr><td>3. 2021년3회_기사실기 기출문제.pdf</td><td>6</td></tr><tr><td>3. 2021년3회_기사필기 기출문제.pdf</td><td>24, 77, 86, 61, 75, 4, 5, 20, 9</td></tr><tr><td>3. 2022년3회_정보처리기사필기 기출문제.pdf</td><td>95, 2, 14, 4, 34</td></tr><tr><td>3. 2023년03회_정보처리기사필기기출문제.pdf</td><td>5, 74</td></tr><tr><td>3. 2024년3회_정보처리기사필기기출문제.pdf</td><td>14</td></tr><tr><td>3. 2026년2회_정보처리기사 실기 기출문제.pdf</td><td>10</td></tr></tbody></table></div></section></main><footer>03일차 · 모듈화와 설계 · 실제 복원 기출 · 독립형 HTML</footer><script>
+(()=>{
+const prefix='day03-real-past-v1:',qs=[...document.querySelectorAll('.question')],fields=[...document.querySelectorAll('[data-save]')];
+const status=document.querySelector('#status'),save=document.querySelector('#save-status'),topic=document.querySelector('#topic'),kind=document.querySelector('#kind'),search=document.querySelector('#search');let mode='all',available=true;
+const read=el=>el.type==='checkbox'?el.checked:el.value;
+const assign=(el,v)=>{if(el.type==='checkbox')el.checked=v===true;else el.value=String(v??'')};
+function persist(el){try{localStorage.setItem(prefix+el.dataset.save,JSON.stringify(read(el)))}catch{available=false;save.textContent='자동 저장 불가 · 답안 저장 버튼으로 보관하세요'}}
+try{fields.forEach(el=>{const v=localStorage.getItem(prefix+el.dataset.save);if(v!==null)assign(el,JSON.parse(v))});save.textContent='답안·채점·메모를 이 브라우저에 자동 저장합니다.'}catch{available=false;save.textContent='자동 저장 불가 · 답안 저장 버튼으로 보관하세요'}
+function totals(){const visible=qs.filter(q=>!q.hidden),graded=visible.filter(q=>q.querySelector('select').value!==''),correct=graded.filter(q=>q.querySelector('select').value==='1').length;status.textContent=`표시 ${visible.length} / 전체 ${qs.length}문항 · 채점 ${graded.length} · 정답 ${correct} · 교정 ${visible.filter(q=>q.querySelector('input[type=checkbox]').checked).length}`}
+function filter(){const term=search.value.trim().toLowerCase();qs.forEach(q=>q.hidden=(mode==='core'&&q.dataset.core!=='yes')||(topic.value!=='all'&&q.dataset.topic!==topic.value)||(kind.value!=='all'&&q.dataset.kind!==kind.value)||(term&&!q.dataset.search.includes(term)));totals()}
+fields.forEach(el=>el.addEventListener('input',()=>{persist(el);totals()}));[topic,kind].forEach(el=>el.addEventListener('change',filter));search.addEventListener('input',filter);
+document.querySelector('#all').onclick=()=>{mode='all';topic.value=kind.value='all';search.value='';filter()};document.querySelector('#core').onclick=()=>{mode='core';topic.value=kind.value='all';search.value='';filter()};
+document.querySelector('#jump').onclick=()=>{const n=Number(document.querySelector('#jump-number').value),q=qs[n-1];if(!Number.isInteger(n)||!q){status.textContent='유효한 정수 문항 번호를 입력하세요.';return}mode='all';topic.value=kind.value='all';search.value='';filter();q.scrollIntoView({block:'start'})};
+document.querySelector('#show').onclick=()=>{if(document.body.classList.contains('exam-mode'))return;qs.filter(q=>!q.hidden).forEach(q=>q.querySelector('details').open=true)};
+document.querySelector('#hide').onclick=()=>document.querySelectorAll('.solution').forEach(d=>d.open=false);
+document.querySelector('#exam').onclick=()=>{const on=document.body.classList.toggle('exam-mode');document.querySelectorAll('.solution').forEach(d=>d.open=false);document.querySelector('#exam').textContent=on?'시험 종료 · 해설 허용':'시험 모드 · 해설 잠금';document.querySelector('#show').disabled=on};
+function print(mode){if(mode==='teacher'&&document.body.classList.contains('exam-mode'))return;const ds=[...document.querySelectorAll('.solution')],before=ds.map(d=>d.open);document.body.dataset.print=mode;ds.forEach(d=>d.open=mode==='teacher');const restore=()=>{ds.forEach((d,i)=>d.open=before[i]);delete document.body.dataset.print;removeEventListener('afterprint',restore)};addEventListener('afterprint',restore);window.print()}
+document.querySelector('#print-student').onclick=()=>print('student');document.querySelector('#print-answers').onclick=()=>print('teacher');
+document.querySelector('#export').onclick=()=>{const data={book:'day03-real-past-v1',savedAt:new Date().toISOString(),answers:Object.fromEntries(fields.map(el=>[el.dataset.save,read(el)]))},url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='03일차_기출문제_내답안.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+document.querySelector('#import').onclick=()=>document.querySelector('#import-file').click();document.querySelector('#import-file').onchange=async ev=>{const f=ev.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(d.book!=='day03-real-past-v1'||!d.answers||typeof d.answers!=='object')throw Error();if(!confirm('현재 답안·메모를 저장 파일의 내용으로 바꿀까요?'))return;fields.forEach(el=>{if(Object.hasOwn(d.answers,el.dataset.save)){assign(el,d.answers[el.dataset.save]);persist(el)}});totals()}catch{alert('이 교재에서 저장한 답안 JSON 파일인지 확인하세요.')}finally{ev.target.value=''}};
+document.querySelector('#reset').onclick=()=>{if(!confirm('이 교재의 답안·채점·메모를 초기화할까요?'))return;fields.forEach(el=>{assign(el,el.type==='checkbox'?false:'');try{localStorage.removeItem(prefix+el.dataset.save)}catch{}});totals()};
+filter();
+})();
+</script></body></html>

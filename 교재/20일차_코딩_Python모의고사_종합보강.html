@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>20일차 코딩 · Python 모의고사와 종합 보강</title><style>
+:root{--ink:#15283c;--muted:#536579;--accent:#126a71;--line:#d4dfe5;--paper:#fff;--soft:#edf6f6}*{box-sizing:border-box}body{margin:0;background:#f0f3f6;color:var(--ink);font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;line-height:1.8;font-size:16px}main{max-width:1020px;margin:36px auto 72px;background:var(--paper);padding:48px 58px;box-shadow:0 5px 30px #243b5310}header{border-top:8px solid var(--accent);padding:25px 0 20px;border-bottom:1px solid var(--line)}.eyebrow{font-size:13px;font-weight:bold;color:var(--accent);letter-spacing:1px}h1{font-size:33px;line-height:1.4;margin:10px 0}h2{font-size:25px;margin:48px 0 18px;border-bottom:2px solid var(--line);padding-bottom:9px}h3{font-size:19px;line-height:1.6;margin:26px 0 12px}h4{font-size:17px}p{margin:12px 0}.lead{color:var(--muted);font-size:17px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}button,input,select{font:inherit}button{cursor:pointer;border:1px solid #b1c9ce;background:#fff;color:#154a56;border-radius:7px;padding:8px 12px}button:hover{background:var(--soft)}button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid #e49c35;outline-offset:3px}aside{border-left:5px solid var(--accent);padding:14px 18px;background:var(--soft);margin:22px 0}code{font-family:Consolas,"Malgun Gothic",monospace;font-size:.94em;background:#eef2f5;padding:2px 4px;border-radius:3px}pre{white-space:pre-wrap;overflow-wrap:anywhere;tab-size:4;background:#172c3c;color:#ecf5ff;padding:20px 22px;border-radius:9px;line-height:1.65;margin:12px 0}pre code{background:none;color:inherit;padding:0;border-radius:0;font-size:14.5px}pre.output{background:#eef4f6;color:#163b4c;border:1px solid #d8e4e8}.caption,.small{font-size:13px;color:var(--muted)}table{border-collapse:collapse;width:100%;font-size:14.5px}th,td{border:1px solid var(--line);padding:10px 13px;vertical-align:top;text-align:left}th{background:#eaf2f4}tr:nth-child(even) td{background:#fafcfd}.table-wrap{overflow-x:auto;margin:18px 0}.example{margin:25px 0}.question,.project{border:1px solid var(--line);border-radius:10px;padding:22px 25px;margin:24px 0}.question h3,.project h3{margin-top:0}.badge{display:inline-block;border-radius:4px;background:#e5f3ee;color:#1c6650;font-size:12px;padding:2px 8px;margin-right:8px}details{padding:14px 17px;background:#f5f8fa;border-radius:7px;margin-top:16px}summary{cursor:pointer;font-weight:bold;color:#155764}.solution[open]{border-left:3px solid #91bec2}label{display:block;font-size:14px;color:var(--muted);margin:15px 0 5px}textarea{display:block;width:100%;min-height:105px;resize:vertical;border:1px solid #b8cad4;border-radius:6px;padding:12px;font:15px/1.7 Consolas,"Malgun Gothic",monospace}.paper-blank{display:none}.exam-mode .solution{display:none!important}footer{margin-top:45px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}.source-img{display:block;width:100%;height:auto;margin:12px auto}.original{background:white;border:1px solid #dbe3e7;padding:10px}.source{font-size:13px;color:var(--muted)}[hidden]{display:none!important}.filterbar{padding:15px;background:#edf4f6;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.filterbar input{width:80px;padding:7px}.filterbar span{font-size:14px}.answer-strong{font-weight:bold;color:#075c5d}.flow{font-family:Consolas,"Malgun Gothic",monospace;background:#f1f7f9;padding:20px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}li{margin:6px 0}
+@media(max-width:700px){body{font-size:15px}main{margin:0;padding:23px 17px;box-shadow:none}h1{font-size:26px}h2{font-size:22px}.question,.project{padding:17px 14px}.twocol{display:block}pre{padding:15px 12px}pre code{font-size:13px}th,td{padding:8px}header{padding-top:17px}}
+@media print{@page{size:A4;margin:16mm}body{background:white;font-size:10.5pt;line-height:1.65}main{padding:0;margin:0;max-width:none;box-shadow:none}.toolbar,.filterbar,textarea,label,.screen-only{display:none!important}.paper-blank{display:block;height:18mm;border-bottom:1px dashed #aaa}header{border-top-width:4px}h1{font-size:22pt}h2{font-size:17pt;break-after:avoid;margin-top:22pt}h3{font-size:12pt;break-after:avoid}.question,.project{border-radius:0;padding:12pt;margin:14pt 0;break-inside:avoid}pre{background:#f2f4f5;color:#111;border:1px solid #ccd5da;padding:9pt}pre code{font-size:9pt}table{font-size:9pt}tr{break-inside:avoid}.source-img{max-width:100%}aside,details{background:#f5f5f5}footer{font-size:9pt}.source{font-size:9pt}}
+.mock-focus .review,.mock-focus .project-bank,.mock-focus .extra-title{display:none}.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.score-grid label{margin:0;border:1px solid #d4dfe5;padding:8px;border-radius:6px}.score-grid input{accent-color:#126a71}@media(max-width:700px){.score-grid{grid-template-columns:1fr 1fr}}</style></head><body data-book="coding"><main><header><div class="eyebrow">정보처리기사 실기 · 4주차 · 20일차</div><h1>20일차 코딩 · Python 모의고사와 종합 보강</h1><p class="lead">모의고사 20문제 + 추가 연습 20문제 · 보강 예제 6개 · 제작 과제 6개</p></header><div class="toolbar"><button id="show" type="button">정답·해설 모두 열기</button><button id="hide" type="button">모두 닫기</button><button id="exam" type="button">시험 모드</button><button id="print" type="button">현재 모드 인쇄</button></div><p class="small screen-only">답안은 이 브라우저에 자동 저장됩니다. 브라우저 설정에 따라 저장이 제한될 수 있습니다. Python 코드는 직접 Python 3에서 실행합니다.</p><aside><b>오늘은 16~19일차 Python 종합 점검입니다.</b><br>자료구조 → 함수·재귀 → 클래스·상속을 한 문제 안에서 연결해 읽습니다. 코딩 모의고사는 상황·수치·호출 흐름을 새로 구성했습니다.</aside><h2>코딩 120분 · 시험부터 재풀이까지</h2><div class="table-wrap"><table><thead><tr><th>시간</th><th>할 일</th></tr></thead><tbody><tr><td>0~60분</td><td>C01~C20 모의고사 · 문제당 5점 · 총 100점. 먼저 실행하지 않고 풀기</td></tr><tr><td>60~80분</td><td>정답·풀이로 채점. 틀린 줄을 찾아 실제 Python에서 실행</td></tr><tr><td>80~95분</td><td>아래 쉬운·응용·심화 예제로 틀린 개념 복습</td></tr><tr><td>95~110분</td><td>P01 직접 작성. 빈 입력과 중복 입력도 확인</td></tr><tr><td>110~120분</td><td>틀린 문제 2개를 골라 “다시 풀기” 조건으로 바꾸고 재풀이</td></tr></tbody></table></div><p>이론은 <b>기출 시험 30분 + 채점·노트 복습 30분</b>입니다. 하루 합계 180분. C21~C40과 P02~P06은 추가 연습입니다.</p><p>처음에는 모의고사 20문항만 보입니다. <b>전체 학습 보기</b>를 누르면 보강 예제·연습 40문제·제작 6개를 모두 볼 수 있습니다. 각 코드는 독립된 Python 3 코드이며, 한 블록씩 복사해 실행하세요.</p><div class="filterbar"><button type="button" id="core">모의고사 20문항만</button><button type="button" id="all">전체 학습 보기</button><label for="number" style="margin:0">문항 번호</label><input id="number" type="number" min="1" max="40" value="1"><button type="button" id="jump">이동</button><span id="scope" aria-live="polite">모의고사 20문항 표시</span></div><div class="review"><h2>1. 쉬운 설명 · 값과 순서를 먼저 적기</h2><p>문자열은 한 글자씩, 리스트는 한 칸씩 번호를 붙입니다. 슬라이싱의 끝 번호는 포함하지 않습니다. set은 중복을 없애지만 출력 순서에 기대면 안 됩니다.</p><section class="example"><h3>E01 · 문자열을 나누고 필요한 값만 모으기</h3><pre class="python"><code>text = &quot; red / blue / red &quot;
+words = [word.strip() for word in text.split(&quot;/&quot;)]
+unique = sorted(set(words))
+print(words)
+print(&quot;-&quot;.join(unique))</code></pre><div class="caption">실행 결과</div><pre class="output"><code>[&#x27;red&#x27;, &#x27;blue&#x27;, &#x27;red&#x27;]
+blue-red</code></pre><p>split으로 나누기 → strip으로 앞뒤 공백 지우기 → set으로 중복 제거 → sorted로 순서를 정하기 → join으로 연결합니다.</p></section><section class="example"><h3>E02 · 이름 복사·바깥 리스트 복사·행까지 복사</h3><pre class="python"><code>a = [[1, 2], [3, 4]]
+b = a
+c = a[:]
+d = [row[:] for row in a]
+c[0][0] = 9
+c.append([5, 6])
+print(a)
+print(b is a, c is a)
+print(d)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>[[9, 2], [3, 4]]
+True False
+[[1, 2], [3, 4]]</code></pre><p>b는 a와 같은 바깥 리스트입니다. c는 바깥 칸만 새로 만들고 안쪽 행은 함께 가리킵니다. d는 안쪽 행도 복사합니다. 이 예의 행 안 값은 정수입니다.</p></section><h2>2. 응용 설명 · 함수 안에서 무엇이 바뀌는가</h2><p>매개변수에 다시 대입하는 것과 전달받은 리스트·딕셔너리 안을 고치는 것을 구별합니다. return은 값을 돌려주고, print는 화면에 보여 줍니다.</p><section class="example"><h3>E03 · 반환값과 원본 변화 확인</h3><pre class="python"><code>def change(values):
+    values.append(7)
+    values = values + [9]
+    return values
+
+items = [2, 5]
+result = change(items)
+print(items)
+print(result)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>[2, 5, 7]
+[2, 5, 7, 9]</code></pre><p>append(7)은 원래 리스트를 고칩니다. + [9]는 새 리스트를 만들어 함수 안 values에 연결하므로 9는 result에만 있습니다.</p></section><section class="example"><h3>E04 · 재귀 호출 전·후 출력</h3><pre class="python"><code>def visit(n):
+    if n == 0:
+        return
+    print(&quot;들어감&quot;, n)
+    visit(n - 1)
+    print(&quot;돌아옴&quot;, n)
+
+visit(2)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>들어감 2
+들어감 1
+돌아옴 1
+돌아옴 2</code></pre><p>2에서 1을 부르고, 1에서 0을 부릅니다. 0에서 끝나면 1의 남은 줄, 2의 남은 줄 순서로 실행합니다.</p></section><h2>3. 심화 설명 · 어느 객체의 메서드인가</h2><p>self는 지금 호출한 객체입니다. 부모에게서 가져온 메서드 안이라도 self.메서드()는 그 객체를 기준으로 찾습니다. 아래 super는 단일 상속에서 부모 쪽 기능을 재사용합니다.</p><section class="example"><h3>E05 · 공유하는 수와 각자의 목록</h3><pre class="python"><code>class Group:
+    count = 0
+
+    def __init__(self):
+        Group.count += 1
+        self.members = []
+
+a = Group()
+b = Group()
+a.members.append(&quot;민지&quot;)
+print(Group.count)
+print(a.members, b.members)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>2
+[&#x27;민지&#x27;] []</code></pre><p>count는 클래스로 접근해 함께 올립니다. members는 __init__ 안에서 새로 만들어 그룹마다 다릅니다.</p></section><section class="example"><h3>E06 · 부모의 흐름에서 자식 계산 호출</h3><pre class="python"><code>class Ticket:
+    def price(self):
+        return 4000
+
+    def receipt(self):
+        return self.price() + 1000
+
+class ChildTicket(Ticket):
+    def price(self):
+        return super().price() // 2
+
+print(ChildTicket().receipt())</code></pre><div class="caption">실행 결과</div><pre class="output"><code>3000</code></pre><p>receipt의 self는 ChildTicket 객체입니다. self.price() → 자식 price → 부모 가격 4000의 절반 2000 → receipt에서 1000 추가 → 3000입니다.</p></section></div><h2>4. 모의고사·연습 40문제</h2><p>C01~C20은 모의고사입니다. 출력 문제는 줄바꿈과 리스트·딕셔너리 모양까지 쓰세요. 빈칸·오류 수정·직접 작성 문제는 아래 예시 호출을 만족하는 코드로 답합니다.</p><article class="question" id="C01" data-num="1" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C01 · range와 몫·나머지</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>values = []
+for n in range(2, 9, 2):
+    values.append(n // 3 + n % 3)
+print(values)</code></pre><label for="aC01">내 답과 풀이 근거</label><textarea id="aC01" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>values = []
+for n in range(2, 9, 2):
+    values.append(n // 3 + n % 3)
+print(values)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[2, 2, 2, 4]</code></pre><p>n은 2·4·6·8입니다. 각 n의 몫과 나머지를 더하면 2·2·2·4입니다.</p><p><b>다시 풀기</b> · range(1, 8, 2)로 바꾸면 [1, 1, 3, 3]인지 확인하세요.</p></details></article><article class="question" id="C02" data-num="2" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C02 · 복사 후 칸 교체</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>a = [3, 6, 9]
+b = a
+c = a[:]
+b[1] = 0
+c[-1] = 5
+print(a)
+print(c)</code></pre><label for="aC02">내 답과 풀이 근거</label><textarea id="aC02" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>a = [3, 6, 9]
+b = a
+c = a[:]
+b[1] = 0
+c[-1] = 5
+print(a)
+print(c)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[3, 0, 9]
+[3, 6, 5]</code></pre><p>b는 a와 같은 리스트, c는 새 리스트입니다.</p><p><b>다시 풀기</b> · c = a로 바꾸면 마지막 결과 두 줄이 모두 [3, 0, 5]가 됩니다.</p></details></article><article class="question" id="C03" data-num="3" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C03 · 음수 간격 슬라이싱</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>text = &quot;NOTEBOOK&quot;
+print(text[1:7:2])
+print(text[-2:1:-2])</code></pre><label for="aC03">내 답과 풀이 근거</label><textarea id="aC03" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>text = &quot;NOTEBOOK&quot;
+print(text[1:7:2])
+print(text[-2:1:-2])</code></pre><p><b>실행 결과</b></p><pre class="output"><code>OEO
+OBT</code></pre><p>인덱스 1·3·5는 O·E·O입니다. 두 번째는 6·4·2의 O·B·T입니다.</p><p><b>다시 풀기</b> · 첫 식을 text[::3]으로 바꾸면 NEO입니다.</p></details></article><article class="question" id="C04" data-num="4" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C04 · 튜플 안 리스트</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>t = ([2, 4], &quot;A&quot;)
+t[0].append(6)
+print(t)
+print(len(t), len(t[0]))</code></pre><label for="aC04">내 답과 풀이 근거</label><textarea id="aC04" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>t = ([2, 4], &quot;A&quot;)
+t[0].append(6)
+print(t)
+print(len(t), len(t[0]))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>([2, 4, 6], &#x27;A&#x27;)
+2 3</code></pre><p>튜플의 칸을 다른 객체로 바꾸지는 않았습니다. 그 칸이 가리키는 리스트의 내부는 바꿀 수 있습니다.</p></details></article><article class="question" id="C05" data-num="5" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C05 · 중복 제거 후 횟수 계산</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>words = [&quot;tea&quot;, &quot;milk&quot;, &quot;tea&quot;, &quot;water&quot;, &quot;milk&quot;]
+counts = {}
+for word in words:
+    counts[word] = counts.get(word, 0) + 1
+print(sorted(set(words)))
+print(counts[&quot;milk&quot;], len(counts))</code></pre><label for="aC05">내 답과 풀이 근거</label><textarea id="aC05" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>words = [&quot;tea&quot;, &quot;milk&quot;, &quot;tea&quot;, &quot;water&quot;, &quot;milk&quot;]
+counts = {}
+for word in words:
+    counts[word] = counts.get(word, 0) + 1
+print(sorted(set(words)))
+print(counts[&quot;milk&quot;], len(counts))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;milk&#x27;, &#x27;tea&#x27;, &#x27;water&#x27;]
+2 3</code></pre><p>종류는 세 개, milk는 두 번입니다. set을 직접 출력하지 않고 sorted로 순서를 정했습니다.</p></details></article><article class="question" id="C06" data-num="6" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C06 · 조건이 있는 컴프리헨션</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>items = [5, 2, 8, 3, 6]
+result = [n - 1 for n in items if n % 2 == 0]
+print(result)</code></pre><label for="aC06">내 답과 풀이 근거</label><textarea id="aC06" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>items = [5, 2, 8, 3, 6]
+result = [n - 1 for n in items if n % 2 == 0]
+print(result)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[1, 7, 5]</code></pre><p>짝수 2·8·6을 고른 뒤 각각 1을 뺍니다.</p></details></article><article class="question" id="C07" data-num="7" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C07 · print와 return</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>def show(n):
+    print(n + 1)
+
+def calc(n):
+    return n + 1
+
+a = show(4)
+b = calc(4)
+print(a, b)</code></pre><label for="aC07">내 답과 풀이 근거</label><textarea id="aC07" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def show(n):
+    print(n + 1)
+
+def calc(n):
+    return n + 1
+
+a = show(4)
+b = calc(4)
+print(a, b)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>5
+None 5</code></pre><p>show는 화면에 5를 쓰지만 반환값이 없어 a에는 None이 들어갑니다.</p></details></article><article class="question" id="C08" data-num="8" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C08 · 이름이 같은 지역변수</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>value = 8
+def change(value):
+    value += 3
+    return value
+
+print(change(value))
+print(value)</code></pre><label for="aC08">내 답과 풀이 근거</label><textarea id="aC08" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>value = 8
+def change(value):
+    value += 3
+    return value
+
+print(change(value))
+print(value)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>11
+8</code></pre><p>함수 안 매개변수에 다시 대입해도 바깥 value가 자동으로 바뀌지 않습니다.</p></details></article><article class="question" id="C09" data-num="9" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C09 · 리스트 수정과 새 리스트 반환</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>def edit(a):
+    a[0] += 2
+    a = a + [8]
+    return a
+
+items = [1, 4]
+other = edit(items)
+print(items)
+print(other)</code></pre><label for="aC09">내 답과 풀이 근거</label><textarea id="aC09" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def edit(a):
+    a[0] += 2
+    a = a + [8]
+    return a
+
+items = [1, 4]
+other = edit(items)
+print(items)
+print(other)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[3, 4]
+[3, 4, 8]</code></pre><p>첫 칸 수정은 원본에 반영되고, + [8]은 새 리스트에만 반영됩니다.</p></details></article><article class="question" id="C10" data-num="10" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C10 · 중첩 리스트의 얕은 복사</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>a = [[2], [5]]
+b = a[:]
+b[0].append(7)
+b[1] = [9]
+print(a)
+print(b)</code></pre><label for="aC10">내 답과 풀이 근거</label><textarea id="aC10" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>a = [[2], [5]]
+b = a[:]
+b[0].append(7)
+b[1] = [9]
+print(a)
+print(b)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[[2, 7], [5]]
+[[2, 7], [9]]</code></pre><p>첫 행은 공유해서 append가 함께 보입니다. b의 둘째 칸에 새 행을 대입해도 a의 둘째 칸은 그대로입니다.</p></details></article><article class="question" id="C11" data-num="11" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C11 · 재귀 출력의 앞과 뒤</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>def trace(n):
+    if n == 0:
+        return
+    print(n, end=&quot; &quot;)
+    trace(n - 1)
+    print(n + 3, end=&quot; &quot;)
+
+trace(3)</code></pre><label for="aC11">내 답과 풀이 근거</label><textarea id="aC11" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def trace(n):
+    if n == 0:
+        return
+    print(n, end=&quot; &quot;)
+    trace(n - 1)
+    print(n + 3, end=&quot; &quot;)
+
+trace(3)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>3 2 1 4 5 6 </code></pre><p>들어갈 때 3·2·1, 돌아오면서 1+3·2+3·3+3을 출력합니다. 마지막 공백은 채점에서 생략해도 됩니다.</p><p><b>다시 풀기</b> · trace(2)는 2 1 4 5 순서입니다.</p></details></article><article class="question" id="C12" data-num="12" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C12 · 재귀 반환값</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>def total(n):
+    if n &lt;= 1:
+        return 2
+    return total(n - 1) + n
+
+print(total(4))</code></pre><label for="aC12">내 답과 풀이 근거</label><textarea id="aC12" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def total(n):
+    if n &lt;= 1:
+        return 2
+    return total(n - 1) + n
+
+print(total(4))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>11</code></pre><p>total(1)=2 → total(2)=4 → total(3)=7 → total(4)=11입니다.</p><p><b>다시 풀기</b> · 호출을 total(3)으로 바꾸면 7입니다.</p></details></article><article class="question" id="C13" data-num="13" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C13 · 클래스 값과 객체 값</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>class Setting:
+    level = 3
+
+a = Setting()
+b = Setting()
+a.level += 2
+Setting.level = 7
+print(a.level, b.level, Setting.level)</code></pre><label for="aC13">내 답과 풀이 근거</label><textarea id="aC13" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Setting:
+    level = 3
+
+a = Setting()
+b = Setting()
+a.level += 2
+Setting.level = 7
+print(a.level, b.level, Setting.level)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>5 7 7</code></pre><p>a.level += 2로 a 자신의 level=5가 생깁니다. b는 클래스의 level=7을 읽습니다.</p></details></article><article class="question" id="C14" data-num="14" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C14 · 재정의된 메서드를 부모가 호출</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>class Base:
+    def number(self):
+        return 4
+
+    def answer(self):
+        return self.number() * 3
+
+class Child(Base):
+    def number(self):
+        return super().number() + 2
+
+print(Child().answer())</code></pre><label for="aC14">내 답과 풀이 근거</label><textarea id="aC14" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Base:
+    def number(self):
+        return 4
+
+    def answer(self):
+        return self.number() * 3
+
+class Child(Base):
+    def number(self):
+        return super().number() + 2
+
+print(Child().answer())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>18</code></pre><p>Child.number는 4+2=6, 부모에게서 물려받은 answer는 6×3=18을 반환합니다.</p></details></article><article class="question" id="C15" data-num="15" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C15 · 반환한 합계 사용</h3><p><b>빈칸</b> · 빈칸을 채우고 완성 코드의 결과를 적으세요.</p><pre class="python"><code>def sum_even(values):
+    result = 0
+    for n in values:
+        if n % 2 == 0:
+            result += n
+    (가) result
+
+print(sum_even([1, 4, 7, 8]))</code></pre><label for="aC15">내 답과 풀이 근거</label><textarea id="aC15" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def sum_even(values):
+    result = 0
+    for n in values:
+        if n % 2 == 0:
+            result += n
+    return result
+
+print(sum_even([1, 4, 7, 8]))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>12</code></pre><p>(가) return · 화면 출력이 아니라 호출한 곳에 합계를 돌려줍니다.</p></details></article><article class="question" id="C16" data-num="16" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C16 · 튜플 정렬 기준</h3><p><b>빈칸</b> · 빈칸을 채우고 완성 코드의 결과를 적으세요.</p><pre class="python"><code>records = [(&quot;B&quot;, 70), (&quot;A&quot;, 70), (&quot;C&quot;, 90)]
+ranked = sorted(records, key=lambda x: ((가), (나)))
+print([name for name, score in ranked])</code></pre><label for="aC16">내 답과 풀이 근거</label><textarea id="aC16" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>records = [(&quot;B&quot;, 70), (&quot;A&quot;, 70), (&quot;C&quot;, 90)]
+ranked = sorted(records, key=lambda x: (-x[1], x[0]))
+print([name for name, score in ranked])</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;C&#x27;, &#x27;A&#x27;, &#x27;B&#x27;]</code></pre><p>(가) -x[1], (나) x[0] · 점수 내림차순, 동점이면 이름 오름차순입니다.</p></details></article><article class="question" id="C17" data-num="17" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C17 · 여러 회원에게 섞이는 기록</h3><p><b>오류 수정</b> · a만 ['입장'], b는 []가 되도록 고치세요.</p><pre class="python"><code>class Member:
+    history = []
+
+a = Member()
+b = Member()
+a.history.append(&quot;입장&quot;)
+print(a.history, b.history)</code></pre><label for="aC17">내 답과 풀이 근거</label><textarea id="aC17" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Member:
+    def __init__(self):
+        self.history = []
+
+a = Member()
+b = Member()
+a.history.append(&quot;입장&quot;)
+print(a.history, b.history)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;입장&#x27;] []</code></pre><p>클래스의 리스트 하나를 공유하지 않도록 __init__에서 객체마다 새 리스트를 만듭니다.</p></details></article><article class="question" id="C18" data-num="18" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C18 · 부모 초기화 빠짐</h3><p><b>오류 수정</b> · 부모 초기화를 재사용하여 상품의 이름과 가격이 모두 출력되게 고치세요.</p><pre class="python"><code>class Item:
+    def __init__(self, name):
+        self.name = name
+
+class Product(Item):
+    def __init__(self, name, price):
+        self.price = price
+
+p = Product(&quot;연필&quot;, 500)
+print(p.name, p.price)</code></pre><label for="aC18">내 답과 풀이 근거</label><textarea id="aC18" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Item:
+    def __init__(self, name):
+        self.name = name
+
+class Product(Item):
+    def __init__(self, name, price):
+        super().__init__(name)
+        self.price = price
+
+p = Product(&quot;연필&quot;, 500)
+print(p.name, p.price)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>연필 500</code></pre><p>자식이 __init__을 정의했으므로 부모 초기화를 명시적으로 호출합니다. 원래 코드는 p.name에서 AttributeError가 납니다.</p></details></article><article class="question" id="C19" data-num="19" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C19 · 첫 등장 순서로 개수 세기</h3><p><b>직접 작성</b> · count_words(words)는 단어별 등장 횟수 딕셔너리를 반환합니다. 같은 단어를 한 키로 세고, 빈 입력은 {}로 만드세요.</p><pre class="python"><code>def count_words(words):
+    pass
+
+print(count_words([&quot;go&quot;, &quot;stop&quot;, &quot;go&quot;, &quot;go&quot;]))</code></pre><label for="aC19">내 답과 풀이 근거</label><textarea id="aC19" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def count_words(words):
+    result = {}
+    for word in words:
+        result[word] = result.get(word, 0) + 1
+    return result
+
+print(count_words([&quot;go&quot;, &quot;stop&quot;, &quot;go&quot;, &quot;go&quot;]))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>{&#x27;go&#x27;: 3, &#x27;stop&#x27;: 1}</code></pre><p>get(word, 0)은 처음 나온 단어의 이전 횟수를 0으로 읽습니다. 빈 리스트에서는 반복을 하지 않아 {}를 반환합니다.</p></details></article><article class="question" id="C20" data-num="20" data-core="yes"><h3><span class="badge">모의고사 · 5점</span>C20 · 재귀로 리스트 합계</h3><p><b>직접 작성</b> · total(values)는 정수 리스트의 합을 재귀로 계산합니다. 빈 리스트는 0입니다. sum이나 반복문 없이 작성하세요.</p><pre class="python"><code>def total(values):
+    pass
+
+print(total([3, -1, 6]))
+print(total([]))</code></pre><label for="aC20">내 답과 풀이 근거</label><textarea id="aC20" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def total(values):
+    if not values:
+        return 0
+    return values[0] + total(values[1:])
+
+print(total([3, -1, 6]))
+print(total([]))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>8
+0</code></pre><p>첫 값 + 나머지 리스트 합입니다. 빈 리스트에서 멈춥니다. 학습용 짧은 입력에 사용하는 방식입니다.</p><p><b>다시 풀기</b> · [0, -2, 2]로 바꾸면 0입니다.</p></details></article><h3 class="extra-title">추가 연습 C21~C40</h3><article class="question" id="C21" data-num="21" data-core="no"><h3><span class="badge">추가 연습</span>C21 · 구분자와 빈 문자열</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>text = &quot;A::B:C&quot;
+parts = text.split(&quot;:&quot;)
+print(parts)
+print(&quot;/&quot;.join(parts[1:]))</code></pre><label for="aC21">내 답과 풀이 근거</label><textarea id="aC21" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>text = &quot;A::B:C&quot;
+parts = text.split(&quot;:&quot;)
+print(parts)
+print(&quot;/&quot;.join(parts[1:]))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;A&#x27;, &#x27;&#x27;, &#x27;B&#x27;, &#x27;C&#x27;]
+/B/C</code></pre><p>구분자가 연속해서 두 번 나오면 그 사이에 빈 문자열이 생깁니다.</p></details></article><article class="question" id="C22" data-num="22" data-core="no"><h3><span class="badge">추가 연습</span>C22 · pop의 반환과 남은 목록</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>values = [7, 4, 9, 2]
+x = values.pop(1)
+values.append(x + 1)
+print(x, values)</code></pre><label for="aC22">내 답과 풀이 근거</label><textarea id="aC22" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>values = [7, 4, 9, 2]
+x = values.pop(1)
+values.append(x + 1)
+print(x, values)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>4 [7, 9, 2, 5]</code></pre><p>1번 칸의 4를 꺼내 반환하고, 남은 리스트 끝에 5를 넣습니다.</p></details></article><article class="question" id="C23" data-num="23" data-core="no"><h3><span class="badge">추가 연습</span>C23 · 집합의 차이</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>a = {2, 4, 6, 8}
+b = {4, 8, 10}
+print(sorted(a - b))
+print(sorted(a &amp; b))</code></pre><label for="aC23">내 답과 풀이 근거</label><textarea id="aC23" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>a = {2, 4, 6, 8}
+b = {4, 8, 10}
+print(sorted(a - b))
+print(sorted(a &amp; b))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[2, 6]
+[4, 8]</code></pre><p>a-b는 a에만 있는 값, a&b는 공통 값입니다.</p></details></article><article class="question" id="C24" data-num="24" data-core="no"><h3><span class="badge">추가 연습</span>C24 · 딕셔너리 순서와 값 변경</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>d = {&quot;A&quot;: 2, &quot;B&quot;: 5}
+d[&quot;A&quot;] = 7
+d[&quot;C&quot;] = 1
+print(list(d.keys()))
+print(list(d.values()))</code></pre><label for="aC24">내 답과 풀이 근거</label><textarea id="aC24" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>d = {&quot;A&quot;: 2, &quot;B&quot;: 5}
+d[&quot;A&quot;] = 7
+d[&quot;C&quot;] = 1
+print(list(d.keys()))
+print(list(d.values()))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;]
+[7, 5, 1]</code></pre><p>기존 키의 값만 바꾸면 그 키의 순서는 유지됩니다. 새 키 C는 마지막에 들어갑니다.</p></details></article><article class="question" id="C25" data-num="25" data-core="no"><h3><span class="badge">추가 연습</span>C25 · 딕셔너리 값의 리스트 공유</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>a = {&quot;scores&quot;: [10, 20]}
+b = a.copy()
+b[&quot;scores&quot;].append(30)
+b[&quot;name&quot;] = &quot;새자료&quot;
+print(a[&quot;scores&quot;])
+print(&quot;name&quot; in a)</code></pre><label for="aC25">내 답과 풀이 근거</label><textarea id="aC25" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>a = {&quot;scores&quot;: [10, 20]}
+b = a.copy()
+b[&quot;scores&quot;].append(30)
+b[&quot;name&quot;] = &quot;새자료&quot;
+print(a[&quot;scores&quot;])
+print(&quot;name&quot; in a)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[10, 20, 30]
+False</code></pre><p>바깥 딕셔너리는 복사했지만 scores 리스트는 함께 가리킵니다. 새 키는 b에만 생깁니다.</p></details></article><article class="question" id="C26" data-num="26" data-core="no"><h3><span class="badge">추가 연습</span>C26 · 정렬의 반환값</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>values = [4, 1, 3]
+result = values.sort()
+print(values)
+print(result)</code></pre><label for="aC26">내 답과 풀이 근거</label><textarea id="aC26" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>values = [4, 1, 3]
+result = values.sort()
+print(values)
+print(result)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[1, 3, 4]
+None</code></pre><p>sort는 원래 리스트를 정렬하고 None을 반환합니다. sorted는 새 정렬 리스트를 반환합니다.</p></details></article><article class="question" id="C27" data-num="27" data-core="no"><h3><span class="badge">추가 연습</span>C27 · 전역 이름에 대입</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>count = 2
+def add():
+    global count
+    count += 3
+
+add()
+add()
+print(count)</code></pre><label for="aC27">내 답과 풀이 근거</label><textarea id="aC27" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>count = 2
+def add():
+    global count
+    count += 3
+
+add()
+add()
+print(count)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>8</code></pre><p>global 선언으로 바깥 count에 두 번 3을 더합니다.</p></details></article><article class="question" id="C28" data-num="28" data-core="no"><h3><span class="badge">추가 연습</span>C28 · 매번 새 목록 만들기</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>def record(value, values=None):
+    if values is None:
+        values = []
+    values.append(value)
+    return values
+
+print(record(2))
+print(record(5))</code></pre><label for="aC28">내 답과 풀이 근거</label><textarea id="aC28" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def record(value, values=None):
+    if values is None:
+        values = []
+    values.append(value)
+    return values
+
+print(record(2))
+print(record(5))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[2]
+[5]</code></pre><p>두 호출은 values를 전달하지 않아 각각 새 리스트를 만듭니다. None은 기본값으로 전달 여부를 구별하는 데 쓸 수 있습니다.</p></details></article><article class="question" id="C29" data-num="29" data-core="no"><h3><span class="badge">추가 연습</span>C29 · 여러 값 반환·나누어 받기</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>def divide(n):
+    return n // 4, n % 4
+
+a, b = divide(19)
+print(a, b)</code></pre><label for="aC29">내 답과 풀이 근거</label><textarea id="aC29" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def divide(n):
+    return n // 4, n % 4
+
+a, b = divide(19)
+print(a, b)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>4 3</code></pre><p>두 반환값은 튜플로 묶이고 a·b에 나누어 담깁니다.</p></details></article><article class="question" id="C30" data-num="30" data-core="no"><h3><span class="badge">추가 연습</span>C30 · 재귀에서 조건에 따라 더하기</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>def odd_sum(n):
+    if n &lt;= 0:
+        return 0
+    if n % 2 == 1:
+        return n + odd_sum(n - 1)
+    return odd_sum(n - 1)
+
+print(odd_sum(6))</code></pre><label for="aC30">내 답과 풀이 근거</label><textarea id="aC30" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def odd_sum(n):
+    if n &lt;= 0:
+        return 0
+    if n % 2 == 1:
+        return n + odd_sum(n - 1)
+    return odd_sum(n - 1)
+
+print(odd_sum(6))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>9</code></pre><p>6 이하 홀수 5+3+1만 더합니다.</p></details></article><article class="question" id="C31" data-num="31" data-core="no"><h3><span class="badge">추가 연습</span>C31 · 재귀가 두 번 호출되면</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>def ways(n):
+    if n &lt;= 1:
+        return 1
+    return ways(n - 1) + ways(n - 2)
+
+print(ways(4))</code></pre><label for="aC31">내 답과 풀이 근거</label><textarea id="aC31" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def ways(n):
+    if n &lt;= 1:
+        return 1
+    return ways(n - 1) + ways(n - 2)
+
+print(ways(4))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>5</code></pre><p>ways(0)=ways(1)=1, 이어서 2·3·5입니다. 같은 값을 여러 번 계산하는 작은 예입니다.</p></details></article><article class="question" id="C32" data-num="32" data-core="no"><h3><span class="badge">추가 연습</span>C32 · 클래스의 문자열 목록 순회</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>class Labels:
+    values = [&quot;river&quot;, &quot;mountain&quot;, &quot;forest&quot;]
+
+result = &quot;&quot;
+for word in Labels().values:
+    result += word[0] + word[-1]
+print(result)</code></pre><label for="aC32">내 답과 풀이 근거</label><textarea id="aC32" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Labels:
+    values = [&quot;river&quot;, &quot;mountain&quot;, &quot;forest&quot;]
+
+result = &quot;&quot;
+for word in Labels().values:
+    result += word[0] + word[-1]
+print(result)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>rrmnft</code></pre><p>각 단어의 첫 글자·마지막 글자를 연결하면 rr·mn·ft입니다.</p></details></article><article class="question" id="C33" data-num="33" data-core="no"><h3><span class="badge">추가 연습</span>C33 · 객체 리스트를 함수에서 수정</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>class Item:
+    def __init__(self, price):
+        self.price = price
+
+def bonus(items):
+    for item in items:
+        item.price += 10
+
+items = [Item(20), Item(50)]
+bonus(items)
+print([item.price for item in items])</code></pre><label for="aC33">내 답과 풀이 근거</label><textarea id="aC33" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Item:
+    def __init__(self, price):
+        self.price = price
+
+def bonus(items):
+    for item in items:
+        item.price += 10
+
+items = [Item(20), Item(50)]
+bonus(items)
+print([item.price for item in items])</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[30, 60]</code></pre><p>함수의 item은 리스트 안 객체를 가리키므로 속성 수정이 원본 객체에 보입니다.</p></details></article><article class="question" id="C34" data-num="34" data-core="no"><h3><span class="badge">추가 연습</span>C34 · 상속받은 클래스 리스트</h3><p><b>출력 예측</b> · 실행 결과를 적으세요.</p><pre class="python"><code>class Base:
+    tags = []
+
+class Child(Base):
+    pass
+
+Base.tags.append(&quot;공통&quot;)
+Child.tags.append(&quot;추가&quot;)
+print(Base.tags)</code></pre><label for="aC34">내 답과 풀이 근거</label><textarea id="aC34" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Base:
+    tags = []
+
+class Child(Base):
+    pass
+
+Base.tags.append(&quot;공통&quot;)
+Child.tags.append(&quot;추가&quot;)
+print(Base.tags)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;공통&#x27;, &#x27;추가&#x27;]</code></pre><p>Child에 별도 tags를 만들지 않았으므로 부모의 리스트를 찾아 함께 수정합니다.</p></details></article><article class="question" id="C35" data-num="35" data-core="no"><h3><span class="badge">추가 연습</span>C35 · 새 행으로 복사</h3><p><b>빈칸</b> · 빈칸을 채우고 완성 코드의 결과를 적으세요.</p><pre class="python"><code>a = [[1, 2], [3, 4]]
+b = [(가) for row in a]
+b[0][0] = 99
+print(a)</code></pre><label for="aC35">내 답과 풀이 근거</label><textarea id="aC35" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>a = [[1, 2], [3, 4]]
+b = [row[:] for row in a]
+b[0][0] = 99
+print(a)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[[1, 2], [3, 4]]</code></pre><p>(가) row[:] 또는 row.copy() · 행 안의 값이 정수인 이 예에서 각 행을 따로 복사하면 됩니다.</p></details></article><article class="question" id="C36" data-num="36" data-core="no"><h3><span class="badge">추가 연습</span>C36 · 메서드 매개변수</h3><p><b>빈칸</b> · 빈칸을 채우고 완성 코드의 결과를 적으세요.</p><pre class="python"><code>class Counter:
+    def __init__(self):
+        self.value = 0
+
+    def add((가), amount):
+        self.value += amount
+        return self.value
+
+print(Counter().add(6))</code></pre><label for="aC36">내 답과 풀이 근거</label><textarea id="aC36" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Counter:
+    def __init__(self):
+        self.value = 0
+
+    def add(self, amount):
+        self.value += amount
+        return self.value
+
+print(Counter().add(6))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>6</code></pre><p>(가) self · 지금 호출한 객체를 첫 매개변수로 받습니다.</p></details></article><article class="question" id="C37" data-num="37" data-core="no"><h3><span class="badge">추가 연습</span>C37 · in-place 정렬을 잘못 사용</h3><p><b>오류 수정</b> · values를 바꾸지 않고 새 정렬 리스트를 반환하도록 고치세요.</p><pre class="python"><code>def ordered(values):
+    return values.sort()
+
+a = [8, 2, 5]
+print(ordered(a))
+print(a)</code></pre><label for="aC37">내 답과 풀이 근거</label><textarea id="aC37" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def ordered(values):
+    return sorted(values)
+
+a = [8, 2, 5]
+print(ordered(a))
+print(a)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[2, 5, 8]
+[8, 2, 5]</code></pre><p>sorted는 원본을 유지하면서 새 리스트를 반환합니다.</p></details></article><article class="question" id="C38" data-num="38" data-core="no"><h3><span class="badge">추가 연습</span>C38 · 끝나지 않는 재귀</h3><p><b>오류 수정</b> · n은 0 이상의 정수입니다. 0에서 멈춰 1을 반환하도록 고치세요.</p><pre class="python"><code>def product(n):
+    return n * product(n - 1)
+
+print(product(4))</code></pre><label for="aC38">내 답과 풀이 근거</label><textarea id="aC38" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>def product(n):
+    if n == 0:
+        return 1
+    return n * product(n - 1)
+
+print(product(4))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>24</code></pre><p>곱셈에서는 끝값 1을 반환합니다. 종료 조건이 없으면 호출을 계속하다 RecursionError가 발생합니다.</p></details></article><article class="question" id="C39" data-num="39" data-core="no"><h3><span class="badge">추가 연습</span>C39 · 상품 가격 합산</h3><p><b>직접 작성</b> · Item 객체 목록을 받아 각 price의 합을 반환하는 total_price를 작성하세요. 빈 리스트는 0입니다.</p><pre class="python"><code>class Item:
+    def __init__(self, price):
+        self.price = price
+
+def total_price(items):
+    pass
+
+print(total_price([Item(200), Item(350)]))</code></pre><label for="aC39">내 답과 풀이 근거</label><textarea id="aC39" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Item:
+    def __init__(self, price):
+        self.price = price
+
+def total_price(items):
+    return sum(item.price for item in items)
+
+print(total_price([Item(200), Item(350)]))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>550</code></pre><p>객체 자체가 아니라 객체의 숫자 속성 price를 더합니다.</p></details></article><article class="question" id="C40" data-num="40" data-core="no"><h3><span class="badge">추가 연습</span>C40 · 상속으로 안내 문구 확장</h3><p><b>직접 작성</b> · Message.text()는 안녕을 반환합니다. Notice.text()는 부모 결과 뒤에 !를 붙이도록 완성하세요.</p><pre class="python"><code>class Message:
+    def text(self):
+        return &quot;안녕&quot;
+
+class Notice(Message):
+    def text(self):
+        pass
+
+print(Notice().text())</code></pre><label for="aC40">내 답과 풀이 근거</label><textarea id="aC40" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 코드</b></p><pre class="python"><code>class Message:
+    def text(self):
+        return &quot;안녕&quot;
+
+class Notice(Message):
+    def text(self):
+        return super().text() + &quot;!&quot;
+
+print(Notice().text())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>안녕!</code></pre><p>self.text()로 다시 부르면 자기 자신을 계속 호출합니다. 여기서는 super().text()로 부모 구현을 사용합니다.</p></details></article><div class="project-bank"><h2>5. 직접 만드는 종합 과제 6개</h2><p>P01은 수업에서 작성합니다. 나머지는 추가 제작용입니다. 먼저 요구사항과 시작 코드를 보고 작성한 뒤 완성 예를 여세요.</p><article class="project" id="P01"><h3>P01 · 중복 없는 출석부</h3><p>이름을 입력한 순서대로 저장하되, 공백과 중복을 정리하세요. 이름은 문자열로 들어옵니다.</p><ul><li>Roster()는 객체마다 names=[]로 시작.</li><li>add(name)은 앞뒤 공백을 없앤 뒤, 빈 이름이나 이미 등록된 이름이면 False. 새 이름이면 추가 후 True.</li><li>첫 등장 순서를 유지. 다른 출석부 객체의 이름 목록은 바뀌지 않아야 함.</li></ul><pre class="python"><code>class Roster:
+    def __init__(self):
+        pass
+    def add(self, name):
+        pass
+
+r = Roster()
+for name in [&quot; 민지 &quot;, &quot;준호&quot;, &quot;민지&quot;, &quot; &quot;, &quot;유나&quot;]:
+    r.add(name)
+print(r.names)
+print(Roster().names)</code></pre><label for="aP01">내 답과 풀이 근거</label><textarea id="aP01" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Roster:
+    def __init__(self):
+        self.names = []
+
+    def add(self, name):
+        name = name.strip()
+        if not name or name in self.names:
+            return False
+        self.names.append(name)
+        return True
+
+r = Roster()
+for name in [&quot; 민지 &quot;, &quot;준호&quot;, &quot;민지&quot;, &quot; &quot;, &quot;유나&quot;]:
+    r.add(name)
+print(r.names)
+print(Roster().names)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;민지&#x27;, &#x27;준호&#x27;, &#x27;유나&#x27;]
+[]</code></pre><p>입력 정리 → 거부 조건 검사 → 목록 추가 순서로 작성합니다. 이름을 정렬하지 않아 첫 등록 순서를 유지합니다.</p><p><b>추가 확인</b> · 빈 이름 거부 / 공백이 달라도 같은 이름은 중복 / 객체마다 출석 목록 분리</p></details></article><article class="project" id="P02"><h3>P02 · 성적 자료의 독립 복사</h3><p>학생별 점수 목록을 복사하고, 복사본 점수를 고쳐도 원본을 유지하세요. 점수는 0~100의 정수입니다.</p><ul><li>Student(name, scores)는 전달받은 점수 리스트를 복사해 저장.</li><li>average()는 소수점 한 자리로 반올림한 평균 반환. 점수가 없으면 None.</li><li>clone()은 같은 이름과 점수의 새 Student 반환. 객체와 점수 리스트가 모두 별개여야 함.</li></ul><pre class="python"><code>class Student:
+    def __init__(self, name, scores):
+        pass
+    def average(self):
+        pass
+    def clone(self):
+        pass
+
+original = Student(&quot;서진&quot;, [60, 80])
+copied = original.clone()
+copied.scores[0] = 100
+print(original.scores, original.average())
+print(copied.scores, copied.average())</code></pre><label for="aP02">내 답과 풀이 근거</label><textarea id="aP02" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Student:
+    def __init__(self, name, scores):
+        self.name = name
+        self.scores = scores[:]
+
+    def average(self):
+        if not self.scores:
+            return None
+        return round(sum(self.scores) / len(self.scores), 1)
+
+    def clone(self):
+        return Student(self.name, self.scores)
+
+original = Student(&quot;서진&quot;, [60, 80])
+copied = original.clone()
+copied.scores[0] = 100
+print(original.scores, original.average())
+print(copied.scores, copied.average())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[60, 80] 70.0
+[100, 80] 90.0</code></pre><p>clone이 새 객체를 만들고, __init__이 점수 리스트를 다시 복사합니다. 리스트 안이 정수인 이 경우에 맞는 복사입니다.</p><p><b>추가 확인</b> · 점수가 없으면 평균 None / 전달한 원본 리스트와 분리 / 복사본 점수 추가가 원본에 영향 없음</p></details></article><article class="project" id="P03"><h3>P03 · 일반·파손주의 택배비</h3><p>같은 fee() 호출로 택배 종류마다 다른 요금을 계산하세요. 무게는 1 이상의 정수, 쿠폰은 0 이상의 정수입니다.</p><ul><li>Parcel(weight)의 요금은 1000 + 무게×500원.</li><li>FragileParcel은 Parcel 상속. fee()를 재정의해 부모 요금에 700원 추가.</li><li>bill(parcels, coupon)은 전체 요금에서 쿠폰을 한 번만 차감. 최종 금액은 최소 0원.</li></ul><pre class="python"><code>class Parcel:
+    pass
+class FragileParcel(Parcel):
+    pass
+def bill(parcels, coupon):
+    pass
+
+parcels = [Parcel(2), FragileParcel(1)]
+print([p.fee() for p in parcels])
+print(bill(parcels, 500))</code></pre><label for="aP03">내 답과 풀이 근거</label><textarea id="aP03" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Parcel:
+    def __init__(self, weight):
+        self.weight = weight
+
+    def fee(self):
+        return 1000 + self.weight * 500
+
+class FragileParcel(Parcel):
+    def fee(self):
+        return super().fee() + 700
+
+def bill(parcels, coupon):
+    return max(0, sum(parcel.fee() for parcel in parcels) - coupon)
+
+parcels = [Parcel(2), FragileParcel(1)]
+print([p.fee() for p in parcels])
+print(bill(parcels, 500))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[2000, 2200]
+3700</code></pre><p>파손주의 요금은 1500+700=2200입니다. 함수는 각 객체의 fee를 사용하고 전체 합계에서 쿠폰을 한 번 뺍니다.</p><p><b>추가 확인</b> · 택배가 없으면 0원 / 쿠폰이 총액보다 크면 0원 / 부모·자식 요금 차이는 700원</p></details></article><article class="project" id="P04"><h3>P04 · 주문 합치고 많이 팔린 상품 찾기</h3><p>(상품명, 수량) 튜플 목록을 받아 상품별 수량을 합산하세요. 수량은 정수입니다.</p><ul><li>merge_orders는 양수 수량만 합산해 딕셔너리 반환. 원본 목록 유지.</li><li>top_names(orders, n)은 합산 수량 내림차순, 동점이면 상품명 오름차순으로 상위 n개의 이름 반환.</li><li>n이 0 이하이거나 유효 주문이 없으면 빈 리스트 반환.</li></ul><pre class="python"><code>def merge_orders(orders):
+    pass
+def top_names(orders, n):
+    pass
+
+orders = [(&quot;pen&quot;, 2), (&quot;book&quot;, 1), (&quot;pen&quot;, 3), (&quot;eraser&quot;, 5), (&quot;book&quot;, 0)]
+print(merge_orders(orders))
+print(top_names(orders, 2))</code></pre><label for="aP04">내 답과 풀이 근거</label><textarea id="aP04" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>def merge_orders(orders):
+    result = {}
+    for name, quantity in orders:
+        if quantity &gt; 0:
+            result[name] = result.get(name, 0) + quantity
+    return result
+
+def top_names(orders, n):
+    if n &lt;= 0:
+        return []
+    totals = merge_orders(orders)
+    ranked = sorted(totals.items(), key=lambda x: (-x[1], x[0]))
+    return [name for name, quantity in ranked[:n]]
+
+orders = [(&quot;pen&quot;, 2), (&quot;book&quot;, 1), (&quot;pen&quot;, 3), (&quot;eraser&quot;, 5), (&quot;book&quot;, 0)]
+print(merge_orders(orders))
+print(top_names(orders, 2))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>{&#x27;pen&#x27;: 5, &#x27;book&#x27;: 1, &#x27;eraser&#x27;: 5}
+[&#x27;eraser&#x27;, &#x27;pen&#x27;]</code></pre><p>집계는 딕셔너리, 순위는 정렬, 상위 개수 제한은 슬라이싱으로 나누어 해결합니다.</p><p><b>추가 확인</b> · 빈 주문 목록 / 0·음수 수량 제외 / 동점 정렬·0개 요청·원본 유지</p></details></article><article class="project" id="P05"><h3>P05 · 하위 항목까지 전체 용량 계산</h3><p>폴더와 파일을 트리 형태의 객체로 표현합니다. 각 노드의 size는 그 항목 자체의 용량이며 하위 항목 용량을 미리 포함하지 않습니다.</p><ul><li>Node(name, size)는 자신만의 children=[] 생성. size는 0 이상의 정수.</li><li>total_size(node)는 자기 용량 + 모든 하위 항목의 용량을 재귀로 합산. None은 0.</li><li>폴더의 자체 용량은 예제에서 0. 같은 항목을 두 번 연결하거나 순환 연결하지 않는 트리로 작성.</li></ul><pre class="python"><code>class Node:
+    pass
+def total_size(node):
+    pass
+
+root = Node(&quot;자료&quot;, 0)
+photo = Node(&quot;사진&quot;, 0)
+photo.children = [Node(&quot;a.jpg&quot;, 40), Node(&quot;b.jpg&quot;, 60)]
+root.children = [Node(&quot;memo.txt&quot;, 10), photo]
+print(total_size(root))</code></pre><label for="aP05">내 답과 풀이 근거</label><textarea id="aP05" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Node:
+    def __init__(self, name, size):
+        self.name = name
+        self.size = size
+        self.children = []
+
+def total_size(node):
+    if node is None:
+        return 0
+    return node.size + sum(total_size(child) for child in node.children)
+
+root = Node(&quot;자료&quot;, 0)
+photo = Node(&quot;사진&quot;, 0)
+photo.children = [Node(&quot;a.jpg&quot;, 40), Node(&quot;b.jpg&quot;, 60)]
+root.children = [Node(&quot;memo.txt&quot;, 10), photo]
+print(total_size(root))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>110</code></pre><p>사진 부분은 40+60=100, 자료 전체는 0+10+100=110입니다. 자식이 없으면 sum의 빈 합이 0이 되어 반환을 마칩니다.</p><p><b>추가 확인</b> · 노드가 없으면 0 / 빈 폴더·파일 하나 / 여러 단계의 하위 항목</p></details></article><article class="project" id="P06"><h3>P06 · 정원 있는 수강 신청</h3><p>강좌마다 신청자 목록을 관리하고, 현재 신청 현황을 별도 딕셔너리로 복사하세요. 정원은 0 이상의 정수, 이름은 문자열입니다.</p><ul><li>Course(name, capacity)는 students=[]로 시작. enroll(student)는 공백을 정리한 새 이름을 정원 안에서만 추가하고 True 반환.</li><li>빈 이름·중복·정원 초과는 False. cancel(student)는 이름을 정리해 등록돼 있으면 삭제 후 True, 없으면 False.</li><li>snapshot(courses)는 {강좌명: 신청자 목록 복사본} 반환. 복사본을 바꿔도 강좌는 유지. 강좌 이름은 중복하지 않음.</li></ul><pre class="python"><code>class Course:
+    def __init__(self, name, capacity):
+        pass
+    def enroll(self, student):
+        pass
+    def cancel(self, student):
+        pass
+def snapshot(courses):
+    pass
+
+course = Course(&quot;Python&quot;, 2)
+print(course.enroll(&quot;민지&quot;), course.enroll(&quot;준호&quot;), course.enroll(&quot;유나&quot;))
+saved = snapshot([course])
+saved[&quot;Python&quot;].append(&quot;복사본&quot;)
+course.cancel(&quot;준호&quot;)
+print(course.students)
+print(saved[&quot;Python&quot;])</code></pre><label for="aP06">내 답과 풀이 근거</label><textarea id="aP06" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Course:
+    def __init__(self, name, capacity):
+        self.name = name
+        self.capacity = capacity
+        self.students = []
+
+    def enroll(self, student):
+        student = student.strip()
+        if not student or student in self.students or len(self.students) &gt;= self.capacity:
+            return False
+        self.students.append(student)
+        return True
+
+    def cancel(self, student):
+        student = student.strip()
+        if student not in self.students:
+            return False
+        self.students.remove(student)
+        return True
+
+def snapshot(courses):
+    return {course.name: course.students[:] for course in courses}
+
+course = Course(&quot;Python&quot;, 2)
+print(course.enroll(&quot;민지&quot;), course.enroll(&quot;준호&quot;), course.enroll(&quot;유나&quot;))
+saved = snapshot([course])
+saved[&quot;Python&quot;].append(&quot;복사본&quot;)
+course.cancel(&quot;준호&quot;)
+print(course.students)
+print(saved[&quot;Python&quot;])</code></pre><p><b>실행 결과</b></p><pre class="output"><code>True True False
+[&#x27;민지&#x27;]
+[&#x27;민지&#x27;, &#x27;준호&#x27;, &#x27;복사본&#x27;]</code></pre><p>강좌 객체 → 리스트 변경 → 딕셔너리 결과 → 리스트 복사를 함께 사용합니다. saved는 취소 전 명단의 복사본입니다.</p><p><b>추가 확인</b> · 정원 0이면 신청 거부 / 공백·중복 이름·없는 이름 취소 / 취소 후 빈자리에 새 신청</p></details></article></div><div class="review"><h2>6. 채점과 오답 재풀이</h2><p>모의고사 C01~C20은 각 5점입니다. 출력·빈칸·요구조건이 모두 맞으면 체크하세요. 직접 작성은 완성 예와 코드가 달라도 요구조건과 결과를 만족하면 정답입니다.</p><div class="score-grid"><label><input type="checkbox" class="score-check" id="scoreC01"> C01 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC02"> C02 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC03"> C03 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC04"> C04 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC05"> C05 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC06"> C06 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC07"> C07 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC08"> C08 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC09"> C09 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC10"> C10 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC11"> C11 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC12"> C12 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC13"> C13 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC14"> C14 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC15"> C15 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC16"> C16 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC17"> C17 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC18"> C18 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC19"> C19 · 5점</label><label><input type="checkbox" class="score-check" id="scoreC20"> C20 · 5점</label></div><p id="score-total" aria-live="polite"><b>0 / 100점</b></p><div class="table-wrap"><table><thead><tr><th>틀린 유형</th><th>이렇게 다시 보기</th></tr></thead><tbody><tr><td>문자열·슬라이싱</td><td>실제 인덱스를 적고, 시작·끝·간격을 따로 표시</td></tr><tr><td>리스트·객체 복사</td><td>같은 것을 가리키는 이름을 화살표로 연결</td></tr><tr><td>함수·return</td><td>화면 출력과 반환값을 다른 칸에 적기</td></tr><tr><td>재귀</td><td>종료 조건부터 계산하고, 돌아오며 실행하는 줄에 표시</td></tr><tr><td>클래스·상속</td><td>객체별 속성·클래스 변수·실제 호출 메서드를 따로 적기</td></tr></tbody></table></div><p>틀린 문제 2개를 골라 <b>예상 결과 → 실행 결과 → 틀린 이유 한 줄</b>을 기록하세요. 해설의 다시 풀기 조건이나 직접 바꾼 입력으로 정답을 확인합니다. 수업 제작 과제는 P01입니다.</p></div><footer>20일차 · 코딩 120분 + 이론 60분 = 하루 180분 · 외부 연결 없이 사용하는 독립형 HTML</footer></main><script>
+const savePrefix='day20:'+document.body.dataset.book+':';
+document.querySelectorAll('textarea').forEach(el=>{try{el.value=localStorage.getItem(savePrefix+el.id)||''}catch{}el.addEventListener('input',()=>{try{localStorage.setItem(savePrefix+el.id,el.value)}catch{}})});
+document.getElementById('show').onclick=()=>{document.body.classList.remove('exam-mode');document.querySelectorAll('.solution').forEach(d=>d.open=true);document.getElementById('exam').textContent='시험 모드'};
+document.getElementById('hide').onclick=()=>document.querySelectorAll('.solution').forEach(d=>d.open=false);
+document.getElementById('exam').onclick=()=>{const on=document.body.classList.toggle('exam-mode');document.querySelectorAll('.solution').forEach(d=>d.open=false);document.getElementById('exam').textContent=on?'학습 모드':'시험 모드'};
+document.getElementById('print').onclick=()=>window.print();
+const coreButton=document.getElementById('core');
+if(coreButton){const allButton=document.getElementById('all'); const status=document.getElementById('scope');const qs=[...document.querySelectorAll('.question')];
+function scope(core){qs.forEach(q=>q.hidden=core&&q.dataset.core!=='yes');status.textContent=(core?'오늘 수업 ':'전체 ')+qs.filter(q=>!q.hidden).length+'문항 표시';}
+coreButton.onclick=()=>scope(true);allButton.onclick=()=>scope(false);
+document.getElementById('jump').onclick=()=>{const n=Number(document.getElementById('number').value);const q=qs.find(q=>Number(q.dataset.num)===n);if(!q){status.textContent='표시된 범위 안의 정수 번호를 입력하세요';return;}scope(false);q.scrollIntoView({block:'start'});};}
+</script><script>
+const core=document.getElementById('core'),all=document.getElementById('all');
+core.addEventListener('click',()=>{document.body.classList.add('mock-focus');document.getElementById('scope').textContent='모의고사 20문항 표시';});
+all.addEventListener('click',()=>{document.body.classList.remove('mock-focus');document.getElementById('scope').textContent='전체 학습 · 연습 40문제 · 제작 6개';});
+document.getElementById('jump').addEventListener('click',()=>document.body.classList.remove('mock-focus'));
+document.querySelectorAll('.score-check').forEach(el=>{
+ try{el.checked=localStorage.getItem('day20:coding:'+el.id)==='1'}catch{}
+ el.addEventListener('change',()=>{try{localStorage.setItem('day20:coding:'+el.id,el.checked?'1':'0')}catch{}updateScore();});
+});
+function updateScore(){document.getElementById('score-total').textContent=(document.querySelectorAll('.score-check:checked').length*5)+' / 100점';}
+updateScore();core.click();
+</script></body></html>

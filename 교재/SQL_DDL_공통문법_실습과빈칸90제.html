@@ -1,0 +1,1183 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>정보처리기사 SQL DDL · 공통 문법 실습과 빈칸 90제</title><style>
+:root{--ink:#192f42;--muted:#566b7b;--accent:#215c9a;--line:#d6e0e9;--soft:#eff5fb;--gold:#a66c16}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#edf1f5;color:var(--ink);font:16px/1.75 "Malgun Gothic","Apple SD Gothic Neo",sans-serif}main{max-width:1080px;margin:28px auto 64px;padding:42px 48px;background:#fff;box-shadow:0 8px 35px #17344d10}header{border-top:7px solid var(--accent);padding-top:24px}.eyebrow{font-size:13px;font-weight:bold;color:var(--accent);letter-spacing:1px}h1{font-size:36px;line-height:1.35;margin:10px 0 14px}h2{font-size:25px;margin:48px 0 18px;border-bottom:2px solid var(--line);padding-bottom:10px;line-height:1.5}h3{font-size:19px;margin:25px 0 10px;line-height:1.5}p{margin:10px 0}.lead,.muted,.small{color:var(--muted)}.small{font-size:13px}.badges,nav,.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.badge{font-size:13px;background:var(--soft);color:var(--accent);border-radius:4px;padding:3px 10px;font-weight:bold}.pg{background:#fff0d8;color:#80500c}nav a,button{font:inherit;font-size:14px;border:1px solid #acc2d6;background:#fff;color:var(--accent);border-radius:5px;padding:7px 11px;text-decoration:none;cursor:pointer}button:hover,nav a:hover{background:var(--soft)}button.primary{background:var(--accent);color:#fff}button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}a{color:#215c9a}.notice{border-left:4px solid var(--accent);padding:13px 17px;background:var(--soft);margin:18px 0}.warn{border-left-color:#a66c16;background:#fff7e8}code{font:0.94em/1.6 Consolas,"Malgun Gothic",monospace;background:#eff3f7;padding:1px 4px;border-radius:3px}pre{background:#1b3045;color:#f4f8fd;white-space:pre-wrap;overflow-wrap:anywhere;padding:16px 18px;border-radius:7px;line-height:1.85;margin:12px 0}pre code{font:14px/1.85 Consolas,"Malgun Gothic",monospace;color:inherit;background:none;padding:0}.table-wrap{overflow-x:auto;margin:16px 0}table{width:100%;border-collapse:collapse;font-size:14px}th,td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;text-align:left}th{background:#eaf1f8}tr:nth-child(even) td{background:#fafcfe}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card,.lab,.question{border:1px solid var(--line);border-radius:8px;padding:18px 21px;margin:18px 0}.card{margin:0}.card h3,.lab h3,.question h3{margin:0 0 10px}.question h3{font-size:17px}.qnum{font:700 13px/1.6 Consolas,monospace;color:var(--accent);margin-right:9px}.question p{font-size:15px}.question .context{font-size:13px;color:var(--muted)}.blank{display:inline-block;vertical-align:baseline;max-width:100%}.blank input{width:var(--w,15ch);max-width:100%;font:700 14px/1.65 Consolas,"Malgun Gothic",monospace;background:#faffec;color:#173452;border:1px solid #b9c9dd;border-radius:3px;padding:2px 5px}.blank input.correct{border:2px solid #278144;background:#edfaef}.blank input.wrong{border:2px solid #b34635;background:#fff0eb}.question-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.feedback{font-size:13px;color:var(--muted)}.score{background:var(--soft);border:1px solid var(--line);padding:12px 15px;font-size:14px}details{background:#f1f5f9;border-radius:5px;padding:10px 13px;margin-top:12px}summary{cursor:pointer;font-size:14px;font-weight:bold;color:var(--accent)}.solution pre,.setup pre{background:#e9f0f7;color:#192f42;border:1px solid #d4e0eb}.solution p{font-size:14px}.answers{font-weight:bold;color:#215c9a}.paper-blank{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.exam-mode .solution,.exam-mode .setup,.exam-mode .mini-key{display:none!important}.lab .expect{font-size:14px;border-left:3px solid #a9bfd3;padding-left:12px}.lab .step{margin:20px 0}.step-tag{font-size:12px;font-weight:bold;color:var(--accent)}li{margin:6px 0}section,article{scroll-margin-top:18px}.group-head{padding:9px 13px;background:#eaf1f8;border-radius:4px}footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px;margin-top:40px}.mini-key{font-size:13px}.source-list{font-size:14px}.copy-status{min-height:1.8em}
+@media(max-width:700px){main{margin:0;padding:24px 16px}body{font-size:15px}h1{font-size:28px}h2{font-size:23px}.grid{grid-template-columns:1fr}.card,.lab,.question{padding:15px 13px}pre{padding:12px}pre code,.blank input{font-size:13px}th,td{padding:7px}.toolbar{gap:7px}}
+@media print{@page{size:A4;margin:14mm}html{scroll-behavior:auto}body{background:#fff;color:#111;font-size:10pt;line-height:1.55}main{max-width:none;margin:0;padding:0;box-shadow:none}header{border-top-width:4px}h1{font-size:23pt}h2{font-size:16pt;margin-top:22pt;break-after:avoid}h3{font-size:12pt;break-after:avoid}.toolbar,nav,button,.question-actions,.score,.screen-only,.copy-status{display:none!important}.grid{display:block}.card,.question{border-radius:0;margin:10pt 0;padding:10pt;break-inside:avoid}.lab{border-radius:0;margin:10pt 0;padding:10pt}.step{break-inside:avoid}.card{margin-bottom:10pt}pre{background:#f3f5f7;color:#111;border:1px solid #ccd5de;padding:9pt;line-height:1.65}pre code{font-size:9pt;line-height:1.65}.blank input{display:none}.paper-blank{display:inline;font:700 9pt Consolas,monospace}table{font-size:9pt}tr{break-inside:avoid}th,td{padding:6pt}.question p,.solution p{font-size:10pt}.small,.question .context{font-size:9pt}.question h3{font-size:11pt}.badge{font-size:9pt}.setup{display:none!important}.solution,.mini-key{display:none!important}.print-answers .solution,.print-answers .mini-key{display:block!important}.solution pre{color:#111;background:#f3f5f7}.notice{padding:8pt 10pt}.group-head{break-after:avoid}.source-list{font-size:9pt}footer{font-size:8pt}.sources{break-before:page}}
+</style></head><body><main>
+<header><div class="eyebrow">정보처리기사 실기 · SQL DDL 실습 교재</div><h1>DDL, 짧게 익히고<br>빈칸으로 완성하기</h1><p class="lead">구조를 만들고, 제약을 걸고, 바꾸고, 지운다.<br>PostgreSQL 실습에 맞추되 MariaDB에서도 쓸 수 있는 문장으로 연습한다.</p><div class="badges"><span class="badge">빈칸 90문항</span><span class="badge">실행 실습 11개</span><span class="badge">테이블 · 제약 · 뷰 · 인덱스</span></div><p class="small">직접 만든 시험형 연습문제입니다. 실제 기출 복원이나 출제 범위 보장 자료는 아닙니다.</p></header>
+<nav aria-label="목차"><a href="#prepare">실습 준비</a><a href="#core">문법 사전</a><a href="#labs">따라 하기</a><a href="#questions">빈칸 90제</a><a href="#review">최종 점검</a><a href="#sources">공식 문서</a></nav>
+<div class="notice"><b>공통 문법 기준</b> · 본문은 PostgreSQL과 MariaDB가 함께 지원하는 문장 형태를 사용합니다. 편의 문법인 IF EXISTS 등도 포함하므로 모든 문장이 순수 ANSI 표준이라는 뜻은 아닙니다. MariaDB는 <b>10.6 이상 · InnoDB · 기본 제약조건 검사 활성화</b>를 기준으로 합니다.</div>
+<section id="prepare"><h2>01. 실습 준비 · 이렇게 사용하세요</h2><ol><li>연습용 빈 데이터베이스 <code>db_ddl</code>에 연결합니다. 생성이 필요하면 관리자 연결에서 <code>CREATE DATABASE db_ddl;</code>을 한 번 실행합니다. 그 뒤 도구의 연결 설정에서 db_ddl을 선택합니다.</li><li>테이블을 만들 수 있는 계정으로 접속하고 <b>자동 커밋</b>을 켭니다. 따옴표 없는 영문 소문자 이름을 사용합니다.</li><li><b>따라 하기 11개</b>는 실습 안의 순서대로 실행합니다. 실패 예정 문장은 한 개씩 따로 실행합니다.</li><li><b>빈칸 문제는 각각 독립 문제</b>입니다. 실행하려면 해당 문제의 ‘실행 전 준비 SQL’을 먼저 실행하고, 완성한 SQL을 실행합니다. 준비 SQL은 그 문제의 연습 객체를 초기화합니다.</li></ol><p class="small">HTML의 채점은 입력한 답을 비교합니다. SQL 실행은 pgAdmin·DBeaver 등 실제 DB 도구에서 합니다. 문법 사전의 예제는 형태를 익히는 용도이며 위에서 아래로 이어 실행하는 스크립트가 아닙니다.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">대상</th><th scope="col">이름 규칙</th><th scope="col">예</th></tr></thead><tbody><tr><td>테이블</td><td>tbl_</td><td>tbl_student</td></tr><tr><td>제약조건</td><td>pk_ / uq_ / ck_ / fk_</td><td>기본키 / 유일 / 검사 / 외래키</td></tr><tr><td>뷰 · 인덱스</td><td>vw_ / idx_</td><td>vw_high / idx_score</td></tr><tr><td>따라 하기 · 문제</td><td>l번호 / p번호</td><td>tbl_l01 / tbl_p001</td></tr></tbody></table></div>
+<div class="notice warn"><b>공통으로 단정하지 않는 것</b> · DDL·TRUNCATE의 ROLLBACK 가능 여부와 자동 커밋, 자동 번호 초기화, 시간대 처리 등은 DBMS별로 다릅니다. 이 교재는 그 차이를 빈칸 정답으로 묻지 않습니다.</div></section>
+<section id="core"><h2>02. 문법 사전 · 한 기능, 한 예제</h2><h3>2-1. 기본 뼈대와 자료형</h3>
+<pre><code>CREATE TABLE tbl_student (
+    id INT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    score INT DEFAULT 0
+);
+ALTER TABLE tbl_student ADD COLUMN memo VARCHAR(30);
+DROP TABLE tbl_student;</code></pre>
+<div class="table-wrap"><table><thead><tr><th scope="col">자료형</th><th scope="col">뜻</th><th scope="col">간단 선언</th></tr></thead><tbody><tr><td>INT</td><td>정수</td><td><code>id INT</code></td></tr><tr><td>VARCHAR(n)</td><td>최대 n자인 문자열</td><td><code>name VARCHAR(20)</code></td></tr></tbody></table></div>
+<p class="small">문자열은 작은따옴표: <code>'Min'</code>. 제약조건은 쉼표로 구분하되 마지막 항목 뒤에는 쉼표를 붙이지 않습니다.</p><h3>2-2. DEFAULT와 다섯 가지 핵심 제약조건</h3>
+<div class="table-wrap"><table><thead><tr><th scope="col">기능</th><th scope="col">뜻</th><th scope="col">최소 예제</th></tr></thead><tbody><tr><td>DEFAULT</td><td>열 값을 생략하거나 DEFAULT를 요청할 때 사용</td><td><code>score INT DEFAULT 0</code></td></tr><tr><td>NOT NULL</td><td>NULL 금지</td><td><code>name VARCHAR(20) NOT NULL</code></td></tr><tr><td>PRIMARY KEY</td><td>행 식별. 중복·NULL 금지. 테이블당 한 개</td><td><code>PRIMARY KEY (id)</code></td></tr><tr><td>UNIQUE</td><td>일반 값 중복 금지. 여러 개 선언 가능</td><td><code>UNIQUE (email)</code></td></tr><tr><td>CHECK</td><td>각 행이 만족해야 할 조건</td><td><code>CHECK (score BETWEEN 0 AND 100)</code></td></tr><tr><td>FOREIGN KEY</td><td>자식 값이 부모 키를 참조</td><td><code>FOREIGN KEY (dept_id) REFERENCES tbl_dept (id)</code></td></tr></tbody></table></div>
+<div class="grid">
+<article class="card"><h3>열 수준 · 테이블 수준</h3><p>한 열의 조건은 열 옆에, 여러 열의 조건은 괄호 목록으로 씁니다. 외래키는 테이블 수준으로 통일합니다.</p><pre><code>CREATE TABLE tbl_enroll (
+    student_id INT,
+    course_id INT,
+    score INT NOT NULL,
+    PRIMARY KEY (student_id, course_id),
+    CHECK (score BETWEEN 0 AND 100)
+);</code></pre></article>
+<article class="card"><h3>CONSTRAINT · 조건에 이름 붙이기</h3><p>이름을 붙이면 해당 제약조건을 찾거나 삭제하기 쉽습니다.</p><pre><code>CREATE TABLE tbl_member (
+    id INT PRIMARY KEY,
+    email VARCHAR(40),
+    score INT,
+    CONSTRAINT uq_email UNIQUE (email),
+    CONSTRAINT ck_score CHECK (score &gt;= 0)
+);</code></pre></article>
+</div><p><b>네 가지 함정</b> · DEFAULT는 명시한 NULL을 대체하지 않습니다. CHECK는 NULL 금지를 대신하지 않습니다. 일반 UNIQUE는 NULL 여러 개를 허용합니다. 복합키는 각 열이 아니라 <b>값의 조합</b>에 조건을 겁니다.</p><h3>2-3. 외래키와 참조 동작</h3>
+<pre><code>CREATE TABLE tbl_dept (id INT PRIMARY KEY);
+CREATE TABLE tbl_employee (
+    id INT PRIMARY KEY,
+    dept_id INT,
+    CONSTRAINT fk_employee_dept FOREIGN KEY (dept_id)
+        REFERENCES tbl_dept (id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+);</code></pre>
+<div class="table-wrap"><table><thead><tr><th scope="col">구문</th><th scope="col">부모 삭제·키 변경 시 동작</th><th scope="col">기억할 점</th></tr></thead><tbody><tr><td>ON DELETE</td><td>부모 행 삭제 때의 규칙</td><td>자식에 미치는 동작을 선언</td></tr><tr><td>ON UPDATE</td><td>부모의 참조 키 값 변경 때의 규칙</td><td>부모의 일반 열 변경을 뜻하지 않음</td></tr><tr><td>CASCADE</td><td>자식 행 삭제 / 자식 외래키 값 갱신</td><td>DELETE와 UPDATE에서 결과가 다름</td></tr><tr><td>SET NULL</td><td>자식 외래키를 NULL로</td><td>해당 자식 열이 NULL 허용이어야 함</td></tr><tr><td>RESTRICT</td><td>참조하는 자식이 있으면 거부</td><td>즉시 거부</td></tr><tr><td>NO ACTION</td><td>참조 무결성 위반이면 거부</td><td>이 교재의 즉시 검사 예제에서는 RESTRICT와 같은 결과</td></tr></tbody></table></div>
+<p class="small">부모 키는 기본키 또는 적절한 유일 키로 준비합니다. 열 개수·순서를 맞추고 대응 열의 자료형을 맞춥니다. 선택 참조는 자식 NULL 허용, 필수 참조는 NOT NULL. 복합 외래키는 일부 열이 NULL이면 검사를 통과할 수 있으므로 모든 열을 필수로 하려면 각각 NOT NULL을 붙입니다. 생성·입력은 부모부터, 삭제는 자식부터 합니다.</p><h3>2-4. ALTER TABLE · 공통으로 되는 변경</h3>
+<pre><code>ALTER TABLE tbl_student ADD COLUMN memo VARCHAR(30);
+ALTER TABLE tbl_student DROP COLUMN memo;
+ALTER TABLE tbl_student RENAME COLUMN score TO points;
+ALTER TABLE tbl_student RENAME TO tbl_learner;
+
+ALTER TABLE tbl_learner ALTER COLUMN points SET DEFAULT 0;
+ALTER TABLE tbl_learner ALTER COLUMN points DROP DEFAULT;
+ALTER TABLE tbl_learner ADD CONSTRAINT ck_points CHECK (points &gt;= 0);
+ALTER TABLE tbl_learner DROP CONSTRAINT ck_points;</code></pre>
+<p><code>ADD CONSTRAINT 이름 PRIMARY KEY / UNIQUE / CHECK / FOREIGN KEY …</code>로 제약조건을 추가합니다. 기존 행이 새 조건을 위반하면 추가할 수 없습니다. <code>SET DEFAULT</code>는 이후 입력의 기본값만 바꿉니다. <code>DROP DEFAULT</code> 뒤 열을 생략했을 때의 처리는 DBMS·모드에 따라 다를 수 있어, 실습에서는 NULL을 명시해 입력합니다.</p><p class="small">여기서 DROP CONSTRAINT는 이름을 지정한 CHECK·UNIQUE·FOREIGN KEY에 사용합니다. 기본키 삭제, 자료형 변경, 기존 열의 NOT NULL 설정·해제는 같은 문장으로 통일하기 어려워 생략합니다.</p><h3>2-5. 복사 · 임시 테이블 · TRUNCATE</h3><div class="grid">
+<article class="card"><h3>조회 결과를 테이블로</h3><p>AS SELECT는 조회 결과로 새 테이블을 만듭니다. WHERE 1 = 0이면 행 없이 결과 열만 만듭니다.</p><pre><code>CREATE TABLE tbl_high AS
+SELECT id, score FROM tbl_student
+WHERE score &gt;= 70;
+
+CREATE TABLE tbl_empty AS
+SELECT id, score FROM tbl_student
+WHERE 1 = 0;</code></pre></article>
+<article class="card"><h3>임시 객체 · 비우기 · 삭제</h3><p>임시 테이블은 현재 연결에서 사용합니다. TRUNCATE는 전체 행을 비우고, DROP은 테이블을 없앱니다.</p><pre><code>CREATE TEMPORARY TABLE tbl_temp (id INT);
+TRUNCATE TABLE tbl_temp;
+DROP TABLE tbl_temp;
+
+CREATE TABLE IF NOT EXISTS tbl_note (id INT);
+DROP TABLE IF EXISTS tbl_note;</code></pre></article>
+</div><p class="small">AS SELECT를 제약조건·기본값·인덱스까지 보존하는 완전 복제로 보지 않습니다. TRUNCATE에는 WHERE를 붙이지 않으며, 외래키가 참조 중인 부모 테이블은 비우기에 제한이 있습니다.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">문장</th><th scope="col">행</th><th scope="col">테이블 정의</th><th scope="col">조건부 처리</th></tr></thead><tbody><tr><td>DELETE FROM tbl_student WHERE id = 1;</td><td>조건에 맞는 행 삭제</td><td>남음</td><td>WHERE 가능 · DML</td></tr><tr><td>TRUNCATE TABLE tbl_student;</td><td>전체 행 제거</td><td>남음</td><td>WHERE 불가</td></tr><tr><td>DROP TABLE tbl_student;</td><td>테이블과 함께 제거</td><td>제거</td><td>WHERE 불가</td></tr></tbody></table></div>
+<h3>2-6. 뷰 · 저장된 조회 정의</h3>
+<pre><code>CREATE VIEW vw_high (student_id, score) AS
+SELECT id, score FROM tbl_student WHERE score &gt;= 70;
+
+CREATE OR REPLACE VIEW vw_high (student_id, score) AS
+SELECT id, score FROM tbl_student WHERE score &gt;= 80
+WITH CHECK OPTION;
+
+DROP VIEW IF EXISTS vw_high;</code></pre>
+<p><b>AS</b> 뒤에 SELECT. <b>OR REPLACE</b>는 정의 교체. 두 제품에서 교체하려면 기존 열 이름·순서·자료형을 유지하는 형태로 연습합니다. <b>WITH CHECK OPTION</b>은 뷰를 통한 입력·수정이 뷰 조건을 벗어나지 못하게 합니다. 원본을 직접 수정하는 것까지 막지는 않습니다.</p><p class="small">CHECK OPTION은 수정 가능한 뷰에 사용합니다. 집계·GROUP BY·DISTINCT 등이 있는 뷰는 보통 수정용으로 쓰지 않습니다. 기본 CASCADED는 아래쪽 뷰 조건까지 검사합니다. LOCAL은 현재 조건을 검사하되 아래쪽 뷰 자체에 CHECK OPTION이 있으면 그 검사도 적용됩니다. 뷰 삭제는 원본 테이블 삭제가 아닙니다.</p><h3>2-7. 인덱스 · 검색을 돕는 구조</h3>
+<pre><code>CREATE INDEX idx_score ON tbl_student (score);
+CREATE INDEX idx_dept_score ON tbl_student (dept_id, score);
+CREATE UNIQUE INDEX idx_email ON tbl_student (email);</code></pre>
+<p>순서: <b>CREATE [UNIQUE] INDEX 인덱스명 ON 테이블명 (열 목록)</b>. 일반 인덱스는 중복을 허용하고 유일 인덱스는 일반 값의 중복을 막습니다. 검색을 도울 수 있지만 저장 공간과 입력·수정 비용도 늘어납니다.</p><p class="small">세 문장은 각각 필요한 열이 있는 테이블을 가정합니다. 조회 정렬은 ORDER BY로 지정합니다. 인덱스 단독 삭제 구문은 DBMS별 차이가 있어 생략합니다.</p></section>
+<section id="labs"><h2>03. 따라 하기 · 11개 실습</h2><p>각 실습은 새 이름을 쓰며 마지막에 정리합니다. <b>같은 연결</b>에서 순서대로 실행하세요. 성공·실패는 아래 예상 결과로 확인합니다.</p>
+<article class="lab" id="lab1"><h3>실습 1: 테이블 생성 · 기본값 · NULL</h3>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l01 (
+    id INT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    score INT DEFAULT 0,
+    memo VARCHAR(30)
+);</code></pre><p class="expect"><b>예상:</b> 테이블 생성.</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실행</span><pre><code>INSERT INTO tbl_l01 (id, name) VALUES (1, &#x27;Min&#x27;);
+SELECT id, name, score, memo FROM tbl_l01;</code></pre><p class="expect"><b>예상:</b> 1 | Min | 0 | NULL</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실행</span><pre><code>INSERT INTO tbl_l01 (id, name, score) VALUES (2, &#x27;Jun&#x27;, NULL);
+SELECT id, score FROM tbl_l01 ORDER BY id;</code></pre><p class="expect"><b>예상:</b> 1 | 0, 2 | NULL. DEFAULT는 명시한 NULL을 바꾸지 않는다.</p></div>
+<div class="step"><span class="step-tag">STEP 4 · 실행</span><pre><code>DROP TABLE tbl_l01;</code></pre><p class="expect"><b>예상:</b> 테이블 삭제.</p></div>
+</article>
+<article class="lab" id="lab2"><h3>실습 2: 제약조건을 실제로 위반해 보기</h3>
+<p class="small">실패 예제는 한 문장씩 실행한다. 자동 커밋을 켜고, 실패 문장을 성공 예제와 묶지 않는다.</p>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l02 (
+    id INT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    email VARCHAR(40) UNIQUE,
+    score INT NOT NULL CHECK (score BETWEEN 0 AND 100)
+);</code></pre><p class="expect"><b>예상:</b> 테이블 생성.</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실행</span><pre><code>INSERT INTO tbl_l02 VALUES (1, &#x27;Min&#x27;, &#x27;a@x.com&#x27;, 80);</code></pre><p class="expect"><b>예상:</b> 1행 입력.</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실패 확인</span><pre><code>INSERT INTO tbl_l02 VALUES (1, &#x27;Jun&#x27;, &#x27;b@x.com&#x27;, 70);</code></pre><p class="expect"><b>예상:</b> 실패: 기본키 중복.</p></div>
+<div class="step"><span class="step-tag">STEP 4 · 실패 확인</span><pre><code>INSERT INTO tbl_l02 VALUES (2, NULL, &#x27;b@x.com&#x27;, 70);</code></pre><p class="expect"><b>예상:</b> 실패: name의 NOT NULL 위반.</p></div>
+<div class="step"><span class="step-tag">STEP 5 · 실패 확인</span><pre><code>INSERT INTO tbl_l02 VALUES (2, &#x27;Jun&#x27;, &#x27;a@x.com&#x27;, 70);</code></pre><p class="expect"><b>예상:</b> 실패: email 중복.</p></div>
+<div class="step"><span class="step-tag">STEP 6 · 실패 확인</span><pre><code>INSERT INTO tbl_l02 VALUES (2, &#x27;Jun&#x27;, &#x27;b@x.com&#x27;, 101);</code></pre><p class="expect"><b>예상:</b> 실패: CHECK 위반.</p></div>
+<div class="step"><span class="step-tag">STEP 7 · 실행</span><pre><code>DROP TABLE tbl_l02;</code></pre><p class="expect"><b>예상:</b> 테이블 삭제.</p></div>
+</article>
+<article class="lab" id="lab3"><h3>실습 3: CHECK와 UNIQUE의 NULL 함정</h3>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l03 (
+    id INT PRIMARY KEY,
+    email VARCHAR(40) UNIQUE,
+    score INT CHECK (score &gt;= 0)
+);</code></pre><p class="expect"><b>예상:</b> 테이블 생성.</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실행</span><pre><code>INSERT INTO tbl_l03 VALUES (1, NULL, NULL), (2, NULL, NULL);
+SELECT COUNT(*) AS cnt FROM tbl_l03;</code></pre><p class="expect"><b>예상:</b> 2. 일반 UNIQUE는 NULL 여러 개를 허용한다. CHECK만으로 NULL을 막지 못한다.</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실행</span><pre><code>DROP TABLE tbl_l03;</code></pre><p class="expect"><b>예상:</b> 테이블 삭제.</p></div>
+</article>
+<article class="lab" id="lab4"><h3>실습 4: 외래키 · 갱신 연쇄 · 삭제 시 NULL</h3>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l04_parent (id INT PRIMARY KEY);
+CREATE TABLE tbl_l04_child (
+    id INT PRIMARY KEY,
+    parent_id INT,
+    CONSTRAINT fk_l04 FOREIGN KEY (parent_id)
+        REFERENCES tbl_l04_parent (id)
+        ON UPDATE CASCADE ON DELETE SET NULL
+);
+INSERT INTO tbl_l04_parent VALUES (10);
+INSERT INTO tbl_l04_child VALUES (1, 10);</code></pre><p class="expect"><b>예상:</b> 부모 먼저 생성·입력.</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실패 확인</span><pre><code>INSERT INTO tbl_l04_child VALUES (2, 99);</code></pre><p class="expect"><b>예상:</b> 실패: 부모 키 99가 없다.</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실행</span><pre><code>UPDATE tbl_l04_parent SET id = 20 WHERE id = 10;
+SELECT id, parent_id FROM tbl_l04_child;</code></pre><p class="expect"><b>예상:</b> 1 | 20</p></div>
+<div class="step"><span class="step-tag">STEP 4 · 실행</span><pre><code>DELETE FROM tbl_l04_parent WHERE id = 20;
+SELECT id, parent_id FROM tbl_l04_child;</code></pre><p class="expect"><b>예상:</b> 1 | NULL</p></div>
+<div class="step"><span class="step-tag">STEP 5 · 실행</span><pre><code>DROP TABLE tbl_l04_child;
+DROP TABLE tbl_l04_parent;</code></pre><p class="expect"><b>예상:</b> 자식 먼저 삭제.</p></div>
+</article>
+<article class="lab" id="lab5"><h3>실습 5: 복합 기본키 · 복합 외래키</h3>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l05_course (
+    course_id INT, term INT,
+    PRIMARY KEY (course_id, term)
+);
+CREATE TABLE tbl_l05_enroll (
+    student_id INT, course_id INT NOT NULL, term INT NOT NULL,
+    PRIMARY KEY (student_id, course_id, term),
+    CONSTRAINT fk_l05 FOREIGN KEY (course_id, term)
+        REFERENCES tbl_l05_course (course_id, term)
+);
+INSERT INTO tbl_l05_course VALUES (10, 1);
+INSERT INTO tbl_l05_enroll VALUES (1, 10, 1);</code></pre><p class="expect"><b>예상:</b> 조합 (10, 1)을 참조.</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실패 확인</span><pre><code>INSERT INTO tbl_l05_enroll VALUES (2, 10, 2);</code></pre><p class="expect"><b>예상:</b> 실패: (10, 2)라는 부모 키 조합이 없다.</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실행</span><pre><code>DROP TABLE tbl_l05_enroll;
+DROP TABLE tbl_l05_course;</code></pre><p class="expect"><b>예상:</b> 자식 먼저 삭제.</p></div>
+</article>
+<article class="lab" id="lab6"><h3>실습 6: ALTER로 열과 기본값 바꾸기</h3>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l06 (id INT PRIMARY KEY);
+INSERT INTO tbl_l06 VALUES (1);
+ALTER TABLE tbl_l06 ADD COLUMN score INT;
+ALTER TABLE tbl_l06 ALTER COLUMN score SET DEFAULT 50;</code></pre><p class="expect"><b>예상:</b> 열 추가 후 기본값 지정.</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실행</span><pre><code>INSERT INTO tbl_l06 (id) VALUES (2);
+SELECT id, score FROM tbl_l06 ORDER BY id;</code></pre><p class="expect"><b>예상:</b> 1 | NULL, 2 | 50. 기본값 변경은 기존 행을 갱신하지 않는다.</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실행</span><pre><code>ALTER TABLE tbl_l06 ALTER COLUMN score DROP DEFAULT;
+INSERT INTO tbl_l06 (id, score) VALUES (3, NULL);
+SELECT id, score FROM tbl_l06 ORDER BY id;</code></pre><p class="expect"><b>예상:</b> 1 | NULL, 2 | 50, 3 | NULL. 기본값 해제 후 NULL은 명시해서 입력한다.</p></div>
+<div class="step"><span class="step-tag">STEP 4 · 실행</span><pre><code>ALTER TABLE tbl_l06 RENAME COLUMN score TO points;
+ALTER TABLE tbl_l06 DROP COLUMN points;
+ALTER TABLE tbl_l06 RENAME TO tbl_l06_new;
+DROP TABLE tbl_l06_new;</code></pre><p class="expect"><b>예상:</b> 열 이름 변경 → 열 삭제 → 테이블 이름 변경 → 삭제.</p></div>
+</article>
+<article class="lab" id="lab7"><h3>실습 7: 이름을 붙인 제약조건 추가·삭제</h3>
+<p class="small">ADD CONSTRAINT는 기존 데이터도 검사한다. 위반 행이 이미 있으면 추가에 실패한다. 기본키 삭제 문법은 공통 예제에서 제외한다.</p>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l07 (id INT, email VARCHAR(40), score INT);
+ALTER TABLE tbl_l07 ADD CONSTRAINT pk_l07 PRIMARY KEY (id);
+ALTER TABLE tbl_l07 ADD CONSTRAINT uq_l07_email UNIQUE (email);
+ALTER TABLE tbl_l07 ADD CONSTRAINT ck_l07_score CHECK (score &gt;= 0);</code></pre><p class="expect"><b>예상:</b> PK·UNIQUE·CHECK 추가.</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실패 확인</span><pre><code>INSERT INTO tbl_l07 VALUES (1, NULL, -1);</code></pre><p class="expect"><b>예상:</b> 실패: ck_l07_score 위반.</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실행</span><pre><code>ALTER TABLE tbl_l07 DROP CONSTRAINT ck_l07_score;
+INSERT INTO tbl_l07 VALUES (1, NULL, -1);
+ALTER TABLE tbl_l07 DROP CONSTRAINT uq_l07_email;</code></pre><p class="expect"><b>예상:</b> CHECK를 삭제했으므로 -1 입력 성공. UNIQUE도 삭제.</p></div>
+<div class="step"><span class="step-tag">STEP 4 · 실행</span><pre><code>DROP TABLE tbl_l07;</code></pre><p class="expect"><b>예상:</b> 테이블 삭제.</p></div>
+</article>
+<article class="lab" id="lab8"><h3>실습 8: 조회 결과로 새 테이블 만들기</h3>
+<p class="small">이 문법을 제약조건·인덱스·기본값 전체 복제 용도로 쓰지 않는다. 필요한 조건은 새 테이블에 따로 선언한다.</p>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l08_src (id INT PRIMARY KEY, score INT NOT NULL);
+INSERT INTO tbl_l08_src VALUES (1, 80), (2, 60);
+CREATE TABLE tbl_l08_copy AS
+SELECT id, score FROM tbl_l08_src WHERE score &gt;= 70;
+SELECT id, score FROM tbl_l08_copy;</code></pre><p class="expect"><b>예상:</b> 1 | 80</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실행</span><pre><code>CREATE TABLE tbl_l08_empty AS
+SELECT id, score FROM tbl_l08_src WHERE 1 = 0;
+SELECT COUNT(*) FROM tbl_l08_empty;</code></pre><p class="expect"><b>예상:</b> 0. 결과 열은 만들고 행은 복사하지 않는다.</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실행</span><pre><code>DROP TABLE tbl_l08_empty;
+DROP TABLE tbl_l08_copy;
+DROP TABLE tbl_l08_src;</code></pre><p class="expect"><b>예상:</b> 복사본과 원본 삭제.</p></div>
+</article>
+<article class="lab" id="lab9"><h3>실습 9: 임시 테이블 · 행 비우기 · 테이블 삭제</h3>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TEMPORARY TABLE tbl_l09 (id INT);
+INSERT INTO tbl_l09 VALUES (1), (2);
+TRUNCATE TABLE tbl_l09;
+SELECT COUNT(*) FROM tbl_l09;</code></pre><p class="expect"><b>예상:</b> 0. 열 구조는 남는다.</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실행</span><pre><code>INSERT INTO tbl_l09 VALUES (3);
+SELECT id FROM tbl_l09;
+DROP TABLE tbl_l09;</code></pre><p class="expect"><b>예상:</b> 3 조회 후 테이블 삭제. 같은 연결에서 실행한다.</p></div>
+</article>
+<article class="lab" id="lab10"><h3>실습 10: 뷰 · 교체 · CHECK OPTION</h3>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l10 (id INT PRIMARY KEY, name VARCHAR(20), score INT);
+INSERT INTO tbl_l10 VALUES (1, &#x27;Min&#x27;, 80), (2, &#x27;Jun&#x27;, 60);
+CREATE VIEW vw_l10 AS
+SELECT id, name, score FROM tbl_l10 WHERE score &gt;= 70;
+SELECT id, name FROM vw_l10;</code></pre><p class="expect"><b>예상:</b> 1 | Min</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실행</span><pre><code>CREATE OR REPLACE VIEW vw_l10 AS
+SELECT id, name, score FROM tbl_l10 WHERE score &gt;= 80
+WITH CHECK OPTION;</code></pre><p class="expect"><b>예상:</b> 같은 열 이름·순서·자료형을 유지하며 조건 교체.</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실패 확인</span><pre><code>UPDATE vw_l10 SET score = 50 WHERE id = 1;</code></pre><p class="expect"><b>예상:</b> 실패: 뷰 조건 score &gt;= 80을 벗어남.</p></div>
+<div class="step"><span class="step-tag">STEP 4 · 실행</span><pre><code>UPDATE vw_l10 SET score = 90 WHERE id = 1;
+DROP VIEW vw_l10;
+SELECT id, score FROM tbl_l10 ORDER BY id;</code></pre><p class="expect"><b>예상:</b> 1 | 90, 2 | 60. 뷰 삭제 후 원본은 남는다.</p></div>
+<div class="step"><span class="step-tag">STEP 5 · 실행</span><pre><code>DROP TABLE tbl_l10;</code></pre><p class="expect"><b>예상:</b> 원본 삭제.</p></div>
+</article>
+<article class="lab" id="lab11"><h3>실습 11: 일반·복합·유일 인덱스</h3>
+<p class="small">인덱스 단독 삭제는 두 DBMS의 문장 형식이 달라 생략한다. 인덱스가 있어도 조회 결과의 정렬은 ORDER BY로 지정한다.</p>
+<div class="step"><span class="step-tag">STEP 1 · 실행</span><pre><code>CREATE TABLE tbl_l11 (id INT, dept_id INT, score INT, email VARCHAR(40));
+CREATE INDEX idx_l11_score ON tbl_l11 (score);
+CREATE INDEX idx_l11_dept_score ON tbl_l11 (dept_id, score);
+CREATE UNIQUE INDEX idx_l11_email ON tbl_l11 (email);</code></pre><p class="expect"><b>예상:</b> 인덱스 3개 생성. 일반 인덱스는 중복을 막지 않는다.</p></div>
+<div class="step"><span class="step-tag">STEP 2 · 실행</span><pre><code>INSERT INTO tbl_l11 VALUES (1, 10, 80, &#x27;a@x.com&#x27;);</code></pre><p class="expect"><b>예상:</b> 1행 입력.</p></div>
+<div class="step"><span class="step-tag">STEP 3 · 실패 확인</span><pre><code>INSERT INTO tbl_l11 VALUES (2, 10, 80, &#x27;a@x.com&#x27;);</code></pre><p class="expect"><b>예상:</b> 실패: 유일 인덱스의 email 중복.</p></div>
+<div class="step"><span class="step-tag">STEP 4 · 실행</span><pre><code>DROP TABLE tbl_l11;</code></pre><p class="expect"><b>예상:</b> 테이블 삭제 시 소속 인덱스도 삭제.</p></div>
+</article>
+</section>
+<section id="questions"><h2>04. 시험형 빈칸 90제</h2><p>요구사항을 읽고 SQL의 빈칸을 채웁니다. 하나의 칸에 여러 단어가 들어갈 수 있습니다.</p><div class="toolbar"><button type="button" class="primary" id="grade-all">전체 채점</button><button type="button" id="open-all">정답 펼치기</button><button type="button" id="close-all">정답 접기</button><button type="button" id="exam" aria-pressed="false">시험 모드 켜기</button><button type="button" id="clear">입력 초기화</button><button type="button" id="print-questions">문제만 인쇄 / PDF</button><button type="button" id="print-answers">정답 포함 인쇄 / PDF</button></div><p id="overall" class="score" role="status" aria-live="polite">빈칸을 입력하고 채점하세요. 키워드는 대소문자·공백을 구분하지 않습니다. 문자열 안의 글자와 대소문자는 구분합니다. 답은 새로고침하면 지워집니다.</p><p id="copy-status" class="small copy-status" role="status" aria-live="polite"></p><noscript><p class="notice">자바스크립트가 꺼져 있습니다. 문제와 개별 정답은 읽을 수 있지만 채점·복사·인쇄 버튼은 작동하지 않습니다.</p></noscript>
+<nav class="question-nav" aria-label="문제 분류"><a href="#group1">테이블·자료형</a><a href="#group2">키·제약조건</a><a href="#group3">외래키·참조 동작</a><a href="#group4">ALTER TABLE</a><a href="#group5">복사·임시·삭제</a><a href="#group6">뷰</a><a href="#group7">인덱스</a></nav>
+<h3 class="group-head" id="group1">테이블·자료형 · 01~12</h3>
+<article class="question" id="q1" data-group="테이블·자료형"><h3><span class="qnum">Q001</span>테이블 생성</h3><p>정수형 id 열을 가진 테이블을 만든다.</p>
+<pre class="qcode"><code><span class="blank"><label class="sr-only" for="q1-1">1번 빈칸 1</label><input id="q1-1" placeholder="(1)" data-answers="[&quot;CREATE&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> <span class="blank"><label class="sr-only" for="q1-2">1번 빈칸 2</label><input id="q1-2" placeholder="(2)" data-answers="[&quot;TABLE&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> tbl_p001 (id INT);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="1">이 문제 채점</button><span id="feedback1" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup1"><pre><code>DROP TABLE IF EXISTS tbl_p001;</code></pre></div><button type="button" class="copy" data-copy="setup1">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CREATE · (2) TABLE</p>
+<div id="answer1"><pre><code>CREATE TABLE tbl_p001 (id INT);</code></pre></div><button type="button" class="copy" data-copy="answer1">완성 SQL 복사</button></details></article>
+<article class="question" id="q2" data-group="테이블·자료형"><h3><span class="qnum">Q002</span>열 구분</h3><p>id와 name 두 열을 선언한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p002 (
+    id INT<span class="blank"><label class="sr-only" for="q2-1">2번 빈칸 1</label><input id="q2-1" placeholder="(1)" data-answers="[&quot;,&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>
+    name VARCHAR(20)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="2">이 문제 채점</button><span id="feedback2" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup2"><pre><code>DROP TABLE IF EXISTS tbl_p002;</code></pre></div><button type="button" class="copy" data-copy="setup2">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) ,</p>
+<div id="answer2"><pre><code>CREATE TABLE tbl_p002 (
+    id INT,
+    name VARCHAR(20)
+);</code></pre></div><button type="button" class="copy" data-copy="answer2">완성 SQL 복사</button></details></article>
+<article class="question" id="q3" data-group="테이블·자료형"><h3><span class="qnum">Q003</span>정수형</h3><p>일반 정수형을 사용한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p003 (count_value <span class="blank"><label class="sr-only" for="q3-1">3번 빈칸 1</label><input id="q3-1" placeholder="(1)" data-answers="[&quot;INT&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="3">이 문제 채점</button><span id="feedback3" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup3"><pre><code>DROP TABLE IF EXISTS tbl_p003;</code></pre></div><button type="button" class="copy" data-copy="setup3">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) INT</p>
+<div id="answer3"><pre><code>CREATE TABLE tbl_p003 (count_value INT);</code></pre></div><button type="button" class="copy" data-copy="answer3">완성 SQL 복사</button></details></article>
+<article class="question" id="q4" data-group="테이블·자료형"><h3><span class="qnum">Q004</span>열 이름</h3><p>정수형 학번 열의 이름을 student_id로 지정한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p004 (<span class="blank"><label class="sr-only" for="q4-1">4번 빈칸 1</label><input id="q4-1" placeholder="(1)" data-answers="[&quot;student_id&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> INT);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="4">이 문제 채점</button><span id="feedback4" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup4"><pre><code>DROP TABLE IF EXISTS tbl_p004;</code></pre></div><button type="button" class="copy" data-copy="setup4">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) student_id</p>
+<div id="answer4"><pre><code>CREATE TABLE tbl_p004 (student_id INT);</code></pre></div><button type="button" class="copy" data-copy="answer4">완성 SQL 복사</button></details></article>
+<article class="question" id="q5" data-group="테이블·자료형"><h3><span class="qnum">Q005</span>문자열 최대 길이</h3><p>code에는 최대 2자를 저장한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p005 (code VARCHAR(<span class="blank"><label class="sr-only" for="q5-1">5번 빈칸 1</label><input id="q5-1" placeholder="(1)" data-answers="[&quot;2&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="5">이 문제 채점</button><span id="feedback5" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup5"><pre><code>DROP TABLE IF EXISTS tbl_p005;</code></pre></div><button type="button" class="copy" data-copy="setup5">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) 2</p>
+<div id="answer5"><pre><code>CREATE TABLE tbl_p005 (code VARCHAR(2));</code></pre></div><button type="button" class="copy" data-copy="answer5">완성 SQL 복사</button></details></article>
+<article class="question" id="q6" data-group="테이블·자료형"><h3><span class="qnum">Q006</span>가변 길이 문자</h3><p>최대 20자인 문자열을 저장한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p006 (name <span class="blank"><label class="sr-only" for="q6-1">6번 빈칸 1</label><input id="q6-1" placeholder="(1)" data-answers="[&quot;VARCHAR&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>(20));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="6">이 문제 채점</button><span id="feedback6" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup6"><pre><code>DROP TABLE IF EXISTS tbl_p006;</code></pre></div><button type="button" class="copy" data-copy="setup6">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) VARCHAR</p>
+<div id="answer6"><pre><code>CREATE TABLE tbl_p006 (name VARCHAR(20));</code></pre></div><button type="button" class="copy" data-copy="answer6">완성 SQL 복사</button></details></article>
+<article class="question" id="q7" data-group="테이블·자료형"><h3><span class="qnum">Q007</span>기본키와 값 검사</h3><p>id는 기본키이고 score는 0 이상이어야 한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p007 (
+    id INT <span class="blank"><label class="sr-only" for="q7-1">7번 빈칸 1</label><input id="q7-1" placeholder="(1)" data-answers="[&quot;PRIMARY KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>,
+    score INT <span class="blank"><label class="sr-only" for="q7-2">7번 빈칸 2</label><input id="q7-2" placeholder="(2)" data-answers="[&quot;CHECK&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (score <span class="blank"><label class="sr-only" for="q7-3">7번 빈칸 3</label><input id="q7-3" placeholder="(3)" data-answers="[&quot;&gt;=&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(3) __________</span></span> 0)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="7">이 문제 채점</button><span id="feedback7" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup7"><pre><code>DROP TABLE IF EXISTS tbl_p007;</code></pre></div><button type="button" class="copy" data-copy="setup7">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) PRIMARY KEY · (2) CHECK · (3) &gt;=</p>
+<div id="answer7"><pre><code>CREATE TABLE tbl_p007 (
+    id INT PRIMARY KEY,
+    score INT CHECK (score &gt;= 0)
+);</code></pre></div><button type="button" class="copy" data-copy="answer7">완성 SQL 복사</button></details></article>
+<article class="question" id="q8" data-group="테이블·자료형"><h3><span class="qnum">Q008</span>문자열 필수 입력과 기본값</h3><p>name은 최대 20자이며 NULL 불가, score는 생략하면 0이다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p008 (
+    name <span class="blank"><label class="sr-only" for="q8-1">8번 빈칸 1</label><input id="q8-1" placeholder="(1)" data-answers="[&quot;VARCHAR&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>(20) <span class="blank"><label class="sr-only" for="q8-2">8번 빈칸 2</label><input id="q8-2" placeholder="(2)" data-answers="[&quot;NOT NULL&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>,
+    score INT <span class="blank"><label class="sr-only" for="q8-3">8번 빈칸 3</label><input id="q8-3" placeholder="(3)" data-answers="[&quot;DEFAULT&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(3) __________</span></span> 0
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="8">이 문제 채점</button><span id="feedback8" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup8"><pre><code>DROP TABLE IF EXISTS tbl_p008;</code></pre></div><button type="button" class="copy" data-copy="setup8">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) VARCHAR · (2) NOT NULL · (3) DEFAULT</p>
+<div id="answer8"><pre><code>CREATE TABLE tbl_p008 (
+    name VARCHAR(20) NOT NULL,
+    score INT DEFAULT 0
+);</code></pre></div><button type="button" class="copy" data-copy="answer8">완성 SQL 복사</button></details></article>
+<article class="question" id="q9" data-group="테이블·자료형"><h3><span class="qnum">Q009</span>숫자 기본값</h3><p>score를 생략하면 0을 넣는다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p009 (score INT <span class="blank"><label class="sr-only" for="q9-1">9번 빈칸 1</label><input id="q9-1" placeholder="(1)" data-answers="[&quot;DEFAULT&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> <span class="blank"><label class="sr-only" for="q9-2">9번 빈칸 2</label><input id="q9-2" placeholder="(2)" data-answers="[&quot;0&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="9">이 문제 채점</button><span id="feedback9" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup9"><pre><code>DROP TABLE IF EXISTS tbl_p009;</code></pre></div><button type="button" class="copy" data-copy="setup9">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DEFAULT · (2) 0</p>
+<div id="answer9"><pre><code>CREATE TABLE tbl_p009 (score INT DEFAULT 0);</code></pre></div><button type="button" class="copy" data-copy="answer9">완성 SQL 복사</button></details></article>
+<article class="question" id="q10" data-group="테이블·자료형"><h3><span class="qnum">Q010</span>문자 기본값</h3><p>status를 생략하면 대문자 N을 넣는다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p010 (status VARCHAR(1) DEFAULT <span class="blank"><label class="sr-only" for="q10-1">10번 빈칸 1</label><input id="q10-1" placeholder="(1)" data-answers="[&quot;&#x27;N&#x27;&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="10">이 문제 채점</button><span id="feedback10" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup10"><pre><code>DROP TABLE IF EXISTS tbl_p010;</code></pre></div><button type="button" class="copy" data-copy="setup10">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) &#x27;N&#x27;</p>
+<p>문자열은 작은따옴표로 감싼다. &#x27;n&#x27;은 요구한 &#x27;N&#x27;과 다르다.</p>
+<div id="answer10"><pre><code>CREATE TABLE tbl_p010 (status VARCHAR(1) DEFAULT &#x27;N&#x27;);</code></pre></div><button type="button" class="copy" data-copy="answer10">완성 SQL 복사</button></details></article>
+<article class="question" id="q11" data-group="테이블·자료형"><h3><span class="qnum">Q011</span>NULL 금지</h3><p>name에 NULL을 넣지 못하게 한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p011 (name VARCHAR(20) <span class="blank"><label class="sr-only" for="q11-1">11번 빈칸 1</label><input id="q11-1" placeholder="(1)" data-answers="[&quot;NOT NULL&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="11">이 문제 채점</button><span id="feedback11" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup11"><pre><code>DROP TABLE IF EXISTS tbl_p011;</code></pre></div><button type="button" class="copy" data-copy="setup11">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) NOT NULL</p>
+<div id="answer11"><pre><code>CREATE TABLE tbl_p011 (name VARCHAR(20) NOT NULL);</code></pre></div><button type="button" class="copy" data-copy="answer11">완성 SQL 복사</button></details></article>
+<article class="question" id="q12" data-group="테이블·자료형"><h3><span class="qnum">Q012</span>존재하면 생성 생략</h3><p>같은 이름의 테이블이 있으면 새로 만들지 않는다.</p>
+<pre class="qcode"><code>CREATE TABLE <span class="blank"><label class="sr-only" for="q12-1">12번 빈칸 1</label><input id="q12-1" placeholder="(1)" data-answers="[&quot;IF NOT EXISTS&quot;]" style="--w:15ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> tbl_p012 (id INT);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="12">이 문제 채점</button><span id="feedback12" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup12"><pre><code>DROP TABLE IF EXISTS tbl_p012;</code></pre></div><button type="button" class="copy" data-copy="setup12">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) IF NOT EXISTS</p>
+<p>기존 테이블의 구조가 같은지는 검사하지 않는다. 두 제품이 함께 지원하는 문법이다.</p>
+<div id="answer12"><pre><code>CREATE TABLE IF NOT EXISTS tbl_p012 (id INT);</code></pre></div><button type="button" class="copy" data-copy="answer12">완성 SQL 복사</button></details></article>
+<h3 class="group-head" id="group2">키·제약조건 · 13~34</h3>
+<article class="question" id="q13" data-group="키·제약조건"><h3><span class="qnum">Q013</span>열 기본키</h3><p>id를 기본키로 지정한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p013 (id INT <span class="blank"><label class="sr-only" for="q13-1">13번 빈칸 1</label><input id="q13-1" placeholder="(1)" data-answers="[&quot;PRIMARY KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="13">이 문제 채점</button><span id="feedback13" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup13"><pre><code>DROP TABLE IF EXISTS tbl_p013;</code></pre></div><button type="button" class="copy" data-copy="setup13">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) PRIMARY KEY</p>
+<div id="answer13"><pre><code>CREATE TABLE tbl_p013 (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="answer13">완성 SQL 복사</button></details></article>
+<article class="question" id="q14" data-group="키·제약조건"><h3><span class="qnum">Q014</span>테이블 수준 기본키</h3><p>열 선언 뒤에서 id를 기본키로 지정한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p014 (id INT, name VARCHAR(20),
+    <span class="blank"><label class="sr-only" for="q14-1">14번 빈칸 1</label><input id="q14-1" placeholder="(1)" data-answers="[&quot;PRIMARY KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (<span class="blank"><label class="sr-only" for="q14-2">14번 빈칸 2</label><input id="q14-2" placeholder="(2)" data-answers="[&quot;id&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="14">이 문제 채점</button><span id="feedback14" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup14"><pre><code>DROP TABLE IF EXISTS tbl_p014;</code></pre></div><button type="button" class="copy" data-copy="setup14">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) PRIMARY KEY · (2) id</p>
+<div id="answer14"><pre><code>CREATE TABLE tbl_p014 (id INT, name VARCHAR(20),
+    PRIMARY KEY (id)
+);</code></pre></div><button type="button" class="copy" data-copy="answer14">완성 SQL 복사</button></details></article>
+<article class="question" id="q15" data-group="키·제약조건"><h3><span class="qnum">Q015</span>이름 있는 기본키</h3><p>기본키의 선언 이름을 pk_p015로 지정한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p015 (id INT,
+    <span class="blank"><label class="sr-only" for="q15-1">15번 빈칸 1</label><input id="q15-1" placeholder="(1)" data-answers="[&quot;CONSTRAINT&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> pk_p015 <span class="blank"><label class="sr-only" for="q15-2">15번 빈칸 2</label><input id="q15-2" placeholder="(2)" data-answers="[&quot;PRIMARY KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (id)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="15">이 문제 채점</button><span id="feedback15" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup15"><pre><code>DROP TABLE IF EXISTS tbl_p015;</code></pre></div><button type="button" class="copy" data-copy="setup15">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CONSTRAINT · (2) PRIMARY KEY</p>
+<p>MariaDB는 기본키의 내부 이름을 PRIMARY로 사용한다. 선언 이름으로 기본키를 삭제하는 문제는 다루지 않는다.</p>
+<div id="answer15"><pre><code>CREATE TABLE tbl_p015 (id INT,
+    CONSTRAINT pk_p015 PRIMARY KEY (id)
+);</code></pre></div><button type="button" class="copy" data-copy="answer15">완성 SQL 복사</button></details></article>
+<article class="question" id="q16" data-group="키·제약조건"><h3><span class="qnum">Q016</span>복합 기본키</h3><p>student_id와 course_id의 조합을 기본키로 한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p016 (student_id INT, course_id INT,
+    PRIMARY KEY (<span class="blank"><label class="sr-only" for="q16-1">16번 빈칸 1</label><input id="q16-1" placeholder="(1)" data-answers="[&quot;student_id&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>, <span class="blank"><label class="sr-only" for="q16-2">16번 빈칸 2</label><input id="q16-2" placeholder="(2)" data-answers="[&quot;course_id&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="16">이 문제 채점</button><span id="feedback16" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup16"><pre><code>DROP TABLE IF EXISTS tbl_p016;</code></pre></div><button type="button" class="copy" data-copy="setup16">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) student_id · (2) course_id</p>
+<p>각 열이 따로 유일한 것이 아니라 두 값의 조합이 유일하다.</p>
+<div id="answer16"><pre><code>CREATE TABLE tbl_p016 (student_id INT, course_id INT,
+    PRIMARY KEY (student_id, course_id)
+);</code></pre></div><button type="button" class="copy" data-copy="answer16">완성 SQL 복사</button></details></article>
+<article class="question" id="q17" data-group="키·제약조건"><h3><span class="qnum">Q017</span>열 유일성</h3><p>email의 일반 값 중복을 금지한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p017 (email VARCHAR(40) <span class="blank"><label class="sr-only" for="q17-1">17번 빈칸 1</label><input id="q17-1" placeholder="(1)" data-answers="[&quot;UNIQUE&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="17">이 문제 채점</button><span id="feedback17" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup17"><pre><code>DROP TABLE IF EXISTS tbl_p017;</code></pre></div><button type="button" class="copy" data-copy="setup17">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) UNIQUE</p>
+<div id="answer17"><pre><code>CREATE TABLE tbl_p017 (email VARCHAR(40) UNIQUE);</code></pre></div><button type="button" class="copy" data-copy="answer17">완성 SQL 복사</button></details></article>
+<article class="question" id="q18" data-group="키·제약조건"><h3><span class="qnum">Q018</span>복합 유일성</h3><p>dept_id와 code 조합에 유일성을 부여한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p018 (dept_id INT, code VARCHAR(2),
+    <span class="blank"><label class="sr-only" for="q18-1">18번 빈칸 1</label><input id="q18-1" placeholder="(1)" data-answers="[&quot;UNIQUE&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (dept_id, code)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="18">이 문제 채점</button><span id="feedback18" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup18"><pre><code>DROP TABLE IF EXISTS tbl_p018;</code></pre></div><button type="button" class="copy" data-copy="setup18">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) UNIQUE</p>
+<div id="answer18"><pre><code>CREATE TABLE tbl_p018 (dept_id INT, code VARCHAR(2),
+    UNIQUE (dept_id, code)
+);</code></pre></div><button type="button" class="copy" data-copy="answer18">완성 SQL 복사</button></details></article>
+<article class="question" id="q19" data-group="키·제약조건"><h3><span class="qnum">Q019</span>이름 있는 유일성</h3><p>uq_p019라는 이름으로 email 중복을 막는다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p019 (email VARCHAR(40),
+    CONSTRAINT uq_p019 <span class="blank"><label class="sr-only" for="q19-1">19번 빈칸 1</label><input id="q19-1" placeholder="(1)" data-answers="[&quot;UNIQUE&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (email)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="19">이 문제 채점</button><span id="feedback19" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup19"><pre><code>DROP TABLE IF EXISTS tbl_p019;</code></pre></div><button type="button" class="copy" data-copy="setup19">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) UNIQUE</p>
+<div id="answer19"><pre><code>CREATE TABLE tbl_p019 (email VARCHAR(40),
+    CONSTRAINT uq_p019 UNIQUE (email)
+);</code></pre></div><button type="button" class="copy" data-copy="answer19">완성 SQL 복사</button></details></article>
+<article class="question" id="q20" data-group="키·제약조건"><h3><span class="qnum">Q020</span>누락도 중복도 금지</h3><p>email은 NULL도 일반 값 중복도 허용하지 않는다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p020 (email VARCHAR(40) <span class="blank"><label class="sr-only" for="q20-1">20번 빈칸 1</label><input id="q20-1" placeholder="(1)" data-answers="[&quot;NOT NULL&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> <span class="blank"><label class="sr-only" for="q20-2">20번 빈칸 2</label><input id="q20-2" placeholder="(2)" data-answers="[&quot;UNIQUE&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="20">이 문제 채점</button><span id="feedback20" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup20"><pre><code>DROP TABLE IF EXISTS tbl_p020;</code></pre></div><button type="button" class="copy" data-copy="setup20">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) NOT NULL · (2) UNIQUE</p>
+<div id="answer20"><pre><code>CREATE TABLE tbl_p020 (email VARCHAR(40) NOT NULL UNIQUE);</code></pre></div><button type="button" class="copy" data-copy="answer20">완성 SQL 복사</button></details></article>
+<article class="question" id="q21" data-group="키·제약조건"><h3><span class="qnum">Q021</span>하한 조건</h3><p>score는 0 이상이다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p021 (score INT <span class="blank"><label class="sr-only" for="q21-1">21번 빈칸 1</label><input id="q21-1" placeholder="(1)" data-answers="[&quot;CHECK&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (score <span class="blank"><label class="sr-only" for="q21-2">21번 빈칸 2</label><input id="q21-2" placeholder="(2)" data-answers="[&quot;&gt;=&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> 0));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="21">이 문제 채점</button><span id="feedback21" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup21"><pre><code>DROP TABLE IF EXISTS tbl_p021;</code></pre></div><button type="button" class="copy" data-copy="setup21">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CHECK · (2) &gt;=</p>
+<div id="answer21"><pre><code>CREATE TABLE tbl_p021 (score INT CHECK (score &gt;= 0));</code></pre></div><button type="button" class="copy" data-copy="answer21">완성 SQL 복사</button></details></article>
+<article class="question" id="q22" data-group="키·제약조건"><h3><span class="qnum">Q022</span>범위 조건</h3><p>score는 0 이상 100 이하이다. BETWEEN을 사용한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p022 (score INT CHECK (score <span class="blank"><label class="sr-only" for="q22-1">22번 빈칸 1</label><input id="q22-1" placeholder="(1)" data-answers="[&quot;BETWEEN&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> 0 <span class="blank"><label class="sr-only" for="q22-2">22번 빈칸 2</label><input id="q22-2" placeholder="(2)" data-answers="[&quot;AND&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> 100));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="22">이 문제 채점</button><span id="feedback22" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup22"><pre><code>DROP TABLE IF EXISTS tbl_p022;</code></pre></div><button type="button" class="copy" data-copy="setup22">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) BETWEEN · (2) AND</p>
+<div id="answer22"><pre><code>CREATE TABLE tbl_p022 (score INT CHECK (score BETWEEN 0 AND 100));</code></pre></div><button type="button" class="copy" data-copy="answer22">완성 SQL 복사</button></details></article>
+<article class="question" id="q23" data-group="키·제약조건"><h3><span class="qnum">Q023</span>허용 값 목록</h3><p>status는 &#x27;A&#x27; 또는 &#x27;B&#x27;만 허용한다. IN을 사용한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p023 (status VARCHAR(1) CHECK (status <span class="blank"><label class="sr-only" for="q23-1">23번 빈칸 1</label><input id="q23-1" placeholder="(1)" data-answers="[&quot;IN&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (&#x27;A&#x27;, &#x27;B&#x27;)));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="23">이 문제 채점</button><span id="feedback23" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup23"><pre><code>DROP TABLE IF EXISTS tbl_p023;</code></pre></div><button type="button" class="copy" data-copy="setup23">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) IN</p>
+<div id="answer23"><pre><code>CREATE TABLE tbl_p023 (status VARCHAR(1) CHECK (status IN (&#x27;A&#x27;, &#x27;B&#x27;)));</code></pre></div><button type="button" class="copy" data-copy="answer23">완성 SQL 복사</button></details></article>
+<article class="question" id="q24" data-group="키·제약조건"><h3><span class="qnum">Q024</span>여러 열 비교</h3><p>max_score는 min_score 이상이어야 한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p024 (min_score INT, max_score INT,
+    CHECK (<span class="blank"><label class="sr-only" for="q24-1">24번 빈칸 1</label><input id="q24-1" placeholder="(1)" data-answers="[&quot;max_score&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> &gt;= <span class="blank"><label class="sr-only" for="q24-2">24번 빈칸 2</label><input id="q24-2" placeholder="(2)" data-answers="[&quot;min_score&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="24">이 문제 채점</button><span id="feedback24" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup24"><pre><code>DROP TABLE IF EXISTS tbl_p024;</code></pre></div><button type="button" class="copy" data-copy="setup24">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) max_score · (2) min_score</p>
+<div id="answer24"><pre><code>CREATE TABLE tbl_p024 (min_score INT, max_score INT,
+    CHECK (max_score &gt;= min_score)
+);</code></pre></div><button type="button" class="copy" data-copy="answer24">완성 SQL 복사</button></details></article>
+<article class="question" id="q25" data-group="키·제약조건"><h3><span class="qnum">Q025</span>이름 있는 CHECK</h3><p>ck_p025라는 이름으로 price &gt; 0을 검사한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p025 (price INT,
+    <span class="blank"><label class="sr-only" for="q25-1">25번 빈칸 1</label><input id="q25-1" placeholder="(1)" data-answers="[&quot;CONSTRAINT&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> ck_p025 <span class="blank"><label class="sr-only" for="q25-2">25번 빈칸 2</label><input id="q25-2" placeholder="(2)" data-answers="[&quot;CHECK&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (price &gt; 0)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="25">이 문제 채점</button><span id="feedback25" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup25"><pre><code>DROP TABLE IF EXISTS tbl_p025;</code></pre></div><button type="button" class="copy" data-copy="setup25">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CONSTRAINT · (2) CHECK</p>
+<div id="answer25"><pre><code>CREATE TABLE tbl_p025 (price INT,
+    CONSTRAINT ck_p025 CHECK (price &gt; 0)
+);</code></pre></div><button type="button" class="copy" data-copy="answer25">완성 SQL 복사</button></details></article>
+<article class="question" id="q26" data-group="키·제약조건"><h3><span class="qnum">Q026</span>CHECK와 NULL 금지</h3><p>score는 NULL 불가이면서 0 이상이다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p026 (score INT <span class="blank"><label class="sr-only" for="q26-1">26번 빈칸 1</label><input id="q26-1" placeholder="(1)" data-answers="[&quot;NOT NULL&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> CHECK (score &gt;= 0));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="26">이 문제 채점</button><span id="feedback26" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup26"><pre><code>DROP TABLE IF EXISTS tbl_p026;</code></pre></div><button type="button" class="copy" data-copy="setup26">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) NOT NULL</p>
+<p>CHECK (score &gt;= 0)만 있으면 NULL은 통과할 수 있다.</p>
+<div id="answer26"><pre><code>CREATE TABLE tbl_p026 (score INT NOT NULL CHECK (score &gt;= 0));</code></pre></div><button type="button" class="copy" data-copy="answer26">완성 SQL 복사</button></details></article>
+<article class="question" id="q27" data-group="키·제약조건"><h3><span class="qnum">Q027</span>기본값과 검사</h3><p>qty는 생략하면 1이고, 값이 있으면 1 이상이다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p027 (qty INT <span class="blank"><label class="sr-only" for="q27-1">27번 빈칸 1</label><input id="q27-1" placeholder="(1)" data-answers="[&quot;DEFAULT&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> 1 <span class="blank"><label class="sr-only" for="q27-2">27번 빈칸 2</label><input id="q27-2" placeholder="(2)" data-answers="[&quot;CHECK&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (qty &gt;= 1));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="27">이 문제 채점</button><span id="feedback27" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup27"><pre><code>DROP TABLE IF EXISTS tbl_p027;</code></pre></div><button type="button" class="copy" data-copy="setup27">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DEFAULT · (2) CHECK</p>
+<div id="answer27"><pre><code>CREATE TABLE tbl_p027 (qty INT DEFAULT 1 CHECK (qty &gt;= 1));</code></pre></div><button type="button" class="copy" data-copy="answer27">완성 SQL 복사</button></details></article>
+<article class="question" id="q28" data-group="키·제약조건"><h3><span class="qnum">Q028</span>논리곱</h3><p>low는 0 이상, high는 low 이상이어야 한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p028 (low INT, high INT,
+    CHECK (low &gt;= 0 <span class="blank"><label class="sr-only" for="q28-1">28번 빈칸 1</label><input id="q28-1" placeholder="(1)" data-answers="[&quot;AND&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> high &gt;= low)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="28">이 문제 채점</button><span id="feedback28" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup28"><pre><code>DROP TABLE IF EXISTS tbl_p028;</code></pre></div><button type="button" class="copy" data-copy="setup28">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) AND</p>
+<div id="answer28"><pre><code>CREATE TABLE tbl_p028 (low INT, high INT,
+    CHECK (low &gt;= 0 AND high &gt;= low)
+);</code></pre></div><button type="button" class="copy" data-copy="answer28">완성 SQL 복사</button></details></article>
+<article class="question" id="q29" data-group="키·제약조건"><h3><span class="qnum">Q029</span>논리합</h3><p>kind는 &#x27;A&#x27; 또는 &#x27;B&#x27;여야 한다. OR을 사용한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p029 (kind VARCHAR(1) CHECK (kind = &#x27;A&#x27; <span class="blank"><label class="sr-only" for="q29-1">29번 빈칸 1</label><input id="q29-1" placeholder="(1)" data-answers="[&quot;OR&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> kind = &#x27;B&#x27;));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="29">이 문제 채점</button><span id="feedback29" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup29"><pre><code>DROP TABLE IF EXISTS tbl_p029;</code></pre></div><button type="button" class="copy" data-copy="setup29">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) OR</p>
+<div id="answer29"><pre><code>CREATE TABLE tbl_p029 (kind VARCHAR(1) CHECK (kind = &#x27;A&#x27; OR kind = &#x27;B&#x27;));</code></pre></div><button type="button" class="copy" data-copy="answer29">완성 SQL 복사</button></details></article>
+<article class="question" id="q30" data-group="키·제약조건"><h3><span class="qnum">Q030</span>NULL만 허용하는 조건</h3><p>memo는 NULL이어야 한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p030 (memo VARCHAR(20) CHECK (memo <span class="blank"><label class="sr-only" for="q30-1">30번 빈칸 1</label><input id="q30-1" placeholder="(1)" data-answers="[&quot;IS NULL&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="30">이 문제 채점</button><span id="feedback30" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup30"><pre><code>DROP TABLE IF EXISTS tbl_p030;</code></pre></div><button type="button" class="copy" data-copy="setup30">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) IS NULL</p>
+<p>NULL 비교는 = NULL로 쓰지 않는다. 문법 확인용 조건이다.</p>
+<div id="answer30"><pre><code>CREATE TABLE tbl_p030 (memo VARCHAR(20) CHECK (memo IS NULL));</code></pre></div><button type="button" class="copy" data-copy="answer30">완성 SQL 복사</button></details></article>
+<article class="question" id="q31" data-group="키·제약조건"><h3><span class="qnum">Q031</span>두 제약조건 함께</h3><p>id는 기본키, email은 유일 값으로 지정한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p031 (id INT, email VARCHAR(40),
+    <span class="blank"><label class="sr-only" for="q31-1">31번 빈칸 1</label><input id="q31-1" placeholder="(1)" data-answers="[&quot;PRIMARY KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (id),
+    <span class="blank"><label class="sr-only" for="q31-2">31번 빈칸 2</label><input id="q31-2" placeholder="(2)" data-answers="[&quot;UNIQUE&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (email)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="31">이 문제 채점</button><span id="feedback31" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup31"><pre><code>DROP TABLE IF EXISTS tbl_p031;</code></pre></div><button type="button" class="copy" data-copy="setup31">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) PRIMARY KEY · (2) UNIQUE</p>
+<div id="answer31"><pre><code>CREATE TABLE tbl_p031 (id INT, email VARCHAR(40),
+    PRIMARY KEY (id),
+    UNIQUE (email)
+);</code></pre></div><button type="button" class="copy" data-copy="answer31">완성 SQL 복사</button></details></article>
+<article class="question" id="q32" data-group="키·제약조건"><h3><span class="qnum">Q032</span>양수와 음수 0 구분</h3><p>price는 0을 허용하지 않는 양수다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p032 (price INT CHECK (price <span class="blank"><label class="sr-only" for="q32-1">32번 빈칸 1</label><input id="q32-1" placeholder="(1)" data-answers="[&quot;&gt;&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> 0));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="32">이 문제 채점</button><span id="feedback32" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup32"><pre><code>DROP TABLE IF EXISTS tbl_p032;</code></pre></div><button type="button" class="copy" data-copy="setup32">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) &gt;</p>
+<div id="answer32"><pre><code>CREATE TABLE tbl_p032 (price INT CHECK (price &gt; 0));</code></pre></div><button type="button" class="copy" data-copy="answer32">완성 SQL 복사</button></details></article>
+<article class="question" id="q33" data-group="키·제약조건"><h3><span class="qnum">Q033</span>금지 값 제외</h3><p>score에서 0만 금지한다. &lt;&gt; 연산자를 사용한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p033 (score INT CHECK (score <span class="blank"><label class="sr-only" for="q33-1">33번 빈칸 1</label><input id="q33-1" placeholder="(1)" data-answers="[&quot;&lt;&gt;&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> 0));</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="33">이 문제 채점</button><span id="feedback33" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup33"><pre><code>DROP TABLE IF EXISTS tbl_p033;</code></pre></div><button type="button" class="copy" data-copy="setup33">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) &lt;&gt;</p>
+<p>NULL까지 금지하려면 NOT NULL을 별도로 선언한다.</p>
+<div id="answer33"><pre><code>CREATE TABLE tbl_p033 (score INT CHECK (score &lt;&gt; 0));</code></pre></div><button type="button" class="copy" data-copy="answer33">완성 SQL 복사</button></details></article>
+<article class="question" id="q34" data-group="키·제약조건"><h3><span class="qnum">Q034</span>복합 제약 종합</h3><p>수강 테이블에 복합 기본키와 점수 범위를 선언한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p034 (
+    student_id INT, course_id INT, score INT,
+    CONSTRAINT pk_p034 <span class="blank"><label class="sr-only" for="q34-1">34번 빈칸 1</label><input id="q34-1" placeholder="(1)" data-answers="[&quot;PRIMARY KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (student_id, course_id),
+    CONSTRAINT ck_p034 CHECK (score <span class="blank"><label class="sr-only" for="q34-2">34번 빈칸 2</label><input id="q34-2" placeholder="(2)" data-answers="[&quot;BETWEEN&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> 0 <span class="blank"><label class="sr-only" for="q34-3">34번 빈칸 3</label><input id="q34-3" placeholder="(3)" data-answers="[&quot;AND&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(3) __________</span></span> 100)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="34">이 문제 채점</button><span id="feedback34" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup34"><pre><code>DROP TABLE IF EXISTS tbl_p034;</code></pre></div><button type="button" class="copy" data-copy="setup34">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) PRIMARY KEY · (2) BETWEEN · (3) AND</p>
+<div id="answer34"><pre><code>CREATE TABLE tbl_p034 (
+    student_id INT, course_id INT, score INT,
+    CONSTRAINT pk_p034 PRIMARY KEY (student_id, course_id),
+    CONSTRAINT ck_p034 CHECK (score BETWEEN 0 AND 100)
+);</code></pre></div><button type="button" class="copy" data-copy="answer34">완성 SQL 복사</button></details></article>
+<h3 class="group-head" id="group3">외래키·참조 동작 · 35~48</h3>
+<article class="question" id="q35" data-group="외래키·참조 동작"><h3><span class="qnum">Q035</span>외래키 선언</h3><p>parent_id가 부모의 id를 참조한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p035 (parent_id INT,
+    <span class="blank"><label class="sr-only" for="q35-1">35번 빈칸 1</label><input id="q35-1" placeholder="(1)" data-answers="[&quot;FOREIGN KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (parent_id) <span class="blank"><label class="sr-only" for="q35-2">35번 빈칸 2</label><input id="q35-2" placeholder="(2)" data-answers="[&quot;REFERENCES&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> tbl_p035_parent (id)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="35">이 문제 채점</button><span id="feedback35" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup35"><pre><code>DROP TABLE IF EXISTS tbl_p035;
+DROP TABLE IF EXISTS tbl_p035_parent;
+CREATE TABLE tbl_p035_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup35">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) FOREIGN KEY · (2) REFERENCES</p>
+<div id="answer35"><pre><code>CREATE TABLE tbl_p035 (parent_id INT,
+    FOREIGN KEY (parent_id) REFERENCES tbl_p035_parent (id)
+);</code></pre></div><button type="button" class="copy" data-copy="answer35">완성 SQL 복사</button></details></article>
+<article class="question" id="q36" data-group="외래키·참조 동작"><h3><span class="qnum">Q036</span>자식 열과 부모 열</h3><p>자식 dept_id가 부모의 id를 참조한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p036 (dept_id INT,
+    FOREIGN KEY (<span class="blank"><label class="sr-only" for="q36-1">36번 빈칸 1</label><input id="q36-1" placeholder="(1)" data-answers="[&quot;dept_id&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>) REFERENCES tbl_p036_parent (<span class="blank"><label class="sr-only" for="q36-2">36번 빈칸 2</label><input id="q36-2" placeholder="(2)" data-answers="[&quot;id&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="36">이 문제 채점</button><span id="feedback36" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup36"><pre><code>DROP TABLE IF EXISTS tbl_p036;
+DROP TABLE IF EXISTS tbl_p036_parent;
+CREATE TABLE tbl_p036_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup36">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) dept_id · (2) id</p>
+<div id="answer36"><pre><code>CREATE TABLE tbl_p036 (dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES tbl_p036_parent (id)
+);</code></pre></div><button type="button" class="copy" data-copy="answer36">완성 SQL 복사</button></details></article>
+<article class="question" id="q37" data-group="외래키·참조 동작"><h3><span class="qnum">Q037</span>외래키에 이름 부여</h3><p>fk_p037라는 이름으로 외래키를 선언한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p037 (parent_id INT,
+    <span class="blank"><label class="sr-only" for="q37-1">37번 빈칸 1</label><input id="q37-1" placeholder="(1)" data-answers="[&quot;CONSTRAINT&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> fk_p037 <span class="blank"><label class="sr-only" for="q37-2">37번 빈칸 2</label><input id="q37-2" placeholder="(2)" data-answers="[&quot;FOREIGN KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (parent_id)
+    REFERENCES tbl_p037_parent (id)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="37">이 문제 채점</button><span id="feedback37" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup37"><pre><code>DROP TABLE IF EXISTS tbl_p037;
+DROP TABLE IF EXISTS tbl_p037_parent;
+CREATE TABLE tbl_p037_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup37">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CONSTRAINT · (2) FOREIGN KEY</p>
+<div id="answer37"><pre><code>CREATE TABLE tbl_p037 (parent_id INT,
+    CONSTRAINT fk_p037 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p037_parent (id)
+);</code></pre></div><button type="button" class="copy" data-copy="answer37">완성 SQL 복사</button></details></article>
+<article class="question" id="q38" data-group="외래키·참조 동작"><h3><span class="qnum">Q038</span>삭제 연쇄</h3><p>부모 행을 삭제하면 참조하는 자식 행도 삭제한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p038 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p038 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p038_parent (id)
+    <span class="blank"><label class="sr-only" for="q38-1">38번 빈칸 1</label><input id="q38-1" placeholder="(1)" data-answers="[&quot;ON DELETE&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> <span class="blank"><label class="sr-only" for="q38-2">38번 빈칸 2</label><input id="q38-2" placeholder="(2)" data-answers="[&quot;CASCADE&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="38">이 문제 채점</button><span id="feedback38" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup38"><pre><code>DROP TABLE IF EXISTS tbl_p038;
+DROP TABLE IF EXISTS tbl_p038_parent;
+CREATE TABLE tbl_p038_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup38">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) ON DELETE · (2) CASCADE</p>
+<div id="answer38"><pre><code>CREATE TABLE tbl_p038 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p038 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p038_parent (id)
+    ON DELETE CASCADE
+);</code></pre></div><button type="button" class="copy" data-copy="answer38">완성 SQL 복사</button></details></article>
+<article class="question" id="q39" data-group="외래키·참조 동작"><h3><span class="qnum">Q039</span>삭제 시 NULL</h3><p>부모 행을 삭제하면 자식의 parent_id를 NULL로 바꾼다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p039 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p039 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p039_parent (id)
+    ON DELETE <span class="blank"><label class="sr-only" for="q39-1">39번 빈칸 1</label><input id="q39-1" placeholder="(1)" data-answers="[&quot;SET NULL&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="39">이 문제 채점</button><span id="feedback39" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup39"><pre><code>DROP TABLE IF EXISTS tbl_p039;
+DROP TABLE IF EXISTS tbl_p039_parent;
+CREATE TABLE tbl_p039_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup39">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) SET NULL</p>
+<p>자식 parent_id에 NOT NULL을 지정하지 않는다.</p>
+<div id="answer39"><pre><code>CREATE TABLE tbl_p039 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p039 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p039_parent (id)
+    ON DELETE SET NULL
+);</code></pre></div><button type="button" class="copy" data-copy="answer39">완성 SQL 복사</button></details></article>
+<article class="question" id="q40" data-group="외래키·참조 동작"><h3><span class="qnum">Q040</span>삭제 거부</h3><p>참조하는 자식 행이 있으면 부모 행 삭제를 거부한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p040 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p040 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p040_parent (id)
+    ON DELETE <span class="blank"><label class="sr-only" for="q40-1">40번 빈칸 1</label><input id="q40-1" placeholder="(1)" data-answers="[&quot;RESTRICT&quot;, &quot;NO ACTION&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="40">이 문제 채점</button><span id="feedback40" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup40"><pre><code>DROP TABLE IF EXISTS tbl_p040;
+DROP TABLE IF EXISTS tbl_p040_parent;
+CREATE TABLE tbl_p040_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup40">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) RESTRICT <span class="muted">(또는 NO ACTION)</span></p>
+<p>이 교재의 즉시 검사 조건에서 NO ACTION도 허용한다. 두 키워드의 일반적 의미가 항상 같은 것은 아니다.</p>
+<div id="answer40"><pre><code>CREATE TABLE tbl_p040 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p040 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p040_parent (id)
+    ON DELETE RESTRICT
+);</code></pre></div><button type="button" class="copy" data-copy="answer40">완성 SQL 복사</button></details></article>
+<article class="question" id="q41" data-group="외래키·참조 동작"><h3><span class="qnum">Q041</span>키 갱신 연쇄</h3><p>부모 id 변경을 자식 parent_id에 반영한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p041 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p041 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p041_parent (id)
+    <span class="blank"><label class="sr-only" for="q41-1">41번 빈칸 1</label><input id="q41-1" placeholder="(1)" data-answers="[&quot;ON UPDATE&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> <span class="blank"><label class="sr-only" for="q41-2">41번 빈칸 2</label><input id="q41-2" placeholder="(2)" data-answers="[&quot;CASCADE&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="41">이 문제 채점</button><span id="feedback41" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup41"><pre><code>DROP TABLE IF EXISTS tbl_p041;
+DROP TABLE IF EXISTS tbl_p041_parent;
+CREATE TABLE tbl_p041_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup41">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) ON UPDATE · (2) CASCADE</p>
+<div id="answer41"><pre><code>CREATE TABLE tbl_p041 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p041 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p041_parent (id)
+    ON UPDATE CASCADE
+);</code></pre></div><button type="button" class="copy" data-copy="answer41">완성 SQL 복사</button></details></article>
+<article class="question" id="q42" data-group="외래키·참조 동작"><h3><span class="qnum">Q042</span>갱신 시 NULL</h3><p>부모 id가 바뀌면 자식 parent_id를 NULL로 바꾼다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p042 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p042 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p042_parent (id)
+    ON UPDATE <span class="blank"><label class="sr-only" for="q42-1">42번 빈칸 1</label><input id="q42-1" placeholder="(1)" data-answers="[&quot;SET NULL&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="42">이 문제 채점</button><span id="feedback42" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup42"><pre><code>DROP TABLE IF EXISTS tbl_p042;
+DROP TABLE IF EXISTS tbl_p042_parent;
+CREATE TABLE tbl_p042_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup42">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) SET NULL</p>
+<div id="answer42"><pre><code>CREATE TABLE tbl_p042 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p042 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p042_parent (id)
+    ON UPDATE SET NULL
+);</code></pre></div><button type="button" class="copy" data-copy="answer42">완성 SQL 복사</button></details></article>
+<article class="question" id="q43" data-group="외래키·참조 동작"><h3><span class="qnum">Q043</span>두 참조 동작</h3><p>부모 삭제는 거부하고 키 갱신은 연쇄 반영한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p043 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p043 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p043_parent (id)
+    ON DELETE <span class="blank"><label class="sr-only" for="q43-1">43번 빈칸 1</label><input id="q43-1" placeholder="(1)" data-answers="[&quot;RESTRICT&quot;, &quot;NO ACTION&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>
+    ON UPDATE <span class="blank"><label class="sr-only" for="q43-2">43번 빈칸 2</label><input id="q43-2" placeholder="(2)" data-answers="[&quot;CASCADE&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="43">이 문제 채점</button><span id="feedback43" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup43"><pre><code>DROP TABLE IF EXISTS tbl_p043;
+DROP TABLE IF EXISTS tbl_p043_parent;
+CREATE TABLE tbl_p043_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup43">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) RESTRICT <span class="muted">(또는 NO ACTION)</span> · (2) CASCADE</p>
+<div id="answer43"><pre><code>CREATE TABLE tbl_p043 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p043 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p043_parent (id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
+);</code></pre></div><button type="button" class="copy" data-copy="answer43">완성 SQL 복사</button></details></article>
+<article class="question" id="q44" data-group="외래키·참조 동작"><h3><span class="qnum">Q044</span>복합 외래키</h3><p>부모의 (course_id, term)을 같은 순서로 참조한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p044 (course_id INT, term INT,
+    FOREIGN KEY (<span class="blank"><label class="sr-only" for="q44-1">44번 빈칸 1</label><input id="q44-1" placeholder="(1)" data-answers="[&quot;course_id&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>, <span class="blank"><label class="sr-only" for="q44-2">44번 빈칸 2</label><input id="q44-2" placeholder="(2)" data-answers="[&quot;term&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>)
+    REFERENCES tbl_p044_parent (course_id, term)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="44">이 문제 채점</button><span id="feedback44" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup44"><pre><code>DROP TABLE IF EXISTS tbl_p044;
+DROP TABLE IF EXISTS tbl_p044_parent;
+CREATE TABLE tbl_p044_parent (course_id INT, term INT, PRIMARY KEY (course_id, term));</code></pre></div><button type="button" class="copy" data-copy="setup44">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) course_id · (2) term</p>
+<div id="answer44"><pre><code>CREATE TABLE tbl_p044 (course_id INT, term INT,
+    FOREIGN KEY (course_id, term)
+    REFERENCES tbl_p044_parent (course_id, term)
+);</code></pre></div><button type="button" class="copy" data-copy="answer44">완성 SQL 복사</button></details></article>
+<article class="question" id="q45" data-group="외래키·참조 동작"><h3><span class="qnum">Q045</span>자기 참조</h3><p>manager_id가 같은 테이블의 id를 참조한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p045 (id INT PRIMARY KEY, manager_id INT,
+    FOREIGN KEY (manager_id) <span class="blank"><label class="sr-only" for="q45-1">45번 빈칸 1</label><input id="q45-1" placeholder="(1)" data-answers="[&quot;REFERENCES&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> <span class="blank"><label class="sr-only" for="q45-2">45번 빈칸 2</label><input id="q45-2" placeholder="(2)" data-answers="[&quot;tbl_p045&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (id)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="45">이 문제 채점</button><span id="feedback45" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup45"><pre><code>DROP TABLE IF EXISTS tbl_p045;</code></pre></div><button type="button" class="copy" data-copy="setup45">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) REFERENCES · (2) tbl_p045</p>
+<p>상위 관리자 없음은 manager_id = NULL로 표현할 수 있다.</p>
+<div id="answer45"><pre><code>CREATE TABLE tbl_p045 (id INT PRIMARY KEY, manager_id INT,
+    FOREIGN KEY (manager_id) REFERENCES tbl_p045 (id)
+);</code></pre></div><button type="button" class="copy" data-copy="answer45">완성 SQL 복사</button></details></article>
+<article class="question" id="q46" data-group="외래키·참조 동작"><h3><span class="qnum">Q046</span>필수 참조</h3><p>모든 자식 행은 부모를 반드시 가리켜야 한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p046 (parent_id INT <span class="blank"><label class="sr-only" for="q46-1">46번 빈칸 1</label><input id="q46-1" placeholder="(1)" data-answers="[&quot;NOT NULL&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>,
+    FOREIGN KEY (parent_id) REFERENCES tbl_p046_parent (id)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="46">이 문제 채점</button><span id="feedback46" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup46"><pre><code>DROP TABLE IF EXISTS tbl_p046;
+DROP TABLE IF EXISTS tbl_p046_parent;
+CREATE TABLE tbl_p046_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup46">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) NOT NULL</p>
+<div id="answer46"><pre><code>CREATE TABLE tbl_p046 (parent_id INT NOT NULL,
+    FOREIGN KEY (parent_id) REFERENCES tbl_p046_parent (id)
+);</code></pre></div><button type="button" class="copy" data-copy="answer46">완성 SQL 복사</button></details></article>
+<article class="question" id="q47" data-group="외래키·참조 동작"><h3><span class="qnum">Q047</span>UNIQUE 키 참조</h3><p>부모의 유일하고 NULL 불가인 code를 참조한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p047 (parent_code VARCHAR(2),
+    FOREIGN KEY (parent_code) REFERENCES tbl_p047_parent (<span class="blank"><label class="sr-only" for="q47-1">47번 빈칸 1</label><input id="q47-1" placeholder="(1)" data-answers="[&quot;code&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>)
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="47">이 문제 채점</button><span id="feedback47" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup47"><pre><code>DROP TABLE IF EXISTS tbl_p047;
+DROP TABLE IF EXISTS tbl_p047_parent;
+CREATE TABLE tbl_p047_parent (code VARCHAR(2) NOT NULL UNIQUE);</code></pre></div><button type="button" class="copy" data-copy="setup47">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) code</p>
+<p>참조 대상은 기본키 또는 적절한 유일 키로 준비한다.</p>
+<div id="answer47"><pre><code>CREATE TABLE tbl_p047 (parent_code VARCHAR(2),
+    FOREIGN KEY (parent_code) REFERENCES tbl_p047_parent (code)
+);</code></pre></div><button type="button" class="copy" data-copy="answer47">완성 SQL 복사</button></details></article>
+<article class="question" id="q48" data-group="외래키·참조 동작"><h3><span class="qnum">Q048</span>외래키 종합</h3><p>이름 fk_p048, 삭제 연쇄, 갱신 거부를 완성한다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p048 (parent_id INT,
+    CONSTRAINT fk_p048 <span class="blank"><label class="sr-only" for="q48-1">48번 빈칸 1</label><input id="q48-1" placeholder="(1)" data-answers="[&quot;FOREIGN KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (parent_id)
+    <span class="blank"><label class="sr-only" for="q48-2">48번 빈칸 2</label><input id="q48-2" placeholder="(2)" data-answers="[&quot;REFERENCES&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> tbl_p048_parent (id)
+    ON DELETE <span class="blank"><label class="sr-only" for="q48-3">48번 빈칸 3</label><input id="q48-3" placeholder="(3)" data-answers="[&quot;CASCADE&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(3) __________</span></span> ON UPDATE <span class="blank"><label class="sr-only" for="q48-4">48번 빈칸 4</label><input id="q48-4" placeholder="(4)" data-answers="[&quot;RESTRICT&quot;, &quot;NO ACTION&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(4) __________</span></span>
+);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="48">이 문제 채점</button><span id="feedback48" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup48"><pre><code>DROP TABLE IF EXISTS tbl_p048;
+DROP TABLE IF EXISTS tbl_p048_parent;
+CREATE TABLE tbl_p048_parent (id INT PRIMARY KEY);</code></pre></div><button type="button" class="copy" data-copy="setup48">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) FOREIGN KEY · (2) REFERENCES · (3) CASCADE · (4) RESTRICT <span class="muted">(또는 NO ACTION)</span></p>
+<div id="answer48"><pre><code>CREATE TABLE tbl_p048 (parent_id INT,
+    CONSTRAINT fk_p048 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p048_parent (id)
+    ON DELETE CASCADE ON UPDATE RESTRICT
+);</code></pre></div><button type="button" class="copy" data-copy="answer48">완성 SQL 복사</button></details></article>
+<h3 class="group-head" id="group4">ALTER TABLE · 49~66</h3>
+<article class="question" id="q49" data-group="ALTER TABLE"><h3><span class="qnum">Q049</span>열 추가</h3><p>note 가변 길이 30자 열을 추가한다.</p>
+<pre class="qcode"><code><span class="blank"><label class="sr-only" for="q49-1">49번 빈칸 1</label><input id="q49-1" placeholder="(1)" data-answers="[&quot;ALTER TABLE&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> tbl_p049 <span class="blank"><label class="sr-only" for="q49-2">49번 빈칸 2</label><input id="q49-2" placeholder="(2)" data-answers="[&quot;ADD COLUMN&quot;, &quot;ADD&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> note VARCHAR(30);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="49">이 문제 채점</button><span id="feedback49" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup49"><pre><code>DROP TABLE IF EXISTS tbl_p049;
+CREATE TABLE tbl_p049 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup49">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) ALTER TABLE · (2) ADD COLUMN <span class="muted">(또는 ADD)</span></p>
+<div id="answer49"><pre><code>ALTER TABLE tbl_p049 ADD COLUMN note VARCHAR(30);</code></pre></div><button type="button" class="copy" data-copy="answer49">완성 SQL 복사</button></details></article>
+<article class="question" id="q50" data-group="ALTER TABLE"><h3><span class="qnum">Q050</span>제약이 있는 열 추가</h3><p>기본값 1, NULL 불가인 qty를 추가한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p050 ADD COLUMN qty INT <span class="blank"><label class="sr-only" for="q50-1">50번 빈칸 1</label><input id="q50-1" placeholder="(1)" data-answers="[&quot;DEFAULT&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> 1 <span class="blank"><label class="sr-only" for="q50-2">50번 빈칸 2</label><input id="q50-2" placeholder="(2)" data-answers="[&quot;NOT NULL&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="50">이 문제 채점</button><span id="feedback50" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup50"><pre><code>DROP TABLE IF EXISTS tbl_p050;
+CREATE TABLE tbl_p050 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup50">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DEFAULT · (2) NOT NULL</p>
+<div id="answer50"><pre><code>ALTER TABLE tbl_p050 ADD COLUMN qty INT DEFAULT 1 NOT NULL;</code></pre></div><button type="button" class="copy" data-copy="answer50">완성 SQL 복사</button></details></article>
+<article class="question" id="q51" data-group="ALTER TABLE"><h3><span class="qnum">Q051</span>열 여러 개 추가</h3><p>age와 memo 열을 하나의 ALTER 문장으로 추가한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p051
+    ADD COLUMN age INT<span class="blank"><label class="sr-only" for="q51-1">51번 빈칸 1</label><input id="q51-1" placeholder="(1)" data-answers="[&quot;,&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>
+    <span class="blank"><label class="sr-only" for="q51-2">51번 빈칸 2</label><input id="q51-2" placeholder="(2)" data-answers="[&quot;ADD COLUMN&quot;, &quot;ADD&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> memo VARCHAR(20);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="51">이 문제 채점</button><span id="feedback51" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup51"><pre><code>DROP TABLE IF EXISTS tbl_p051;
+CREATE TABLE tbl_p051 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup51">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) , · (2) ADD COLUMN <span class="muted">(또는 ADD)</span></p>
+<div id="answer51"><pre><code>ALTER TABLE tbl_p051
+    ADD COLUMN age INT,
+    ADD COLUMN memo VARCHAR(20);</code></pre></div><button type="button" class="copy" data-copy="answer51">완성 SQL 복사</button></details></article>
+<article class="question" id="q52" data-group="ALTER TABLE"><h3><span class="qnum">Q052</span>열 삭제</h3><p>email 열을 제거한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p052 <span class="blank"><label class="sr-only" for="q52-1">52번 빈칸 1</label><input id="q52-1" placeholder="(1)" data-answers="[&quot;DROP COLUMN&quot;, &quot;DROP&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> email;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="52">이 문제 채점</button><span id="feedback52" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup52"><pre><code>DROP TABLE IF EXISTS tbl_p052;
+CREATE TABLE tbl_p052 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup52">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DROP COLUMN <span class="muted">(또는 DROP)</span></p>
+<div id="answer52"><pre><code>ALTER TABLE tbl_p052 DROP COLUMN email;</code></pre></div><button type="button" class="copy" data-copy="answer52">완성 SQL 복사</button></details></article>
+<article class="question" id="q53" data-group="ALTER TABLE"><h3><span class="qnum">Q053</span>열 이름 변경</h3><p>score를 points라는 이름으로 바꾼다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p053 <span class="blank"><label class="sr-only" for="q53-1">53번 빈칸 1</label><input id="q53-1" placeholder="(1)" data-answers="[&quot;RENAME COLUMN&quot;]" style="--w:15ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> score <span class="blank"><label class="sr-only" for="q53-2">53번 빈칸 2</label><input id="q53-2" placeholder="(2)" data-answers="[&quot;TO&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> points;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="53">이 문제 채점</button><span id="feedback53" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup53"><pre><code>DROP TABLE IF EXISTS tbl_p053;
+CREATE TABLE tbl_p053 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup53">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) RENAME COLUMN · (2) TO</p>
+<div id="answer53"><pre><code>ALTER TABLE tbl_p053 RENAME COLUMN score TO points;</code></pre></div><button type="button" class="copy" data-copy="answer53">완성 SQL 복사</button></details></article>
+<article class="question" id="q54" data-group="ALTER TABLE"><h3><span class="qnum">Q054</span>테이블 이름 변경</h3><p>테이블 이름을 tbl_p054_new로 바꾼다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p054 <span class="blank"><label class="sr-only" for="q54-1">54번 빈칸 1</label><input id="q54-1" placeholder="(1)" data-answers="[&quot;RENAME TO&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> tbl_p054_new;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="54">이 문제 채점</button><span id="feedback54" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup54"><pre><code>DROP TABLE IF EXISTS tbl_p054_new;
+DROP TABLE IF EXISTS tbl_p054;
+CREATE TABLE tbl_p054 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup54">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) RENAME TO</p>
+<div id="answer54"><pre><code>ALTER TABLE tbl_p054 RENAME TO tbl_p054_new;</code></pre></div><button type="button" class="copy" data-copy="answer54">완성 SQL 복사</button></details></article>
+<article class="question" id="q55" data-group="ALTER TABLE"><h3><span class="qnum">Q055</span>기본값 설정</h3><p>score의 이후 기본값을 60으로 한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p055 <span class="blank"><label class="sr-only" for="q55-1">55번 빈칸 1</label><input id="q55-1" placeholder="(1)" data-answers="[&quot;ALTER COLUMN&quot;, &quot;ALTER&quot;]" style="--w:14ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> score <span class="blank"><label class="sr-only" for="q55-2">55번 빈칸 2</label><input id="q55-2" placeholder="(2)" data-answers="[&quot;SET DEFAULT&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> 60;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="55">이 문제 채점</button><span id="feedback55" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup55"><pre><code>DROP TABLE IF EXISTS tbl_p055;
+CREATE TABLE tbl_p055 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup55">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) ALTER COLUMN <span class="muted">(또는 ALTER)</span> · (2) SET DEFAULT</p>
+<p>기존 행의 score를 60으로 바꾸는 문장이 아니다.</p>
+<div id="answer55"><pre><code>ALTER TABLE tbl_p055 ALTER COLUMN score SET DEFAULT 60;</code></pre></div><button type="button" class="copy" data-copy="answer55">완성 SQL 복사</button></details></article>
+<article class="question" id="q56" data-group="ALTER TABLE"><h3><span class="qnum">Q056</span>기본값 해제</h3><p>score의 기본값을 제거한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p056 ALTER COLUMN score <span class="blank"><label class="sr-only" for="q56-1">56번 빈칸 1</label><input id="q56-1" placeholder="(1)" data-answers="[&quot;DROP DEFAULT&quot;]" style="--w:14ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="56">이 문제 채점</button><span id="feedback56" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup56"><pre><code>DROP TABLE IF EXISTS tbl_p056;
+CREATE TABLE tbl_p056 (id INT, score INT, email VARCHAR(40));
+ALTER TABLE tbl_p056 ALTER COLUMN score SET DEFAULT 60;</code></pre></div><button type="button" class="copy" data-copy="setup56">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DROP DEFAULT</p>
+<div id="answer56"><pre><code>ALTER TABLE tbl_p056 ALTER COLUMN score DROP DEFAULT;</code></pre></div><button type="button" class="copy" data-copy="answer56">완성 SQL 복사</button></details></article>
+<article class="question" id="q57" data-group="ALTER TABLE"><h3><span class="qnum">Q057</span>기본키 추가</h3><p>기본키가 없는 테이블에 id 기본키를 추가한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p057 <span class="blank"><label class="sr-only" for="q57-1">57번 빈칸 1</label><input id="q57-1" placeholder="(1)" data-answers="[&quot;ADD CONSTRAINT&quot;]" style="--w:16ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> pk_p057 <span class="blank"><label class="sr-only" for="q57-2">57번 빈칸 2</label><input id="q57-2" placeholder="(2)" data-answers="[&quot;PRIMARY KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (id);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="57">이 문제 채점</button><span id="feedback57" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup57"><pre><code>DROP TABLE IF EXISTS tbl_p057;
+CREATE TABLE tbl_p057 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup57">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) ADD CONSTRAINT · (2) PRIMARY KEY</p>
+<div id="answer57"><pre><code>ALTER TABLE tbl_p057 ADD CONSTRAINT pk_p057 PRIMARY KEY (id);</code></pre></div><button type="button" class="copy" data-copy="answer57">완성 SQL 복사</button></details></article>
+<article class="question" id="q58" data-group="ALTER TABLE"><h3><span class="qnum">Q058</span>유일 제약 추가</h3><p>email에 이름 uq_p058인 유일 제약을 추가한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p058 ADD CONSTRAINT uq_p058 <span class="blank"><label class="sr-only" for="q58-1">58번 빈칸 1</label><input id="q58-1" placeholder="(1)" data-answers="[&quot;UNIQUE&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (email);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="58">이 문제 채점</button><span id="feedback58" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup58"><pre><code>DROP TABLE IF EXISTS tbl_p058;
+CREATE TABLE tbl_p058 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup58">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) UNIQUE</p>
+<div id="answer58"><pre><code>ALTER TABLE tbl_p058 ADD CONSTRAINT uq_p058 UNIQUE (email);</code></pre></div><button type="button" class="copy" data-copy="answer58">완성 SQL 복사</button></details></article>
+<article class="question" id="q59" data-group="ALTER TABLE"><h3><span class="qnum">Q059</span>검사 제약 추가</h3><p>ck_p059라는 이름으로 score &gt;= 0을 추가한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p059 ADD CONSTRAINT ck_p059 <span class="blank"><label class="sr-only" for="q59-1">59번 빈칸 1</label><input id="q59-1" placeholder="(1)" data-answers="[&quot;CHECK&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (score &gt;= 0);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="59">이 문제 채점</button><span id="feedback59" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup59"><pre><code>DROP TABLE IF EXISTS tbl_p059;
+CREATE TABLE tbl_p059 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup59">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CHECK</p>
+<div id="answer59"><pre><code>ALTER TABLE tbl_p059 ADD CONSTRAINT ck_p059 CHECK (score &gt;= 0);</code></pre></div><button type="button" class="copy" data-copy="answer59">완성 SQL 복사</button></details></article>
+<article class="question" id="q60" data-group="ALTER TABLE"><h3><span class="qnum">Q060</span>외래키 추가</h3><p>기존 parent_id에 fk_p060 외래키를 추가한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p060 ADD CONSTRAINT fk_p060 <span class="blank"><label class="sr-only" for="q60-1">60번 빈칸 1</label><input id="q60-1" placeholder="(1)" data-answers="[&quot;FOREIGN KEY&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> (parent_id)
+    <span class="blank"><label class="sr-only" for="q60-2">60번 빈칸 2</label><input id="q60-2" placeholder="(2)" data-answers="[&quot;REFERENCES&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> tbl_p060_parent (id);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="60">이 문제 채점</button><span id="feedback60" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup60"><pre><code>DROP TABLE IF EXISTS tbl_p060;
+DROP TABLE IF EXISTS tbl_p060_parent;
+CREATE TABLE tbl_p060_parent (id INT PRIMARY KEY);
+CREATE TABLE tbl_p060 (parent_id INT);</code></pre></div><button type="button" class="copy" data-copy="setup60">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) FOREIGN KEY · (2) REFERENCES</p>
+<div id="answer60"><pre><code>ALTER TABLE tbl_p060 ADD CONSTRAINT fk_p060 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p060_parent (id);</code></pre></div><button type="button" class="copy" data-copy="answer60">완성 SQL 복사</button></details></article>
+<article class="question" id="q61" data-group="ALTER TABLE"><h3><span class="qnum">Q061</span>CHECK 삭제</h3><p>이름 ck_p061인 CHECK를 삭제한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p061 <span class="blank"><label class="sr-only" for="q61-1">61번 빈칸 1</label><input id="q61-1" placeholder="(1)" data-answers="[&quot;DROP CONSTRAINT&quot;]" style="--w:17ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> ck_p061;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="61">이 문제 채점</button><span id="feedback61" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup61"><pre><code>DROP TABLE IF EXISTS tbl_p061;
+CREATE TABLE tbl_p061 (id INT, score INT, email VARCHAR(40));
+ALTER TABLE tbl_p061 ADD CONSTRAINT ck_p061 CHECK (score &gt;= 0);</code></pre></div><button type="button" class="copy" data-copy="setup61">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DROP CONSTRAINT</p>
+<div id="answer61"><pre><code>ALTER TABLE tbl_p061 DROP CONSTRAINT ck_p061;</code></pre></div><button type="button" class="copy" data-copy="answer61">완성 SQL 복사</button></details></article>
+<article class="question" id="q62" data-group="ALTER TABLE"><h3><span class="qnum">Q062</span>UNIQUE 삭제</h3><p>이름 uq_p062인 유일 제약을 삭제한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p062 DROP <span class="blank"><label class="sr-only" for="q62-1">62번 빈칸 1</label><input id="q62-1" placeholder="(1)" data-answers="[&quot;CONSTRAINT&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> uq_p062;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="62">이 문제 채점</button><span id="feedback62" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup62"><pre><code>DROP TABLE IF EXISTS tbl_p062;
+CREATE TABLE tbl_p062 (id INT, score INT, email VARCHAR(40));
+ALTER TABLE tbl_p062 ADD CONSTRAINT uq_p062 UNIQUE (email);</code></pre></div><button type="button" class="copy" data-copy="setup62">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CONSTRAINT</p>
+<div id="answer62"><pre><code>ALTER TABLE tbl_p062 DROP CONSTRAINT uq_p062;</code></pre></div><button type="button" class="copy" data-copy="answer62">완성 SQL 복사</button></details></article>
+<article class="question" id="q63" data-group="ALTER TABLE"><h3><span class="qnum">Q063</span>외래키 삭제</h3><p>이름 fk_p063인 외래키를 삭제한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p063 <span class="blank"><label class="sr-only" for="q63-1">63번 빈칸 1</label><input id="q63-1" placeholder="(1)" data-answers="[&quot;DROP CONSTRAINT&quot;]" style="--w:17ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> fk_p063;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="63">이 문제 채점</button><span id="feedback63" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup63"><pre><code>DROP TABLE IF EXISTS tbl_p063;
+DROP TABLE IF EXISTS tbl_p063_parent;
+CREATE TABLE tbl_p063_parent (id INT PRIMARY KEY);
+CREATE TABLE tbl_p063 (id INT PRIMARY KEY, parent_id INT,
+    CONSTRAINT fk_p063 FOREIGN KEY (parent_id)
+    REFERENCES tbl_p063_parent (id)
+);</code></pre></div><button type="button" class="copy" data-copy="setup63">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DROP CONSTRAINT</p>
+<div id="answer63"><pre><code>ALTER TABLE tbl_p063 DROP CONSTRAINT fk_p063;</code></pre></div><button type="button" class="copy" data-copy="answer63">완성 SQL 복사</button></details></article>
+<article class="question" id="q64" data-group="ALTER TABLE"><h3><span class="qnum">Q064</span>기본값 변경</h3><p>이미 있던 score 기본값 0을 100으로 바꾼다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p064 ALTER COLUMN score <span class="blank"><label class="sr-only" for="q64-1">64번 빈칸 1</label><input id="q64-1" placeholder="(1)" data-answers="[&quot;SET DEFAULT&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> <span class="blank"><label class="sr-only" for="q64-2">64번 빈칸 2</label><input id="q64-2" placeholder="(2)" data-answers="[&quot;100&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="64">이 문제 채점</button><span id="feedback64" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup64"><pre><code>DROP TABLE IF EXISTS tbl_p064;
+CREATE TABLE tbl_p064 (id INT, score INT, email VARCHAR(40));
+ALTER TABLE tbl_p064 ALTER COLUMN score SET DEFAULT 0;</code></pre></div><button type="button" class="copy" data-copy="setup64">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) SET DEFAULT · (2) 100</p>
+<div id="answer64"><pre><code>ALTER TABLE tbl_p064 ALTER COLUMN score SET DEFAULT 100;</code></pre></div><button type="button" class="copy" data-copy="answer64">완성 SQL 복사</button></details></article>
+<article class="question" id="q65" data-group="ALTER TABLE"><h3><span class="qnum">Q065</span>제약조건 여러 개 추가</h3><p>PK와 CHECK를 한 ALTER 문장으로 추가한다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p065
+    ADD CONSTRAINT pk_p065 PRIMARY KEY (id),
+    <span class="blank"><label class="sr-only" for="q65-1">65번 빈칸 1</label><input id="q65-1" placeholder="(1)" data-answers="[&quot;ADD CONSTRAINT&quot;]" style="--w:16ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> ck_p065 <span class="blank"><label class="sr-only" for="q65-2">65번 빈칸 2</label><input id="q65-2" placeholder="(2)" data-answers="[&quot;CHECK&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (score &lt;= 100);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="65">이 문제 채점</button><span id="feedback65" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup65"><pre><code>DROP TABLE IF EXISTS tbl_p065;
+CREATE TABLE tbl_p065 (id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup65">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) ADD CONSTRAINT · (2) CHECK</p>
+<div id="answer65"><pre><code>ALTER TABLE tbl_p065
+    ADD CONSTRAINT pk_p065 PRIMARY KEY (id),
+    ADD CONSTRAINT ck_p065 CHECK (score &lt;= 100);</code></pre></div><button type="button" class="copy" data-copy="answer65">완성 SQL 복사</button></details></article>
+<article class="question" id="q66" data-group="ALTER TABLE"><h3><span class="qnum">Q066</span>CHECK 조건 변경</h3><p>기존 CHECK를 삭제한 뒤 0~100 범위 CHECK로 다시 만든다.</p>
+<pre class="qcode"><code>ALTER TABLE tbl_p066 <span class="blank"><label class="sr-only" for="q66-1">66번 빈칸 1</label><input id="q66-1" placeholder="(1)" data-answers="[&quot;DROP CONSTRAINT&quot;]" style="--w:17ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> ck_p066;
+ALTER TABLE tbl_p066 ADD CONSTRAINT ck_p066
+    CHECK (score <span class="blank"><label class="sr-only" for="q66-2">66번 빈칸 2</label><input id="q66-2" placeholder="(2)" data-answers="[&quot;BETWEEN&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> 0 <span class="blank"><label class="sr-only" for="q66-3">66번 빈칸 3</label><input id="q66-3" placeholder="(3)" data-answers="[&quot;AND&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(3) __________</span></span> 100);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="66">이 문제 채점</button><span id="feedback66" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup66"><pre><code>DROP TABLE IF EXISTS tbl_p066;
+CREATE TABLE tbl_p066 (id INT, score INT, email VARCHAR(40));
+ALTER TABLE tbl_p066 ADD CONSTRAINT ck_p066 CHECK (score &gt;= 0);</code></pre></div><button type="button" class="copy" data-copy="setup66">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DROP CONSTRAINT · (2) BETWEEN · (3) AND</p>
+<div id="answer66"><pre><code>ALTER TABLE tbl_p066 DROP CONSTRAINT ck_p066;
+ALTER TABLE tbl_p066 ADD CONSTRAINT ck_p066
+    CHECK (score BETWEEN 0 AND 100);</code></pre></div><button type="button" class="copy" data-copy="answer66">완성 SQL 복사</button></details></article>
+<h3 class="group-head" id="group5">복사·임시·삭제 · 67~74</h3>
+<article class="question" id="q67" data-group="복사·임시·삭제"><h3><span class="qnum">Q067</span>조회 결과로 생성</h3><p>원본의 id, score와 모든 행으로 새 테이블을 만든다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p067 <span class="blank"><label class="sr-only" for="q67-1">67번 빈칸 1</label><input id="q67-1" placeholder="(1)" data-answers="[&quot;AS&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>
+<span class="blank"><label class="sr-only" for="q67-2">67번 빈칸 2</label><input id="q67-2" placeholder="(2)" data-answers="[&quot;SELECT&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> id, score FROM tbl_p067_src;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="67">이 문제 채점</button><span id="feedback67" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup67"><pre><code>DROP TABLE IF EXISTS tbl_p067;
+DROP TABLE IF EXISTS tbl_p067_src;
+CREATE TABLE tbl_p067_src (id INT PRIMARY KEY, score INT);
+INSERT INTO tbl_p067_src VALUES (1, 80), (2, 60);</code></pre></div><button type="button" class="copy" data-copy="setup67">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) AS · (2) SELECT</p>
+<div id="answer67"><pre><code>CREATE TABLE tbl_p067 AS
+SELECT id, score FROM tbl_p067_src;</code></pre></div><button type="button" class="copy" data-copy="answer67">완성 SQL 복사</button></details></article>
+<article class="question" id="q68" data-group="복사·임시·삭제"><h3><span class="qnum">Q068</span>조건부 복사</h3><p>score가 70 이상인 행만 새 테이블에 담는다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p068 AS
+SELECT id, score FROM tbl_p068_src <span class="blank"><label class="sr-only" for="q68-1">68번 빈칸 1</label><input id="q68-1" placeholder="(1)" data-answers="[&quot;WHERE&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> score <span class="blank"><label class="sr-only" for="q68-2">68번 빈칸 2</label><input id="q68-2" placeholder="(2)" data-answers="[&quot;&gt;=&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> 70;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="68">이 문제 채점</button><span id="feedback68" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup68"><pre><code>DROP TABLE IF EXISTS tbl_p068;
+DROP TABLE IF EXISTS tbl_p068_src;
+CREATE TABLE tbl_p068_src (id INT PRIMARY KEY, score INT);
+INSERT INTO tbl_p068_src VALUES (1, 80), (2, 60);</code></pre></div><button type="button" class="copy" data-copy="setup68">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) WHERE · (2) &gt;=</p>
+<div id="answer68"><pre><code>CREATE TABLE tbl_p068 AS
+SELECT id, score FROM tbl_p068_src WHERE score &gt;= 70;</code></pre></div><button type="button" class="copy" data-copy="answer68">완성 SQL 복사</button></details></article>
+<article class="question" id="q69" data-group="복사·임시·삭제"><h3><span class="qnum">Q069</span>행 없는 생성</h3><p>WHERE 1 = 0으로 결과 열만 만들고 행은 담지 않는다.</p>
+<pre class="qcode"><code>CREATE TABLE tbl_p069 AS
+SELECT id, score FROM tbl_p069_src <span class="blank"><label class="sr-only" for="q69-1">69번 빈칸 1</label><input id="q69-1" placeholder="(1)" data-answers="[&quot;WHERE&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> <span class="blank"><label class="sr-only" for="q69-2">69번 빈칸 2</label><input id="q69-2" placeholder="(2)" data-answers="[&quot;1 = 0&quot;, &quot;0 = 1&quot;, &quot;FALSE&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="69">이 문제 채점</button><span id="feedback69" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup69"><pre><code>DROP TABLE IF EXISTS tbl_p069;
+DROP TABLE IF EXISTS tbl_p069_src;
+CREATE TABLE tbl_p069_src (id INT PRIMARY KEY, score INT);
+INSERT INTO tbl_p069_src VALUES (1, 80), (2, 60);</code></pre></div><button type="button" class="copy" data-copy="setup69">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) WHERE · (2) 1 = 0 <span class="muted">(또는 0 = 1 / FALSE)</span></p>
+<div id="answer69"><pre><code>CREATE TABLE tbl_p069 AS
+SELECT id, score FROM tbl_p069_src WHERE 1 = 0;</code></pre></div><button type="button" class="copy" data-copy="answer69">완성 SQL 복사</button></details></article>
+<article class="question" id="q70" data-group="복사·임시·삭제"><h3><span class="qnum">Q070</span>임시 테이블</h3><p>현재 연결에서 쓸 임시 테이블을 만든다.</p>
+<pre class="qcode"><code>CREATE <span class="blank"><label class="sr-only" for="q70-1">70번 빈칸 1</label><input id="q70-1" placeholder="(1)" data-answers="[&quot;TEMPORARY&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> TABLE tbl_p070 (id INT);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="70">이 문제 채점</button><span id="feedback70" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup70"><pre><code>DROP TABLE IF EXISTS tbl_p070;</code></pre></div><button type="button" class="copy" data-copy="setup70">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) TEMPORARY</p>
+<p>다른 연결에서 같은 임시 테이블을 공유하지 않는다.</p>
+<div id="answer70"><pre><code>CREATE TEMPORARY TABLE tbl_p070 (id INT);</code></pre></div><button type="button" class="copy" data-copy="answer70">완성 SQL 복사</button></details></article>
+<article class="question" id="q71" data-group="복사·임시·삭제"><h3><span class="qnum">Q071</span>전체 행 비우기</h3><p>테이블 구조는 남기고 전체 행을 비운다. TRUNCATE를 사용한다.</p>
+<pre class="qcode"><code><span class="blank"><label class="sr-only" for="q71-1">71번 빈칸 1</label><input id="q71-1" placeholder="(1)" data-answers="[&quot;TRUNCATE&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> <span class="blank"><label class="sr-only" for="q71-2">71번 빈칸 2</label><input id="q71-2" placeholder="(2)" data-answers="[&quot;TABLE&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> tbl_p071;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="71">이 문제 채점</button><span id="feedback71" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup71"><pre><code>DROP TABLE IF EXISTS tbl_p071;
+CREATE TABLE tbl_p071 (id INT);
+INSERT INTO tbl_p071 VALUES (1), (2);</code></pre></div><button type="button" class="copy" data-copy="setup71">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) TRUNCATE · (2) TABLE</p>
+<div id="answer71"><pre><code>TRUNCATE TABLE tbl_p071;</code></pre></div><button type="button" class="copy" data-copy="answer71">완성 SQL 복사</button></details></article>
+<article class="question" id="q72" data-group="복사·임시·삭제"><h3><span class="qnum">Q072</span>테이블 제거</h3><p>테이블 정의와 데이터를 함께 삭제한다.</p>
+<pre class="qcode"><code><span class="blank"><label class="sr-only" for="q72-1">72번 빈칸 1</label><input id="q72-1" placeholder="(1)" data-answers="[&quot;DROP TABLE&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> tbl_p072;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="72">이 문제 채점</button><span id="feedback72" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup72"><pre><code>DROP TABLE IF EXISTS tbl_p072;
+CREATE TABLE tbl_p072 (id INT);</code></pre></div><button type="button" class="copy" data-copy="setup72">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DROP TABLE</p>
+<div id="answer72"><pre><code>DROP TABLE tbl_p072;</code></pre></div><button type="button" class="copy" data-copy="answer72">완성 SQL 복사</button></details></article>
+<article class="question" id="q73" data-group="복사·임시·삭제"><h3><span class="qnum">Q073</span>없어도 삭제 오류 방지</h3><p>테이블이 없어도 없는 테이블 오류를 내지 않는다.</p>
+<pre class="qcode"><code>DROP TABLE <span class="blank"><label class="sr-only" for="q73-1">73번 빈칸 1</label><input id="q73-1" placeholder="(1)" data-answers="[&quot;IF EXISTS&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> tbl_p073;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="73">이 문제 채점</button><span id="feedback73" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup73"><pre><code>DROP TABLE IF EXISTS tbl_p073;</code></pre></div><button type="button" class="copy" data-copy="setup73">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) IF EXISTS</p>
+<div id="answer73"><pre><code>DROP TABLE IF EXISTS tbl_p073;</code></pre></div><button type="button" class="copy" data-copy="answer73">완성 SQL 복사</button></details></article>
+<article class="question" id="q74" data-group="복사·임시·삭제"><h3><span class="qnum">Q074</span>여러 테이블 삭제</h3><p>의존 관계가 없는 두 테이블을 하나의 문장으로 삭제한다.</p>
+<pre class="qcode"><code>DROP TABLE tbl_p074<span class="blank"><label class="sr-only" for="q74-1">74번 빈칸 1</label><input id="q74-1" placeholder="(1)" data-answers="[&quot;,&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> tbl_p074_other;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="74">이 문제 채점</button><span id="feedback74" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup74"><pre><code>DROP TABLE IF EXISTS tbl_p074;
+DROP TABLE IF EXISTS tbl_p074_other;
+CREATE TABLE tbl_p074 (id INT);
+CREATE TABLE tbl_p074_other (id INT);</code></pre></div><button type="button" class="copy" data-copy="setup74">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) ,</p>
+<div id="answer74"><pre><code>DROP TABLE tbl_p074, tbl_p074_other;</code></pre></div><button type="button" class="copy" data-copy="answer74">완성 SQL 복사</button></details></article>
+<h3 class="group-head" id="group6">뷰 · 75~84</h3>
+<article class="question" id="q75" data-group="뷰"><h3><span class="qnum">Q075</span>뷰 생성</h3><p>id, name을 보여 주는 뷰를 만든다.</p>
+<pre class="qcode"><code><span class="blank"><label class="sr-only" for="q75-1">75번 빈칸 1</label><input id="q75-1" placeholder="(1)" data-answers="[&quot;CREATE VIEW&quot;]" style="--w:13ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> vw_p075 <span class="blank"><label class="sr-only" for="q75-2">75번 빈칸 2</label><input id="q75-2" placeholder="(2)" data-answers="[&quot;AS&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>
+SELECT id, name FROM tbl_p075;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="75">이 문제 채점</button><span id="feedback75" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup75"><pre><code>DROP VIEW IF EXISTS vw_p075;
+DROP TABLE IF EXISTS tbl_p075;
+CREATE TABLE tbl_p075 (id INT PRIMARY KEY, name VARCHAR(20), score INT);</code></pre></div><button type="button" class="copy" data-copy="setup75">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CREATE VIEW · (2) AS</p>
+<div id="answer75"><pre><code>CREATE VIEW vw_p075 AS
+SELECT id, name FROM tbl_p075;</code></pre></div><button type="button" class="copy" data-copy="answer75">완성 SQL 복사</button></details></article>
+<article class="question" id="q76" data-group="뷰"><h3><span class="qnum">Q076</span>조건부 뷰</h3><p>score가 70 이상인 행만 보여 준다.</p>
+<pre class="qcode"><code>CREATE VIEW vw_p076 AS
+SELECT id, score FROM tbl_p076 <span class="blank"><label class="sr-only" for="q76-1">76번 빈칸 1</label><input id="q76-1" placeholder="(1)" data-answers="[&quot;WHERE&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> score &gt;= 70;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="76">이 문제 채점</button><span id="feedback76" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup76"><pre><code>DROP VIEW IF EXISTS vw_p076;
+DROP TABLE IF EXISTS tbl_p076;
+CREATE TABLE tbl_p076 (id INT PRIMARY KEY, name VARCHAR(20), score INT);</code></pre></div><button type="button" class="copy" data-copy="setup76">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) WHERE</p>
+<div id="answer76"><pre><code>CREATE VIEW vw_p076 AS
+SELECT id, score FROM tbl_p076 WHERE score &gt;= 70;</code></pre></div><button type="button" class="copy" data-copy="answer76">완성 SQL 복사</button></details></article>
+<article class="question" id="q77" data-group="뷰"><h3><span class="qnum">Q077</span>뷰 열 이름 지정</h3><p>뷰의 열 이름을 student_id, student_name으로 한다.</p>
+<pre class="qcode"><code>CREATE VIEW vw_p077 (<span class="blank"><label class="sr-only" for="q77-1">77번 빈칸 1</label><input id="q77-1" placeholder="(1)" data-answers="[&quot;student_id&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>, <span class="blank"><label class="sr-only" for="q77-2">77번 빈칸 2</label><input id="q77-2" placeholder="(2)" data-answers="[&quot;student_name&quot;]" style="--w:14ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>) AS
+SELECT id, name FROM tbl_p077;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="77">이 문제 채점</button><span id="feedback77" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup77"><pre><code>DROP VIEW IF EXISTS vw_p077;
+DROP TABLE IF EXISTS tbl_p077;
+CREATE TABLE tbl_p077 (id INT PRIMARY KEY, name VARCHAR(20), score INT);</code></pre></div><button type="button" class="copy" data-copy="setup77">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) student_id · (2) student_name</p>
+<div id="answer77"><pre><code>CREATE VIEW vw_p077 (student_id, student_name) AS
+SELECT id, name FROM tbl_p077;</code></pre></div><button type="button" class="copy" data-copy="answer77">완성 SQL 복사</button></details></article>
+<article class="question" id="q78" data-group="뷰"><h3><span class="qnum">Q078</span>기존 뷰 교체</h3><p>열 구성을 유지하고 뷰 조건을 80 이상으로 바꾼다.</p>
+<pre class="qcode"><code>CREATE <span class="blank"><label class="sr-only" for="q78-1">78번 빈칸 1</label><input id="q78-1" placeholder="(1)" data-answers="[&quot;OR REPLACE&quot;]" style="--w:12ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> VIEW vw_p078 AS
+SELECT id, score FROM tbl_p078 WHERE score &gt;= 80;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="78">이 문제 채점</button><span id="feedback78" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup78"><pre><code>DROP VIEW IF EXISTS vw_p078;
+DROP TABLE IF EXISTS tbl_p078;
+CREATE TABLE tbl_p078 (id INT PRIMARY KEY, name VARCHAR(20), score INT);
+CREATE VIEW vw_p078 AS SELECT id, score FROM tbl_p078 WHERE score &gt;= 70;</code></pre></div><button type="button" class="copy" data-copy="setup78">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) OR REPLACE</p>
+<div id="answer78"><pre><code>CREATE OR REPLACE VIEW vw_p078 AS
+SELECT id, score FROM tbl_p078 WHERE score &gt;= 80;</code></pre></div><button type="button" class="copy" data-copy="answer78">완성 SQL 복사</button></details></article>
+<article class="question" id="q79" data-group="뷰"><h3><span class="qnum">Q079</span>뷰 조건 검사</h3><p>뷰를 통한 입력·수정이 score &gt;= 70을 벗어나지 못하게 한다.</p>
+<pre class="qcode"><code>CREATE VIEW vw_p079 AS
+SELECT id, score FROM tbl_p079 WHERE score &gt;= 70
+<span class="blank"><label class="sr-only" for="q79-1">79번 빈칸 1</label><input id="q79-1" placeholder="(1)" data-answers="[&quot;WITH CHECK OPTION&quot;]" style="--w:19ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="79">이 문제 채점</button><span id="feedback79" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup79"><pre><code>DROP VIEW IF EXISTS vw_p079;
+DROP TABLE IF EXISTS tbl_p079;
+CREATE TABLE tbl_p079 (id INT PRIMARY KEY, name VARCHAR(20), score INT);</code></pre></div><button type="button" class="copy" data-copy="setup79">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) WITH CHECK OPTION</p>
+<div id="answer79"><pre><code>CREATE VIEW vw_p079 AS
+SELECT id, score FROM tbl_p079 WHERE score &gt;= 70
+WITH CHECK OPTION;</code></pre></div><button type="button" class="copy" data-copy="answer79">완성 SQL 복사</button></details></article>
+<article class="question" id="q80" data-group="뷰"><h3><span class="qnum">Q080</span>연쇄 조건 검사</h3><p>현재 뷰와 아래쪽 뷰의 조건까지 검사하도록 CASCADED를 명시한다.</p>
+<pre class="qcode"><code>CREATE VIEW vw_p080 AS
+SELECT id, score FROM vw_p080_base WHERE score &lt;= 90
+WITH <span class="blank"><label class="sr-only" for="q80-1">80번 빈칸 1</label><input id="q80-1" placeholder="(1)" data-answers="[&quot;CASCADED&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> CHECK OPTION;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="80">이 문제 채점</button><span id="feedback80" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup80"><pre><code>DROP VIEW IF EXISTS vw_p080;
+DROP VIEW IF EXISTS vw_p080_base;
+DROP TABLE IF EXISTS tbl_p080;
+CREATE TABLE tbl_p080 (id INT PRIMARY KEY, name VARCHAR(20), score INT);
+CREATE VIEW vw_p080_base AS SELECT id, score FROM tbl_p080 WHERE score &gt;= 70;</code></pre></div><button type="button" class="copy" data-copy="setup80">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CASCADED</p>
+<div id="answer80"><pre><code>CREATE VIEW vw_p080 AS
+SELECT id, score FROM vw_p080_base WHERE score &lt;= 90
+WITH CASCADED CHECK OPTION;</code></pre></div><button type="button" class="copy" data-copy="answer80">완성 SQL 복사</button></details></article>
+<article class="question" id="q81" data-group="뷰"><h3><span class="qnum">Q081</span>지역 조건 검사</h3><p>아래쪽 뷰에 CHECK OPTION이 없다. 현재 뷰의 조건만 검사하도록 명시한다.</p>
+<pre class="qcode"><code>CREATE VIEW vw_p081 AS
+SELECT id, score FROM vw_p081_base WHERE score &lt;= 90
+WITH <span class="blank"><label class="sr-only" for="q81-1">81번 빈칸 1</label><input id="q81-1" placeholder="(1)" data-answers="[&quot;LOCAL&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> CHECK OPTION;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="81">이 문제 채점</button><span id="feedback81" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup81"><pre><code>DROP VIEW IF EXISTS vw_p081;
+DROP VIEW IF EXISTS vw_p081_base;
+DROP TABLE IF EXISTS tbl_p081;
+CREATE TABLE tbl_p081 (id INT PRIMARY KEY, name VARCHAR(20), score INT);
+CREATE VIEW vw_p081_base AS SELECT id, score FROM tbl_p081 WHERE score &gt;= 70;</code></pre></div><button type="button" class="copy" data-copy="setup81">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) LOCAL</p>
+<p>아래쪽 뷰 자체에 CHECK OPTION이 붙어 있으면 그 검사는 별도로 적용된다.</p>
+<div id="answer81"><pre><code>CREATE VIEW vw_p081 AS
+SELECT id, score FROM vw_p081_base WHERE score &lt;= 90
+WITH LOCAL CHECK OPTION;</code></pre></div><button type="button" class="copy" data-copy="answer81">완성 SQL 복사</button></details></article>
+<article class="question" id="q82" data-group="뷰"><h3><span class="qnum">Q082</span>집계 뷰</h3><p>전체 학생의 평균 점수를 avg_score로 보여 준다.</p>
+<pre class="qcode"><code>CREATE VIEW vw_p082 AS
+SELECT <span class="blank"><label class="sr-only" for="q82-1">82번 빈칸 1</label><input id="q82-1" placeholder="(1)" data-answers="[&quot;AVG&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>(score) <span class="blank"><label class="sr-only" for="q82-2">82번 빈칸 2</label><input id="q82-2" placeholder="(2)" data-answers="[&quot;AS&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> avg_score FROM tbl_p082;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="82">이 문제 채점</button><span id="feedback82" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup82"><pre><code>DROP VIEW IF EXISTS vw_p082;
+DROP TABLE IF EXISTS tbl_p082;
+CREATE TABLE tbl_p082 (id INT PRIMARY KEY, name VARCHAR(20), score INT);</code></pre></div><button type="button" class="copy" data-copy="setup82">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) AVG · (2) AS</p>
+<p>이 집계 뷰는 조회용이다. 모든 뷰가 수정 가능한 것은 아니다.</p>
+<div id="answer82"><pre><code>CREATE VIEW vw_p082 AS
+SELECT AVG(score) AS avg_score FROM tbl_p082;</code></pre></div><button type="button" class="copy" data-copy="answer82">완성 SQL 복사</button></details></article>
+<article class="question" id="q83" data-group="뷰"><h3><span class="qnum">Q083</span>뷰 삭제</h3><p>원본 테이블을 남기고 뷰 정의만 지운다.</p>
+<pre class="qcode"><code><span class="blank"><label class="sr-only" for="q83-1">83번 빈칸 1</label><input id="q83-1" placeholder="(1)" data-answers="[&quot;DROP VIEW&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> vw_p083;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="83">이 문제 채점</button><span id="feedback83" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup83"><pre><code>DROP VIEW IF EXISTS vw_p083;
+DROP TABLE IF EXISTS tbl_p083;
+CREATE TABLE tbl_p083 (id INT PRIMARY KEY, name VARCHAR(20), score INT);
+CREATE VIEW vw_p083 AS SELECT id FROM tbl_p083;</code></pre></div><button type="button" class="copy" data-copy="setup83">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) DROP VIEW</p>
+<div id="answer83"><pre><code>DROP VIEW vw_p083;</code></pre></div><button type="button" class="copy" data-copy="answer83">완성 SQL 복사</button></details></article>
+<article class="question" id="q84" data-group="뷰"><h3><span class="qnum">Q084</span>뷰 안전 삭제</h3><p>뷰가 없을 때의 오류를 피한다.</p>
+<pre class="qcode"><code>DROP VIEW <span class="blank"><label class="sr-only" for="q84-1">84번 빈칸 1</label><input id="q84-1" placeholder="(1)" data-answers="[&quot;IF EXISTS&quot;]" style="--w:11ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> vw_p084;</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="84">이 문제 채점</button><span id="feedback84" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup84"><pre><code>DROP VIEW IF EXISTS vw_p084;</code></pre></div><button type="button" class="copy" data-copy="setup84">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) IF EXISTS</p>
+<div id="answer84"><pre><code>DROP VIEW IF EXISTS vw_p084;</code></pre></div><button type="button" class="copy" data-copy="answer84">완성 SQL 복사</button></details></article>
+<h3 class="group-head" id="group7">인덱스 · 85~90</h3>
+<article class="question" id="q85" data-group="인덱스"><h3><span class="qnum">Q085</span>일반 인덱스</h3><p>score 열에 idx_p085 인덱스를 만든다.</p>
+<pre class="qcode"><code><span class="blank"><label class="sr-only" for="q85-1">85번 빈칸 1</label><input id="q85-1" placeholder="(1)" data-answers="[&quot;CREATE INDEX&quot;]" style="--w:14ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> idx_p085 <span class="blank"><label class="sr-only" for="q85-2">85번 빈칸 2</label><input id="q85-2" placeholder="(2)" data-answers="[&quot;ON&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> tbl_p085 (score);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="85">이 문제 채점</button><span id="feedback85" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup85"><pre><code>DROP TABLE IF EXISTS tbl_p085;
+CREATE TABLE tbl_p085 (id INT, dept_id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup85">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) CREATE INDEX · (2) ON</p>
+<div id="answer85"><pre><code>CREATE INDEX idx_p085 ON tbl_p085 (score);</code></pre></div><button type="button" class="copy" data-copy="answer85">완성 SQL 복사</button></details></article>
+<article class="question" id="q86" data-group="인덱스"><h3><span class="qnum">Q086</span>복합 인덱스</h3><p>dept_id, score 순서로 복합 인덱스를 만든다.</p>
+<pre class="qcode"><code>CREATE INDEX idx_p086 ON tbl_p086 (<span class="blank"><label class="sr-only" for="q86-1">86번 빈칸 1</label><input id="q86-1" placeholder="(1)" data-answers="[&quot;dept_id&quot;]" style="--w:9ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>, <span class="blank"><label class="sr-only" for="q86-2">86번 빈칸 2</label><input id="q86-2" placeholder="(2)" data-answers="[&quot;score&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="86">이 문제 채점</button><span id="feedback86" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup86"><pre><code>DROP TABLE IF EXISTS tbl_p086;
+CREATE TABLE tbl_p086 (id INT, dept_id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup86">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) dept_id · (2) score</p>
+<p>열의 순서가 다르면 인덱스 활용 방식이 달라질 수 있다.</p>
+<div id="answer86"><pre><code>CREATE INDEX idx_p086 ON tbl_p086 (dept_id, score);</code></pre></div><button type="button" class="copy" data-copy="answer86">완성 SQL 복사</button></details></article>
+<article class="question" id="q87" data-group="인덱스"><h3><span class="qnum">Q087</span>유일 인덱스</h3><p>email의 일반 값 중복을 막는 인덱스를 만든다.</p>
+<pre class="qcode"><code>CREATE <span class="blank"><label class="sr-only" for="q87-1">87번 빈칸 1</label><input id="q87-1" placeholder="(1)" data-answers="[&quot;UNIQUE&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> INDEX idx_p087 ON tbl_p087 (email);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="87">이 문제 채점</button><span id="feedback87" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup87"><pre><code>DROP TABLE IF EXISTS tbl_p087;
+CREATE TABLE tbl_p087 (id INT, dept_id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup87">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) UNIQUE</p>
+<div id="answer87"><pre><code>CREATE UNIQUE INDEX idx_p087 ON tbl_p087 (email);</code></pre></div><button type="button" class="copy" data-copy="answer87">완성 SQL 복사</button></details></article>
+<article class="question" id="q88" data-group="인덱스"><h3><span class="qnum">Q088</span>복합 유일 인덱스</h3><p>dept_id와 email 조합의 일반 값 중복을 막는다.</p>
+<pre class="qcode"><code>CREATE <span class="blank"><label class="sr-only" for="q88-1">88번 빈칸 1</label><input id="q88-1" placeholder="(1)" data-answers="[&quot;UNIQUE&quot;]" style="--w:8ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> INDEX idx_p088 ON tbl_p088 (dept_id<span class="blank"><label class="sr-only" for="q88-2">88번 빈칸 2</label><input id="q88-2" placeholder="(2)" data-answers="[&quot;,&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> email);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="88">이 문제 채점</button><span id="feedback88" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup88"><pre><code>DROP TABLE IF EXISTS tbl_p088;
+CREATE TABLE tbl_p088 (id INT, dept_id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup88">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) UNIQUE · (2) ,</p>
+<div id="answer88"><pre><code>CREATE UNIQUE INDEX idx_p088 ON tbl_p088 (dept_id, email);</code></pre></div><button type="button" class="copy" data-copy="answer88">완성 SQL 복사</button></details></article>
+<article class="question" id="q89" data-group="인덱스"><h3><span class="qnum">Q089</span>인덱스 이름과 대상</h3><p>인덱스는 idx_p089, 대상은 tbl_p089, 열은 score이다.</p>
+<pre class="qcode"><code>CREATE INDEX <span class="blank"><label class="sr-only" for="q89-1">89번 빈칸 1</label><input id="q89-1" placeholder="(1)" data-answers="[&quot;idx_p089&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span> ON <span class="blank"><label class="sr-only" for="q89-2">89번 빈칸 2</label><input id="q89-2" placeholder="(2)" data-answers="[&quot;tbl_p089&quot;]" style="--w:10ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(2) __________</span></span> (<span class="blank"><label class="sr-only" for="q89-3">89번 빈칸 3</label><input id="q89-3" placeholder="(3)" data-answers="[&quot;score&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(3) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="89">이 문제 채점</button><span id="feedback89" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup89"><pre><code>DROP TABLE IF EXISTS tbl_p089;
+CREATE TABLE tbl_p089 (id INT, dept_id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup89">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) idx_p089 · (2) tbl_p089 · (3) score</p>
+<div id="answer89"><pre><code>CREATE INDEX idx_p089 ON tbl_p089 (score);</code></pre></div><button type="button" class="copy" data-copy="answer89">완성 SQL 복사</button></details></article>
+<article class="question" id="q90" data-group="인덱스"><h3><span class="qnum">Q090</span>명시적 오름차순</h3><p>score 인덱스 키의 오름차순을 명시한다.</p>
+<pre class="qcode"><code>CREATE INDEX idx_p090 ON tbl_p090 (score <span class="blank"><label class="sr-only" for="q90-1">90번 빈칸 1</label><input id="q90-1" placeholder="(1)" data-answers="[&quot;ASC&quot;]" style="--w:7ch" autocomplete="off" autocapitalize="off" spellcheck="false"><span class="paper-blank">(1) __________</span></span>);</code></pre>
+<div class="question-actions"><button type="button" class="grade-one" data-q="90">이 문제 채점</button><span id="feedback90" class="feedback" role="status" aria-live="polite"></span></div>
+<details class="setup"><summary>실행 전 준비 SQL · 해당 문제 초기화</summary><p class="small">연습용 db_ddl에서만 실행하세요. 아래 이름의 이 문제 객체를 지우고 다시 준비합니다.</p><div id="setup90"><pre><code>DROP TABLE IF EXISTS tbl_p090;
+CREATE TABLE tbl_p090 (id INT, dept_id INT, score INT, email VARCHAR(40));</code></pre></div><button type="button" class="copy" data-copy="setup90">준비 SQL 복사</button></details>
+<details class="solution"><summary>정답 · 완성 SQL</summary><p class="answers">(1) ASC</p>
+<p>SELECT 결과를 정렬하려면 ORDER BY를 사용한다.</p>
+<div id="answer90"><pre><code>CREATE INDEX idx_p090 ON tbl_p090 (score ASC);</code></pre></div><button type="button" class="copy" data-copy="answer90">완성 SQL 복사</button></details></article>
+</section>
+<section id="review"><h2>05. 마지막 점검 · 여기서 많이 틀린다</h2>
+<div class="table-wrap"><table><thead><tr><th scope="col">요구사항</th><th scope="col">바로 떠올릴 구문</th></tr></thead><tbody><tr><td>테이블 만들기 / 구조 바꾸기 / 없애기</td><td>CREATE TABLE / ALTER TABLE / DROP TABLE</td></tr><tr><td>이름 있는 제약조건</td><td>CONSTRAINT 이름 + 제약조건</td></tr><tr><td>열 추가 / 열 삭제</td><td>ADD COLUMN / DROP COLUMN</td></tr><tr><td>이름 있는 CHECK·UNIQUE·FK 삭제</td><td>DROP CONSTRAINT 이름</td></tr><tr><td>기본값 지정 / 해제</td><td>ALTER COLUMN 열 SET DEFAULT 값 / DROP DEFAULT</td></tr><tr><td>외래키 자식 열 / 부모 열</td><td>FOREIGN KEY (자식 열) REFERENCES 부모 (키 열)</td></tr><tr><td>부모 삭제 / 부모 키 변경</td><td>ON DELETE / ON UPDATE</td></tr><tr><td>삭제·변경 시 연쇄 / NULL / 거부</td><td>CASCADE / SET NULL / RESTRICT 또는 NO ACTION</td></tr><tr><td>조회 결과로 테이블 생성</td><td>CREATE TABLE 이름 AS SELECT …</td></tr><tr><td>뷰 만들기 / 교체 / 검사</td><td>CREATE VIEW … AS / OR REPLACE / WITH CHECK OPTION</td></tr><tr><td>인덱스 만들기</td><td>CREATE [UNIQUE] INDEX 이름 ON 테이블 (열)</td></tr><tr><td>전 행 비우고 구조 유지</td><td>TRUNCATE TABLE 이름</td></tr></tbody></table></div>
+<p><b>빈칸 순서 암기:</b> <code>CREATE → 대상 종류 → 이름</code>, <code>ALTER TABLE → 테이블 → 작업</code>, <code>CREATE INDEX → 인덱스 → ON → 테이블</code>, <code>CREATE VIEW → 뷰 → AS → SELECT</code>.</p><details class="mini-key"><summary>교사용 · 정답 빠르게 보기</summary>
+<div class="table-wrap"><table><thead><tr><th scope="col">번호</th><th scope="col">빈칸 순서대로 정답</th></tr></thead><tbody><tr><td>001</td><td>CREATE / TABLE</td></tr><tr><td>002</td><td>,</td></tr><tr><td>003</td><td>INT</td></tr><tr><td>004</td><td>student_id</td></tr><tr><td>005</td><td>2</td></tr><tr><td>006</td><td>VARCHAR</td></tr><tr><td>007</td><td>PRIMARY KEY / CHECK / &gt;=</td></tr><tr><td>008</td><td>VARCHAR / NOT NULL / DEFAULT</td></tr><tr><td>009</td><td>DEFAULT / 0</td></tr><tr><td>010</td><td>&#x27;N&#x27;</td></tr><tr><td>011</td><td>NOT NULL</td></tr><tr><td>012</td><td>IF NOT EXISTS</td></tr><tr><td>013</td><td>PRIMARY KEY</td></tr><tr><td>014</td><td>PRIMARY KEY / id</td></tr><tr><td>015</td><td>CONSTRAINT / PRIMARY KEY</td></tr><tr><td>016</td><td>student_id / course_id</td></tr><tr><td>017</td><td>UNIQUE</td></tr><tr><td>018</td><td>UNIQUE</td></tr><tr><td>019</td><td>UNIQUE</td></tr><tr><td>020</td><td>NOT NULL / UNIQUE</td></tr><tr><td>021</td><td>CHECK / &gt;=</td></tr><tr><td>022</td><td>BETWEEN / AND</td></tr><tr><td>023</td><td>IN</td></tr><tr><td>024</td><td>max_score / min_score</td></tr><tr><td>025</td><td>CONSTRAINT / CHECK</td></tr><tr><td>026</td><td>NOT NULL</td></tr><tr><td>027</td><td>DEFAULT / CHECK</td></tr><tr><td>028</td><td>AND</td></tr><tr><td>029</td><td>OR</td></tr><tr><td>030</td><td>IS NULL</td></tr><tr><td>031</td><td>PRIMARY KEY / UNIQUE</td></tr><tr><td>032</td><td>&gt;</td></tr><tr><td>033</td><td>&lt;&gt;</td></tr><tr><td>034</td><td>PRIMARY KEY / BETWEEN / AND</td></tr><tr><td>035</td><td>FOREIGN KEY / REFERENCES</td></tr><tr><td>036</td><td>dept_id / id</td></tr><tr><td>037</td><td>CONSTRAINT / FOREIGN KEY</td></tr><tr><td>038</td><td>ON DELETE / CASCADE</td></tr><tr><td>039</td><td>SET NULL</td></tr><tr><td>040</td><td>RESTRICT</td></tr><tr><td>041</td><td>ON UPDATE / CASCADE</td></tr><tr><td>042</td><td>SET NULL</td></tr><tr><td>043</td><td>RESTRICT / CASCADE</td></tr><tr><td>044</td><td>course_id / term</td></tr><tr><td>045</td><td>REFERENCES / tbl_p045</td></tr><tr><td>046</td><td>NOT NULL</td></tr><tr><td>047</td><td>code</td></tr><tr><td>048</td><td>FOREIGN KEY / REFERENCES / CASCADE / RESTRICT</td></tr><tr><td>049</td><td>ALTER TABLE / ADD COLUMN</td></tr><tr><td>050</td><td>DEFAULT / NOT NULL</td></tr><tr><td>051</td><td>, / ADD COLUMN</td></tr><tr><td>052</td><td>DROP COLUMN</td></tr><tr><td>053</td><td>RENAME COLUMN / TO</td></tr><tr><td>054</td><td>RENAME TO</td></tr><tr><td>055</td><td>ALTER COLUMN / SET DEFAULT</td></tr><tr><td>056</td><td>DROP DEFAULT</td></tr><tr><td>057</td><td>ADD CONSTRAINT / PRIMARY KEY</td></tr><tr><td>058</td><td>UNIQUE</td></tr><tr><td>059</td><td>CHECK</td></tr><tr><td>060</td><td>FOREIGN KEY / REFERENCES</td></tr><tr><td>061</td><td>DROP CONSTRAINT</td></tr><tr><td>062</td><td>CONSTRAINT</td></tr><tr><td>063</td><td>DROP CONSTRAINT</td></tr><tr><td>064</td><td>SET DEFAULT / 100</td></tr><tr><td>065</td><td>ADD CONSTRAINT / CHECK</td></tr><tr><td>066</td><td>DROP CONSTRAINT / BETWEEN / AND</td></tr><tr><td>067</td><td>AS / SELECT</td></tr><tr><td>068</td><td>WHERE / &gt;=</td></tr><tr><td>069</td><td>WHERE / 1 = 0</td></tr><tr><td>070</td><td>TEMPORARY</td></tr><tr><td>071</td><td>TRUNCATE / TABLE</td></tr><tr><td>072</td><td>DROP TABLE</td></tr><tr><td>073</td><td>IF EXISTS</td></tr><tr><td>074</td><td>,</td></tr><tr><td>075</td><td>CREATE VIEW / AS</td></tr><tr><td>076</td><td>WHERE</td></tr><tr><td>077</td><td>student_id / student_name</td></tr><tr><td>078</td><td>OR REPLACE</td></tr><tr><td>079</td><td>WITH CHECK OPTION</td></tr><tr><td>080</td><td>CASCADED</td></tr><tr><td>081</td><td>LOCAL</td></tr><tr><td>082</td><td>AVG / AS</td></tr><tr><td>083</td><td>DROP VIEW</td></tr><tr><td>084</td><td>IF EXISTS</td></tr><tr><td>085</td><td>CREATE INDEX / ON</td></tr><tr><td>086</td><td>dept_id / score</td></tr><tr><td>087</td><td>UNIQUE</td></tr><tr><td>088</td><td>UNIQUE / ,</td></tr><tr><td>089</td><td>idx_p089 / tbl_p089 / score</td></tr><tr><td>090</td><td>ASC</td></tr></tbody></table></div>
+</details></section>
+<section id="sources" class="sources"><h2>06. 문법 확인 · 공식 문서</h2><p class="small">2026-11-11 확인. 설명과 문제는 이 교재를 위해 작성했습니다. 실행 검증: PostgreSQL 18·MariaDB 11.4.5에서 11개 실습·90문항. 기능별 근거는 아래 공식 문서에서 확인할 수 있습니다.</p><ul class="source-list">
+<li>테이블 생성: <a href="https://www.postgresql.org/docs/current/sql-createtable.html">PostgreSQL</a> · <a href="https://mariadb.com/docs/server/server-usage/tables/create-table">MariaDB</a></li>
+<li>제약조건: <a href="https://www.postgresql.org/docs/current/ddl-constraints.html">PostgreSQL</a> · <a href="https://mariadb.com/docs/server/reference/sql-statements/data-definition/constraint">MariaDB</a></li>
+<li>테이블 변경: <a href="https://www.postgresql.org/docs/current/sql-altertable.html">PostgreSQL</a> · <a href="https://mariadb.com/docs/server/reference/sql-statements/data-definition/alter/alter-table">MariaDB</a></li>
+<li>뷰: <a href="https://www.postgresql.org/docs/current/sql-createview.html">PostgreSQL</a> · <a href="https://mariadb.com/docs/server/server-usage/views/create-view">MariaDB</a></li>
+<li>인덱스: <a href="https://www.postgresql.org/docs/current/sql-createindex.html">PostgreSQL</a> · <a href="https://mariadb.com/docs/server/reference/sql-statements/data-definition/create/create-index">MariaDB</a></li>
+<li>TRUNCATE: <a href="https://www.postgresql.org/docs/current/sql-truncate.html">PostgreSQL</a> · <a href="https://mariadb.com/docs/server/reference/sql-statements/table-statements/truncate-table">MariaDB</a></li>
+<li>조회 결과로 테이블 생성: <a href="https://www.postgresql.org/docs/current/sql-createtableas.html">PostgreSQL CREATE TABLE AS</a> · 위 MariaDB 테이블 생성 문서의 SELECT 항목</li><li>외래키 지원 조건·참조 동작: <a href="https://mariadb.com/docs/server/ha-and-performance/optimization-and-tuning/optimization-and-indexes/foreign-keys">MariaDB Foreign Keys</a></li></ul></section>
+<footer>정보처리기사 SQL DDL · 짧은 설명, 간단한 예제, 빈칸 완성 연습. 외부 파일·인터넷 연결 없이 열람·채점할 수 있습니다.</footer></main>
+<script>
+'use strict';
+const $$ = s => [...document.querySelectorAll(s)];
+const normalize = s => {
+  const tokens = s.trim().replace(/;+\s*$/, '').match(/'(?:''|[^'])*'|"(?:""|[^"])*"|[a-zA-Z_][a-zA-Z_0-9]*|\d+(?:\.\d+)?|>=|<=|<>|!=|[^\s]/g) || [];
+  return tokens.map(t => /^["']/.test(t) ? t : t.toUpperCase()).join(' ');
+};
+function grade(question) {
+  const inputs=[...question.querySelectorAll('input[data-answers]')];
+  let count=0;
+  for(const input of inputs) {
+    const ok=JSON.parse(input.dataset.answers).some(a=>normalize(a)===normalize(input.value));
+    input.classList.toggle('correct',ok);input.classList.toggle('wrong',!ok);
+    input.setAttribute('aria-invalid',String(!ok));if(ok)count++;
+  }
+  question.querySelector('.feedback').textContent=`빈칸 ${inputs.length}개 중 ${count}개 정답`;
+  return count===inputs.length;
+}
+function summary() {
+  const inputs=$$('input[data-answers]');
+  const correct=inputs.filter(i=>i.classList.contains('correct')).length;
+  const complete=$$('.question').filter(q=>[...q.querySelectorAll('input')].every(i=>i.classList.contains('correct'))).length;
+  document.getElementById('overall').textContent=`${$$('.question').length}문항 중 ${complete}문항 완성 · 빈칸 ${inputs.length}개 중 ${correct}개 정답. 제시한 표현과 명시한 대체 답안을 기준으로 채점합니다.`;
+}
+$$('.grade-one').forEach(b=>b.addEventListener('click',()=>{grade(b.closest('.question'));summary();}));
+$$('input[data-answers]').forEach(input=>{
+  input.addEventListener('keydown',e=>{if(e.key==='Enter'){grade(input.closest('.question'));summary();}});
+  input.addEventListener('input',()=>{
+    input.classList.remove('correct','wrong');input.removeAttribute('aria-invalid');
+    input.closest('.question').querySelector('.feedback').textContent='답이 바뀌었습니다. 다시 채점하세요.';
+    summary();
+  });
+});
+document.getElementById('grade-all').addEventListener('click',()=>{$$('.question').forEach(grade);summary();});
+const exam=document.getElementById('exam');
+function setExam(on){document.body.classList.toggle('exam-mode',on);exam.setAttribute('aria-pressed',String(on));exam.textContent=on?'시험 모드 끄기':'시험 모드 켜기';}
+exam.addEventListener('click',()=>setExam(!document.body.classList.contains('exam-mode')));
+document.getElementById('open-all').addEventListener('click',()=>{setExam(false);$$('.solution').forEach(d=>d.open=true);});
+document.getElementById('close-all').addEventListener('click',()=>$$('.solution').forEach(d=>d.open=false));
+document.getElementById('clear').addEventListener('click',()=>{
+  $$('input[data-answers]').forEach(i=>{i.value='';i.classList.remove('correct','wrong');i.removeAttribute('aria-invalid');});
+  $$('.feedback').forEach(x=>x.textContent='');summary();
+});
+$$('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  const text=document.getElementById(b.dataset.copy).querySelector('code').textContent;
+  const status=document.getElementById('copy-status');
+  try {await navigator.clipboard.writeText(text);status.textContent='SQL을 복사했습니다.';}
+  catch {status.textContent='자동 복사를 사용할 수 없습니다. 코드 내용을 직접 선택해 복사하세요.';}
+}));
+let printState=null;
+function preparePrint(answers){
+  if(printState)return;
+  printState={exam:document.body.classList.contains('exam-mode'),details:$$('.solution,.mini-key').map(d=>[d,d.open])};
+  document.body.classList.toggle('print-answers',answers);
+  if(answers){setExam(false);$$('.solution,.mini-key').forEach(d=>d.open=true);}
+}
+window.addEventListener('beforeprint',()=>preparePrint(false));
+window.addEventListener('afterprint',()=>{
+  if(!printState)return;
+  printState.details.forEach(([d,o])=>d.open=o);setExam(printState.exam);
+  document.body.classList.remove('print-answers');printState=null;
+});
+document.getElementById('print-questions').addEventListener('click',()=>{preparePrint(false);window.print();});
+document.getElementById('print-answers').addEventListener('click',()=>{preparePrint(true);window.print();});
+</script></body></html>

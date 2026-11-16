@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>19일차 코딩 · Python 클래스·상속·객체 종합</title><style>
+:root{--ink:#15283c;--muted:#536579;--accent:#126a71;--line:#d4dfe5;--paper:#fff;--soft:#edf6f6}*{box-sizing:border-box}body{margin:0;background:#f0f3f6;color:var(--ink);font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;line-height:1.8;font-size:16px}main{max-width:1020px;margin:36px auto 72px;background:var(--paper);padding:48px 58px;box-shadow:0 5px 30px #243b5310}header{border-top:8px solid var(--accent);padding:25px 0 20px;border-bottom:1px solid var(--line)}.eyebrow{font-size:13px;font-weight:bold;color:var(--accent);letter-spacing:1px}h1{font-size:33px;line-height:1.4;margin:10px 0}h2{font-size:25px;margin:48px 0 18px;border-bottom:2px solid var(--line);padding-bottom:9px}h3{font-size:19px;line-height:1.6;margin:26px 0 12px}h4{font-size:17px}p{margin:12px 0}.lead{color:var(--muted);font-size:17px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}button,input,select{font:inherit}button{cursor:pointer;border:1px solid #b1c9ce;background:#fff;color:#154a56;border-radius:7px;padding:8px 12px}button:hover{background:var(--soft)}button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid #e49c35;outline-offset:3px}aside{border-left:5px solid var(--accent);padding:14px 18px;background:var(--soft);margin:22px 0}code{font-family:Consolas,"Malgun Gothic",monospace;font-size:.94em;background:#eef2f5;padding:2px 4px;border-radius:3px}pre{white-space:pre-wrap;overflow-wrap:anywhere;tab-size:4;background:#172c3c;color:#ecf5ff;padding:20px 22px;border-radius:9px;line-height:1.65;margin:12px 0}pre code{background:none;color:inherit;padding:0;border-radius:0;font-size:14.5px}pre.output{background:#eef4f6;color:#163b4c;border:1px solid #d8e4e8}.caption,.small{font-size:13px;color:var(--muted)}table{border-collapse:collapse;width:100%;font-size:14.5px}th,td{border:1px solid var(--line);padding:10px 13px;vertical-align:top;text-align:left}th{background:#eaf2f4}tr:nth-child(even) td{background:#fafcfd}.table-wrap{overflow-x:auto;margin:18px 0}.example{margin:25px 0}.question,.project{border:1px solid var(--line);border-radius:10px;padding:22px 25px;margin:24px 0}.question h3,.project h3{margin-top:0}.badge{display:inline-block;border-radius:4px;background:#e5f3ee;color:#1c6650;font-size:12px;padding:2px 8px;margin-right:8px}details{padding:14px 17px;background:#f5f8fa;border-radius:7px;margin-top:16px}summary{cursor:pointer;font-weight:bold;color:#155764}.solution[open]{border-left:3px solid #91bec2}label{display:block;font-size:14px;color:var(--muted);margin:15px 0 5px}textarea{display:block;width:100%;min-height:105px;resize:vertical;border:1px solid #b8cad4;border-radius:6px;padding:12px;font:15px/1.7 Consolas,"Malgun Gothic",monospace}.paper-blank{display:none}.exam-mode .solution{display:none!important}footer{margin-top:45px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}.source-img{display:block;width:100%;height:auto;margin:12px auto}.original{background:white;border:1px solid #dbe3e7;padding:10px}.source{font-size:13px;color:var(--muted)}[hidden]{display:none!important}.filterbar{padding:15px;background:#edf4f6;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.filterbar input{width:80px;padding:7px}.filterbar span{font-size:14px}.answer-strong{font-weight:bold;color:#075c5d}.flow{font-family:Consolas,"Malgun Gothic",monospace;background:#f1f7f9;padding:20px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}li{margin:6px 0}
+@media(max-width:700px){body{font-size:15px}main{margin:0;padding:23px 17px;box-shadow:none}h1{font-size:26px}h2{font-size:22px}.question,.project{padding:17px 14px}.twocol{display:block}pre{padding:15px 12px}pre code{font-size:13px}th,td{padding:8px}header{padding-top:17px}}
+@media print{@page{size:A4;margin:16mm}body{background:white;font-size:10.5pt;line-height:1.65}main{padding:0;margin:0;max-width:none;box-shadow:none}.toolbar,.filterbar,textarea,label,.screen-only{display:none!important}.paper-blank{display:block;height:18mm;border-bottom:1px dashed #aaa}header{border-top-width:4px}h1{font-size:22pt}h2{font-size:17pt;break-after:avoid;margin-top:22pt}h3{font-size:12pt;break-after:avoid}.question,.project{border-radius:0;padding:12pt;margin:14pt 0;break-inside:avoid}pre{background:#f2f4f5;color:#111;border:1px solid #ccd5da;padding:9pt}pre code{font-size:9pt}table{font-size:9pt}tr{break-inside:avoid}.source-img{max-width:100%}aside,details{background:#f5f5f5}footer{font-size:9pt}.source{font-size:9pt}}
+</style></head><body data-book="coding"><main><header><div class="eyebrow">정보처리기사 실기 · 4주차 · 19일차</div><h1>19일차 코딩 · Python 클래스·상속·객체 종합</h1><p class="lead">쉬운 설명 → 응용 → 심화 · 예제 12개 · 연습 40문제 · 제작 8개</p></header><div class="toolbar"><button id="show" type="button">정답·해설 모두 열기</button><button id="hide" type="button">모두 닫기</button><button id="exam" type="button">시험 모드</button><button id="print" type="button">현재 모드 인쇄</button></div><p class="small screen-only">답안은 이 브라우저에 자동 저장됩니다. 브라우저 설정에 따라 저장이 제한될 수 있습니다. Python 코드는 직접 Python 3에서 실행합니다.</p><aside><b>클래스는 비슷한 데이터와 기능을 묶는 틀.</b> 객체는 그 틀로 만든 각각의 대상입니다. 학생 두 명을 만들면 이름·점수는 각자 갖고, 점수 계산 기능은 같은 방식으로 사용합니다.</aside><h2>코딩 120분 · 오늘 풀 분량</h2><div class="table-wrap"><table><thead><tr><th>시간</th><th>진행</th></tr></thead><tbody><tr><td>0~10분</td><td>18일차 복습: 매개변수·return·리스트 전달을 짧게 확인</td></tr><tr><td>10~35분</td><td>기초 E01~E04 실행 → C01·C02·C04·C25 풀이</td></tr><tr><td>35~60분</td><td>응용 E05~E08 실행 → C05·C07·C11·C26 풀이</td></tr><tr><td>60~85분</td><td>심화 E09~E12 실행 → C14·C19·C32 풀이</td></tr><tr><td>85~105분</td><td>P01을 직접 작성하고 다른 입력으로 확인</td></tr><tr><td>105~120분</td><td>C35 직접 작성 → 틀린 문제의 값을 바꿔 다시 실행</td></tr></tbody></table></div><p>수업 분량은 연습 12문제와 P01입니다. <b>연습 40문제·제작 8개 전체는 추가 연습까지 포함한 분량</b>입니다. 이론 설명·기출 풀이·채점 60분을 더해 하루 180분입니다.</p><aside>각 코드 블록은 독립된 Python 3 코드입니다. 한 개씩 <code>main.py</code>에 저장하고 <code>python main.py</code> 또는 <code>py main.py</code>로 실행하세요. 클래스 정의와 아래쪽 호출 코드를 함께 복사합니다.</aside><h2>1. 쉬운 설명 · 클래스에서 객체 만들기</h2><div class="table-wrap"><table><thead><tr><th>용어</th><th>뜻</th><th>예</th></tr></thead><tbody><tr><td>class</td><td>데이터와 기능을 묶는 틀</td><td>학생 틀 Student</td></tr><tr><td>객체 / 인스턴스</td><td>그 틀로 만든 각각의 대상</td><td>민지 학생, 준호 학생</td></tr><tr><td>속성</td><td>객체가 가진 값</td><td>이름, 점수</td></tr><tr><td>메서드</td><td>클래스 안에 정의한 함수</td><td>점수 올리기</td></tr><tr><td>self</td><td>지금 메서드를 실행하는 그 객체</td><td>민지의 메서드면 민지 객체</td></tr><tr><td>__init__</td><td>객체가 만들어질 때 처음 값을 넣는 메서드</td><td>이름·점수 저장</td></tr></tbody></table></div><section class="example"><h3>E01 · 틀 하나로 학생 두 명 만들기</h3><pre class="python"><code>class Student:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+a = Student(&quot;민지&quot;, 70)
+b = Student(&quot;준호&quot;, 85)
+print(a.name, a.score)
+print(b.name, b.score)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>민지 70
+준호 85</code></pre><p>Student("민지", 70)를 실행하면 새 객체가 만들어지고 __init__이 이름과 점수를 넣습니다. a와 b는 서로 다른 학생 객체를 가리킵니다. 클래스 안쪽은 네 칸, 메서드 안쪽은 여덟 칸 들여 씁니다.</p></section><section class="example"><h3>E02 · self는 지금 호출한 객체</h3><pre class="python"><code>class Account:
+    def __init__(self, balance):
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+
+a = Account(1000)
+b = Account(3000)
+a.deposit(500)
+print(a.balance, b.balance)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>1500 3000</code></pre><p>a.deposit(500)의 self는 a가 가리키는 계좌입니다. 호출할 때 self 자리에 a를 따로 쓰지 않습니다. a의 잔액만 1500이 되고 b의 잔액은 그대로입니다.</p></section><section class="example"><h3>E03 · 메서드도 매개변수와 return을 사용</h3><pre class="python"><code>class Item:
+    def __init__(self, price):
+        self.price = price
+
+    def total(self, count):
+        return self.price * count
+
+pen = Item(1200)
+cost = pen.total(3)
+print(cost)
+print(pen.price)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>3600
+1200</code></pre><p>total은 계산 결과 3600을 반환합니다. 곱한 값을 self.price에 대입하지 않았으므로 원래 가격 1200은 바뀌지 않습니다.</p></section><section class="example"><h3>E04 · 함께 쓰는 값과 각자 가진 값</h3><pre class="python"><code>class Member:
+    count = 0
+
+    def __init__(self, name):
+        self.name = name
+        Member.count += 1
+
+a = Member(&quot;유나&quot;)
+b = Member(&quot;도윤&quot;)
+print(Member.count)
+print(a.name, b.name)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>2
+유나 도윤</code></pre><p>클래스 본문의 count는 클래스 변수입니다. 여기서는 만든 회원 수를 함께 셉니다. self.name은 객체마다 따로 가진 인스턴스 변수입니다. 공유할 숫자를 바꿀 때는 Member.count처럼 클래스를 명시합니다.</p></section><h2>2. 응용 설명 · 공유 여부와 상속</h2><section class="example"><h3>E05 · 같은 이름의 인스턴스 변수가 생기는 순간</h3><pre class="python"><code>class Ticket:
+    price = 1000
+
+a = Ticket()
+b = Ticket()
+a.price += 200
+Ticket.price = 1500
+print(a.price, b.price, Ticket.price)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>1200 1500 1500</code></pre><p>처음 a.price는 클래스의 1000을 읽습니다. a.price += 200은 읽은 값으로 1200을 계산하고 a 자신의 price를 만듭니다. 이제 클래스 가격을 1500으로 바꿔도 a의 1200은 그대로입니다. b는 자기 price가 없으므로 클래스의 1500을 읽습니다.</p></section><div class="table-wrap"><table><thead><tr><th>표현</th><th>이 예에서 읽거나 바꾸는 곳</th></tr></thead><tbody><tr><td>Ticket.price</td><td>클래스가 가진 값</td></tr><tr><td>a.price 읽기</td><td>a 자신의 값이 있으면 그것, 없으면 클래스 쪽에서 찾음</td></tr><tr><td>a.price = 1200</td><td>a 자신의 값을 설정</td></tr><tr><td>self.price += 200</td><td>읽기 → 더하기 → self.price에 대입. 클래스 숫자를 함께 올리는 코드가 아님</td></tr></tbody></table></div><section class="example"><h3>E06 · 리스트는 어디에서 만들었는지 확인</h3><pre class="python"><code>class SharedBag:
+    items = []
+
+class OwnBag:
+    def __init__(self):
+        self.items = []
+
+a = SharedBag()
+b = SharedBag()
+a.items.append(&quot;펜&quot;)
+print(b.items)
+
+c = OwnBag()
+d = OwnBag()
+c.items.append(&quot;책&quot;)
+print(c.items, d.items)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>[&#x27;펜&#x27;]
+[&#x27;책&#x27;] []</code></pre><p>클래스 본문에 만든 items 리스트는 a와 b가 함께 찾는 하나의 리스트입니다. append는 그 리스트 자체를 고칩니다. __init__ 안에서 self.items = []로 만들면 객체마다 새 리스트를 가집니다.</p></section><p><b>상속</b>은 기존 클래스의 속성과 메서드를 이어받아 쓰는 것입니다. <code>class Dog(Animal)</code>이면 Animal은 부모 클래스, Dog는 자식 클래스입니다. 자식에게 같은 이름의 메서드가 있으면 그 메서드를 쓰며, 이를 <b>재정의(오버라이딩)</b>라고 합니다.</p><section class="example"><h3>E07 · 물려받은 메서드와 다시 정의한 메서드</h3><pre class="python"><code>class Animal:
+    def kind(self):
+        return &quot;동물&quot;
+
+    def sound(self):
+        return &quot;소리&quot;
+
+class Dog(Animal):
+    def sound(self):
+        return &quot;멍멍&quot;
+
+dog = Dog()
+print(dog.kind())
+print(dog.sound())</code></pre><div class="caption">실행 결과</div><pre class="output"><code>동물
+멍멍</code></pre><p>Dog에는 kind가 없으므로 부모 Animal의 kind를 사용합니다. sound는 Dog에 다시 정의되어 있으므로 멍멍을 반환합니다.</p></section><section class="example"><h3>E08 · super로 부모의 초기화 재사용</h3><pre class="python"><code>class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Student(Person):
+    def __init__(self, name, score):
+        super().__init__(name)
+        self.score = score
+
+student = Student(&quot;서진&quot;, 92)
+print(student.name, student.score)</code></pre><div class="caption">실행 결과</div><pre class="output"><code>서진 92</code></pre><p>이 단일 상속 예에서 super().__init__(name)은 부모 초기화를 실행해 name을 넣습니다. 이어서 자식이 score를 넣습니다. 자식이 __init__을 직접 정의하면 부모 __init__이 저절로 추가 실행되지 않습니다.</p></section><h2>3. 심화 설명 · 객체와 함수·자료구조 함께 읽기</h2><section class="example"><h3>E09 · 부모 메서드 안에서도 자식의 재정의가 사용됨</h3><pre class="python"><code>class Message:
+    def text(self):
+        return &quot;안녕&quot;
+
+    def show(self):
+        return &quot;[&quot; + self.text() + &quot;]&quot;
+
+class Notice(Message):
+    def text(self):
+        return &quot;공지&quot;
+
+print(Notice().show())</code></pre><div class="caption">실행 결과</div><pre class="output"><code>[공지]</code></pre><p>show는 부모에게서 가져오지만 self는 Notice 객체입니다. self.text()는 Notice가 재정의한 text를 호출합니다. “어느 클래스에 적힌 코드인가”와 “self가 어떤 객체인가”를 나누어 보세요.</p></section><section class="example"><h3>E10 · 부모 계산을 쓰고 자식 계산 덧붙이기</h3><pre class="python"><code>class Order:
+    def __init__(self, amount):
+        self.amount = amount
+
+    def total(self):
+        return self.amount
+
+class DeliveryOrder(Order):
+    def total(self):
+        return super().total() + 2500
+
+print(Order(8000).total())
+print(DeliveryOrder(8000).total())</code></pre><div class="caption">실행 결과</div><pre class="output"><code>8000
+10500</code></pre><p>DeliveryOrder는 부모의 __init__을 그대로 물려받습니다. total만 재정의하고, 이 단일 상속에서 super().total()로 부모 계산을 가져와 배송비 2500을 더합니다.</p></section><section class="example"><h3>E11 · 객체 리스트를 함수에 전달하고 정렬</h3><pre class="python"><code>class Student:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+def passed_names(students):
+    passed = [s for s in students if s.score &gt;= 60]
+    ranked = sorted(passed, key=lambda s: (-s.score, s.name))
+    return [s.name for s in ranked]
+
+students = [Student(&quot;지수&quot;, 72), Student(&quot;민아&quot;, 90), Student(&quot;도현&quot;, 55)]
+print(passed_names(students))
+print([s.score for s in students])</code></pre><div class="caption">실행 결과</div><pre class="output"><code>[&#x27;민아&#x27;, &#x27;지수&#x27;]
+[72, 90, 55]</code></pre><p>s는 학생 객체 하나입니다. s.score로 점수를 읽습니다. 함수·리스트 컴프리헨션·lambda는 17~18일차 내용이며, 리스트 안에 숫자 대신 객체가 들어간 것만 달라졌습니다.</p></section><section class="example"><h3>E12 · 객체를 공유한 복사와 새 객체를 만든 복사</h3><pre class="python"><code>class Score:
+    def __init__(self, value):
+        self.value = value
+
+original = [Score(40), Score(70)]
+shallow = original[:]
+separate = [Score(s.value) for s in original]
+shallow[0].value += 5
+separate[1].value += 10
+print([s.value for s in original])
+print([s.value for s in shallow])
+print([s.value for s in separate])</code></pre><div class="caption">실행 결과</div><pre class="output"><code>[45, 70]
+[45, 70]
+[40, 80]</code></pre><p>리스트만 복사한 shallow는 안쪽 Score 객체를 original과 함께 가리킵니다. separate는 Score(...)로 새 객체를 만들어 점수 변경이 분리됩니다. 여기서는 속성 값이 정수라 이 방식으로 충분합니다.</p></section><aside><b>출력 추적 순서</b><br>① 객체를 몇 개 만들었나? → ② 각 객체의 속성은 무엇인가? → ③ 공유하는 클래스 변수는 무엇인가? → ④ 실제 호출되는 메서드는 부모 것인가, 자식 것인가? → ⑤ 리스트 안 객체를 함께 가리키는가?</aside><h2>4. 연습 40문제</h2><p>C01~C24 출력 예측 / C25~C30 빈칸 / C31~C34 오류 수정 / C35~C40 직접 작성. 먼저 손으로 풀고 Python에서 실행한 뒤, 숫자나 호출 순서를 바꿔 다시 확인하세요. 기출의 클래스 속성·반복문·객체 연결 유형을 참고해 상황과 코드를 새로 구성했습니다.</p><article class="question" id="C01"><h3><span class="badge">출력 예측</span>C01 · 클래스 속성 읽기</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Weather:
+    season = &quot;봄&quot;
+
+w = Weather()
+print(w.season)</code></pre><label for="aC01">내 답과 풀이 근거</label><textarea id="aC01" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Weather:
+    season = &quot;봄&quot;
+
+w = Weather()
+print(w.season)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>봄</code></pre><p>w 자신의 season이 없어서 클래스의 season을 읽습니다.</p></details></article><article class="question" id="C02"><h3><span class="badge">출력 예측</span>C02 · 각자의 초기값</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Point:
+    def __init__(self, x):
+        self.x = x
+
+a = Point(3)
+b = Point(8)
+a.x += 4
+print(a.x, b.x)</code></pre><label for="aC02">내 답과 풀이 근거</label><textarea id="aC02" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Point:
+    def __init__(self, x):
+        self.x = x
+
+a = Point(3)
+b = Point(8)
+a.x += 4
+print(a.x, b.x)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>7 8</code></pre><p>a.x만 수정합니다. b는 다른 객체입니다.</p></details></article><article class="question" id="C03"><h3><span class="badge">출력 예측</span>C03 · 반환과 속성 변경</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Box:
+    def __init__(self, n):
+        self.n = n
+
+    def double(self):
+        return self.n * 2
+
+b = Box(6)
+print(b.double(), b.n)</code></pre><label for="aC03">내 답과 풀이 근거</label><textarea id="aC03" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Box:
+    def __init__(self, n):
+        self.n = n
+
+    def double(self):
+        return self.n * 2
+
+b = Box(6)
+print(b.double(), b.n)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>12 6</code></pre><p>12를 반환했을 뿐 self.n에 다시 대입하지 않았습니다.</p></details></article><article class="question" id="C04"><h3><span class="badge">출력 예측</span>C04 · 객체에 이름 두 개</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Counter:
+    def __init__(self):
+        self.value = 1
+
+a = Counter()
+b = a
+b.value += 3
+print(a.value, b.value, a is b)</code></pre><label for="aC04">내 답과 풀이 근거</label><textarea id="aC04" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Counter:
+    def __init__(self):
+        self.value = 1
+
+a = Counter()
+b = a
+b.value += 3
+print(a.value, b.value, a is b)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>4 4 True</code></pre><p>b = a는 새 객체를 만들지 않습니다. 두 이름이 같은 객체를 가리킵니다.</p></details></article><article class="question" id="C05"><h3><span class="badge">출력 예측</span>C05 · 인스턴스에 같은 이름 대입</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Badge:
+    color = &quot;파랑&quot;
+
+a = Badge()
+b = Badge()
+a.color = &quot;빨강&quot;
+Badge.color = &quot;초록&quot;
+print(a.color, b.color)</code></pre><label for="aC05">내 답과 풀이 근거</label><textarea id="aC05" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Badge:
+    color = &quot;파랑&quot;
+
+a = Badge()
+b = Badge()
+a.color = &quot;빨강&quot;
+Badge.color = &quot;초록&quot;
+print(a.color, b.color)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>빨강 초록</code></pre><p>a는 자신의 color를 갖습니다. b는 클래스 color를 읽습니다.</p></details></article><article class="question" id="C06"><h3><span class="badge">출력 예측</span>C06 · 클래스 값이 바뀌면</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Fee:
+    value = 200
+
+a = Fee()
+b = Fee()
+Fee.value += 50
+print(a.value, b.value, Fee.value)</code></pre><label for="aC06">내 답과 풀이 근거</label><textarea id="aC06" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Fee:
+    value = 200
+
+a = Fee()
+b = Fee()
+Fee.value += 50
+print(a.value, b.value, Fee.value)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>250 250 250</code></pre><p>a와 b에게 별도 value가 없으므로 같은 클래스 값을 읽습니다.</p></details></article><article class="question" id="C07"><h3><span class="badge">출력 예측</span>C07 · 클래스 리스트 공유</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Board:
+    messages = []
+
+a = Board()
+b = Board()
+a.messages.append(&quot;A&quot;)
+b.messages.append(&quot;B&quot;)
+print(a.messages)
+print(Board.messages)</code></pre><label for="aC07">내 답과 풀이 근거</label><textarea id="aC07" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Board:
+    messages = []
+
+a = Board()
+b = Board()
+a.messages.append(&quot;A&quot;)
+b.messages.append(&quot;B&quot;)
+print(a.messages)
+print(Board.messages)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;A&#x27;, &#x27;B&#x27;]
+[&#x27;A&#x27;, &#x27;B&#x27;]</code></pre><p>두 append가 같은 클래스 리스트를 고칩니다.</p></details></article><article class="question" id="C08"><h3><span class="badge">출력 예측</span>C08 · 인스턴스 리스트 분리</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Board:
+    def __init__(self):
+        self.messages = []
+
+a = Board()
+b = Board()
+a.messages.append(&quot;A&quot;)
+print(a.messages, b.messages)</code></pre><label for="aC08">내 답과 풀이 근거</label><textarea id="aC08" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Board:
+    def __init__(self):
+        self.messages = []
+
+a = Board()
+b = Board()
+a.messages.append(&quot;A&quot;)
+print(a.messages, b.messages)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;A&#x27;] []</code></pre><p>__init__이 실행될 때마다 새 리스트를 만듭니다.</p></details></article><article class="question" id="C09"><h3><span class="badge">출력 예측</span>C09 · 지역변수와 속성</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Score:
+    def __init__(self):
+        self.value = 10
+
+    def change(self, value):
+        value += 5
+        return value
+
+s = Score()
+print(s.change(20), s.value)</code></pre><label for="aC09">내 답과 풀이 근거</label><textarea id="aC09" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Score:
+    def __init__(self):
+        self.value = 10
+
+    def change(self, value):
+        value += 5
+        return value
+
+s = Score()
+print(s.change(20), s.value)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>25 10</code></pre><p>매개변수 value와 self.value는 다릅니다.</p></details></article><article class="question" id="C10"><h3><span class="badge">출력 예측</span>C10 · self.count += 1의 의미</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Visit:
+    count = 4
+
+    def add(self):
+        self.count += 1
+
+a = Visit()
+b = Visit()
+a.add()
+a.add()
+print(a.count, b.count, Visit.count)</code></pre><label for="aC10">내 답과 풀이 근거</label><textarea id="aC10" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Visit:
+    count = 4
+
+    def add(self):
+        self.count += 1
+
+a = Visit()
+b = Visit()
+a.add()
+a.add()
+print(a.count, b.count, Visit.count)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>6 4 4</code></pre><p>처음 a.add에서 a 자신의 count가 생깁니다. 공유 카운터를 바꾼 것이 아닙니다.</p></details></article><article class="question" id="C11"><h3><span class="badge">출력 예측</span>C11 · 메서드 재정의</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Parent:
+    def word(self):
+        return &quot;부모&quot;
+
+class Child(Parent):
+    def word(self):
+        return &quot;자식&quot;
+
+print(Parent().word(), Child().word())</code></pre><label for="aC11">내 답과 풀이 근거</label><textarea id="aC11" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Parent:
+    def word(self):
+        return &quot;부모&quot;
+
+class Child(Parent):
+    def word(self):
+        return &quot;자식&quot;
+
+print(Parent().word(), Child().word())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>부모 자식</code></pre><p>각 객체의 클래스에서 정의한 word를 실행합니다.</p></details></article><article class="question" id="C12"><h3><span class="badge">출력 예측</span>C12 · 부모의 __init__ 물려받기</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class A:
+    def __init__(self, n):
+        self.n = n + 1
+
+class B(A):
+    def result(self):
+        return self.n * 2
+
+b = B(4)
+print(b.result())</code></pre><label for="aC12">내 답과 풀이 근거</label><textarea id="aC12" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class A:
+    def __init__(self, n):
+        self.n = n + 1
+
+class B(A):
+    def result(self):
+        return self.n * 2
+
+b = B(4)
+print(b.result())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>10</code></pre><p>B에 __init__이 없으므로 A의 __init__으로 n을 5로 초기화합니다.</p></details></article><article class="question" id="C13"><h3><span class="badge">출력 예측</span>C13 · 부모 초기화 다음에 자식 초기화</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class A:
+    def __init__(self, n):
+        self.n = n + 2
+
+class B(A):
+    def __init__(self, n):
+        super().__init__(n)
+        self.n *= 3
+
+print(B(4).n)</code></pre><label for="aC13">내 답과 풀이 근거</label><textarea id="aC13" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class A:
+    def __init__(self, n):
+        self.n = n + 2
+
+class B(A):
+    def __init__(self, n):
+        super().__init__(n)
+        self.n *= 3
+
+print(B(4).n)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>18</code></pre><p>4+2를 먼저 계산하고 3을 곱합니다.</p></details></article><article class="question" id="C14"><h3><span class="badge">출력 예측</span>C14 · 부모 코드 속 self</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class A:
+    def value(self):
+        return 3
+
+    def result(self):
+        return self.value() + 1
+
+class B(A):
+    def value(self):
+        return 8
+
+print(B().result())</code></pre><label for="aC14">내 답과 풀이 근거</label><textarea id="aC14" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class A:
+    def value(self):
+        return 3
+
+    def result(self):
+        return self.value() + 1
+
+class B(A):
+    def value(self):
+        return 8
+
+print(B().result())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>9</code></pre><p>result 안 self는 B 객체이므로 B.value의 8을 사용합니다.</p></details></article><article class="question" id="C15"><h3><span class="badge">출력 예측</span>C15 · super로 기존 계산 확장</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class A:
+    def value(self):
+        return 7
+
+class B(A):
+    def value(self):
+        return super().value() - 2
+
+print(B().value())</code></pre><label for="aC15">내 답과 풀이 근거</label><textarea id="aC15" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class A:
+    def value(self):
+        return 7
+
+class B(A):
+    def value(self):
+        return super().value() - 2
+
+print(B().value())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>5</code></pre><p>이 단일 상속에서 부모 value의 7을 받아 2를 뺍니다.</p></details></article><article class="question" id="C16"><h3><span class="badge">출력 예측</span>C16 · 두 번 이어진 상속</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class A:
+    def text(self):
+        return &quot;A&quot;
+
+class B(A):
+    def text(self):
+        return super().text() + &quot;B&quot;
+
+class C(B):
+    def text(self):
+        return super().text() + &quot;C&quot;
+
+print(C().text())</code></pre><label for="aC16">내 답과 풀이 근거</label><textarea id="aC16" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class A:
+    def text(self):
+        return &quot;A&quot;
+
+class B(A):
+    def text(self):
+        return super().text() + &quot;B&quot;
+
+class C(B):
+    def text(self):
+        return super().text() + &quot;C&quot;
+
+print(C().text())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>ABC</code></pre><p>C → B → A로 호출한 뒤 A, AB, ABC 순서로 반환합니다.</p></details></article><article class="question" id="C17"><h3><span class="badge">출력 예측</span>C17 · 객체 안 딕셔너리 순회</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Codes:
+    names = {&quot;P1&quot;: &quot;Pen&quot;, &quot;B2&quot;: &quot;Book&quot;, &quot;M3&quot;: &quot;Map&quot;}
+
+result = &quot;&quot;
+for key, name in Codes().names.items():
+    result += key[0] + name[-1]
+print(result)</code></pre><label for="aC17">내 답과 풀이 근거</label><textarea id="aC17" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Codes:
+    names = {&quot;P1&quot;: &quot;Pen&quot;, &quot;B2&quot;: &quot;Book&quot;, &quot;M3&quot;: &quot;Map&quot;}
+
+result = &quot;&quot;
+for key, name in Codes().names.items():
+    result += key[0] + name[-1]
+print(result)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>PnBkMp</code></pre><p>딕셔너리에 넣은 순서대로 P+n, B+k, M+p를 연결합니다. 실제 기출의 문자열 순회 상황을 바꾼 문제입니다.</p></details></article><article class="question" id="C18"><h3><span class="badge">출력 예측</span>C18 · 함수에서 객체 속성 변경</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Item:
+    def __init__(self, price):
+        self.price = price
+
+def discount(item):
+    item.price -= 100
+
+items = [Item(500), Item(800)]
+for item in items:
+    discount(item)
+print([item.price for item in items])</code></pre><label for="aC18">내 답과 풀이 근거</label><textarea id="aC18" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Item:
+    def __init__(self, price):
+        self.price = price
+
+def discount(item):
+    item.price -= 100
+
+items = [Item(500), Item(800)]
+for item in items:
+    discount(item)
+print([item.price for item in items])</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[400, 700]</code></pre><p>함수에 전달한 객체의 속성을 수정하므로 리스트 안 객체에도 반영됩니다.</p></details></article><article class="question" id="C19"><h3><span class="badge">출력 예측</span>C19 · 리스트를 복사해도 객체는 공유</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Cell:
+    def __init__(self, n):
+        self.n = n
+
+a = [Cell(2), Cell(5)]
+b = a[:]
+b[0].n = 9
+b.append(Cell(7))
+print([x.n for x in a])
+print([x.n for x in b])</code></pre><label for="aC19">내 답과 풀이 근거</label><textarea id="aC19" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Cell:
+    def __init__(self, n):
+        self.n = n
+
+a = [Cell(2), Cell(5)]
+b = a[:]
+b[0].n = 9
+b.append(Cell(7))
+print([x.n for x in a])
+print([x.n for x in b])</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[9, 5]
+[9, 5, 7]</code></pre><p>첫 객체는 공유하지만 바깥 리스트는 다르므로 b에 append한 칸은 a에 생기지 않습니다.</p></details></article><article class="question" id="C20"><h3><span class="badge">출력 예측</span>C20 · 객체 정렬 기준</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Player:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+players = [Player(&quot;B&quot;, 80), Player(&quot;A&quot;, 80), Player(&quot;C&quot;, 95)]
+ranked = sorted(players, key=lambda p: (-p.score, p.name))
+print([p.name for p in ranked])</code></pre><label for="aC20">내 답과 풀이 근거</label><textarea id="aC20" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Player:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+players = [Player(&quot;B&quot;, 80), Player(&quot;A&quot;, 80), Player(&quot;C&quot;, 95)]
+ranked = sorted(players, key=lambda p: (-p.score, p.name))
+print([p.name for p in ranked])</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;C&#x27;, &#x27;A&#x27;, &#x27;B&#x27;]</code></pre><p>점수 내림차순, 같은 점수에서는 이름 오름차순입니다.</p></details></article><article class="question" id="C21"><h3><span class="badge">출력 예측</span>C21 · 객체를 연결하고 재귀로 합산</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Node:
+    def __init__(self, value):
+        self.value = value
+        self.children = []
+
+def total(node):
+    return node.value + sum(total(child) for child in node.children)
+
+root = Node(5)
+root.children = [Node(2), Node(4)]
+root.children[0].children.append(Node(3))
+print(total(root))</code></pre><label for="aC21">내 답과 풀이 근거</label><textarea id="aC21" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Node:
+    def __init__(self, value):
+        self.value = value
+        self.children = []
+
+def total(node):
+    return node.value + sum(total(child) for child in node.children)
+
+root = Node(5)
+root.children = [Node(2), Node(4)]
+root.children[0].children.append(Node(3))
+print(total(root))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>14</code></pre><p>루트 5 + 첫 자식 부분 2+3 + 둘째 자식 4입니다. 실제 기출의 객체 연결·재귀 합산 유형을 다른 구조와 조건으로 바꿨습니다.</p></details></article><article class="question" id="C22"><h3><span class="badge">출력 예측</span>C22 · super 호출을 빼면</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class A:
+    count = 0
+
+    def __init__(self):
+        A.count += 1
+
+class B(A):
+    def __init__(self):
+        self.value = 9
+
+a = A()
+b = B()
+print(A.count, b.value)</code></pre><label for="aC22">내 답과 풀이 근거</label><textarea id="aC22" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class A:
+    count = 0
+
+    def __init__(self):
+        A.count += 1
+
+class B(A):
+    def __init__(self):
+        self.value = 9
+
+a = A()
+b = B()
+print(A.count, b.value)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>1 9</code></pre><p>B는 자신의 __init__만 실행합니다. 부모 초기화를 호출하지 않았으므로 count를 올리지 않습니다.</p></details></article><article class="question" id="C23"><h3><span class="badge">출력 예측</span>C23 · append와 새 리스트 대입 구별</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Basket:
+    items = [1]
+
+a = Basket()
+b = Basket()
+a.items = a.items + [2]
+b.items.append(3)
+print(a.items)
+print(b.items)
+print(Basket.items)</code></pre><label for="aC23">내 답과 풀이 근거</label><textarea id="aC23" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Basket:
+    items = [1]
+
+a = Basket()
+b = Basket()
+a.items = a.items + [2]
+b.items.append(3)
+print(a.items)
+print(b.items)
+print(Basket.items)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[1, 2]
+[1, 3]
+[1, 3]</code></pre><p>+는 새 리스트를 만들어 a 자신의 items로 저장합니다. b의 append는 클래스 리스트 자체를 바꿉니다.</p></details></article><article class="question" id="C24"><h3><span class="badge">출력 예측</span>C24 · 같은 호출 이름, 다른 계산</h3><p>실행 결과를 줄바꿈까지 적으세요.</p><pre class="python"><code>class Price:
+    def __init__(self, amount):
+        self.amount = amount
+
+    def total(self):
+        return self.amount
+
+class SalePrice(Price):
+    def total(self):
+        return self.amount - 500
+
+orders = [Price(2000), SalePrice(2000), SalePrice(3000)]
+print(sum(order.total() for order in orders))</code></pre><label for="aC24">내 답과 풀이 근거</label><textarea id="aC24" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Price:
+    def __init__(self, amount):
+        self.amount = amount
+
+    def total(self):
+        return self.amount
+
+class SalePrice(Price):
+    def total(self):
+        return self.amount - 500
+
+orders = [Price(2000), SalePrice(2000), SalePrice(3000)]
+print(sum(order.total() for order in orders))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>6000</code></pre><p>각 객체의 total은 2000, 1500, 2500을 반환합니다.</p></details></article><article class="question" id="C25"><h3><span class="badge">빈칸</span>C25 · 초기화 메서드</h3><p>빈칸 (가)을 채우세요. 완성 코드의 실행 결과도 적으세요.</p><pre class="python"><code>class Student:
+    def (가)(self, name):
+        self.name = name
+
+print(Student(&quot;하린&quot;).name)</code></pre><label for="aC25">내 답과 풀이 근거</label><textarea id="aC25" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Student:
+    def __init__(self, name):
+        self.name = name
+
+print(Student(&quot;하린&quot;).name)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>하린</code></pre><p>(가) __init__ · 밑줄이 앞뒤로 두 개씩입니다.</p></details></article><article class="question" id="C26"><h3><span class="badge">빈칸</span>C26 · 지금 객체의 속성</h3><p>빈칸 (가)을 채우세요. 완성 코드의 실행 결과도 적으세요.</p><pre class="python"><code>class Counter:
+    def __init__(self):
+        self.n = 0
+
+    def add(self):
+        (가).n += 1
+
+c = Counter()
+c.add()
+print(c.n)</code></pre><label for="aC26">내 답과 풀이 근거</label><textarea id="aC26" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Counter:
+    def __init__(self):
+        self.n = 0
+
+    def add(self):
+        self.n += 1
+
+c = Counter()
+c.add()
+print(c.n)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>1</code></pre><p>(가) self · add를 호출한 객체의 n을 올립니다.</p></details></article><article class="question" id="C27"><h3><span class="badge">빈칸</span>C27 · 공유 생성 수</h3><p>빈칸 (가)을 채우세요. 완성 코드의 실행 결과도 적으세요.</p><pre class="python"><code>class Member:
+    count = 0
+
+    def __init__(self):
+        (가).count += 1
+
+a = Member()
+b = Member()
+print(Member.count)</code></pre><label for="aC27">내 답과 풀이 근거</label><textarea id="aC27" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Member:
+    count = 0
+
+    def __init__(self):
+        Member.count += 1
+
+a = Member()
+b = Member()
+print(Member.count)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>2</code></pre><p>(가) Member · 모든 객체가 함께 쓰는 클래스 값을 올립니다.</p></details></article><article class="question" id="C28"><h3><span class="badge">빈칸</span>C28 · 부모 초기화</h3><p>빈칸 (가)을 채우세요. 완성 코드의 실행 결과도 적으세요.</p><pre class="python"><code>class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Student(Person):
+    def __init__(self, name, score):
+        (가).__init__(name)
+        self.score = score
+
+print(Student(&quot;지호&quot;, 88).name)</code></pre><label for="aC28">내 답과 풀이 근거</label><textarea id="aC28" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Student(Person):
+    def __init__(self, name, score):
+        super().__init__(name)
+        self.score = score
+
+print(Student(&quot;지호&quot;, 88).name)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>지호</code></pre><p>(가) super() · 이 단일 상속에서 부모 초기화 메서드를 호출합니다.</p></details></article><article class="question" id="C29"><h3><span class="badge">빈칸</span>C29 · 부모 결과에 추가</h3><p>빈칸 (가)을 채우세요. 완성 코드의 실행 결과도 적으세요.</p><pre class="python"><code>class Fee:
+    def total(self):
+        return 1000
+
+class ExpressFee(Fee):
+    def total(self):
+        return (가).total() + 700
+
+print(ExpressFee().total())</code></pre><label for="aC29">내 답과 풀이 근거</label><textarea id="aC29" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Fee:
+    def total(self):
+        return 1000
+
+class ExpressFee(Fee):
+    def total(self):
+        return super().total() + 700
+
+print(ExpressFee().total())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>1700</code></pre><p>(가) super() · self.total()을 쓰면 지금 메서드를 계속 다시 호출합니다.</p></details></article><article class="question" id="C30"><h3><span class="badge">빈칸</span>C30 · 객체 리스트에서 조건 검사</h3><p>빈칸 (가), (나)을 채우세요. 완성 코드의 실행 결과도 적으세요.</p><pre class="python"><code>class Student:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+students = [Student(&quot;A&quot;, 50), Student(&quot;B&quot;, 80)]
+result = [s.(가) for s in students if s.(나) &gt;= 60]
+print(result)</code></pre><label for="aC30">내 답과 풀이 근거</label><textarea id="aC30" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Student:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+students = [Student(&quot;A&quot;, 50), Student(&quot;B&quot;, 80)]
+result = [s.name for s in students if s.score &gt;= 60]
+print(result)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;B&#x27;]</code></pre><p>(가) name, (나) score · 객체의 점수로 조건을 검사하고 이름을 뽑습니다.</p></details></article><article class="question" id="C31"><h3><span class="badge">오류 수정</span>C31 · self가 빠진 메서드</h3><p>호출 결과가 7이 되도록 메서드 정의를 수정하세요.</p><pre class="python"><code>class Number:
+    def __init__(self):
+        self.n = 7
+
+    def get():
+        return self.n
+
+print(Number().get())</code></pre><label for="aC31">내 답과 풀이 근거</label><textarea id="aC31" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Number:
+    def __init__(self):
+        self.n = 7
+
+    def get(self):
+        return self.n
+
+print(Number().get())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>7</code></pre><p>객체에서 호출하는 메서드의 첫 매개변수로 self를 받습니다. 원래 코드는 객체를 받을 자리가 없어 TypeError가 발생합니다.</p></details></article><article class="question" id="C32"><h3><span class="badge">오류 수정</span>C32 · 서로 섞이는 수강 목록</h3><p>a에게만 Python을 넣었는데 b에게도 보입니다. a는 ['Python'], b는 []가 되게 고치세요.</p><pre class="python"><code>class Student:
+    courses = []
+
+a = Student()
+b = Student()
+a.courses.append(&quot;Python&quot;)
+print(a.courses, b.courses)</code></pre><label for="aC32">내 답과 풀이 근거</label><textarea id="aC32" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Student:
+    def __init__(self):
+        self.courses = []
+
+a = Student()
+b = Student()
+a.courses.append(&quot;Python&quot;)
+print(a.courses, b.courses)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;Python&#x27;] []</code></pre><p>클래스 리스트를 공유하지 않도록 __init__에서 객체마다 새 리스트를 만듭니다.</p></details></article><article class="question" id="C33"><h3><span class="badge">오류 수정</span>C33 · 부모가 넣어야 할 이름 누락</h3><p>부모의 이름 초기화 기능을 재사용하여 민서 80이 출력되게 고치세요.</p><pre class="python"><code>class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Student(Person):
+    def __init__(self, name, score):
+        self.score = score
+
+s = Student(&quot;민서&quot;, 80)
+print(s.name, s.score)</code></pre><label for="aC33">내 답과 풀이 근거</label><textarea id="aC33" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Person:
+    def __init__(self, name):
+        self.name = name
+
+class Student(Person):
+    def __init__(self, name, score):
+        super().__init__(name)
+        self.score = score
+
+s = Student(&quot;민서&quot;, 80)
+print(s.name, s.score)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>민서 80</code></pre><p>부모 초기화를 호출하지 않아 name이 만들어지지 않았습니다. 원래 마지막 줄은 AttributeError가 발생합니다.</p></details></article><article class="question" id="C34"><h3><span class="badge">오류 수정</span>C34 · 끝나지 않는 자기 호출</h3><p>부모의 500에 100을 더해 600을 반환하도록 고치세요.</p><pre class="python"><code>class Fee:
+    def total(self):
+        return 500
+
+class ExtraFee(Fee):
+    def total(self):
+        return self.total() + 100
+
+print(ExtraFee().total())</code></pre><label for="aC34">내 답과 풀이 근거</label><textarea id="aC34" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Fee:
+    def total(self):
+        return 500
+
+class ExtraFee(Fee):
+    def total(self):
+        return super().total() + 100
+
+print(ExtraFee().total())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>600</code></pre><p>self.total()은 ExtraFee.total을 다시 호출합니다. 부모 메서드를 사용하려면 이 예에서는 super().total()입니다.</p></details></article><article class="question" id="C35"><h3><span class="badge">직접 작성</span>C35 · 카운터 만들기</h3><p>Counter(start)는 value를 start로 초기화합니다. add(amount)는 value를 올리고 변경된 값을 반환합니다. 아래 호출이 7, 7을 출력하게 완성하세요.</p><pre class="python"><code>class Counter:
+    # __init__, add를 작성
+    pass
+
+c = Counter(2)
+print(c.add(5))
+print(c.value)</code></pre><label for="aC35">내 답과 풀이 근거</label><textarea id="aC35" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Counter:
+    def __init__(self, start):
+        self.value = start
+
+    def add(self, amount):
+        self.value += amount
+        return self.value
+
+c = Counter(2)
+print(c.add(5))
+print(c.value)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>7
+7</code></pre><p>값을 수정하는 대입과 값을 돌려주는 return이 모두 필요합니다.</p></details></article><article class="question" id="C36"><h3><span class="badge">직접 작성</span>C36 · 직사각형 면적</h3><p>Rectangle(width, height)에 가로·세로를 저장하고 area()로 넓이를 반환하세요. 출력은 12 10입니다.</p><pre class="python"><code>class Rectangle:
+    # 초기화와 area를 작성
+    pass
+
+a = Rectangle(3, 4)
+b = Rectangle(2, 5)
+print(a.area(), b.area())</code></pre><label for="aC36">내 답과 풀이 근거</label><textarea id="aC36" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+a = Rectangle(3, 4)
+b = Rectangle(2, 5)
+print(a.area(), b.area())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>12 10</code></pre><p>각 객체의 width·height를 사용하므로 두 직사각형의 크기가 섞이지 않습니다.</p></details></article><article class="question" id="C37"><h3><span class="badge">직접 작성</span>C37 · 장학 대상 판정 재정의</h3><p>Student는 60점 이상, ScholarshipStudent는 90점 이상일 때 passed()가 True를 반환합니다. 상속으로 구현하세요.</p><pre class="python"><code>class Student:
+    # score 저장, passed 구현
+    pass
+
+class ScholarshipStudent(Student):
+    # passed 재정의
+    pass
+
+print(Student(80).passed(), ScholarshipStudent(80).passed())</code></pre><label for="aC37">내 답과 풀이 근거</label><textarea id="aC37" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Student:
+    def __init__(self, score):
+        self.score = score
+
+    def passed(self):
+        return self.score &gt;= 60
+
+class ScholarshipStudent(Student):
+    def passed(self):
+        return self.score &gt;= 90
+
+print(Student(80).passed(), ScholarshipStudent(80).passed())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>True False</code></pre><p>초기화는 부모에게서 물려받고 판정 기준만 재정의합니다.</p></details></article><article class="question" id="C38"><h3><span class="badge">직접 작성</span>C38 · 객체를 팀별로 세기</h3><p>team 속성이 같은 객체의 수를 딕셔너리로 반환하는 count_teams를 작성하세요. 빈 리스트면 {}입니다.</p><pre class="python"><code>class Member:
+    def __init__(self, team):
+        self.team = team
+
+def count_teams(members):
+    pass
+
+print(count_teams([Member(&quot;A&quot;), Member(&quot;B&quot;), Member(&quot;A&quot;)]))</code></pre><label for="aC38">내 답과 풀이 근거</label><textarea id="aC38" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Member:
+    def __init__(self, team):
+        self.team = team
+
+def count_teams(members):
+    result = {}
+    for member in members:
+        result[member.team] = result.get(member.team, 0) + 1
+    return result
+
+print(count_teams([Member(&quot;A&quot;), Member(&quot;B&quot;), Member(&quot;A&quot;)]))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>{&#x27;A&#x27;: 2, &#x27;B&#x27;: 1}</code></pre><p>딕셔너리의 키는 팀 이름, 값은 해당 팀의 인원 수입니다.</p></details></article><article class="question" id="C39"><h3><span class="badge">직접 작성</span>C39 · 점수 객체를 독립 복사</h3><p>각 Score 객체까지 새로 만드는 clone_scores를 작성하세요. 복사본을 고쳐도 원본은 [10, 20]이어야 합니다.</p><pre class="python"><code>class Score:
+    def __init__(self, value):
+        self.value = value
+
+def clone_scores(scores):
+    pass
+
+original = [Score(10), Score(20)]
+copied = clone_scores(original)
+copied[0].value = 99
+print([s.value for s in original])
+print([s.value for s in copied])</code></pre><label for="aC39">내 답과 풀이 근거</label><textarea id="aC39" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Score:
+    def __init__(self, value):
+        self.value = value
+
+def clone_scores(scores):
+    return [Score(s.value) for s in scores]
+
+original = [Score(10), Score(20)]
+copied = clone_scores(original)
+copied[0].value = 99
+print([s.value for s in original])
+print([s.value for s in copied])</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[10, 20]
+[99, 20]</code></pre><p>숫자 속성만 가진 이 Score에서는 새 객체에 같은 숫자를 넣으면 변경이 분리됩니다.</p></details></article><article class="question" id="C40"><h3><span class="badge">직접 작성</span>C40 · 노드 수를 재귀로 세기</h3><p>트리 구조에서 자기 자신을 포함한 노드 수를 반환하는 size를 작성하세요. None은 0입니다. 출력은 3입니다.</p><pre class="python"><code>class Node:
+    def __init__(self, value):
+        self.value = value
+        self.children = []
+
+def size(node):
+    pass
+
+root = Node(&quot;R&quot;)
+root.children = [Node(&quot;A&quot;), Node(&quot;B&quot;)]
+print(size(root))</code></pre><label for="aC40">내 답과 풀이 근거</label><textarea id="aC40" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><pre class="python"><code>class Node:
+    def __init__(self, value):
+        self.value = value
+        self.children = []
+
+def size(node):
+    if node is None:
+        return 0
+    return 1 + sum(size(child) for child in node.children)
+
+root = Node(&quot;R&quot;)
+root.children = [Node(&quot;A&quot;), Node(&quot;B&quot;)]
+print(size(root))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>3</code></pre><p>자기 자신 1 + 각 자식 부분의 노드 수입니다. 순환 연결이 없는 트리를 전제로 합니다.</p></details></article><h2>5. 직접 만들어 보는 제작 과제 8개</h2><p>P01은 오늘 수업에서 작성합니다. P02~P08은 추가 제작용입니다. 시작 코드의 pass를 채우고 예시 출력과 추가 입력을 확인하세요. 완성 예는 정답을 연 뒤 비교합니다.</p><article class="project" id="P01"><h3>P01 · 입금·출금 계좌</h3><p>계좌마다 잔액을 따로 관리하세요. 초기 잔액은 0 이상의 정수라고 가정합니다.</p><ul><li>Account(balance)에 잔액 저장. deposit(amount)는 양수만 입금하고 성공 여부 반환.</li><li>withdraw(amount)는 양수이고 잔액 이하일 때만 출금하고 True 반환. 실패하면 False이며 잔액 유지.</li><li>두 계좌를 만들어 한 계좌를 바꿔도 다른 계좌가 바뀌지 않는지 확인.</li></ul><p><b>시작 코드</b></p><pre class="python"><code>class Account:
+    def __init__(self, balance=0):
+        pass
+    def deposit(self, amount):
+        pass
+    def withdraw(self, amount):
+        pass
+
+a = Account(1000)
+b = Account(2000)
+print(a.deposit(500), a.withdraw(700), a.withdraw(900))
+print(a.balance, b.balance)</code></pre><label for="aP01">내 답과 풀이 근거</label><textarea id="aP01" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Account:
+    def __init__(self, balance=0):
+        self.balance = balance
+
+    def deposit(self, amount):
+        if amount &lt;= 0:
+            return False
+        self.balance += amount
+        return True
+
+    def withdraw(self, amount):
+        if amount &lt;= 0 or amount &gt; self.balance:
+            return False
+        self.balance -= amount
+        return True
+
+a = Account(1000)
+b = Account(2000)
+print(a.deposit(500), a.withdraw(700), a.withdraw(900))
+print(a.balance, b.balance)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>True True False
+800 2000</code></pre><p>실패 조건에서 먼저 반환하면 잘못된 입출금이 잔액 계산까지 내려오지 않습니다.</p><p><b>추가 확인</b> · 0·음수 입출금 거부 / 잔액 전액 출금 / 빈 계좌 출금 실패</p></details></article><article class="project" id="P02"><h3>P02 · 장바구니 총액 계산</h3><p>상품 객체와 장바구니 객체를 함께 사용하세요. 상품 가격은 0 이상의 정수, 수량은 정수입니다.</p><ul><li>Product(name, price)에 상품 정보 저장. Cart마다 별도의 items 리스트 사용.</li><li>add(product, quantity)는 수량이 양수일 때 (상품 객체, 수량) 튜플을 추가하고 True 반환. 아니면 False.</li><li>total()은 가격×수량의 합 반환. 빈 장바구니는 0.</li></ul><p><b>시작 코드</b></p><pre class="python"><code>class Product:
+    pass
+class Cart:
+    def __init__(self):
+        pass
+    def add(self, product, quantity):
+        pass
+    def total(self):
+        pass
+
+cart = Cart()
+cart.add(Product(&quot;공책&quot;, 1800), 2)
+cart.add(Product(&quot;펜&quot;, 900), 3)
+print(cart.total())
+print(Cart().total())</code></pre><label for="aP02">내 답과 풀이 근거</label><textarea id="aP02" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+class Cart:
+    def __init__(self):
+        self.items = []
+
+    def add(self, product, quantity):
+        if quantity &lt;= 0:
+            return False
+        self.items.append((product, quantity))
+        return True
+
+    def total(self):
+        return sum(product.price * quantity for product, quantity in self.items)
+
+cart = Cart()
+cart.add(Product(&quot;공책&quot;, 1800), 2)
+cart.add(Product(&quot;펜&quot;, 900), 3)
+print(cart.total())
+print(Cart().total())</code></pre><p><b>실행 결과</b></p><pre class="output"><code>6300
+0</code></pre><p>items의 각 칸에는 상품 객체와 수량이 한 쌍으로 들어갑니다. 상품 속성과 튜플 분해를 함께 사용합니다.</p><p><b>추가 확인</b> · 빈 장바구니 0원 / 0·음수 수량 거부 / 장바구니끼리 목록 분리</p></details></article><article class="project" id="P03"><h3>P03 · 일반·할인 이용권</h3><p>부모 클래스의 금액 계산을 재사용하고 할인 부분만 바꾸세요. 금액과 할인액은 0 이상의 정수입니다.</p><ul><li>Ticket(amount)의 price()는 기본 금액 반환.</li><li>DiscountTicket(amount, discount)는 Ticket 상속. super로 부모 초기화 사용.</li><li>price() 재정의: 부모 계산에서 할인액을 빼되 최소 0원. 여러 종류 이용권의 합계를 함수로 계산.</li></ul><p><b>시작 코드</b></p><pre class="python"><code>class Ticket:
+    pass
+class DiscountTicket(Ticket):
+    pass
+def total_price(tickets):
+    pass
+
+tickets = [Ticket(5000), DiscountTicket(5000, 1200), DiscountTicket(700, 1000)]
+print([ticket.price() for ticket in tickets])
+print(total_price(tickets))</code></pre><label for="aP03">내 답과 풀이 근거</label><textarea id="aP03" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Ticket:
+    def __init__(self, amount):
+        self.amount = amount
+
+    def price(self):
+        return self.amount
+
+class DiscountTicket(Ticket):
+    def __init__(self, amount, discount):
+        super().__init__(amount)
+        self.discount = discount
+
+    def price(self):
+        return max(0, super().price() - self.discount)
+
+def total_price(tickets):
+    return sum(ticket.price() for ticket in tickets)
+
+tickets = [Ticket(5000), DiscountTicket(5000, 1200), DiscountTicket(700, 1000)]
+print([ticket.price() for ticket in tickets])
+print(total_price(tickets))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[5000, 3800, 0]
+8800</code></pre><p>함수는 모두 price()로 호출하지만 일반권과 할인권은 자신의 계산 메서드를 사용합니다.</p><p><b>추가 확인</b> · 빈 목록 합계 0 / 금액보다 큰 할인은 0원 / 할인 0원은 원래 가격</p></details></article><article class="project" id="P04"><h3>P04 · 도서 대출 관리</h3><p>책 번호로 객체를 찾고 대출 상태를 변경하세요. 같은 번호의 책을 중복 등록하지 않습니다.</p><ul><li>Book(code, title)은 borrowed=False로 시작.</li><li>Library는 books 딕셔너리 사용. add(book)은 같은 코드가 있으면 False, 새 책이면 등록 후 True.</li><li>borrow(code)는 존재하고 미대출이면 True. give_back(code)는 존재하고 대출 중이면 True. 그 외 False.</li></ul><p><b>시작 코드</b></p><pre class="python"><code>class Book:
+    pass
+class Library:
+    def __init__(self):
+        pass
+    def add(self, book):
+        pass
+    def borrow(self, code):
+        pass
+    def give_back(self, code):
+        pass
+
+library = Library()
+library.add(Book(&quot;B1&quot;, &quot;파이썬&quot;))
+print(library.borrow(&quot;B1&quot;), library.borrow(&quot;B1&quot;))
+print(library.give_back(&quot;B1&quot;), library.give_back(&quot;B1&quot;))</code></pre><label for="aP04">내 답과 풀이 근거</label><textarea id="aP04" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Book:
+    def __init__(self, code, title):
+        self.code = code
+        self.title = title
+        self.borrowed = False
+
+class Library:
+    def __init__(self):
+        self.books = {}
+
+    def add(self, book):
+        if book.code in self.books:
+            return False
+        self.books[book.code] = book
+        return True
+
+    def borrow(self, code):
+        book = self.books.get(code)
+        if book is None or book.borrowed:
+            return False
+        book.borrowed = True
+        return True
+
+    def give_back(self, code):
+        book = self.books.get(code)
+        if book is None or not book.borrowed:
+            return False
+        book.borrowed = False
+        return True
+
+library = Library()
+library.add(Book(&quot;B1&quot;, &quot;파이썬&quot;))
+print(library.borrow(&quot;B1&quot;), library.borrow(&quot;B1&quot;))
+print(library.give_back(&quot;B1&quot;), library.give_back(&quot;B1&quot;))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>True False
+True False</code></pre><p>딕셔너리에서 책을 찾은 뒤 상태를 검사합니다. 첫 조건의 book is None이 참이면 or 뒤는 검사하지 않으므로 없는 책의 속성을 읽지 않습니다.</p><p><b>추가 확인</b> · 없는 책 대출·반납 거부 / 중복 코드 등록 거부 / 대출 후 반납하면 다시 대출 가능</p></details></article><article class="project" id="P05"><h3>P05 · 점수표와 반별 평균</h3><p>학생 객체를 반별로 묶고 평균을 계산하세요. 반 이름은 문자열, 점수는 0~100의 정수입니다.</p><ul><li>Student(name, group, score)에 정보 저장.</li><li>group_averages(students)는 {반: 평균} 딕셔너리 반환. 평균은 소수점 한 자리로 round 사용.</li><li>rank_names(students)는 점수 내림차순, 동점이면 이름 오름차순으로 이름 목록 반환. 원본 리스트 순서는 유지.</li></ul><p><b>시작 코드</b></p><pre class="python"><code>class Student:
+    pass
+def group_averages(students):
+    pass
+def rank_names(students):
+    pass
+
+students = [Student(&quot;나래&quot;, &quot;A&quot;, 70), Student(&quot;가람&quot;, &quot;A&quot;, 90), Student(&quot;다온&quot;, &quot;B&quot;, 90)]
+print(group_averages(students))
+print(rank_names(students))</code></pre><label for="aP05">내 답과 풀이 근거</label><textarea id="aP05" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Student:
+    def __init__(self, name, group, score):
+        self.name = name
+        self.group = group
+        self.score = score
+
+def group_averages(students):
+    groups = {}
+    for student in students:
+        if student.group not in groups:
+            groups[student.group] = []
+        groups[student.group].append(student.score)
+    return {group: round(sum(scores) / len(scores), 1) for group, scores in groups.items()}
+
+def rank_names(students):
+    ranked = sorted(students, key=lambda s: (-s.score, s.name))
+    return [student.name for student in ranked]
+
+students = [Student(&quot;나래&quot;, &quot;A&quot;, 70), Student(&quot;가람&quot;, &quot;A&quot;, 90), Student(&quot;다온&quot;, &quot;B&quot;, 90)]
+print(group_averages(students))
+print(rank_names(students))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>{&#x27;A&#x27;: 80.0, &#x27;B&#x27;: 90.0}
+[&#x27;가람&#x27;, &#x27;다온&#x27;, &#x27;나래&#x27;]</code></pre><p>groups의 값은 같은 반 학생의 점수 리스트입니다. 실제로 학생이 들어간 반만 만들므로 빈 점수 목록으로 나누는 일이 없습니다.</p><p><b>추가 확인</b> · 학생이 없으면 빈 결과 / 동점은 이름 오름차순 / 한 반 한 학생 평균</p></details></article><article class="project" id="P06"><h3>P06 · 하위 팀까지 전체 인원 합산</h3><p>본부 아래에 팀, 팀 아래에 하위 팀이 연결된 트리입니다. 각 팀의 members는 그 팀에 직접 소속된 인원 수이며 서로 중복하지 않습니다.</p><ul><li>Team(name, members)는 하위 팀 children을 각자 빈 리스트로 생성.</li><li>total_members(team)은 본인 팀 인원 + 모든 하위 팀 인원을 재귀로 합산. None이면 0.</li><li>연결은 순환이 없는 트리라고 가정. 아래 본부 2명, 개발 3명, 운영 4명, 개발 하위 모바일 1명을 합산.</li></ul><p><b>시작 코드</b></p><pre class="python"><code>class Team:
+    pass
+def total_members(team):
+    pass
+
+root = Team(&quot;본부&quot;, 2)
+dev = Team(&quot;개발&quot;, 3)
+root.children = [dev, Team(&quot;운영&quot;, 4)]
+dev.children.append(Team(&quot;모바일&quot;, 1))
+print(total_members(root))</code></pre><label for="aP06">내 답과 풀이 근거</label><textarea id="aP06" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Team:
+    def __init__(self, name, members):
+        self.name = name
+        self.members = members
+        self.children = []
+
+def total_members(team):
+    if team is None:
+        return 0
+    return team.members + sum(total_members(child) for child in team.children)
+
+root = Team(&quot;본부&quot;, 2)
+dev = Team(&quot;개발&quot;, 3)
+root.children = [dev, Team(&quot;운영&quot;, 4)]
+dev.children.append(Team(&quot;모바일&quot;, 1))
+print(total_members(root))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>10</code></pre><p>개발 부분은 3+1=4명입니다. 본부에서 2+4+4=10명으로 합산합니다. 메모리 안 객체 연결이며 실제 파일이나 조직 자료를 읽지 않습니다.</p><p><b>추가 확인</b> · 연결된 팀이 없으면 0명 / 하위 팀 없는 팀 / 여러 단계의 하위 팀 합산</p></details></article><article class="project" id="P07"><h3>P07 · 메모장을 서로 독립적으로 복사</h3><p>메모장 객체의 제목과 문자열 메모 목록을 복사하세요. 원본과 복사본은 객체도 다르고 리스트도 달라야 합니다.</p><ul><li>Notebook(title)은 notes=[]로 시작. add(text)는 메모 추가.</li><li>clone()은 같은 제목과 같은 문자열 메모를 가진 새 Notebook 반환.</li><li>문자열 자체는 수정하지 않는 값이므로 메모 목록은 슬라이스로 복사. 원본과 복사본에 각각 추가해 결과 비교.</li></ul><p><b>시작 코드</b></p><pre class="python"><code>class Notebook:
+    def __init__(self, title):
+        pass
+    def add(self, text):
+        pass
+    def clone(self):
+        pass
+
+a = Notebook(&quot;공부&quot;)
+a.add(&quot;클래스&quot;)
+b = a.clone()
+b.add(&quot;상속&quot;)
+a.add(&quot;함수&quot;)
+print(a.notes)
+print(b.notes)</code></pre><label for="aP07">내 답과 풀이 근거</label><textarea id="aP07" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Notebook:
+    def __init__(self, title):
+        self.title = title
+        self.notes = []
+
+    def add(self, text):
+        self.notes.append(text)
+
+    def clone(self):
+        copied = Notebook(self.title)
+        copied.notes = self.notes[:]
+        return copied
+
+a = Notebook(&quot;공부&quot;)
+a.add(&quot;클래스&quot;)
+b = a.clone()
+b.add(&quot;상속&quot;)
+a.add(&quot;함수&quot;)
+print(a.notes)
+print(b.notes)</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[&#x27;클래스&#x27;, &#x27;함수&#x27;]
+[&#x27;클래스&#x27;, &#x27;상속&#x27;]</code></pre><p>copied = self라고 쓰면 같은 객체가 됩니다. 새 Notebook을 만들고 notes 리스트도 따로 복사합니다.</p><p><b>추가 확인</b> · 빈 메모장 복사 / 객체와 리스트가 각각 다름 / 제목 변경도 서로 독립</p></details></article><article class="project" id="P08"><h3>P08 · 긴급 작업 먼저 처리하기</h3><p>작업 객체의 우선순위 계산을 재정의하고, 미완료 작업만 순서대로 뽑으세요. 기본 우선순위는 0~99의 정수이며 작업 번호는 중복하지 않습니다.</p><ul><li>Task(number, priority)는 done=False. score()는 기본 우선순위 반환.</li><li>UrgentTask는 Task 상속. score()는 부모 점수+100 반환.</li><li>pending_numbers(tasks)는 미완료만 점수 내림차순, 동점이면 번호 오름차순으로 번호 목록 반환. complete(task)는 done을 True로 변경.</li></ul><p><b>시작 코드</b></p><pre class="python"><code>class Task:
+    pass
+class UrgentTask(Task):
+    pass
+def pending_numbers(tasks):
+    pass
+def complete(task):
+    pass
+
+tasks = [Task(1, 80), UrgentTask(2, 5), Task(3, 80)]
+print(pending_numbers(tasks))
+complete(tasks[1])
+print(pending_numbers(tasks))</code></pre><label for="aP08">내 답과 풀이 근거</label><textarea id="aP08" spellcheck="false" placeholder="먼저 풀고 정답을 열어 보세요."></textarea><div class="paper-blank"></div><details class="solution"><summary>정답과 풀이 열기</summary><p><b>완성 예</b></p><pre class="python"><code>class Task:
+    def __init__(self, number, priority):
+        self.number = number
+        self.priority = priority
+        self.done = False
+
+    def score(self):
+        return self.priority
+
+class UrgentTask(Task):
+    def score(self):
+        return super().score() + 100
+
+def pending_numbers(tasks):
+    pending = [task for task in tasks if not task.done]
+    ordered = sorted(pending, key=lambda t: (-t.score(), t.number))
+    return [task.number for task in ordered]
+
+def complete(task):
+    task.done = True
+
+tasks = [Task(1, 80), UrgentTask(2, 5), Task(3, 80)]
+print(pending_numbers(tasks))
+complete(tasks[1])
+print(pending_numbers(tasks))</code></pre><p><b>실행 결과</b></p><pre class="output"><code>[2, 1, 3]
+[1, 3]</code></pre><p>긴급 작업은 5+100=105점입니다. 처리한 뒤에는 같은 객체의 done이 바뀌어 다음 조회에서 제외됩니다.</p><p><b>추가 확인</b> · 빈 작업 목록 / 모두 완료한 목록 / 동점은 번호 오름차순</p></details></article><h2>6. 마지막 1분 · 꼭 구별할 것</h2><div class="table-wrap"><table><thead><tr><th>헷갈리는 표현</th><th>구별</th></tr></thead><tbody><tr><td>self.name / name</td><td>객체의 속성 / 메서드 안 매개변수·지역변수</td></tr><tr><td>Class.count / self.count</td><td>클래스의 값 / 객체 자신의 값. 같은 이름 대입 시 인스턴스 값이 생길 수 있음</td></tr><tr><td>클래스 리스트 / __init__의 리스트</td><td>공유하는 하나 / 객체마다 새로 만든 것</td></tr><tr><td>상속 / 재정의</td><td>부모 기능을 이어받음 / 같은 이름의 메서드를 자식이 다시 정의</td></tr><tr><td>super().method() / self.method()</td><td>이 단일 상속에서 부모 쪽 메서드 / 현재 객체를 기준으로 찾은 메서드</td></tr><tr><td>리스트 복사 / 객체 복사</td><td>바깥 칸만 복사 / 안쪽 객체도 새로 만들기 필요 여부 확인</td></tr></tbody></table></div><footer>19일차 · 코딩 120분 + 이론 60분 = 하루 180분 · 외부 연결 없이 사용하는 독립형 HTML</footer></main><script>
+const savePrefix='day19:'+document.body.dataset.book+':';
+document.querySelectorAll('textarea').forEach(el=>{try{el.value=localStorage.getItem(savePrefix+el.id)||''}catch{}el.addEventListener('input',()=>{try{localStorage.setItem(savePrefix+el.id,el.value)}catch{}})});
+document.getElementById('show').onclick=()=>{document.body.classList.remove('exam-mode');document.querySelectorAll('.solution').forEach(d=>d.open=true);document.getElementById('exam').textContent='시험 모드'};
+document.getElementById('hide').onclick=()=>document.querySelectorAll('.solution').forEach(d=>d.open=false);
+document.getElementById('exam').onclick=()=>{const on=document.body.classList.toggle('exam-mode');document.querySelectorAll('.solution').forEach(d=>d.open=false);document.getElementById('exam').textContent=on?'학습 모드':'시험 모드'};
+document.getElementById('print').onclick=()=>window.print();
+const coreButton=document.getElementById('core');
+if(coreButton){const allButton=document.getElementById('all'); const status=document.getElementById('scope');const qs=[...document.querySelectorAll('.question')];
+function scope(core){qs.forEach(q=>q.hidden=core&&q.dataset.core!=='yes');status.textContent=(core?'오늘 수업 ':'전체 ')+qs.filter(q=>!q.hidden).length+'문항 표시';}
+coreButton.onclick=()=>scope(true);allButton.onclick=()=>scope(false);
+document.getElementById('jump').onclick=()=>{const n=Number(document.getElementById('number').value);const q=qs.find(q=>Number(q.dataset.num)===n);if(!q){status.textContent='표시된 범위 안의 정수 번호를 입력하세요';return;}scope(false);q.scrollIntoView({block:'start'});};}
+</script></body></html>

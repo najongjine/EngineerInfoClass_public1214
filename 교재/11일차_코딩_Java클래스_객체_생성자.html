@@ -1,0 +1,200 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>11일차 코딩 · Java 클래스·객체·생성자</title><style>
+*{box-sizing:border-box}body{margin:0;background:#edf2f6;color:#203047;font:17px/1.8 'Malgun Gothic',sans-serif;overflow-wrap:anywhere}main{max-width:1080px;margin:auto;padding:42px 52px;background:white}header{border-top:9px solid #166774;padding:20px 0}h1{font-size:34px;line-height:1.35}h2{margin-top:48px;border-bottom:2px solid #166774;padding-bottom:8px}h3{font-size:21px}.lead{font-size:19px}.tag{display:inline-block;background:#e3f2ef;color:#145a54;padding:2px 11px;border-radius:8px;font-size:14px}.note{border-left:5px solid #166774;background:#eff7f8;padding:16px 20px;margin:18px 0}.warn{border-color:#b87522;background:#fff7e9}table{border-collapse:collapse;width:100%;margin:18px 0}td,th{border:1px solid #d9e2ea;padding:9px 12px;text-align:left;vertical-align:top}th{background:#eaf1f5}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#142333;color:#e9f3f6;padding:18px;border-radius:9px;font:15px/1.65 Consolas,'Malgun Gothic',monospace}.answer{background:#edf5fa;color:#20384e}.question{border:1px solid #d9e2ea;border-radius:12px;padding:20px;margin:20px 0}.question h3{margin-top:4px}details{background:#f0f6f4;border-radius:8px;margin-top:14px;padding:10px 15px}summary{cursor:pointer;font-weight:bold;color:#165e54}textarea{width:100%;min-height:75px;padding:10px;border:1px solid #9cadba;border-radius:7px;font:inherit;resize:vertical;background:#fffdf6}button{font:inherit;background:#166774;border:0;color:white;padding:8px 14px;border-radius:7px;cursor:pointer;margin:4px}.toolbar{position:sticky;top:0;padding:8px;background:#ffffffed;border-bottom:1px solid #d9e2ea;z-index:3}.small{font-size:14px;color:#526279}.blank{display:none;min-height:40px;border-bottom:1px dashed #83929c}footer{margin-top:45px;border-top:1px solid #d9e2ea;padding-top:15px;color:#526279}@media(max-width:700px){main{padding:19px}h1{font-size:27px}pre{font-size:13px}.toolbar{position:static}}@media print{body{background:white;font-size:11pt}main{padding:0;max-width:none}.toolbar,textarea{display:none}body.hide-answers details{display:none!important}.blank{display:block}pre{background:#f3f3f3;color:#111;font-size:9pt}h2,h3{break-after:avoid}.question,pre,tr{break-inside:avoid}}
+body.hide-answers details{display:none!important}</style></head><body data-book="coding"><main><header><span class="tag">정보처리기사 실기 · 3주차 / 11일차</span><h1>11일차 코딩 · Java 클래스·객체·생성자</h1><p class="lead">쉬운 설명 → 응용 → 심화 · 연습 32문제 · 제작 과제 8개</p></header><div class="toolbar"><button id="open" type="button">해설 모두 열기</button><button id="close" type="button">해설 모두 닫기</button><button id="exam" type="button">시험 모드</button><button id="print" type="button">현재 모드 인쇄</button><span class="small">답안은 이 브라우저에 자동 저장됩니다.</span></div><div class="note"><b>목표</b> · class는 설계도, new로 만든 객체는 실제 물건, 참조 변수는 그 물건을 가리키는 표지입니다. 필드·메서드·생성자·this와 객체 배열을 손으로 추적합니다. 연습 32문제와 제작 과제 8개를 제공합니다.</div><h2>코딩 120분 운영</h2><table><thead><tr><th>시간</th><th>활동</th></tr></thead><tbody><tr><td>0~10분</td><td>10일차 Java 배열·메서드 오답 2개 재풀이</td></tr><tr><td>10~25분</td><td>class·new·필드·메서드 설명과 직접 실행</td></tr><tr><td>25~60분</td><td>객체 참조·객체 배열 예제와 C01~C12</td></tr><tr><td>60~80분</td><td>생성자·this·오버로딩 예제</td></tr><tr><td>80~105분</td><td>C13~C32 중 약한 유형 8~12개 선택</td></tr><tr><td>105~120분</td><td>제작 과제 중 1개 구현·실행</td></tr></tbody></table><p>이후 별도 이론 60분으로 하루 총 180분입니다. 전체 연습문제는 수업 안에서 모두 푸는 분량이 아니라 약점별 재풀이 자료입니다. 예제는 각각 독립적인 Main.java로 저장하고 javac Main.java, java Main으로 실행하세요.</p><h2>1. 쉬운 설명 · 클래스와 객체</h2><p>붕어빵 틀 하나로 붕어빵 여러 개를 만드는 것처럼 class 하나에서 객체를 여러 개 만듭니다. 필드는 객체 안에 저장하는 값, 메서드는 객체가 하는 일입니다. new를 실행할 때마다 별도 객체가 생깁니다.</p><pre class=""><code>class Lamp {
+    String color;
+    boolean on;
+    void switchOn() { on = true; }
+    void show() { System.out.println(color + &quot;:&quot; + on); }
+}
+public class Main {
+    public static void main(String[] args) {
+        Lamp desk = new Lamp(), bed = new Lamp();
+        desk.color = &quot;파랑&quot;; bed.color = &quot;노랑&quot;;
+        desk.switchOn(); desk.show(); bed.show();
+    }
+}</code></pre><pre class="answer"><code>파랑:true
+노랑:false</code></pre><p>desk와 bed는 다른 객체를 가리킵니다. desk.switchOn()은 desk의 on만 변경합니다. 필드는 기본값으로 초기화됩니다(int는 0, boolean은 false, 참조형은 null). 지역 변수에는 읽기 전에 직접 값을 넣어야 합니다.</p><h2>2. 응용 설명 · 같은 객체를 가리키는 두 표지</h2><p>참조 변수의 대입은 객체를 복사하지 않습니다. 같은 객체를 가리키는 표지 두 개라면 어느 쪽에서 필드를 바꿔도 같은 결과를 봅니다. ==는 참조가 동일한 객체를 가리키는지 검사합니다.</p><pre class=""><code>class Box { int value; }
+public class Main {
+    public static void main(String[] args) {
+        Box a = new Box(); a.value = 4;
+        Box b = a; b.value += 3;
+        Box c = new Box(); c.value = 7;
+        System.out.println(a.value + &quot; &quot; + (a == b) + &quot; &quot; + (a == c));
+    }
+}</code></pre><pre class="answer"><code>7 true false</code></pre><p>객체 배열의 칸에는 처음에 null이 들어갑니다. 배열을 만든 것과 각 칸의 객체를 만든 것은 다른 단계입니다.</p><pre class=""><code>class Ticket { int number; }
+public class Main {
+    public static void main(String[] args) {
+        Ticket[] line = new Ticket[2];
+        line[0] = new Ticket(); line[1] = new Ticket();
+        line[0].number = 31; line[1].number = 42;
+        System.out.println(line[0].number + line[1].number);
+    }
+}</code></pre><pre class="answer"><code>73</code></pre><div class="note warn">line[0]이 null일 때 line[0].number에 접근하면 NullPointerException이 납니다. 참조 칸만 만든 상태인지 실제 객체까지 만들었는지 확인하세요.</div><h2>3. 심화 설명 · 생성자와 this</h2><p>생성자는 객체가 만들어질 때 첫 상태를 정합니다. 이름은 클래스와 같고 반환형은 없습니다. this는 지금 작업하는 바로 그 객체입니다. 매개변수와 필드의 이름이 같다면 this.name은 필드, name은 매개변수입니다.</p><pre class=""><code>class Member {
+    String name; int points;
+    Member(String name) { this(name, 0); }
+    Member(String name, int points) {
+        this.name = name; this.points = points;
+    }
+    void earn(int points) { this.points += points; }
+    void show() { System.out.println(name + &quot;:&quot; + points); }
+}
+public class Main {
+    public static void main(String[] args) {
+        Member min = new Member(&quot;민&quot;, 5), jin = new Member(&quot;진&quot;);
+        min.earn(3); jin.earn(2); min.show(); jin.show();
+    }
+}</code></pre><pre class="answer"><code>민:8
+진:2</code></pre><p>this(name, 0)은 같은 클래스의 다른 생성자를 호출하며 반드시 첫 문장이어야 합니다. 생성자를 하나라도 직접 정의하면 매개변수 없는 기본 생성자는 자동으로 생기지 않습니다.</p><h3>필드 변경과 참조 재대입의 차이</h3><pre class=""><code>class Counter { int n; Counter(int n) { this.n = n; } }
+public class Main {
+    static void change(Counter x) {
+        x.n += 2;             // 원본 객체의 필드 변경
+        x = new Counter(100); // 지역 참조만 새 객체로 이동
+        x.n++;
+    }
+    public static void main(String[] args) {
+        Counter c = new Counter(5); change(c);
+        System.out.println(c.n);
+    }
+}</code></pre><pre class="answer"><code>7</code></pre><p>Java 매개변수에는 참조값의 복사본이 전달됩니다. 같은 객체의 필드는 바꿀 수 있지만 메서드 안에서 참조를 재대입해도 호출자의 참조는 이동하지 않습니다.</p><h2>연습문제 32개</h2><p>C01~C12는 객체와 참조, C13~C18은 생성자, C19~C28은 상태 추적, C29~C32는 직접 수정·작성입니다. 답을 먼저 적고 코드를 실행하세요. 복원 기출의 추적 유형을 참고하되 코드는 새로 만들었습니다.</p><article class="question" id="qC01"><span class="tag">연습 C01</span><h3>두 객체의 처음 상태</h3><p>출력 두 줄을 예측하세요.</p><pre class=""><code>class Flag { int n; boolean ready; }
+public class Main { public static void main(String[] x) { Flag a=new Flag(),b=new Flag(); System.out.println(a.n+&quot; &quot;+a.ready); System.out.println(b.n+&quot; &quot;+b.ready); } }</code></pre><label for="aC01">내 답과 풀이 근거</label><textarea id="aC01" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer"><code>0 false
+0 false</code></pre><p>new마다 별도 객체가 생기며 필드는 기본값으로 초기화됩니다.</p></details></article><article class="question" id="qC02"><span class="tag">연습 C02</span><h3>서로 다른 책</h3><p>출력을 예측하고 어느 객체가 바뀌었는지 쓰세요.</p><pre class=""><code>class Book { int pages=3; }
+public class Main { public static void main(String[] x) { Book a=new Book(),b=new Book(); a.pages+=4; System.out.println(a.pages+&quot; &quot;+b.pages); } }</code></pre><label for="aC02">내 답과 풀이 근거</label><textarea id="aC02" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>7 3</b></p><p>a.pages만 3에서 7로 바뀌었습니다.</p></details></article><article class="question" id="qC03"><span class="tag">연습 C03</span><h3>같은 객체를 가리키기</h3><p>출력과 이유를 쓰세요.</p><pre class=""><code>class Cup { int size; }
+public class Main { public static void main(String[] x) { Cup a=new Cup(); a.size=2; Cup b=a; b.size=9; System.out.println(a.size+&quot; &quot;+(a==b)); } }</code></pre><label for="aC03">내 답과 풀이 근거</label><textarea id="aC03" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>9 true</b></p><p>b=a는 객체 복사가 아니라 참조값 복사입니다.</p></details></article><article class="question" id="qC04"><span class="tag">연습 C04</span><h3>새 객체로 이동</h3><p>출력을 예측하세요.</p><pre class=""><code>class Box { int v; }
+public class Main { public static void main(String[] x) { Box a=new Box(); a.v=4; Box b=a; b=new Box(); b.v=8; System.out.println(a.v+&quot; &quot;+b.v+&quot; &quot;+(a==b)); } }</code></pre><label for="aC04">내 답과 풀이 근거</label><textarea id="aC04" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>4 8 false</b></p><p>b의 새 객체 대입은 a의 표지를 바꾸지 않습니다.</p></details></article><article class="question" id="qC05"><span class="tag">연습 C05</span><h3>메서드의 대상</h3><p>출력 두 줄을 쓰세요.</p><pre class=""><code>class Score { String name; int n; void add(){n++;} void show(){System.out.println(name+&quot;:&quot;+n);} }
+public class Main { public static void main(String[] x) { Score a=new Score(),b=new Score(); a.name=&quot;A&quot;; b.name=&quot;B&quot;; a.add();a.add();a.add();b.add();a.show();b.show(); } }</code></pre><label for="aC05">내 답과 풀이 근거</label><textarea id="aC05" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer"><code>A:3
+B:1</code></pre><p>add는 호출한 객체의 필드를 바꿉니다.</p></details></article><article class="question" id="qC06"><span class="tag">연습 C06</span><h3>지역 변수와 필드</h3><p>컴파일 가능한지 판단하세요.</p><pre class=""><code>class A { int n; }
+public class Main { public static void main(String[] x) { A a=new A(); int k; System.out.println(a.n+k); } }</code></pre><label for="aC06">내 답과 풀이 근거</label><textarea id="aC06" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>컴파일 오류</b></p><p>필드 n은 0이지만 지역 변수 k는 초기화되지 않았습니다.</p></details></article><article class="question" id="qC07"><span class="tag">연습 C07</span><h3>생성자 기본값</h3><p>출력을 예측하세요.</p><pre class=""><code>class Item { int v; Item(){v=5;} }
+public class Main { public static void main(String[] x) { System.out.println(new Item().v); } }</code></pre><label for="aC07">내 답과 풀이 근거</label><textarea id="aC07" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>5</b></p><p>생성자가 객체를 만들 때 v를 설정합니다.</p></details></article><article class="question" id="qC08"><span class="tag">연습 C08</span><h3>매개변수와 필드</h3><p>출력을 예측하고 this를 설명하세요.</p><pre class=""><code>class Item { int v; Item(int v){this.v=v;} }
+public class Main { public static void main(String[] x) { System.out.println(new Item(12).v); } }</code></pre><label for="aC08">내 답과 풀이 근거</label><textarea id="aC08" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>12</b></p><p>this.v는 객체 필드, v는 매개변수입니다.</p></details></article><article class="question" id="qC09"><span class="tag">연습 C09</span><h3>this를 생략한 실수</h3><p>출력을 예측하세요.</p><pre class=""><code>class Item { int v; Item(int v){v=v;} }
+public class Main { public static void main(String[] x) { System.out.println(new Item(12).v); } }</code></pre><label for="aC09">내 답과 풀이 근거</label><textarea id="aC09" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>0</b></p><p>v=v는 매개변수 자신에게 대입하므로 필드는 기본값 0입니다.</p></details></article><article class="question" id="qC10"><span class="tag">연습 C10</span><h3>객체 배열의 빈 칸</h3><p>실행 결과를 쓰세요.</p><pre class=""><code>class Cell { int n; }
+public class Main { public static void main(String[] x) { Cell[] a=new Cell[2]; a[0].n=3; System.out.println(a[0].n); } }</code></pre><label for="aC10">내 답과 풀이 근거</label><textarea id="aC10" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>NullPointerException</b></p><p>배열 칸은 있지만 Cell 객체가 없습니다.</p></details></article><article class="question" id="qC11"><span class="tag">연습 C11</span><h3>객체 배열 채우기</h3><p>출력을 예측하세요.</p><pre class=""><code>class Cell { int n; }
+public class Main { public static void main(String[] x) { Cell[] a=new Cell[3]; int s=0; for(int i=0;i&lt;a.length;i++){a[i]=new Cell();a[i].n=i+1;s+=a[i].n;} System.out.println(s); } }</code></pre><label for="aC11">내 답과 풀이 근거</label><textarea id="aC11" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>6</b></p><p>1+2+3을 더합니다.</p></details></article><article class="question" id="qC12"><span class="tag">연습 C12</span><h3>같은 객체를 두 배열 칸에</h3><p>출력을 예측하세요.</p><pre class=""><code>class Cell { int n; }
+public class Main { public static void main(String[] x) { Cell[] a=new Cell[2]; a[0]=new Cell();a[1]=a[0];a[1].n=8;System.out.println(a[0].n+&quot; &quot;+(a[0]==a[1])); } }</code></pre><label for="aC12">내 답과 풀이 근거</label><textarea id="aC12" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>8 true</b></p><p>두 칸은 같은 객체의 표지입니다.</p></details></article><article class="question" id="qC13"><span class="tag">연습 C13</span><h3>생성자 오버로딩</h3><p>출력 두 줄을 쓰세요.</p><pre class=""><code>class User { String name; int level; User(){name=&quot;guest&quot;;} User(String n,int l){name=n;level=l;} void show(){System.out.println(name+&quot;:&quot;+level);} }
+public class Main { public static void main(String[] x) { new User().show();new User(&quot;Mira&quot;,6).show(); } }</code></pre><label for="aC13">내 답과 풀이 근거</label><textarea id="aC13" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer"><code>guest:0
+Mira:6</code></pre><p>인수 목록에 맞는 생성자가 선택됩니다.</p></details></article><article class="question" id="qC14"><span class="tag">연습 C14</span><h3>기본 생성자가 없는 경우</h3><p>new Card()가 가능한지 쓰세요.</p><pre class=""><code>class Card { int number; Card(int number){this.number=number;} }
+public class Main { public static void main(String[] x) { Card c=new Card(); } }</code></pre><label for="aC14">내 답과 풀이 근거</label><textarea id="aC14" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>컴파일 오류</b></p><p>Card(int)를 직접 정의했으므로 인수 없는 생성자는 자동 생성되지 않습니다.</p></details></article><article class="question" id="qC15"><span class="tag">연습 C15</span><h3>생성자 연결</h3><p>출력 순서를 쓰세요.</p><pre class=""><code>class Device { int id; Device(){this(5);System.out.println(&quot;시작&quot;);} Device(int id){this.id=id;} }
+public class Main { public static void main(String[] x) { Device d=new Device();System.out.println(d.id); } }</code></pre><label for="aC15">내 답과 풀이 근거</label><textarea id="aC15" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer"><code>시작
+5</code></pre><p>this(5) 실행 후 인수 없는 생성자의 나머지 문장이 실행됩니다.</p></details></article><article class="question" id="qC16"><span class="tag">연습 C16</span><h3>생성자 호출 위치</h3><p>컴파일되는지 판단하고 고치세요.</p><pre class=""><code>class A { A(){System.out.println(&quot;x&quot;);this(3);} A(int n){} }</code></pre><label for="aC16">내 답과 풀이 근거</label><textarea id="aC16" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>컴파일 오류. this(3)을 첫 문장으로 이동</b></p><p>this(...)는 생성자 안의 첫 문장이어야 합니다.</p></details></article><article class="question" id="qC17"><span class="tag">연습 C17</span><h3>상태 변경 메서드</h3><p>출력을 예측하세요.</p><pre class=""><code>class NumberBox { int v; void set(int n){v=n;} void add(int n){v+=n;} }
+public class Main { public static void main(String[] x) { NumberBox b=new NumberBox();b.set(10);b.add(4);System.out.println(b.v); } }</code></pre><label for="aC17">내 답과 풀이 근거</label><textarea id="aC17" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>14</b></p><p>같은 객체의 필드가 10에서 14가 됩니다.</p></details></article><article class="question" id="qC18"><span class="tag">연습 C18</span><h3>null 비교</h3><p>출력을 예측하세요.</p><pre class=""><code>class Node { Node next; }
+public class Main { public static void main(String[] x) { Node a=new Node();System.out.println(a.next==null); } }</code></pre><label for="aC18">내 답과 풀이 근거</label><textarea id="aC18" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>true</b></p><p>참조형 필드 next는 처음에 null입니다.</p></details></article><article class="question" id="qC19"><span class="tag">연습 C19</span><h3>메서드에 객체 전달</h3><p>출력을 예측하세요.</p><pre class=""><code>class Box { int n=7; }
+public class Main { static void grow(Box x){x.n+=4;} public static void main(String[] a){Box b=new Box();grow(b);System.out.println(b.n);} }</code></pre><label for="aC19">내 답과 풀이 근거</label><textarea id="aC19" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>11</b></p><p>같은 객체의 필드가 변경됩니다.</p></details></article><article class="question" id="qC20"><span class="tag">연습 C20</span><h3>메서드 안에서 참조 재대입</h3><p>출력을 예측하세요.</p><pre class=""><code>class Box { int n=7; }
+public class Main { static void reset(Box x){x=new Box();x.n=100;} public static void main(String[] a){Box b=new Box();reset(b);System.out.println(b.n);} }</code></pre><label for="aC20">내 답과 풀이 근거</label><textarea id="aC20" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>7</b></p><p>매개변수 x만 새 객체를 가리킵니다.</p></details></article><article class="question" id="qC21"><span class="tag">연습 C21</span><h3>필드 변경 뒤 참조 이동</h3><p>출력을 예측하세요.</p><pre class=""><code>class Box { int n=7; }
+public class Main { static void work(Box x){x.n+=2;x=new Box();x.n=50;} public static void main(String[] a){Box b=new Box();work(b);System.out.println(b.n);} }</code></pre><label for="aC21">내 답과 풀이 근거</label><textarea id="aC21" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>9</b></p><p>기존 객체 필드는 바뀌고, 이후 x만 이동합니다.</p></details></article><article class="question" id="qC22"><span class="tag">연습 C22</span><h3>참조 동등성</h3><p>출력을 예측하세요.</p><pre class=""><code>class Dot { int x; Dot(int x){this.x=x;} }
+public class Main { public static void main(String[] a) { Dot p=new Dot(3),q=new Dot(3),r=p;System.out.println((p==q)+&quot; &quot;+(p==r)); } }</code></pre><label for="aC22">내 답과 풀이 근거</label><textarea id="aC22" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>false true</b></p><p>값이 같아도 다른 객체일 수 있습니다.</p></details></article><article class="question" id="qC23"><span class="tag">연습 C23</span><h3>필드 초기화와 생성자</h3><p>출력을 예측하세요.</p><pre class=""><code>class Count { int v=2; Count(){v+=6;} }
+public class Main { public static void main(String[] x) { System.out.println(new Count().v); } }</code></pre><label for="aC23">내 답과 풀이 근거</label><textarea id="aC23" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>8</b></p><p>필드 초기화 2 다음 생성자에서 6을 더합니다.</p></details></article><article class="question" id="qC24"><span class="tag">연습 C24</span><h3>생성자로 만든 두 계좌</h3><p>출력을 예측하세요.</p><pre class=""><code>class Account { int money; Account(int m){money=m;} void deposit(int n){money+=n;} }
+public class Main { public static void main(String[] x) { Account a=new Account(10),b=new Account(20);a.deposit(3);System.out.println(a.money+&quot; &quot;+b.money); } }</code></pre><label for="aC24">내 답과 풀이 근거</label><textarea id="aC24" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>13 20</b></p><p>a에만 deposit을 호출했습니다.</p></details></article><article class="question" id="qC25"><span class="tag">연습 C25</span><h3>객체 배열의 최댓값</h3><p>출력을 예측하세요.</p><pre class=""><code>class Result { int score; Result(int s){score=s;} }
+public class Main { public static void main(String[] x) { Result[] a={new Result(4),new Result(9),new Result(6)};int m=a[0].score;for(Result r:a)if(r.score&gt;m)m=r.score;System.out.println(m); } }</code></pre><label for="aC25">내 답과 풀이 근거</label><textarea id="aC25" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>9</b></p><p>세 객체의 score 중 최댓값입니다.</p></details></article><article class="question" id="qC26"><span class="tag">연습 C26</span><h3>같은 객체가 두 번 들어간 배열</h3><p>출력을 예측하세요.</p><pre class=""><code>class Cell { int n; }
+public class Main { public static void main(String[] x) { Cell shared=new Cell();Cell[] a={shared,shared};a[0].n=5;System.out.println(a[0].n+&quot; &quot;+a[1].n); } }</code></pre><label for="aC26">내 답과 풀이 근거</label><textarea id="aC26" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>5 5</b></p><p>두 배열 칸이 shared를 가리킵니다.</p></details></article><article class="question" id="qC27"><span class="tag">연습 C27</span><h3>this를 반환하기</h3><p>출력을 예측하세요.</p><pre class=""><code>class Box { int n=2; Box raise(int x){n+=x;return this;} }
+public class Main { public static void main(String[] x) { Box a=new Box(),b=a.raise(4);System.out.println(a.n+&quot; &quot;+(a==b)); } }</code></pre><label for="aC27">내 답과 풀이 근거</label><textarea id="aC27" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>6 true</b></p><p>raise는 현재 객체를 반환합니다.</p></details></article><article class="question" id="qC28"><span class="tag">연습 C28</span><h3>생성자 출력 순서</h3><p>출력 세 줄을 쓰세요.</p><pre class=""><code>class Pair { int n; Pair(){this(4);System.out.println(&quot;B&quot;);} Pair(int n){this.n=n;System.out.println(&quot;A&quot;);} }
+public class Main { public static void main(String[] x) { Pair p=new Pair();System.out.println(p.n); } }</code></pre><label for="aC28">내 답과 풀이 근거</label><textarea id="aC28" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><pre class="answer"><code>A
+B
+4</code></pre><p>this(4) 생성자가 먼저 실행됩니다.</p></details></article><article class="question" id="qC29"><span class="tag">연습 C29</span><h3>생성자 완성</h3><p>빈칸에 이름과 수량을 저장하는 두 줄을 쓰세요.</p><pre class=""><code>class Product { String name; int count; Product(String name,int count){ /* 두 줄 */ } }</code></pre><label for="aC29">내 답과 풀이 근거</label><textarea id="aC29" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>this.name=name; this.count=count;</b></p><p>this로 객체 필드를 가리킵니다.</p></details></article><article class="question" id="qC30"><span class="tag">연습 C30</span><h3>null 오류 수정</h3><p>빈칸 한 줄을 채워 실행 오류를 막으세요.</p><pre class=""><code>class Student { int score; }
+public class Main { public static void main(String[] x) { Student[] a=new Student[1]; /* 빈칸 */ a[0].score=90;System.out.println(a[0].score); } }</code></pre><label for="aC30">내 답과 풀이 근거</label><textarea id="aC30" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>a[0]=new Student();</b></p><p>객체 배열 원소에 새 객체를 넣습니다.</p></details></article><article class="question" id="qC31"><span class="tag">연습 C31</span><h3>점수 올리기 메서드</h3><p>amount만큼 n을 증가시키는 add 메서드를 쓰세요.</p><pre class=""><code>class Score { int n; /* add 메서드 */ }</code></pre><label for="aC31">내 답과 풀이 근거</label><textarea id="aC31" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>void add(int amount){this.n+=amount;}</b></p><p>여러 번 호출하면 누적됩니다.</p></details></article><article class="question" id="qC32"><span class="tag">연습 C32</span><h3>같은 객체 찾기</h3><p>두 참조가 동일 객체를 가리키면 true인 same 메서드를 쓰세요.</p><pre class=""><code>class Box { int n; }
+public class Main { /* static same 메서드 */ }</code></pre><label for="aC32">내 답과 풀이 근거</label><textarea id="aC32" spellcheck="false"></textarea><div class="blank"></div><details><summary>정답과 해설</summary><p><b>static boolean same(Box a,Box b){return a==b;}</b></p><p>필드값이 아니라 참조를 비교합니다.</p></details></article><h2>응용 제작 과제 8개</h2><p>요구사항을 보고 먼저 직접 작성하세요. 해설에는 독립 실행 가능한 예시 구현과 기대 결과를 제공합니다.</p><article class="question"><span class="tag">제작 P01</span><h3>도서 대출 장부</h3><p>Book에 제목·총 권수·대출 권수를 저장하세요. borrow()는 남은 책이 있을 때만 대출 수를 늘립니다. 책 두 권을 만들어 각 상태를 출력하세요.</p><label for="aP01">내 설계·코드·실행 결과</label><textarea id="aP01" spellcheck="false"></textarea><div class="blank"></div><details><summary>예시 구현과 확인</summary><pre class=""><code>class Book {
+    String title; int total, borrowed;
+    Book(String title,int total){this.title=title;this.total=total;}
+    boolean borrow(){if(borrowed&gt;=total)return false;borrowed++;return true;}
+    void show(){System.out.println(title+&quot;:&quot;+(total-borrowed));}
+}
+public class Main {
+    public static void main(String[] args){
+        Book a=new Book(&quot;Java&quot;,2),b=new Book(&quot;SQL&quot;,1);
+        a.borrow();a.borrow();System.out.println(a.borrow());b.borrow();
+        a.show();b.show();
+    }
+}</code></pre><p>false, Java:0, SQL:0이 출력됩니다. 대출 불가능할 때 상태가 바뀌지 않아야 합니다.</p></details></article><article class="question"><span class="tag">제작 P02</span><h3>학생 평균표</h3><p>Student에 이름과 점수 배열을 저장하고 average()를 구현하세요. 객체 배열에 학생 2명을 넣어 각각의 평균을 출력하세요.</p><label for="aP02">내 설계·코드·실행 결과</label><textarea id="aP02" spellcheck="false"></textarea><div class="blank"></div><details><summary>예시 구현과 확인</summary><pre class=""><code>class Student {
+    String name; int[] scores;
+    Student(String name,int[] scores){this.name=name;this.scores=scores;}
+    double average(){int sum=0;for(int s:scores)sum+=s;return (double)sum/scores.length;}
+}
+public class Main {
+    public static void main(String[] args){
+        Student[] a={new Student(&quot;가&quot;,new int[]{70,80,90}),
+                     new Student(&quot;나&quot;,new int[]{60,75,90})};
+        for(Student s:a)System.out.println(s.name+&quot;:&quot;+s.average());
+    }
+}</code></pre><p>가:80.0, 나:75.0입니다. 빈 점수 배열은 허용하지 않는다는 입력 약속을 둡니다.</p></details></article><article class="question"><span class="tag">제작 P03</span><h3>온도 기록기</h3><p>Thermometer 생성자에서 현재 온도를 받고 add(int)로 변화량을 적용하세요. 객체 둘의 값이 섞이지 않는지 확인하세요.</p><label for="aP03">내 설계·코드·실행 결과</label><textarea id="aP03" spellcheck="false"></textarea><div class="blank"></div><details><summary>예시 구현과 확인</summary><pre class=""><code>class Thermometer {
+    int current;
+    Thermometer(int current){this.current=current;}
+    void add(int delta){current+=delta;}
+}
+public class Main {
+    public static void main(String[] args){
+        Thermometer room=new Thermometer(20),outside=new Thermometer(8);
+        room.add(3);outside.add(-2);
+        System.out.println(room.current+&quot; &quot;+outside.current);
+    }
+}</code></pre><p>23 6입니다. new 두 번으로 서로 독립된 상태를 만듭니다.</p></details></article><article class="question"><span class="tag">제작 P04</span><h3>회원 기본 등급</h3><p>Member 생성자를 이름만 받는 형태와 이름·등급을 받는 형태로 오버로딩하세요. 이름만 받으면 등급 1입니다.</p><label for="aP04">내 설계·코드·실행 결과</label><textarea id="aP04" spellcheck="false"></textarea><div class="blank"></div><details><summary>예시 구현과 확인</summary><pre class=""><code>class Member {
+    String name; int level;
+    Member(String name){this(name,1);}
+    Member(String name,int level){this.name=name;this.level=level;}
+    void show(){System.out.println(name+&quot;:&quot;+level);}
+}
+public class Main {
+    public static void main(String[] args){
+        new Member(&quot;수&quot;).show();new Member(&quot;미&quot;,3).show();
+    }
+}</code></pre><p>수:1, 미:3입니다. this(...)는 생성자의 첫 문장입니다.</p></details></article><article class="question"><span class="tag">제작 P05</span><h3>재고 창고</h3><p>Product의 sell(int)는 수량이 양수이고 재고 이하일 때만 차감합니다. 성공 여부를 boolean으로 반환하세요.</p><label for="aP05">내 설계·코드·실행 결과</label><textarea id="aP05" spellcheck="false"></textarea><div class="blank"></div><details><summary>예시 구현과 확인</summary><pre class=""><code>class Product {
+    String name; int stock;
+    Product(String name,int stock){this.name=name;this.stock=stock;}
+    boolean sell(int count){
+        if(count&lt;=0||count&gt;stock)return false;
+        stock-=count;return true;
+    }
+}
+public class Main {
+    public static void main(String[] args){
+        Product p=new Product(&quot;연필&quot;,5);
+        System.out.println(p.sell(3));
+        System.out.println(p.sell(4));
+        System.out.println(p.stock);
+    }
+}</code></pre><p>true, false, 2입니다. 실패하면 재고가 그대로입니다.</p></details></article><article class="question"><span class="tag">제작 P06</span><h3>좌표 이동과 별명</h3><p>Point에 x,y와 move(dx,dy)를 만드세요. 같은 객체를 가리키는 별명으로 이동했을 때 원래 참조에서 보이는 값을 확인하세요.</p><label for="aP06">내 설계·코드·실행 결과</label><textarea id="aP06" spellcheck="false"></textarea><div class="blank"></div><details><summary>예시 구현과 확인</summary><pre class=""><code>class Point {
+    int x,y;
+    Point(int x,int y){this.x=x;this.y=y;}
+    void move(int dx,int dy){x+=dx;y+=dy;}
+}
+public class Main {
+    public static void main(String[] args){
+        Point first=new Point(2,4),alias=first;
+        alias.move(3,-1);
+        System.out.println(first.x+&quot; &quot;+first.y+&quot; &quot;+(first==alias));
+    }
+}</code></pre><p>5 3 true입니다. 별명은 객체 복사가 아닙니다.</p></details></article><article class="question"><span class="tag">제작 P07</span><h3>버스 좌석 배정</h3><p>Seat 객체 배열 3칸을 만들고 각 칸의 객체도 생성하세요. assign(name)은 빈 첫 좌석에 이름을 넣고, 꽉 차면 false를 반환합니다.</p><label for="aP07">내 설계·코드·실행 결과</label><textarea id="aP07" spellcheck="false"></textarea><div class="blank"></div><details><summary>예시 구현과 확인</summary><pre class=""><code>class Seat { String name; }
+class Bus {
+    Seat[] seats=new Seat[3];
+    Bus(){for(int i=0;i&lt;seats.length;i++)seats[i]=new Seat();}
+    boolean assign(String name){
+        for(Seat s:seats)if(s.name==null){s.name=name;return true;}
+        return false;
+    }
+    void show(){for(Seat s:seats)System.out.println(s.name);}
+}
+public class Main {
+    public static void main(String[] args){
+        Bus b=new Bus();b.assign(&quot;가&quot;);b.assign(&quot;나&quot;);b.assign(&quot;다&quot;);
+        System.out.println(b.assign(&quot;라&quot;));b.show();
+    }
+}</code></pre><p>false, 가, 나, 다입니다. 배열만 만들고 Seat 객체를 빼먹으면 오류가 납니다.</p></details></article><article class="question"><span class="tag">제작 P08</span><h3>점수표 복사</h3><p>ScoreCard에 add와 copy를 구현하세요. copy는 같은 점수로 새로운 객체를 만들어야 합니다. 원본과 복사본을 비교하세요.</p><label for="aP08">내 설계·코드·실행 결과</label><textarea id="aP08" spellcheck="false"></textarea><div class="blank"></div><details><summary>예시 구현과 확인</summary><pre class=""><code>class ScoreCard {
+    int score;
+    ScoreCard(int score){this.score=score;}
+    void add(int n){score+=n;}
+    ScoreCard copy(){return new ScoreCard(score);}
+}
+public class Main {
+    public static void main(String[] args){
+        ScoreCard a=new ScoreCard(10),b=a.copy();
+        b.add(5);
+        System.out.println(a.score+&quot; &quot;+b.score+&quot; &quot;+(a==b));
+    }
+}</code></pre><p>10 15 false입니다. 참조만 복사한 것과 새 객체를 만든 차이를 확인합니다.</p></details></article><footer>11일차 · 독립 실행형 HTML 교재</footer></main><script>
+const key='day11:'+document.body.dataset.book+':';
+document.querySelectorAll('textarea').forEach(el=>{
+  try { el.value=localStorage.getItem(key+el.id)||''; } catch(err) {}
+  el.addEventListener('input',()=>{try {localStorage.setItem(key+el.id,el.value);} catch(err) {}});
+});
+document.getElementById('open').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=true);
+document.getElementById('close').onclick=()=>document.querySelectorAll('details').forEach(x=>x.open=false);
+document.getElementById('exam').onclick=()=>{document.body.classList.toggle('hide-answers');document.querySelectorAll('details').forEach(x=>x.open=false);document.getElementById('exam').textContent=document.body.classList.contains('hide-answers')?'해설 보기 모드':'시험 모드';};
+document.getElementById('print').onclick=()=>window.print();
+</script></body></html>
