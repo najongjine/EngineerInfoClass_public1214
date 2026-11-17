@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="비전공자용 01일차 코딩 교재. 120분, 연습 20문항과 점검 5문항, 예제·해설·오답노트 포함." name="description"/>
-<title>01일차 코딩 | 실행 환경·자료형·연산자</title>
+<meta content="비전공자용 1 · 코딩 교재. 120분, 연습 20문항과 점검 5문항, 예제·해설·오답노트 포함." name="description"/>
+<title>1 · 코딩 | 실행 환경·자료형·연산자</title>
 <style>
       :root {
         --ink: #17243a;
@@ -517,16 +517,16 @@
     </style>
 </head>
 <body>
-<header>
-<div class="eyebrow">정보처리기사 실기 · 8주 40일 과정</div>
-<h1>01일차 · 코딩용<br/>C 실행 환경·자료형·연산자</h1>
+<header><p class="pace-note">번호는 학습 순서입니다. 시간 안내는 참고용이며, 이해도에 맞춰 천천히 진행합니다.</p>
+<div class="eyebrow">정보처리기사 실기 · 기초부터 실습까지</div>
+<h1>1 · 코딩용<br/>C 실행 환경·자료형·연산자</h1>
 <p>한 줄씩 값을 따라가고, 직접 실행하며 연산 규칙을 익힙니다.</p>
 <div class="meta"><span>코딩 120분</span><span>비전공자 입문</span><span>연습 20 + 점검 5</span></div>
 </header>
 <div aria-label="교재 도구" class="toolbar">
 <button id="close-answers">해설 모두 접기</button><button id="print-student">학생용 인쇄</button><button id="print-teacher">해설 포함 인쇄</button><button id="export">답안 파일 저장</button><button id="import">답안 불러오기</button><button id="reset">답안 초기화</button><input accept="application/json,.json" hidden="" id="import-file" type="file"/><span id="progress" role="status"></span><span id="save-status" role="status"></span>
 </div>
-<main><nav aria-label="목차"><h2>목차 · 코딩용</h2><p>이론 수업은 별도 이론설명·모의고사 HTML로 진행합니다.</p><ol><li><a href="#guide">01 · 코딩 120분 수업 지도</a></li><li><a href="#setup">02 · 기초 — 코드를 쓰면 어떻게 화면에 나타날까?</a></li><li><a href="#variables">03 · 기초 — 변수는 이름표가 붙은 저장 공간</a></li><li><a href="#types">04 · 기초에서 응용으로 — 자료형과 출력 형식</a></li><li><a href="#operators">05 · 응용 — 연산자를 실제 계산으로 이해하기</a></li><li><a href="#deep">06 · 심화 — 증감, 단락 평가, 잘못된 예측 피하기</a></li><li><a href="#trace">07 · 실습 도구 — 손 추적과 조건 변경</a></li><li><a href="#practice">08 · 연습 20문항 — 기초에서 심화까지</a></li><li><a href="#mock">09 · 당일 범위 점검 5문항</a></li><li><a href="#review">10 · 핵심 정리·오답노트·다음 수업</a></li></ol></nav><section id="guide"><h2>01 · 코딩 120분 수업 지도</h2><p>C 파일을 편집·컴파일·실행하고, 변수의 값과 산술·비교·논리·증감 연산의 결과를 한 줄씩 추적합니다.</p><p><b>코딩 1교시 60분 + 코딩 2교시 60분입니다. 이론 60분은 별도 이론용 교재로 진행하여 하루 총 180분을 유지합니다.</b></p><div class="table-wrap"><table><thead><tr><th>시간</th><th>활동</th><th>범위·결과물</th></tr></thead><tbody><tr><td>0~10분</td><td>과정 안내·환경 확인</td><td>02절: hello.c 저장·컴파일·실행</td></tr><tr><td>10~25분</td><td>기초 설명 15분</td><td>03~04절: 변수·대입·자료형·printf</td></tr><tr><td>25~60분</td><td>직접 작성·실행 35분</td><td>연습 01~08: 예상→작성→실행→조건 변경</td></tr><tr><td>60~80분</td><td>손 추적·설명 20분</td><td>05~07절: 연산자·형 변환·증감·단락 평가</td></tr><tr><td>80~105분</td><td>변형·실행 검증 25분</td><td>연습 09~20: 답과 추적 근거를 먼저 작성</td></tr><tr><td>105~120분</td><td>점검·오답 정리 15분</td><td>M01~M05: 8분 풀이+7분 채점·정리</td></tr></tbody></table></div><aside><strong>연습 20문항 + 당일 점검 5문항</strong><p>기초·응용·심화 설명과 예제를 읽고 답·근거를 먼저 적은 뒤 해설을 펼치세요. 연습 문항의 조건 변경은 빠른 학습자를 위한 추가 실습입니다. 원래 문제 번호는 오답 기록을 이어 쓸 수 있도록 유지했습니다.</p></aside><p>답안은 이 교재별로 현재 기기에 저장됩니다. 답안 파일 저장·불러오기와 학생용·해설 포함 인쇄를 사용할 수 있습니다. 기존 통합본의 답안 JSON도 불러올 수 있으며, 이 파일에 해당하는 문항만 반영합니다.</p></section><section id="setup">
+<main><nav aria-label="목차"><h2>목차 · 코딩용</h2><p>이론 수업은 별도 이론설명·모의고사 HTML로 진행합니다.</p><ol><li><a href="#guide">01 · 코딩 120분 수업 지도</a></li><li><a href="#setup">02 · 기초 — 코드를 쓰면 어떻게 화면에 나타날까?</a></li><li><a href="#variables">03 · 기초 — 변수는 이름표가 붙은 저장 공간</a></li><li><a href="#types">04 · 기초에서 응용으로 — 자료형과 출력 형식</a></li><li><a href="#operators">05 · 응용 — 연산자를 실제 계산으로 이해하기</a></li><li><a href="#deep">06 · 심화 — 증감, 단락 평가, 잘못된 예측 피하기</a></li><li><a href="#trace">07 · 실습 도구 — 손 추적과 조건 변경</a></li><li><a href="#practice">08 · 연습 20문항 — 기초에서 심화까지</a></li><li><a href="#mock">09 · 당일 범위 점검 5문항</a></li><li><a href="#review">10 · 핵심 정리·오답노트·다음 수업</a></li></ol></nav><section id="guide"><h2>01 · 코딩 120분 수업 지도</h2><p>C 파일을 편집·컴파일·실행하고, 변수의 값과 산술·비교·논리·증감 연산의 결과를 한 줄씩 추적합니다.</p><p><b>코딩 1교시 60분 + 코딩 2교시 60분입니다. 이론 60분은 별도 이론용 교재로 진행하여 참고 학습 시간은 180분이며, 진도에 맞춰 나누어 진행합니다.</b></p><div class="table-wrap"><table><thead><tr><th>시간</th><th>활동</th><th>범위·결과물</th></tr></thead><tbody><tr><td>0~10분</td><td>과정 안내·환경 확인</td><td>02절: hello.c 저장·컴파일·실행</td></tr><tr><td>10~25분</td><td>기초 설명 15분</td><td>03~04절: 변수·대입·자료형·printf</td></tr><tr><td>25~60분</td><td>직접 작성·실행 35분</td><td>연습 01~08: 예상→작성→실행→조건 변경</td></tr><tr><td>60~80분</td><td>손 추적·설명 20분</td><td>05~07절: 연산자·형 변환·증감·단락 평가</td></tr><tr><td>80~105분</td><td>변형·실행 검증 25분</td><td>연습 09~20: 답과 추적 근거를 먼저 작성</td></tr><tr><td>105~120분</td><td>점검·오답 정리 15분</td><td>M01~M05: 8분 풀이+7분 채점·정리</td></tr></tbody></table></div><aside><strong>연습 20문항 + 당일 점검 5문항</strong><p>기초·응용·심화 설명과 예제를 읽고 답·근거를 먼저 적은 뒤 해설을 펼치세요. 연습 문항의 조건 변경은 빠른 학습자를 위한 추가 실습입니다. 원래 문제 번호는 오답 기록을 이어 쓸 수 있도록 유지했습니다.</p></aside><p>답안은 이 교재별로 현재 기기에 저장됩니다. 답안 파일 저장·불러오기와 학생용·해설 포함 인쇄를 사용할 수 있습니다. 기존 통합본의 답안 JSON도 불러올 수 있으며, 이 파일에 해당하는 문항만 반영합니다.</p></section><section id="setup">
 <h2>02 · 기초 — 코드를 쓰면 어떻게 화면에 나타날까?</h2>
 <p>
           우리가 쓰는 C 코드는 컴퓨터가 바로 실행하는 명령과 다릅니다. <b>편집기</b>는 글을 쓰는 도구, <b>컴파일러</b>는 C 규칙을 검사하고
@@ -774,7 +774,7 @@ printf("%d\n", n);</code></pre>
 <td>문자열 리터럴</td>
 <td>"Welcome"</td>
 <td>%s</td>
-<td>큰따옴표로 묶은 문자열. 배열·널 문자는 03일차에 학습</td>
+<td>큰따옴표로 묶은 문자열. 배열·널 문자는 3번에 학습</td>
 </tr>
 </tbody>
 </table>
@@ -1667,7 +1667,7 @@ printf("%d %d %.2f\n", a, b, c);</code></pre>
 <label class="check"><input data-save="done20" type="checkbox"/> 풀이·해설 확인 완료</label>
 </article>
 </section><section id="mock">
-<h2>09 · 당일 범위 점검 5문항</h2><p>M01~M05를 8분 동안 실행·검색·해설 없이 풉니다. 남은 7분에 채점하고 틀린 코드를 실행·추적하여 원인을 기록합니다. 주간 모의고사는 05일차에 진행합니다.</p><aside><strong>10점 채점 기준</strong><p>총 10점, 각 2점. M01~M04는 출력 전체가 맞으면 2점, 일부만 맞고 추적 근거가 맞으면 1점. M05는 정확한 형 변환 답 2점, 의미는 맞지만 표현이 불완전하면 1점. 단순 공백·줄바꿈 표기 누락은 일관된 기준으로 최대 1점 감점합니다. 8점 이상을 권장하며 공식 시험 기준과는 별개입니다.</p></aside>
+<h2>09 · 당일 범위 점검 5문항</h2><p>M01~M05를 8분 동안 실행·검색·해설 없이 풉니다. 남은 7분에 채점하고 틀린 코드를 실행·추적하여 원인을 기록합니다. 종합 모의고사는 5번에 진행합니다.</p><aside><strong>10점 채점 기준</strong><p>총 10점, 각 2점. M01~M04는 출력 전체가 맞으면 2점, 일부만 맞고 추적 근거가 맞으면 1점. M05는 정확한 형 변환 답 2점, 의미는 맞지만 표현이 불완전하면 1점. 단순 공백·줄바꿈 표기 누락은 일관된 기준으로 최대 1점 감점합니다. 8점 이상을 권장하며 공식 시험 기준과는 별개입니다.</p></aside>
 <article class="question" id="qM01">
 <div class="qhead">
 <span class="badge">기초</span>
@@ -1805,7 +1805,7 @@ printf("%.2f\n", avg);</code></pre>
 최초로 값이 달라진 줄 또는 핵심 근거:
 조건을 하나 바꾼 문제와 예상 결과:
 실행·교재 확인 결과:
-02일차 시작 때 재풀이 결과:" rows="8"></textarea>
+2번 시작 때 재풀이 결과:" rows="8"></textarea>
 </label>
 <ul class="finish">
 <li>□ 소스를 바꾼 뒤 다시 컴파일해야 함을 설명한다.</li>
@@ -1813,9 +1813,9 @@ printf("%.2f\n", avg);</code></pre>
 <li>□ 17/5, 17%5, (double)17/5의 차이를 말한다.</li>
 <li>□ n++와 ++n의 식 값과 갱신 후 값을 나누어 적는다.</li>
 </ul>
-<p>02일차에는 비교·논리식으로 if·else·switch의 실행 흐름을 고르고, 반복문으로 같은 계산을 여러 번 수행합니다. 틀린 문제 하나의 초기값을 바꿔 다음 수업 시작 때 다시 풀어 보세요.</p>
+<p>2번에는 비교·논리식으로 if·else·switch의 실행 흐름을 고르고, 반복문으로 같은 계산을 여러 번 수행합니다. 틀린 문제 하나의 초기값을 바꿔 다음 수업 시작 때 다시 풀어 보세요.</p>
 </section></main>
-<footer>01일차 · 코딩용 · 예상 → 손 추적 → 실행 → 조건 변경 → 오답 교정</footer>
+<footer>1 · 코딩용 · 예상 → 손 추적 → 실행 → 조건 변경 → 오답 교정</footer>
 <script>
       (() => {
         const prefix = "ipe-day01-code-v1:";
@@ -1893,7 +1893,7 @@ printf("%.2f\n", avg);</code></pre>
             update();
             status.textContent = available ? "답안 불러옴 · 이 기기에 저장됨" : "답안 불러옴 · 자동 저장 불가";
           } catch (e) {
-            alert("01일차 답안 JSON 파일인지 확인하세요.");
+            alert("1번 교재의 답안 JSON 파일인지 확인하세요.");
           } finally {
             ev.target.value = "";
           }
@@ -1914,7 +1914,7 @@ printf("%.2f\n", avg);</code></pre>
         document.getElementById("print-student").onclick = () => printMode("student");
         document.getElementById("print-teacher").onclick = () => printMode("teacher");
         document.getElementById("reset").onclick = () => {
-          if (!confirm("이 기기의 01일차 코딩용 답안·메모·점수를 모두 지울까요? 먼저 답안 파일을 저장할 수 있습니다.")) return;
+          if (!confirm("이 기기의 1번 코딩용 답안·메모·점수를 모두 지울까요? 먼저 답안 파일을 저장할 수 있습니다.")) return;
           for (const el of fields) {
             assign(el, el.type === "checkbox" ? false : "");
             try {
